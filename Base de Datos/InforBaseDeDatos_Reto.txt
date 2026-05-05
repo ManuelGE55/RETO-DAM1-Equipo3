@@ -46,6 +46,7 @@ Material
 Movimiento
 	id_movimiento PK
 	id_material FK
+	id_usuario FK
 	tipo_movimiento
 	cantidad
 	fecha
@@ -57,3 +58,13 @@ Alerta_Stock
 	fecha
 	mensaje
 	resuelta
+
+Usuario
+	id_usuario PK
+	nombre
+	apellidos
+	email UNIQUE
+	password_hash
+	rol
+	activo
+	fecha_creacion
