@@ -8,6 +8,6 @@ package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
  *
  * @author DAM212
  */
-public class Usuario {
+public abstract class Usuario {
     
 }
