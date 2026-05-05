@@ -1,0 +1,59 @@
+Base de datos:
+
+Realizar el diseño lógico de la base de datos para la gestión del inventario del taller de Informática.
+Implementar en MySQL la base de datos del inventario del taller de Informática.
+Scripts de disparadores o triggers.
+
+Diseño e implemento de una base de datos relacional MySQL que recoja toda la información del material disponible en el taller. Las tablas deberán contemplar al menos las siguientes categorías de material:
+	Componentes de red (switches, routers, cables, tarjetas de red, etc.)
+	Componentes hardware (placas base, procesadores, módulos de RAM, discos duros, SSD, fuentes de alimentación, tarjetas gráficas, etc).
+	Herramientas (destornilladores, pulseras antiestáticas, polímetros, etc.)
+	Material fungible (tornillos, bridas, pasta térmica, etc.)
+	Equipos completos (PCs, portátiles, Raspberry Pi, etc.)
+	
+Para cada elemento del inventario se almacenará como mínico: nombre, descripción, categoría, estado (disponible/prestado/en reparación/baja), ubicación física (armario, blada, cajón) y cantidad.
+Se deberán implementar uno o varios disparadores (triggers) que automaticen operaciones sobre la base de datos (por ejemplo, registro de movimientos de material, control de stock mínimo, etc.).
+
+Tablas:
+
+Categoría
+	id_categoria PK
+	nombre
+	descripcion
+
+Ubicación
+	id_ubicacion PK
+	armario
+	balda
+	cajon
+	descripcion
+
+Estado
+	id_estado PK
+	nombre
+	descripción
+
+Material
+	id_material PK
+	nombre
+	descripción
+	cantidad
+	stock_minimo
+	id_categoria FK
+	id_estado FK
+	id_ubicacion FK
+
+Movimiento
+	id_movimiento PK
+	id_material FK
+	tipo_movimiento
+	cantidad
+	fecha
+	observacion
+
+Alerta_Stock
+	id_alerta PK
+	id_material FK
+	fecha
+	mensaje
+	resuelta
