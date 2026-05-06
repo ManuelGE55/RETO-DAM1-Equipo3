@@ -10,4 +10,17 @@ package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
  */
 public class Cajon {
     
+    private String descripcion;
+
+    public Cajon(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Cajon{" + "descripcion=" + descripcion + '}';
+    }
+    
+    
+    
 }
