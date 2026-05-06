@@ -9,7 +9,7 @@ CREATE TABLE material(
     cantidad INT,
     stock_minimo INT,
     categoria ENUM("Hardware","Herramienta","Fungible"),
-    estado ENUM("Nuevo","En buen estado","A reparar","Roto"),
+    estado ENUM("Disponible","Prestado","En reparación","Retirado"),
     id_ubicacion INT,
     PRIMARY KEY(id_material),
     KEY (id_ubicacion)
