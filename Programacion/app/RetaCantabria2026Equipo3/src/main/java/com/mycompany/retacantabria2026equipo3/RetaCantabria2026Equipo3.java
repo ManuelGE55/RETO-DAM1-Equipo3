@@ -4,6 +4,8 @@
 
 package com.mycompany.retacantabria2026equipo3;
 
+import com.mycompany.retacantabria2026equipo3.interfazgrafica.Pantalla;
+
 /**
  *
  * @author DAM212
@@ -11,6 +13,7 @@ package com.mycompany.retacantabria2026equipo3;
 public class RetaCantabria2026Equipo3 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Pantalla pantalla = new Pantalla();
+        pantalla.setVisible(true);
     }
 }
