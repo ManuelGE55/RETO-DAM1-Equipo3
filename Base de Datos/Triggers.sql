@@ -18,7 +18,6 @@ CURDATE(),
 @observaciones
 FROM material 
 WHERE NEW.id_ubicacion
-AND cantidad <= stock_minimo;
 END//
 
 CREATE TRIGGER trg_alerta_stock
@@ -39,4 +38,6 @@ ELSEIF (cantidad>stock_minimo) THEN
     SET resulta = true
     WHERE SELECT(id_material FROM material WHERE NEW.cantidad) AND resuelta = false
 END IF;
+END//
+	
 DELIMITER ;
