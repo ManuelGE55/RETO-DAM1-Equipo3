@@ -60,7 +60,7 @@ id_usuario INT,
 id_material INT,
 cantidad INT,
 fecha DATE,
-observación VARCHAR(60),
+observacion VARCHAR(60),
 FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
 FOREIGN KEY (id_material) REFERENCES material(id_material)
 );

@@ -8,7 +8,7 @@ AFTER UPDATE ON material
 FOR EACH ROW
 BEGIN
 INSERT INTO movimiento(
-id_usuario, id_material, cantidad, fecha, observación
+id_usuario, id_material, cantidad, fecha, observacion
 )
 SELECT 
 @id_usuario,
@@ -17,7 +17,7 @@ id_material,
 CURDATE(),
 @observaciones
 FROM material 
-WHERE NEW.id_ubicacion
+WHERE id_ubicacion = NEW.id_ubicacion;
 END//
 
 CREATE TRIGGER trg_alerta_stock
@@ -32,11 +32,11 @@ IF (NEW.cantidad<NEW.stock_minimo) THEN
     CONCAT("Stock de ", nombre, " insuficiente"),
     false
     FROM material
-    WHERE NEW.cantidad
+    WHERE cantidad = NEW.cantidad;
 ELSEIF (cantidad>stock_minimo) THEN
 	UPDATE alerta_stock
-    SET resulta = true
-    WHERE SELECT(id_material FROM material WHERE NEW.cantidad) AND resuelta = false
+    SET resuelta = true
+    WHERE id_material = NEW.id_material AND resuelta = false;
 END IF;
 END//
 	
