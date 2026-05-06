@@ -1,11 +1,13 @@
 CREATE DATABASE IF NOT EXISTS `inventario`;
 
 USE `inventario`;
+
 DROP TABLE IF EXISTS movimiento;
 DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS alerta_stock;
 DROP TABLE IF EXISTS material;
 DROP TABLE IF EXISTS ubicacion;
+
 CREATE TABLE ubicacion(
 	id_ubicacion INT AUTO_INCREMENT,
     armario INT,
