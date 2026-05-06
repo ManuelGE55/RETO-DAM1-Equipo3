@@ -4,10 +4,21 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author DAM212
  */
-public class Balda {
-    
+public class Balda extends Ubicacion{
+   private String descripcion;
+     public Balda(String descripcion,ArrayList materiales) {
+        super(descripcion,materiales);
+    }
+
+    @Override
+    public String toString() {
+        return "Cajon{" + "descripcion=" + descripcion + '}';
+    }
 }
