@@ -9,5 +9,46 @@ package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
  * @author DAM212
  */
 public class Administrador extends Usuario {
+
+    public Administrador() {
+        super();
+    }
+
+    public Administrador(String email, String nombre, String password) {
+        super(email, nombre, password);
+    }
     
+    @Override
+   public String toString() {
+       return "Administrador("
+               + "Nombre: " + this.nombre + " | "
+               + "Email: " + this.email + ""
+               + ")";
+   }
+   
+   // metodos para Frontend
+
+//    @Override
+//    public String consultarInventario() {
+//        
+//    }
+//
+//    @Override
+//    public String localizarMaterial() {
+//        
+//    }
+//
+//    @Override
+//    public boolean registarPrestamo() {
+//        
+//    }
+//
+//    @Override
+//    public boolean login(String passwordIntroducida) {
+//        boolean accesoPermitido = false;
+//        if (passwordIntroducida.equals(this.password)) {
+//            accesoPermitido = true;
+//        }
+//        return accesoPermitido;
+//    }
 }
