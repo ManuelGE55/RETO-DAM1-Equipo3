@@ -12,7 +12,7 @@ id_usuario, id_material, cantidad, fecha, observación
 )
 SELECT 
 @id_usuario,
-id.material,
+id_material,
 @cantidad,
 CURDATE(),
 @observaciones
