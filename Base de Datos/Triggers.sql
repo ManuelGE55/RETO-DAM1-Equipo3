@@ -1,5 +1,5 @@
-DROP trigger IF exists movimiento;
-DROP trigger IF exists alerta_stock;
+DROP trigger IF exists trg_movimiento;
+DROP trigger IF exists trg_alerta_stock;
 
 DELIMITER //
 
