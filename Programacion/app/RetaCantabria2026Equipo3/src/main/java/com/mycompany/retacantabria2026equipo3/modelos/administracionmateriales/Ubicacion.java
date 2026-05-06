@@ -10,4 +10,4 @@ package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
  */
 public class Ubicacion {
     
-}
+    }
