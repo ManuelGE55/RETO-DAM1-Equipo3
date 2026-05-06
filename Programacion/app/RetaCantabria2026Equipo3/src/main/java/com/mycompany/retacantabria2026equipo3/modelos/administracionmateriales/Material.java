@@ -4,10 +4,24 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
 
+import com.mycompany.retacantabria2026equipo3.enums.Categoria;
+import com.mycompany.retacantabria2026equipo3.enums.Estado;
+
 /**
  *
  * @author DAM212
  */
 public class Material {
+    private String nombre;
+    private String descripcion;
+    private Categoria categoria;
+    private Estado estado;
+
+    public Material(String nombre, String descripcion, Categoria categoria, Estado estado) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.estado = estado;
+    }
     
 }

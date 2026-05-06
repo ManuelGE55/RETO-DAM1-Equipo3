@@ -4,14 +4,17 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author DAM212
  */
-public class Balda {
-    private String descripcion;
-     public Balda(String descripcion) {
-        this.descripcion = descripcion;
+public class Balda extends Ubicacion{
+   private String descripcion;
+     public Balda(String descripcion,ArrayList materiales) {
+        super(descripcion,materiales);
     }
 
     @Override

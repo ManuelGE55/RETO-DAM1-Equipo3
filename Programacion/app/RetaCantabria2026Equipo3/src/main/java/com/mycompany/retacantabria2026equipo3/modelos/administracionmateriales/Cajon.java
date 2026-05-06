@@ -4,16 +4,16 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author DAM212
  */
-public class Cajon {
-    
-    private String descripcion;
-
-    public Cajon(String descripcion) {
-        this.descripcion = descripcion;
+public class Cajon extends Ubicacion {
+     public Cajon(String descripcion,ArrayList materiales) {
+        super(descripcion,materiales);
     }
 
     @Override
