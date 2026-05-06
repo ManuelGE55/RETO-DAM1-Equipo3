@@ -9,5 +9,13 @@ package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
  * @author DAM212
  */
 public class Balda {
-    
+    private String descripcion;
+     public Balda(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Cajon{" + "descripcion=" + descripcion + '}';
+    }
 }
