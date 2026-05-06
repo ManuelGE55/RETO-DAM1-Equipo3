@@ -4,6 +4,9 @@
  */
 package com.mycompany.retacantabria2026equipo3.interfazgrafica;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author DAM212
@@ -18,6 +21,11 @@ public class Pantalla extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
+        Image imgImagenIntro = imagenIntro.getImage();
+        Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
+        this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
     }
 
     /**
@@ -29,9 +37,13 @@ public class Pantalla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ImagenIntro = new javax.swing.JLabel();
+        BotonEntrar = new javax.swing.JButton();
         BotonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        BotonEntrar.setText("Entrar");
 
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -45,16 +57,27 @@ public class Pantalla extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(401, 401, 401)
-                .addComponent(BotonSalir)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(509, Short.MAX_VALUE)
-                .addComponent(BotonSalir)
-                .addGap(27, 27, 27))
+                .addGap(23, 23, 23)
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -69,6 +92,8 @@ public class Pantalla extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonEntrar;
     private javax.swing.JButton BotonSalir;
+    private javax.swing.JLabel ImagenIntro;
     // End of variables declaration//GEN-END:variables
 }
