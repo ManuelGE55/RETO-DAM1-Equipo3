@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
   <diagram name="Página-1" id="1lU-RFDTKatBkhOAw4EQ">
-    <mxGraphModel dx="690" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2037" dy="1201" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -46,7 +46,7 @@
         <mxCell id="JOS0TCFTe_RgCQphJ4m8-21" value="gestorTrafico" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="510" y="390" width="280" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="JOS0TCFTe_RgCQphJ4m8-22" value="cargarInventarioEnCSV()&lt;br&gt;cargarInventarioEnExcel()&lt;br&gt;exportarInventarioEnCSV()&lt;div&gt;exportarInventarioEnExcel()&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+        <mxCell id="JOS0TCFTe_RgCQphJ4m8-22" value="cargarInventarioEnCSV()&lt;br&gt;exportarInventarioEnCSV()" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="510" y="430" width="280" height="70" as="geometry" />
         </mxCell>
         <mxCell id="JOS0TCFTe_RgCQphJ4m8-24" value="gestorInformes" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
@@ -181,6 +181,35 @@
         <mxCell id="UZZZp4ydIAHNDwoeM-YJ-8" value="-contraseña&lt;div&gt;-nombre&lt;/div&gt;&lt;div&gt;-email&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="20" y="255" width="140" height="50" as="geometry" />
         </mxCell>
+        <mxCell id="SGbOGHn-1wi2fME_xfk--1" value="UsuarioDAO" style="swimlane;whiteSpace=wrap;html=1;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="20" y="870" width="200" height="130" as="geometry" />
+        </mxCell>
+        <UserObject label="- insrtarUsuario" placeholders="1" name="Variable" id="SGbOGHn-1wi2fME_xfk--11">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="SGbOGHn-1wi2fME_xfk--1">
+            <mxGeometry y="50" width="105" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="- borrarUsuario" placeholders="1" name="Variable" id="SGbOGHn-1wi2fME_xfk--12">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="SGbOGHn-1wi2fME_xfk--1">
+            <mxGeometry y="80" width="105" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="SGbOGHn-1wi2fME_xfk--2" value="InventarioDAO" style="swimlane;whiteSpace=wrap;html=1;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="20" y="760" width="200" height="100" as="geometry" />
+        </mxCell>
+        <UserObject label="- cargarInventario" placeholders="1" name="Variable" id="SGbOGHn-1wi2fME_xfk--9">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="SGbOGHn-1wi2fME_xfk--2">
+            <mxGeometry x="-10" y="60" width="130" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="SGbOGHn-1wi2fME_xfk--3" value="MaterialDAO" style="swimlane;whiteSpace=wrap;html=1;startSize=40;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1010" width="200" height="100" as="geometry" />
+        </mxCell>
+        <UserObject label="- ActualizarEstado" placeholders="1" name="Variable" id="SGbOGHn-1wi2fME_xfk--4">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="SGbOGHn-1wi2fME_xfk--3">
+            <mxGeometry x="5" y="60" width="100" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
       </root>
     </mxGraphModel>
   </diagram>

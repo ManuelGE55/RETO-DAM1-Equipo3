@@ -4,10 +4,12 @@
  */
 package com.mycompany.retacantabria2026equipo3.gestores;
 
+import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
+import java.util.ArrayList;
+
 /**
  *
  * @author DAM212
  */
 public class GestorInventario {
-    
 }
