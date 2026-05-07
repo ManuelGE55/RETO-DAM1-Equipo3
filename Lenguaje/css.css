@@ -1,0 +1,173 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #ddd;
+}
+
+header img {
+    width: 150px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+nav li {
+    flex: 1;
+}
+
+nav a {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+.contenedor {
+    display: flex;
+    min-height: 600px;
+}
+
+aside {
+    width: 25%;
+    background-color: #e5e5e5;
+    padding: 20px;
+}
+
+aside ul {
+    padding: 0;
+    list-style: none;
+}
+
+aside li {
+    margin-bottom: 10px;
+}
+
+aside button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+main {
+    width: 75%;
+    padding: 20px;
+}
+
+.mapa {
+    border: 3px solid black;
+    background-color: white;
+    padding: 20px;
+    width: 100%;
+    min-height: 500px;
+}
+
+.barra-mapa {
+    margin-bottom: 15px;
+}
+
+.barra-mapa button {
+    padding: 8px 14px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.titulo-mapa {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.mapa-dinamico {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.armario-general {
+    width: 90%;
+    max-width: 1100px;
+    border: 3px solid black;
+    padding: 15px;
+}
+
+.fila {
+    display: flex;
+    width: 100%;
+}
+
+.zona {
+    border: 2px solid black;
+    background-color: #f8f8f8;
+    margin: 4px;
+    min-height: 55px;
+    font-weight: bold;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zona:hover {
+    background-color: #dbeafe;
+}
+
+.balda {
+    flex: 1;
+}
+
+.balda-larga {
+    width: 100%;
+}
+
+.armario {
+    flex: 1;
+    min-height: 220px;
+}
+
+.armario-alto {
+    flex: 1;
+    min-height: 300px;
+}
+
+.interior-armario {
+    width: 80%;
+    max-width: 800px;
+    border: 3px solid black;
+    padding: 15px;
+}
+
+.cajon {
+    flex: 1;
+    min-height: 60px;
+    background-color: #fdfdfd;
+}
+
+.ruta {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+

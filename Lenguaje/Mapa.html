@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Taller</title>
+
+    <link rel="icon" type="image/png" href="Martillo.png">
+    <link rel="stylesheet" href="Estilo.css">
+</head>
+
+<body>
+
+    <header>
+        <figure id="logo">
+        <img  src="logo.png" alt="Logo del centro">
+        </figure>
+        <h1>Mapa</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Inicio.html">Inicio</a></li>
+            <li><a href="Mapa.html">Mapa</a></li>
+            <li><a href="Contacto.html">Contáctanos</a></li>
+            <li><a href="Login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenedor">
+
+        <aside>
+            <h2>Componentes</h2>
+
+            <ul>
+                <li><button onclick="buscarMaterial('Arduino UNO')">Arduino UNO</button></li>
+                <li><button onclick="buscarMaterial('Cable HDMI')">Cable HDMI</button></li>
+                <li><button onclick="buscarMaterial('Raspberry Pi')">Raspberry Pi</button></li>
+                <li><button onclick="buscarMaterial('Protoboard')">Protoboard</button></li>
+                <li><button onclick="buscarMaterial('Resistencias')">Resistencias</button></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h2>Mapa del Taller</h2>
+
+            <div class="mapa">
+
+                
+
+                <div id="tituloMapa" class="titulo-mapa">
+                    Vista general del armario
+                </div>
+
+                <div id="mapaDinamico" class="mapa-dinamico">
+                </div>
+
+            </div>
+
+            <div class="info" id="info">
+                Pulsa en un armario, balda, cajón o componente.
+            </div>
+        </main>
+
+    </div>
+
+    <footer>
+    <a href="#top">
+      <figure>
+        <img src="flecha.svg" width="3%">
+      </figure>
+
+    </a>
+    <p>Grupo 3 &copy;</p>
+  </footer>
+
+    <script src="javas.js"></script>
+
+</body>
+
+</html>
