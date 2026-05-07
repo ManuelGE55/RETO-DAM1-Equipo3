@@ -18,7 +18,7 @@ public class AccesoBaseDatos {
     
     private Connection conn = null; //atributo conexión
     // constantes a definir
-    private static final String BD = ""; //Nombre de la base de datos
+    private static final String BD = "inventario"; //Nombre de la base de datos
     private static final String USUARIO = "root"; //Nombre de usuario
     private static final String CLAVE = "mysql"; //Contraseña de la instancia
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/" + BD; //URL de la base de datos
