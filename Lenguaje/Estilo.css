@@ -90,8 +90,8 @@ nav a:hover {
     background:
         linear-gradient(180deg,
             var(--negro) 0%,
-            var(--negro) 50%,
-            var(--azul) 130%);
+            var(--negro) 40%,
+            var(--azul) 120%);
     transform: translateY(-2px);
     box-shadow: 0 3px 0 var(--azul-claro);
 }
