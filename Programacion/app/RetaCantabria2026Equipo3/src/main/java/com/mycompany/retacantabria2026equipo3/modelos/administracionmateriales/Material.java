@@ -32,9 +32,11 @@ public class Material {
         this.idUbicacion = idUbicacion;
     }
 
+
     public int getId() {
         return id;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -43,6 +45,7 @@ public class Material {
     public String getDescripcion() {
         return descripcion;
     }
+
 
     public int getCantidad() {
         return cantidad;
@@ -60,6 +63,7 @@ public class Material {
         return estado;
     }
 
+
     public String getIdUbicacion() {
         return idUbicacion;
     }
@@ -74,4 +78,5 @@ public class Material {
     
     
     
+
 }
