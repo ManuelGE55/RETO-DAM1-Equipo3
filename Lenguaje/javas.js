@@ -10,7 +10,7 @@ const estructura = {
             B006: ["C00601", "C00602", "C00603", "C00604", "C00605", "C00606"],
             B007: ["C00701"],
             B008: ["C00801", "C00802", "C00803", "C00804", "C00805"],
-            B009: ["C00801", "C00802"],
+            B009: ["C00901", "C00902"],
             B010: ["C01001", "C01002", "C01003", "C01004"],
             B011: [],
             B012: [],
@@ -124,7 +124,47 @@ const materiales = [
         balda: "B008",
         cajon: "C00801",
         descripcion: "Resistencias varias"
-    }
+    },
+    {
+        nombre: "Cable VGA",
+        cantidad: 7,
+        armario: "GENERAL",
+        balda: "B009",
+        cajon: "C00901",
+        descripcion: "Cables VGA para monitores antiguos"
+    },
+    {
+        nombre: "Fuente ATX",
+        cantidad: 4,
+        armario: "A1",
+        balda: "B103",
+        cajon: "",
+        descripcion: "Fuentes de alimentación ATX"
+    },
+    {
+        nombre: "ESP32",
+        cantidad: 12,
+        armario: "GENERAL",
+        balda: "B016",
+        cajon: "C01603",
+        descripcion: "Microcontroladores ESP32 con WiFi"
+    },
+    {
+        nombre: "Switch 24 Puertos",
+        cantidad: 2,
+        armario: "A5",
+        balda: "B507",
+        cajon: "",
+        descripcion: "Switches de red para prácticas"
+    },
+    {
+        nombre: "LED Azul",
+        cantidad: 60,
+        armario: "GENERAL",
+        balda: "B008",
+        cajon: "C00803",
+        descripcion: "LEDs azules de 5mm"
+    },
 ];
 
 function verMapaGeneral() {
@@ -134,53 +174,53 @@ function verMapaGeneral() {
         <div class="armario-general">
 
             <div class="fila">
-                <div class="zona balda-larga" onclick="verBalda('GENERAL', 'B001')">B001</div>
+                <div id="B001" class="zona balda-larga" onclick="verBalda('GENERAL', 'B001')">B001</div>
             </div>
 
             <div class="fila">
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B002')">B002</div>
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B003')">B003</div>
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B004')">B004</div>
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B005')">B005</div>
+                <div id="B002" class="zona balda" onclick="verBalda('GENERAL', 'B002')">B002</div>
+                <div id="B003" class="zona balda" onclick="verBalda('GENERAL', 'B003')">B003</div>
+                <div id="B004" class="zona balda" onclick="verBalda('GENERAL', 'B004')">B004</div>
+                <div id="B005" class="zona balda" onclick="verBalda('GENERAL', 'B005')">B005</div>
             </div>
 
             <div class="fila">
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B006')">B006</div>
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B007')">B007</div>
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B008')">B008</div>
-                <div class="zona balda" onclick="verBalda('GENERAL', 'B009')">B009</div>
+                <div id="B006" class="zona balda" onclick="verBalda('GENERAL', 'B006')">B006</div>
+                <div id="B007" class="zona balda" onclick="verBalda('GENERAL', 'B007')">B007</div>
+                <div id="B008" class="zona balda" onclick="verBalda('GENERAL', 'B008')">B008</div>
+                <div id="B009" class="zona balda" onclick="verBalda('GENERAL', 'B009')">B009</div>
             </div>
 
             <div class="fila">
-                <div class="zona armario-alto" onclick="verArmario('A1')">A1</div>
+                <div id="A1" class="zona armario-alto" onclick="verArmario('A1')">A1</div>
 
                 <div style="flex: 3;">
                     <div class="fila">
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B010')">B010</div>
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B013')">B013</div>
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B016')">B016</div>
+                        <div id="B010" class="zona balda" onclick="verBalda('GENERAL', 'B010')">B010</div>
+                        <div id="B013" class="zona balda" onclick="verBalda('GENERAL', 'B013')">B013</div>
+                        <div id="B016" class="zona balda" onclick="verBalda('GENERAL', 'B016')">B016</div>
                     </div>
 
                     <div class="fila">
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B011')">B011</div>
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B014')">B014</div>
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B017')">B017</div>
+                        <div id="B011" class="zona balda" onclick="verBalda('GENERAL', 'B011')">B011</div>
+                        <div id="B014" class="zona balda" onclick="verBalda('GENERAL', 'B014')">B014</div>
+                        <div id="B017" class="zona balda" onclick="verBalda('GENERAL', 'B017')">B017</div>
                     </div>
 
                     <div class="fila">
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B012')">B012</div>
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B015')">B015</div>
-                        <div class="zona balda" onclick="verBalda('GENERAL', 'B018')">B018</div>
+                        <div id="B012" class="zona balda" onclick="verBalda('GENERAL', 'B012')">B012</div>
+                        <div id="B015" class="zona balda" onclick="verBalda('GENERAL', 'B015')">B015</div>
+                        <div id="B018" class="zona balda" onclick="verBalda('GENERAL', 'B018')">B018</div>
                     </div>
 
                     <div class="fila">
-                        <div class="zona armario" onclick="verArmario('A2')">A2</div>
-                        <div class="zona armario" onclick="verArmario('A3')">A3</div>
-                        <div class="zona armario" onclick="verArmario('A4')">A4</div>
+                        <div id="A2" class="zona armario" onclick="verArmario('A2')">A2</div>
+                        <div id="A3" class="zona armario" onclick="verArmario('A3')">A3</div>
+                        <div id="A4" class="zona armario" onclick="verArmario('A4')">A4</div>
                     </div>
                 </div>
 
-                <div class="zona armario-alto" onclick="verArmario('A5')">A5</div>
+                <div id="A5" class="zona armario-alto" onclick="verArmario('A5')">A5</div>
             </div>
 
         </div>
@@ -205,14 +245,14 @@ function verArmario(codigoArmario) {
         html += `<div class="fila">`;
 
         html += `
-            <div class="zona balda" onclick="verBalda('${codigoArmario}', '${baldas[i]}')">
+            <div id="${baldas[i]}" class="zona balda" onclick="verBalda('${codigoArmario}', '${baldas[i]}')">
                 ${baldas[i]}
             </div>
         `;
 
         if (baldas[i + 1] !== undefined) {
             html += `
-                <div class="zona balda" onclick="verBalda('${codigoArmario}', '${baldas[i + 1]}')">
+                <div id="${baldas[i + 1]}" class="zona balda" onclick="verBalda('${codigoArmario}', '${baldas[i + 1]}')">
                     ${baldas[i + 1]}
                 </div>
             `;
@@ -246,14 +286,14 @@ function verBalda(codigoArmario, codigoBalda) {
             html += `<div class="fila">`;
 
             html += `
-                <div class="zona cajon" onclick="verCajon('${codigoArmario}', '${codigoBalda}', '${cajones[i]}')">
+                <div id="${cajones[i]}" class="zona cajon" onclick="verCajon('${codigoArmario}', '${codigoBalda}', '${cajones[i]}')">
                     ${cajones[i]}
                 </div>
             `;
 
             if (cajones[i + 1] !== undefined) {
                 html += `
-                    <div class="zona cajon" onclick="verCajon('${codigoArmario}', '${codigoBalda}', '${cajones[i + 1]}')">
+                   <div id="${cajones[i + 1]}" class="zona cajon" onclick="verCajon('${codigoArmario}', '${codigoBalda}', '${cajones[i + 1]}')">
                         ${cajones[i + 1]}
                     </div>
                 `;
@@ -283,17 +323,84 @@ function verCajon(codigoArmario, codigoBalda, codigoCajon) {
     `;
 }
 
+function limpiarMarcado() {
+    let zonas = document.getElementsByClassName("zona");
+
+    for (let i = 0; i < zonas.length; i++) {
+        zonas[i].classList.remove("zona-activa");
+    }
+}
+
+function marcarZona(codigo) {
+    limpiarMarcado();
+
+    let zona = document.getElementById(codigo);
+
+    if (zona !== null) {
+        zona.classList.add("zona-activa");
+    }
+}
+
 function buscarMaterial(nombre) {
+
     let material = materiales.find(m => m.nombre === nombre);
 
-    document.getElementById("info").innerHTML = `
-        <h3>${material.nombre}</h3>
-        <p><strong>Cantidad:</strong> ${material.cantidad}</p>
-        <p><strong>Armario:</strong> ${material.armario}</p>
-        <p><strong>Balda:</strong> ${material.balda}</p>
-        <p><strong>Cajón:</strong> ${material.cajon}</p>
-        <p><strong>Descripción:</strong> ${material.descripcion}</p>
-    `;
+    if (material === undefined) {
+
+        verMapaGeneral();
+        limpiarMarcado();
+
+        document.getElementById("info").innerHTML = `
+            <h3>${nombre}</h3>
+            <p>Este componente todavía no tiene ubicación registrada.</p>
+        `;
+
+        return;
+    }
+
+    if (material.cajon !== "") {
+
+        verBalda(material.armario, material.balda);
+
+        setTimeout(() => {
+
+            marcarZona(material.cajon);
+
+        }, 50);
+
+    } else {
+
+        if (material.armario === "GENERAL") {
+            verMapaGeneral();
+        } else {
+            verArmario(material.armario);
+        }
+
+        setTimeout(() => {
+
+            marcarZona(material.balda);
+
+        }, 50);
+    }
+
+    setTimeout(() => {
+
+        document.getElementById("info").innerHTML = `
+            <h3>${material.nombre}</h3>
+
+            <p><strong>Cantidad:</strong> ${material.cantidad}</p>
+
+            <p><strong>Ubicación:</strong>
+                ${material.armario}
+                >
+                ${material.balda}
+                ${material.cajon !== "" ? "> " + material.cajon : ""}
+            </p>
+
+            <p><strong>Descripción:</strong> ${material.descripcion}</p>
+        `;
+
+    }, 60);
 }
 
 function mostrarMaterialesArmario(codigoArmario) {
