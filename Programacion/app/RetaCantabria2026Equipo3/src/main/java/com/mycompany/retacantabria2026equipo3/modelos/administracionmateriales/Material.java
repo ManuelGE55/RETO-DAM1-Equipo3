@@ -23,5 +23,20 @@ public class Material {
         this.categoria = categoria;
         this.estado = estado;
     }
-    
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
 }
