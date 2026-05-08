@@ -311,6 +311,9 @@ function verBalda(codigoArmario, codigoBalda) {
 }
 
 function verCajon(codigoArmario, codigoBalda, codigoCajon) {
+    
+    marcarZona(codigoCajon);
+
     let encontrados = materiales.filter(m =>
         m.armario === codigoArmario &&
         m.balda === codigoBalda &&
