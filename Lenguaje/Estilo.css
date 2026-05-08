@@ -391,3 +391,65 @@ aside::-webkit-scrollbar-thumb:hover {
     color: var(--blanco);
     border-color: var(--azul-claro);
 }
+.botones-informes {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    display: flex;
+    gap: 20px;
+}
+
+.botones-informes button {
+
+    padding: 12px 20px;
+
+    background-color: var(--negro);
+    color: var(--blanco);
+
+    border: 2px solid var(--azul);
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.botones-informes button:hover {
+
+    color: var(--azul-claro);
+
+    background:
+    linear-gradient(
+        180deg,
+        var(--negro) 0%,
+        var(--negro) 75%,
+        var(--azul) 100%
+    );
+
+    transform: translateY(-2px);
+
+    border-color: var(--azul-claro);
+}
+
+.tabla-inventario {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+}
+
+.tabla-inventario th,
+.tabla-inventario td {
+
+    border: 2px solid white;
+
+    padding: 10px;
+
+    text-align: center;
+}
+
+.tabla-inventario th {
+
+    background-color: var(--azul);
+}
