@@ -9,6 +9,11 @@ package com.mycompany.retacantabria2026equipo3.DAOs;
  * @author DAM121
  */
 public class InventarioDAO {
+    
+    //==========================================================================
+    //ESTE DAO ESTA ASIGNADO A : MANUEL
+    //==========================================================================
+    
     //Cargar inventario
     //Permite cargar el inventario de la base de datos en el programa
 }
