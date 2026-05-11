@@ -5,6 +5,7 @@
 }
 
 :root {
+    --azul-oscuro: #03001f;
     --azul: #0040a0;
     --azul-claro: #b2d1ff;
     --blanco: #ffffff;
@@ -186,7 +187,7 @@ main h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 
+    transition:
         background-color 0.35s ease,
         box-shadow 0.35s ease,
         border-color 0.35s ease,
@@ -370,12 +371,13 @@ aside::-webkit-scrollbar-thumb:hover {
 .info h3 {
     margin-bottom: 18px;
 }
+
 .info::-webkit-scrollbar {
     width: 8px;
 }
 
 .info::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .info::-webkit-scrollbar-thumb {
@@ -391,6 +393,7 @@ aside::-webkit-scrollbar-thumb:hover {
     color: var(--blanco);
     border-color: var(--azul-claro);
 }
+
 .botones-informes {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -418,12 +421,10 @@ aside::-webkit-scrollbar-thumb:hover {
     color: var(--azul-claro);
 
     background:
-    linear-gradient(
-        180deg,
-        var(--negro) 0%,
-        var(--negro) 75%,
-        var(--azul) 100%
-    );
+        linear-gradient(180deg,
+            var(--negro) 0%,
+            var(--negro) 75%,
+            var(--azul) 100%);
 
     transform: translateY(-2px);
 
@@ -452,4 +453,143 @@ aside::-webkit-scrollbar-thumb:hover {
 .tabla-inventario th {
 
     background-color: var(--azul);
+}
+
+article {
+    padding: 20px;
+    padding-bottom: 60px;
+    border-radius: 15px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#formularioInicioSesion {
+    margin: 10px;
+    margin-top: 1%;
+    padding: 10px;
+    border-radius: 20px;
+    padding-bottom: 40px;
+}
+
+.seccionForm figure{
+    margin-bottom: 5%;
+}
+
+.seccionForm {
+    background-color: #000000;
+    border: 2px solid var(--azul);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 10px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+section {
+    display: flex;
+    background-color: #000000;
+    border: 2px solid var(--azul);
+    padding: 18px;
+    width: 400px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo,
+textarea,
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+    background-color: var(--negro);
+
+    border: 2px solid var(--azul);
+
+    color: var(--blanco);
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+.campo:focus,
+textarea:focus,
+select:focus {
+
+    outline: none;
+
+    border-color: var(--azul-claro);
+
+    box-shadow:
+        0 0 12px rgba(0, 64, 160, 0.6);
+
+    transform: translateY(-1px);
+}
+
+.campo::placeholder,
+textarea::placeholder {
+
+    color: #8da9d6;
+}
+
+textarea {
+
+    resize: vertical;
+
+    min-height: 140px;
+}
+
+select {
+
+    cursor: pointer;
+}
+
+#formularioInicioSesion,
+#contacto {
+
+    width: 450px;
+
+    background-color: rgba(0, 0, 0, 0.85);
+
+    border: 2px solid var(--azul);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 0 20px rgba(0, 64, 160, 0.15);
+}
+
+#avisos {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    color: var(--azul-claro);
 }

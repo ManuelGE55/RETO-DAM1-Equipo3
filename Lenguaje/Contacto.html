@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="Martillo.png">
+        <link rel="stylesheet" href="Estilo.css">
+        <script src="script.js" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <body>
+
+        <header>
+            <figure id="logo">
+                <img src="logo.png" width="10%">
+            </figure>
+            <h1>Iniciar sesión</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="Mapa.html">Mapa</a></li>
+                <li><a href="LogIn.html">Log in</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <main>
+
+            <h2>Contacto</h2>
+            <p>
+
+                <article id="inicioSesion">
+
+                    <!--Espacio para poner un email-->
+                    <section class="seccionForm">
+                        Introduce tu email:
+                        <input type="email" class="campo">
+                    
+                    <!--Desplegable con motivos de comunicación-->
+                    
+                        Elige un asunto :
+                        <select name="Asunto">
+                            <option value="sug">Sugerencia</option>
+                            <option value="rep">Reporte de error</option>
+                            <option value="com">Comentario</option>
+                            <option value="otr">Otro</option>
+                        </select>
+                    
+                    <!--Espacio para escribir-->
+                    
+                        Escribe aquí tu mensaje :
+                        <textarea rows="10" cols="40" name="texto"></textarea>
+                    </section>
+                    <!--Botón enviar-->
+                    <div class="botones-informes">
+                    <button type="submit" id="enviarMensaje">Enviar</button>
+                    </div>
+                </article>
+
+            </p>
+
+        </main>
+
+        <footer>
+            <a href="#top">
+                <figure>
+                    <img src="flecha.png" width="3%">
+                </figure>
+            </a>
+            <p>Grupo 3 &copy;</p>
+        </footer>
+
+    </body>
+
+</html>
