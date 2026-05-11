@@ -20,8 +20,8 @@ public class AccesoBaseDatos {
     // constantes a definir
     private static final String BD = "inventario"; //Nombre de la base de datos
     private static final String USUARIO = "root"; //Nombre de usuario
-    private static final String CLAVE = "mysql"; //Contraseña de la instancia
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/" + BD; //URL de la base de datos
+    private static final String CLAVE = "root"; //Contraseña de la instancia
+    private static final String URL = "jdbc:mysql://ubuntu@44.217.68.114/" + BD; //URL de la base de datos
     
     
     private AccesoBaseDatos() {

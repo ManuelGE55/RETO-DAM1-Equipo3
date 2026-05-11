@@ -16,5 +16,6 @@ public class RetaCantabria2026Equipo3 {
     public static void main(String[] args) {
         Pantalla pantalla = new Pantalla();
         pantalla.setVisible(true);
+        AccesoBaseDatos.getInstance();
     }
 }
