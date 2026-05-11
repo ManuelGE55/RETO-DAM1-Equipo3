@@ -32,7 +32,7 @@ CREATE TABLE material(
     estado ENUM("Disponible","Prestado","En reparación","Retirado"),
     id_ubicacion INT,
     PRIMARY KEY(id_material),
-    KEY (id_ubicacion)
+    FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id_ubicacion)
 );
 CREATE TABLE IF NOT EXISTS alerta_stock (
 	id_alerta INT auto_increment PRIMARY KEY,
@@ -212,9 +212,9 @@ INSERT INTO material VALUES
     (12,"Teclado USB","Teclado con conexión USB",2,1,"Hardware","Disponible",300901),
     (13,"Teclado USB","Teclado con conexión USB",2,1,"Hardware","Disponible",300901),
     
-    (14,"Pistola de silicona","Pistola de silicona",1,1,"Herramienta","Disponible",201604),
+    (14,"Pistola de silicona","Pistola de silicona",1,1,"Herramienta","Disponible",301604),
     
-    (15,"Mascara","Proteccion para los ojos",1,1,"Herramienta","Disponible",201601),
+    (15,"Mascara","Proteccion para los ojos",1,1,"Herramienta","Disponible",301601),
     
     (16,"Portatil","Portatil",1,1,"Hardware","Disponible",2012),
     
@@ -224,7 +224,7 @@ INSERT INTO material VALUES
     (19,"Tornillos","Caja de tornillos pequeños",3,2,"Fungible","Disponible",2201),
     (20,"Tornillos","Caja de tornillos pequeños",3,2,"Fungible","Disponible",2201),
     
-    (21,"Cable ethernet","Cable ethernet de 1 metro",1,1,"Hardware","Disponible",201603)
+    (21,"Cable ethernet","Cable ethernet de 1 metro",1,1,"Hardware","Disponible",301603)
 ;
 
 DELIMITER //
@@ -237,11 +237,12 @@ BEGIN
     SET contador=1;
     REPEAT 
 		-- Seleccionar nombre de material
-        SELECT nombre INTO nombreMat FROM material WHERE id=contador;
+        SELECT nombre INTO nombreMat FROM material WHERE id_material=contador;
 		-- Contar cuantos materiales hay con el mismo nombre¡
         SELECT count(*) INTO newCantidad FROM material WHERE nombre=nombreMat;
 	 	-- Actualizar campo "cantidad" de esos materiales con el resultado obtenido
         UPDATE material SET cantidad=newCantidad WHERE nombre=nombreMat;
+        SET contador=contador+1;
     UNTIL contador=(SELECT count(*) FROM material)
     END REPEAT;
 END//
