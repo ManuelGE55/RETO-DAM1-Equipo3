@@ -40,6 +40,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Localizacion"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="localizacionMouseClicked"/>
+                  </Events>
                 </Menu>
               </SubComponents>
             </Menu>
