@@ -9,6 +9,11 @@ package com.mycompany.retacantabria2026equipo3.DAOs;
  * @author DAM121
  */
 public class UsuarioDAO {
+    
+    //==========================================================================
+    //ESTE DAO ESTA ASIGNADO A : SAUL
+    //==========================================================================
+    
     //Insertar Usuario
     //Permite insertar un usuario en la base de datos
     
