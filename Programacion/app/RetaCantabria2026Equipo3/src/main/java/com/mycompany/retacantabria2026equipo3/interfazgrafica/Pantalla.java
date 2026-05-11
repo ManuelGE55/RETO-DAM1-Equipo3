@@ -248,6 +248,11 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         generarInforme.add(estado);
 
         localizacion.setText("Localizacion");
+        localizacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                localizacionMouseClicked(evt);
+            }
+        });
         generarInforme.add(localizacion);
 
         jMenu3.add(generarInforme);
@@ -324,6 +329,10 @@ private static ArrayList<Material> materiales= new ArrayList<>();
     private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonFiltrarActionPerformed
+
+    private void localizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_localizacionMouseClicked
+        
+    }//GEN-LAST:event_localizacionMouseClicked
 private void rellenarTablaMateriales(){
         // Columnas
         String[] columnas = {
