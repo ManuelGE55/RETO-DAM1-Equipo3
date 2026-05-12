@@ -26,24 +26,23 @@ public class GestorTrafico {
     private static File[] listaFicheros = carpetaFicheros.listFiles();
     private static int contFicheros = listaFicheros.length;
     
-    public static String cargarInventario(File inventarioCSV) {
-        String devolverDatos = "";
-        String csvSplitBy = ",";
-        try (BufferedReader br = new BufferedReader(new FileReader(inventarioCSV))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                devolverDatos += linea + "\n";
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return devolverDatos;
-    }
+//    public static String cargarInventario(File inventarioCSV) {
+//        String devolverDatos = "";
+//        String csvSplitBy = ",";
+//        try (BufferedReader br = new BufferedReader(new FileReader(inventarioCSV))) {
+//            String linea;
+//            while ((linea = br.readLine()) != null) {
+//                devolverDatos += linea + "\n";
+//            }
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return devolverDatos;
+//    }
     
-    public static void exportarInventario(Inventario inventario) {
+    public static void exportarInventario(List<Material> materiales) {
         
         File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (contFicheros + 1) + ".xlsx");
-        List<Material> materiales = inventario.getMateriales();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(inventarioCSV, true))) {
             bw.write("Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion\n");
             for (Material material : materiales) {
