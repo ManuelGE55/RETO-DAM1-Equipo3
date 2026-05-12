@@ -4,12 +4,17 @@
  */
 package com.mycompany.retacantabria2026equipo3.gestores;
 
+import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.util.ArrayList;
 
 /**
  *
- * @author DAM212
+ * @author Hugo Fernández Calzado
  */
 public class GestorInventario {
+    
+//    public static String mostrarMateriales(Inventario inventario) {
+//        
+//    }
 }
