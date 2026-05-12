@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
+import java.util.HashSet;
 
 /**
  *
@@ -26,32 +27,19 @@ public class InventarioDAO {
         //Variables
         ArrayList<Material>listaMateriales=new ArrayList<>();
         
-        PreparedStatement ps=null;
-        ResultSet resultado=null;
         
-        String select="SELECT id_material,nombre,descripcion,cantidad,stock_minimo,categoria,estado FROM material";
+        String select="SELECT id_material,nombre,descripcion,cantidad,stock_minimo,categoria,estado,id_Ubicacion FROM material";
         
-        try(Connection conn = AccesoBaseDatos.getInstance().getConn();){
-            ps=conn.prepareStatement(select);
-            resultado=ps.executeQuery();
+        try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps=conn.prepareStatement(select);ResultSet resultado=ps.executeQuery();){
             
             while(resultado.next()){
+            Material m=new Material( resultado.getString(2),resultado.getString(3),resultado.getInt(4),resultado.getInt(5),Categoria.valueOf(resultado.getString(6).toUpperCase()),Estado.valueOf(resultado.getString(7).toUpperCase()),resultado.getString(8));
+                m.setId(resultado.getInt(1));
+                listaMateriales.add(m);
             
-                listaMateriales.add(new Material(
-                        
-                    resultado.getString(1),                     //Nombre
-                    resultado.getString(2),                     //Descripción
-                    resultado.getInt(3),                        //Cantidad
-                    resultado.getInt(4),                        //StockMinimo
-                    Categoria.valueOf(resultado.getString(5)),  //Categoria
-                    Estado.valueOf(resultado.getString(6)),     //Estado
-                    resultado.getString(7)                      //IdUbicacion
-                        
-                ));
             }
         }
         catch(SQLException e){}
-        
         return listaMateriales;
     }
 }

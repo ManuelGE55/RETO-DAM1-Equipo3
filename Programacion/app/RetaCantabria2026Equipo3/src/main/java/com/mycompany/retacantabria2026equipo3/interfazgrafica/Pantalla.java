@@ -4,6 +4,7 @@
  */
 package com.mycompany.retacantabria2026equipo3.interfazgrafica;
 
+import com.mycompany.retacantabria2026equipo3.DAOs.InventarioDAO;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -18,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
  * @author DAM212
  */
 public class Pantalla extends javax.swing.JFrame {
-private static ArrayList<Material> materiales= new ArrayList<>();
+
+    private static ArrayList<Material> materiales = new ArrayList<>();
+
     /**
      * Creates new form Pantalla
      */
@@ -29,7 +32,7 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         this.setLocationRelativeTo(null);
         this.jPanel2.setVisible(false);
         this.jMenuBar2.setVisible(false);
-        
+        this.setSize(770, 520);
         ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
         Image imgImagenIntro = imagenIntro.getImage();
         Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
@@ -46,6 +49,7 @@ private static ArrayList<Material> materiales= new ArrayList<>();
     private void initComponents() {
 
         jOptionPane1 = new javax.swing.JOptionPane();
+        jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         BotonSalir = new javax.swing.JButton();
         BotonEntrar = new javax.swing.JButton();
@@ -68,11 +72,17 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         jMenu3 = new javax.swing.JMenu();
         exportarCSV = new javax.swing.JMenu();
         importarCSV = new javax.swing.JMenu();
-        generarInforme = new javax.swing.JMenu();
-        categoria = new javax.swing.JMenu();
-        estado = new javax.swing.JMenu();
-        localizacion = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,25 +105,24 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(529, Short.MAX_VALUE))
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(376, 376, 376))
+                .addContainerGap(301, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(298, 298, 298))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jLabel2.setText("Estado:");
@@ -122,6 +131,11 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         comboEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboEstadoMouseClicked(evt);
+            }
+        });
+        comboEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEstadoActionPerformed(evt);
             }
         });
 
@@ -158,6 +172,11 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                 comboCategoriaMouseClicked(evt);
             }
         });
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Armario/Balda");
 
@@ -185,32 +204,30 @@ private static ArrayList<Material> materiales= new ArrayList<>();
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
                 .addComponent(botonSalir)
-                .addGap(103, 103, 103)
-                .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(18, 18, 18)
+                .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addGap(18, 18, 18)
                         .addComponent(botonFiltrar)
-                        .addGap(49, 49, 49)
-                        .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addGap(18, 18, 18)
+                        .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,14 +235,8 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonFiltrar)
-                            .addComponent(modificarMaterial)
-                            .addComponent(imprimirInforme)))
+                        .addGap(23, 23, 23)
+                        .addComponent(imprimirInforme))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -235,11 +246,20 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                                 .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botonSalir)
                             .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addGap(1, 1, 1)
-                        .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonFiltrar)
+                                    .addComponent(modificarMaterial)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(1, 1, 1)
+                                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -251,28 +271,7 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         importarCSV.setText("Importar CSV");
         jMenu3.add(importarCSV);
 
-        generarInforme.setText("Generar Informe");
-
-        categoria.setText("Categoria");
-        generarInforme.add(categoria);
-
-        estado.setText("Estado");
-        generarInforme.add(estado);
-
-        localizacion.setText("Localizacion");
-        localizacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                localizacionMouseClicked(evt);
-            }
-        });
-        generarInforme.add(localizacion);
-
-        jMenu3.add(generarInforme);
-
         jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
 
@@ -280,7 +279,10 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(630, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -289,9 +291,9 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 55, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(7, 7, 7)
@@ -308,18 +310,21 @@ private static ArrayList<Material> materiales= new ArrayList<>();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void comboEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstadoMouseClicked
-        jTable1.setValueAt(comboEstado.getSelectedItem(),jTable1.getSelectedRow(),6);
+
     }//GEN-LAST:event_comboEstadoMouseClicked
 
     private void BotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarActionPerformed
+        this.setSize(1350, 550);
         jPanel2.setVisible(true);
         jMenuBar2.setVisible(true);
-        rellenarTablaMateriales();
         rellenarComboBoxEstado();
         rellenarComboBoxCategoria();
-        //materiales = InventarioDAO.cargarInventario();
-        jPanel1.setVisible(false);
+        materiales = InventarioDAO.cargarInventario();
+        rellenarTablaMateriales();
         
+
+        jPanel1.setVisible(false);
+
     }//GEN-LAST:event_BotonEntrarActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
@@ -342,20 +347,26 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonFiltrarActionPerformed
 
-    private void localizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_localizacionMouseClicked
-        
-    }//GEN-LAST:event_localizacionMouseClicked
-private void rellenarTablaMateriales(){
+    private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
+        rellenarTablaMateriales();
+    }//GEN-LAST:event_comboEstadoActionPerformed
+
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
+        rellenarTablaMateriales();// TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriaActionPerformed
+    private void rellenarTablaMateriales() {
         // Columnas
+        boolean filtrado;
+
         String[] columnas = {
-                "id_material",
-                "nombre",
-                "descripcion",
-                "cantidad",
-                "stock_minimo",
-                "categoria",
-                "estado",
-                "id_ubicacion"
+            "id_material",
+            "nombre",
+            "descripcion",
+            "cantidad",
+            "stock_minimo",
+            "categoria",
+            "estado",
+            "id_ubicacion"
         };
 
         // Modelo
@@ -365,10 +376,10 @@ private void rellenarTablaMateriales(){
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if(!materiales.isEmpty()){
+        if (!materiales.isEmpty()) {
             for (Material m : materiales) {
-
-            Object[] fila = {
+                filtrado=true;
+                Object[] fila = {
                     m.getId(),
                     m.getNombre(),
                     m.getDescripcion(),
@@ -377,38 +388,49 @@ private void rellenarTablaMateriales(){
                     m.getCategoria(),
                     m.getEstado(),
                     m.getIdUbicacion()
-            };
+                };
+                if (!comboEstado.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
+                }
 
-            modelo.addRow(fila);
+                if (!comboCategoria.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
+                }
+
+                if (filtrado) {
+                    modelo.addRow(fila);
+                }
+
+            }
         }
-        }
-        
-}
 
-private void rellenarComboBoxEstado() {
+    }
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    private void rellenarComboBoxEstado() {
 
-    modelo.addElement("  ---  ");
-    modelo.addElement("DISPONIBLE");
-    modelo.addElement("PRESTADO");
-    modelo.addElement("EN_REPARACION");
-    modelo.addElement("RETIRADO");
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-    comboEstado.setModel(modelo);
-}
-private void rellenarComboBoxCategoria() {
+        modelo.addElement("---");
+        modelo.addElement("DISPONIBLE");
+        modelo.addElement("PRESTADO");
+        modelo.addElement("EN_REPARACION");
+        modelo.addElement("RETIRADO");
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        comboEstado.setModel(modelo);
+    }
 
-    modelo.addElement("  ---  ");
-    modelo.addElement("HARDWARE");
-    modelo.addElement("HERRAMIENTA");
-    modelo.addElement("FUNGIBLE");
+    private void rellenarComboBoxCategoria() {
 
-    comboCategoria.setModel(modelo);
-}
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
+        modelo.addElement("---");
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HARDWARE");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
+
+        comboCategoria.setModel(modelo);
+    }
 
     /**
      * @param args the command line arguments
@@ -420,27 +442,23 @@ private void rellenarComboBoxCategoria() {
     private javax.swing.JLabel ImagenIntro;
     private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JMenu categoria;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboLocalizacion;
-    private javax.swing.JMenu estado;
     private javax.swing.JMenu exportarCSV;
-    private javax.swing.JMenu generarInforme;
     private javax.swing.JMenu importarCSV;
     private javax.swing.JButton imprimirInforme;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JMenu localizacion;
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
     // End of variables declaration//GEN-END:variables

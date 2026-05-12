@@ -9,5 +9,5 @@ package com.mycompany.retacantabria2026equipo3.enums;
  * @author DAM121
  */
 public enum Categoria {
-    HARDWARE,HERRAMIENTA,FUNGIBLE
+    CUADERNO,HARDWARE,HERRAMIENTA,FUNGIBLE
 }
