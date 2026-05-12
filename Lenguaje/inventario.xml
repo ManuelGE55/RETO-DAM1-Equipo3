@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventario>
+    <material>
+        <nombre>Arduino UNO</nombre>
+        <cantidad>5</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B002</balda>
+        <cajon>C00201</cajon>
+        <descripcion>Placas Arduino para prácticas</descripcion>
+    </material>
+
+    <material>
+        <nombre>Cable HDMI</nombre>
+        <cantidad>10</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B010</balda>
+        <cajon>C01001</cajon>
+        <descripcion>Cables HDMI para monitores</descripcion>
+    </material>
+
+    <material>
+        <nombre>Raspberry Pi</nombre>
+        <cantidad>3</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B003</balda>
+        <cajon>C00301</cajon>
+        <descripcion>Miniordenadores Raspberry</descripcion>
+    </material>
+
+    <material>
+        <nombre>Protoboard</nombre>
+        <cantidad>8</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B006</balda>
+        <cajon>C00601</cajon>
+        <descripcion>Placas de pruebas electrónicas</descripcion>
+    </material>
+
+    <material>
+        <nombre>Resistencias</nombre>
+        <cantidad>100</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B008</balda>
+        <cajon>C00801</cajon>
+        <descripcion>Resistencias varias</descripcion>
+    </material>
+
+    <material>
+        <nombre>Cable VGA</nombre>
+        <cantidad>7</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B009</balda>
+        <cajon>C00901</cajon>
+        <descripcion>Cables VGA para monitores antiguos</descripcion>
+    </material>
+
+    <material>
+        <nombre>Fuente ATX</nombre>
+        <cantidad>4</cantidad>
+        <armario>A1</armario>
+        <balda>B103</balda>
+        <cajon></cajon>
+        <descripcion>Fuentes de alimentación ATX</descripcion>
+    </material>
+
+    <material>
+        <nombre>ESP32</nombre>
+        <cantidad>12</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B016</balda>
+        <cajon>C01603</cajon>
+        <descripcion>Microcontroladores ESP32 con WiFi</descripcion>
+    </material>
+
+    <material>
+        <nombre>Switch 24 Puertos</nombre>
+        <cantidad>2</cantidad>
+        <armario>A5</armario>
+        <balda>B507</balda>
+        <cajon></cajon>
+        <descripcion>Switches de red para prácticas</descripcion>
+    </material>
+
+    <material>
+        <nombre>LED Azul</nombre>
+        <cantidad>60</cantidad>
+        <armario>GENERAL</armario>
+        <balda>B008</balda>
+        <cajon>C00803</cajon>
+        <descripcion>LEDs azules de 5mm</descripcion>
+    </material>
+</inventario>
