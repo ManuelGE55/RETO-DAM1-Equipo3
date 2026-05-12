@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <link rel="icon" type="image/png" href="Martillo.png">
+  <link rel="stylesheet" href="Estilo.css">
+</head>
+
+<body>
+  <header>
+    <figure id="logo">
+      <img src="logo.png" width="10%">
+    </figure>
+    <h1>Distribución del taller</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="Mapa.html">Mapa</a></li>
+      <li><a href="LogIn.html">Log in</a></li>
+      <li><a href="Contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Información</h2>
+    <p>En esta página se recogen los materiales del aula del tayer de mecánica del instituto IES Miguel Herrero Pereda</p>
+    <div class="botones-informes">
+      <button onclick="generarCSVDesdeXML()">Generar informe CSV</button>
+      <button onclick="mostrarInventarioDesdeXML()">Mostrar inventario HTML</button>
+      <button onclick="ocultarInventario()">Ocultar inventario</button>
+    </div>
+
+    <div id="inventarioHTML"></div>
+
+    
+
+  </main>
+
+  <footer>
+    <a href="#top">
+      <figure>
+        <img src="flecha.png" width="3%">
+      </figure>
+
+    </a>
+    <p>Grupo 3 &copy;</p>
+  </footer>
+<script src="informes.js"></script>
+</body>
+
+</html>
