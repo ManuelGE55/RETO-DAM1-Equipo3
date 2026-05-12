@@ -26,9 +26,9 @@ FOR EACH ROW
 BEGIN
 CALL actualizarCantidad();
 IF (NEW.cantidad<NEW.stock_minimo) THEN
-	INSERT alerta_stock(id_material, fecha, mensaje, resuelta)
+	INSERT alerta_stock(nombre_material, fecha, mensaje, resuelta)
     SELECT
-    id_material,
+    nombre,
     CURDATE(),
     CONCAT("Stock de ", nombre, " insuficiente"),
     false

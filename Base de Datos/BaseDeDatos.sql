@@ -1,10 +1,10 @@
+/*
+Crear base de datos
+*/
 
--- Crear base de datos
-
+DROP DATABASE IF EXISTS `inventario`;
 CREATE DATABASE IF NOT EXISTS `inventario`;
 USE `inventario`;
-
--- Eliminar tablas anteriores
 
 DROP TABLE IF EXISTS movimiento;
 DROP TABLE IF EXISTS usuario;
@@ -12,7 +12,11 @@ DROP TABLE IF EXISTS alerta_stock;
 DROP TABLE IF EXISTS material;
 DROP TABLE IF EXISTS ubicacion;
 
--- Crear tablas
+
+/*
+CREAR TABLAS
+*/
+
 
 CREATE TABLE ubicacion(
 	id_ubicacion INT,
@@ -36,11 +40,11 @@ CREATE TABLE material(
 );
 CREATE TABLE IF NOT EXISTS alerta_stock (
 	id_alerta INT auto_increment PRIMARY KEY,
-	id_material INT unique,
+	nombre_material VARCHAR(30),
 	fecha date,
 	mensaje VARCHAR(60),
-	resuelta boolean,
-	FOREIGN KEY (id_material) REFERENCES material(id_material)
+	resuelta boolean
+    -- ,FOREIGN KEY (nombre_material) REFERENCES material(nombre)
 );
 CREATE TABLE usuario(
 	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -62,7 +66,11 @@ CREATE TABLE movimiento(
 	FOREIGN KEY (id_material) REFERENCES material(id_material)
 );
 
--- Añadir contenido a las tablas
+
+/*
+INSERTAR DATOS
+*/
+
 
 INSERT INTO ubicacion VALUES
 
@@ -226,6 +234,20 @@ INSERT INTO material VALUES
     
     (21,"Cable ethernet","Cable ethernet de 1 metro",1,1,"Hardware","Disponible",301603)
 ;
+INSERT INTO usuario VALUES
+	(1,"Roberto","Macho Gonzalez","robermach@gmail.com",1234,"profesor",true,"2026-04-28"),
+    (2,"Pedro","Sanchez","pedrosanxe@gmail.com",4321,"profesor",true,"2018-10-15"),
+    (3,"Hugo","Fernandez","hfer@gmail.com",4132,"administrador",true,"2026-05-07")
+;
+
+
+/*
+PROCEDIMIENTOS Y FUNCIONES
+*/
+
+
+-- ESTE PROCEDIMIENTO SE TIENE QUE USAR DESDE EL PROGRAMA
+-- HAY QUE UTILIZARLO SIEMPRE QUE SE HAGA UNA MODIFICACIÓN EN LA BASE DE DATOS ¡¡MUY IMPORTANTE!!
 
 DELIMITER //
 CREATE PROCEDURE actualizarCantidad()
@@ -238,7 +260,7 @@ BEGIN
     REPEAT 
 		-- Seleccionar nombre de material
         SELECT nombre INTO nombreMat FROM material WHERE id_material=contador;
-		-- Contar cuantos materiales hay con el mismo nombre¡
+		-- Contar cuantos materiales hay con el mismo nombre
         SELECT count(*) INTO newCantidad FROM material WHERE nombre=nombreMat;
 	 	-- Actualizar campo "cantidad" de esos materiales con el resultado obtenido
         UPDATE material SET cantidad=newCantidad WHERE nombre=nombreMat;
@@ -249,8 +271,91 @@ END//
 DELIMITER ;
 
 
-INSERT INTO usuario VALUES
-	(1,"Roberto","Macho Gonzalez","robermach@gmail.com",1234,"profesor",true,"2026-04-28"),
-    (2,"Pedro","Sanchez","pedrosanxe@gmail.com",4321,"profesor",true,"2018-10-15"),
-    (3,"Hugo","Fernandez","hfer@gmail.com",4132,"administrador",true,"2026-05-07")
-;
+/*
+TRIGGERS
+*/
+
+
+DROP trigger IF exists trg_movimiento;
+DROP trigger IF exists trg_alerta_stock;
+
+DELIMITER //
+
+-- Para UPDATE
+CREATE trigger trg_movimiento_upd
+AFTER UPDATE ON material
+FOR EACH ROW
+BEGIN
+	INSERT INTO movimiento(
+		id_usuario, id_material, fecha, observacion
+	)
+	SELECT 
+		@id_usuario,
+		id_material,
+		CURDATE(),
+		@observaciones
+	FROM material 
+	WHERE id_ubicacion = NEW.id_ubicacion;
+END//
+
+-- Para DELETE
+CREATE trigger trg_movimiento_del
+AFTER DELETE ON material
+FOR EACH ROW
+BEGIN
+	INSERT INTO movimiento(
+		id_usuario, id_material, fecha, observacion
+	)
+	SELECT 
+		@id_usuario,
+		id_material,
+		CURDATE(),
+		@observaciones
+	FROM material 
+	WHERE id_ubicacion = OLD.id_ubicacion;
+END//
+
+-- Para UPDATE
+CREATE TRIGGER trg_alerta_stock_upd
+AFTER UPDATE ON material
+FOR EACH ROW
+BEGIN
+	IF (NEW.cantidad<NEW.stock_minimo) THEN
+		INSERT alerta_stock(nombre_material, fecha, mensaje, resuelta)
+		SELECT
+			nombre,
+			CURDATE(),
+			CONCAT("Stock de ", nombre, " insuficiente"),
+			false
+			FROM material
+		WHERE cantidad = NEW.cantidad;
+	ELSEIF (NEW.cantidad>NEW.stock_minimo) THEN
+		UPDATE alerta_stock
+		SET resuelta = true
+		WHERE nombre_material = NEW.nombre AND resuelta = false;
+	END IF;
+END//
+
+-- Para DELETE
+CREATE TRIGGER trg_alerta_stock_del
+AFTER DELETE ON material
+FOR EACH ROW
+BEGIN
+	IF (OLD.cantidad<OLD.stock_minimo) THEN
+		INSERT alerta_stock(nombre_material, fecha, mensaje, resuelta)
+		SELECT
+			OLD.nombre,
+			CURDATE(),
+			CONCAT("Stock de ", OLD.nombre, " insuficiente"),
+			false
+			FROM material
+		WHERE cantidad = cantidad;
+	ELSEIF (OLD.cantidad>OLD.stock_minimo) THEN
+		UPDATE alerta_stock
+		SET resuelta = true
+		WHERE nombre_material = OLD.nombre
+        AND resuelta = false;
+	END IF;
+END//
+	
+DELIMITER ;
