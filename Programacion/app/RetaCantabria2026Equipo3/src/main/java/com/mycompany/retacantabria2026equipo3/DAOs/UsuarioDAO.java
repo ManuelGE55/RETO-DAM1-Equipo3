@@ -21,8 +21,16 @@ public class UsuarioDAO {
     //==========================================================================
     //ESTE DAO ESTA ASIGNADO A : SAUL
     //==========================================================================
-    //Insertar Usuario
-    //Permite insertar un usuario en la base de datos
+    //
+    
+    /**
+     * Insertar Usuario
+     * Permite insertar un usuario en la base de datos
+     * @param con
+     * @param usuario
+     * @return
+     * @throws SQLException 
+     */
     public static int insertarUsuario(Connection con, Usuario usuario) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
@@ -51,8 +59,14 @@ public class UsuarioDAO {
         return resultado;
     }
 
-    //Existe Usuario
-    //Comprueba si un usuario ya existe
+    
+    /**
+     * Existe Usuario
+     * Comprueba si un usuario ya existe
+     * @param con
+     * @param email
+     * @return 
+     */
     public static boolean existeUsuario(Connection con, String email) {
         // Variables
         boolean resultado = true;
@@ -75,8 +89,14 @@ public class UsuarioDAO {
         return resultado;
     }
 
-    //Borrar Usuario
-    //Permite borrar un usuario en la base de datos
+    
+    /**
+     * Borrar Usuario
+     * Permite borrar un usuario en la base de datos
+     * @param con
+     * @param idUsuario
+     * @return 
+     */
     public static int borrarUsuario(Connection con, int idUsuario) {
         int resultado = -1;
         PreparedStatement ps = null;
