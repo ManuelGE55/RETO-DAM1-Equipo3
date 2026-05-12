@@ -76,7 +76,20 @@ public class Material {
         this.estado = estado;
     }
     
-    
-    
-
+    /**
+     * @author Hugo fernández Calzado
+     */
+    @Override
+    public String toString() {
+        return "Material("
+                + "ID: " + this.id + " | "
+                + "Nombre: " + this.nombre + " | "
+                + "Descripción: " + this.descripcion + " | "
+                + "Cantidad: " + this.cantidad + " | "
+                + "Stock mínimo: " + this.stockMinimo + " | "
+                + "Categoría: " + this.cantidad + " | "
+                + "Estado: " + this.estado + " | "
+                + "ID Ubicación: " + this.idUbicacion + ""
+                + ")";
+    }
 }

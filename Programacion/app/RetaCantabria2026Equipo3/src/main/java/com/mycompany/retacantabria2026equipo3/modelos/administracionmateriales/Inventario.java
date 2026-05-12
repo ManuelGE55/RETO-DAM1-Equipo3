@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Inventario {
     private List<Material> materiales;
-    private Inventario(ArrayList materiales){
+    public Inventario(ArrayList<Material> materiales){
         this.materiales = materiales;
     }
 
