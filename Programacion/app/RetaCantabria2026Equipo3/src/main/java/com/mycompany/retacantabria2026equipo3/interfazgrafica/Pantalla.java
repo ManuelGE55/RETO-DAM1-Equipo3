@@ -62,15 +62,11 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         jLabel4 = new javax.swing.JLabel();
         comboLocalizacion = new javax.swing.JComboBox<>();
         botonFiltrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         exportarCSV = new javax.swing.JMenu();
         importarCSV = new javax.swing.JMenu();
-        generarInforme = new javax.swing.JMenu();
-        categoria = new javax.swing.JMenu();
-        estado = new javax.swing.JMenu();
-        localizacion = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,6 +169,13 @@ private static ArrayList<Material> materiales= new ArrayList<>();
             }
         });
 
+        jButton1.setText("Imprimir Informe");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -181,9 +184,9 @@ private static ArrayList<Material> materiales= new ArrayList<>();
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(botonSalir)
-                .addGap(103, 103, 103)
+                .addGap(37, 37, 37)
                 .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(72, 72, 72)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,14 +196,14 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                     .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addGap(61, 61, 61)
                         .addComponent(botonFiltrar)
-                        .addGap(24, 24, 24))))
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +216,8 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                         .addGap(1, 1, 1)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonFiltrar)))
+                            .addComponent(botonFiltrar)
+                            .addComponent(jButton1)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -239,28 +243,7 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         importarCSV.setText("Importar CSV");
         jMenu3.add(importarCSV);
 
-        generarInforme.setText("Generar Informe");
-
-        categoria.setText("Categoria");
-        generarInforme.add(categoria);
-
-        estado.setText("Estado");
-        generarInforme.add(estado);
-
-        localizacion.setText("Localizacion");
-        localizacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                localizacionMouseClicked(evt);
-            }
-        });
-        generarInforme.add(localizacion);
-
-        jMenu3.add(generarInforme);
-
         jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
 
@@ -330,9 +313,9 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonFiltrarActionPerformed
 
-    private void localizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_localizacionMouseClicked
-        
-    }//GEN-LAST:event_localizacionMouseClicked
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 private void rellenarTablaMateriales(){
         // Columnas
         String[] columnas = {
@@ -408,26 +391,22 @@ private void rellenarComboBoxCategoria() {
     private javax.swing.JLabel ImagenIntro;
     private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JMenu categoria;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboLocalizacion;
-    private javax.swing.JMenu estado;
     private javax.swing.JMenu exportarCSV;
-    private javax.swing.JMenu generarInforme;
     private javax.swing.JMenu importarCSV;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JMenu localizacion;
     private javax.swing.JLabel nombreMaterial;
     // End of variables declaration//GEN-END:variables
 }

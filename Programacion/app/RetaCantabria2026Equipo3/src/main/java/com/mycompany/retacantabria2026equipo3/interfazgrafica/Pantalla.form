@@ -21,37 +21,7 @@
                 <Property name="text" type="java.lang.String" value="Importar CSV"/>
               </Properties>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="generarInforme">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Generar Informe"/>
-              </Properties>
-              <SubComponents>
-                <Menu class="javax.swing.JMenu" name="categoria">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Categoria"/>
-                  </Properties>
-                </Menu>
-                <Menu class="javax.swing.JMenu" name="estado">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Estado"/>
-                  </Properties>
-                </Menu>
-                <Menu class="javax.swing.JMenu" name="localizacion">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Localizacion"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="localizacionMouseClicked"/>
-                  </Events>
-                </Menu>
-              </SubComponents>
-            </Menu>
           </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
-          </Properties>
         </Menu>
       </SubComponents>
     </Menu>
@@ -169,9 +139,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="nombreMaterial" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Component id="comboEstado" min="-2" pref="140" max="-2" attributes="0"/>
@@ -183,17 +153,16 @@
                   </Group>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Component id="comboLocalizacion" min="-2" pref="89" max="-2" attributes="0"/>
-                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="botonFiltrar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -209,6 +178,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="comboLocalizacion" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botonFiltrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -345,6 +315,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFiltrarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Imprimir Informe"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
