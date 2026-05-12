@@ -24,6 +24,7 @@ CREATE TRIGGER trg_alerta_stock
 AFTER UPDATE ON material
 FOR EACH ROW
 BEGIN
+CALL actualizarCantidad();
 IF (NEW.cantidad<NEW.stock_minimo) THEN
 	INSERT alerta_stock(id_material, fecha, mensaje, resuelta)
     SELECT
