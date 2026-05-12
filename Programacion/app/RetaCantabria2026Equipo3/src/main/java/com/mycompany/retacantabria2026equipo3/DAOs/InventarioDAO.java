@@ -21,7 +21,7 @@ public class InventarioDAO {
     
     //Este método crea un arrayList con todos los materiales de la base de datos
     //Después devuelve el arrayList
-    public static ArrayList<Material> cargarInventario(Connection conn){
+    public static ArrayList<Material> cargarInventario(){
         
         //Variables
         ArrayList<Material>listaMateriales=new ArrayList<>();
@@ -31,7 +31,7 @@ public class InventarioDAO {
         
         String select="SELECT id_material,nombre,descripcion,cantidad,stock_minimo,categoria,estado FROM material";
         
-        try{
+        try(Connection conn = AccesoBaseDatos.getInstance().getConn();){
             ps=conn.prepareStatement(select);
             resultado=ps.executeQuery();
             
