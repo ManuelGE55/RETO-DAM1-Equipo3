@@ -11,18 +11,22 @@ package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 public abstract class Usuario {
     
     protected String email;
-    
+    protected boolean activo;
     protected String nombre;
-    
-    protected String password;
+    protected String apellidos;
+    protected String rol;
+    protected String contraseña;
 
     public Usuario() {
     }
 
-    public Usuario(String email, String nombre, String password) {
+    public Usuario(String email, boolean activo, String nombre, String apellidos, String rol, String contraseña) {
         this.email = email;
+        this.activo = activo;
         this.nombre = nombre;
-        this.password = password;
+        this.apellidos = apellidos;
+        this.rol = rol;
+        this.contraseña = contraseña;
     }
 
     public String getEmail() {
@@ -41,12 +45,36 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
     
     @Override
