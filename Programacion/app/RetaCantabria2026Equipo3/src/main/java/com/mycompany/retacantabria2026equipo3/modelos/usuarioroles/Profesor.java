@@ -14,8 +14,8 @@ public class Profesor extends Usuario {
         super();
     }
 
-    public Profesor(String email, String nombre, String password) {
-        super(email, nombre, password);
+    public Profesor(String email, boolean activo, String nombre, String apellidos, String rol, String contraseña) {
+        super(email, activo, nombre, apellidos, rol, contraseña);
     }
     
     @Override
