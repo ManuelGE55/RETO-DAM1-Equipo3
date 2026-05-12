@@ -114,7 +114,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                   <Component id="ImagenIntro" min="-2" pref="700" max="-2" attributes="0"/>
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <EmptySpace pref="529" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
@@ -134,7 +134,7 @@
                   <Component id="BotonEntrar" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="BotonSalir" min="-2" pref="42" max="-2" attributes="0"/>
-                  <EmptySpace pref="74" max="32767" attributes="0"/>
+                  <EmptySpace pref="75" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -189,9 +189,13 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="comboLocalizacion" min="-2" pref="89" max="-2" attributes="0"/>
-                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="botonFiltrar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="modificarMaterial" min="-2" pref="133" max="-2" attributes="0"/>
+                          <EmptySpace pref="48" max="32767" attributes="0"/>
+                          <Component id="imprimirInforme" min="-2" pref="205" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -209,6 +213,8 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="comboLocalizacion" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botonFiltrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="modificarMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="imprimirInforme" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -346,6 +352,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFiltrarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="modificarMaterial">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modificar Material"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="imprimirInforme">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Imprimir Informe"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
