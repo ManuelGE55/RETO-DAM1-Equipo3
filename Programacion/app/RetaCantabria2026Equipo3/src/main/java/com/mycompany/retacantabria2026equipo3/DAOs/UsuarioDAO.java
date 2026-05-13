@@ -71,11 +71,8 @@ public class UsuarioDAO {
                 rs = ps.executeQuery();
                 if (rs.next()) {
                     String bd = rs.getString("contraseña");
-                    if (contraseña == bd) {
-                        resultado = true;
-                    } else {
-                        resultado = false;
-                    }
+                    resultado = contraseña.equals(bd);
+                    System.out.println("Usuario encontrado");
                 }
             }
         } catch (SQLException ex) {
