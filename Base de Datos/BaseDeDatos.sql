@@ -242,21 +242,43 @@ INSERT INTO usuario VALUES
 
 
 /*
+VARIABLES
+*/
+
+SET @id_usuario=NULL;
+-- El modo actualización sirve para permitir (FALSE) o bloquear el trigger movimiento (TRUE).
+-- Si está en FALSE, la tabla movimiento no registrará nada
+-- Esto sirve para usar actualizarCantidad() sin que se genere un montón de filas en la tabla movimiento
+SET @modo_actualizacion=FALSE;
+
+
+/*
 PROCEDIMIENTOS Y FUNCIONES
 */
 
 
+-- HAY QUE CAMBIAR ESTE PROCEDIMIENTO PARA QUE DEFINA LA VARIABLE CON LA ID DEL USUARIO QUE ESTÁ TRABAJANDO
+-- RECIBIR PARÁMETRO DESDE PROGRAMA
+DELIMITER //
+CREATE PROCEDURE definirIdUsuario()
+READS SQL DATA
+BEGIN
+	SELECT id_usuario
+    INTO @id_usuario
+    FROM usuario
+    WHERE activo IS TRUE;
+END//
+
 -- ESTE PROCEDIMIENTO SE TIENE QUE USAR DESDE EL PROGRAMA
 -- HAY QUE UTILIZARLO SIEMPRE QUE SE HAGA UNA MODIFICACIÓN EN LA BASE DE DATOS ¡¡MUY IMPORTANTE!!
-
-DELIMITER //
-CREATE PROCEDURE actualizarCantidad()
+CREATE PROCEDURE actualizarCantidad() -- FUNCIONA
 READS SQL DATA
 BEGIN
 	DECLARE contador INT;
     DECLARE newCantidad INT;
     DECLARE nombreMat VARCHAR(30);
     SET contador=1;
+    SET @modo_actualizacion = TRUE;
     REPEAT 
 		-- Seleccionar nombre de material
         SELECT nombre INTO nombreMat FROM material WHERE id_material=contador;
@@ -267,5 +289,71 @@ BEGIN
         SET contador=contador+1;
     UNTIL contador=(SELECT count(*) FROM material)
     END REPEAT;
+    SET @modo_actualizacion = FALSE;
 END//
 DELIMITER ;
+
+
+/*
+TRIGGERS
+*/
+
+
+DROP TRIGGER IF EXISTS trg_movimiento;
+DROP TRIGGER IF EXISTS trg_alerta_stock;
+DROP TRIGGER IF EXISTS trg_actualizar_del;
+DROP TRIGGER IF EXISTS trg_actualizar_upd;
+
+
+-- Este TRIGGER tiene que registrar cada movimiento que haya en la base de datos
+DELIMITER //
+CREATE TRIGGER trg_movimiento
+AFTER UPDATE ON material
+FOR EACH ROW
+BEGIN
+	DECLARE observaciones VARCHAR(80);
+	SET observaciones = 'Se ha modificado : ';
+    
+	IF @modo_actualizacion = FALSE THEN
+		IF NEW.nombre!=OLD.nombre THEN SET observaciones = concat(observaciones,'nombre ');END IF;
+		IF NEW.descripcion!=OLD.descripcion THEN SET observaciones = concat(observaciones,'descripcion ');END IF;
+		IF NEW.stock_minimo!=OLD.stock_minimo THEN SET observaciones = concat(observaciones,'stock_minimo ');END IF;
+		IF NEW.categoria!=OLD.categoria THEN SET observaciones = concat(observaciones,'categoria ');END IF;
+		IF NEW.estado!=OLD.estado THEN SET observaciones = concat(observaciones,'estado ');END IF;
+		IF NEW.id_ubicacion!=OLD.id_ubicacion THEN SET observaciones = concat(observaciones,'id_ubicacion ');END IF;
+    
+		INSERT INTO movimiento(id_usuario,id_material,fecha,observacion)
+		VALUES(@id_usuario,NEW.id_material,curdate(),observaciones);
+	END IF;
+    
+END//
+
+-- Este TRIGGER revisa que la cantidad de materiales no sea inferior al stock mínimo
+-- PARA QUE FUNCIONE, ANTES SE TIENE QUE HABER EJECUTADO actualizarCantidad()
+CREATE TRIGGER trg_alerta_stock
+AFTER DELETE ON material
+FOR EACH ROW
+BEGIN
+	DECLARE mensajes VARCHAR(60);
+    DECLARE diferencia INT;
+    DECLARE nombreMaterial VARCHAR(30);
+    DECLARE cantidadActual INT;
+    
+    SET nombreMaterial = OLD.nombre;
+    
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial;
+    
+	IF(cantidadActual<OLD.stock_minimo) THEN
+		SET diferencia = OLD.stock_minimo-cantidadActual;
+		SET mensajes = concat('La diferencia entre cantidad y stock mínimo es de ',diferencia);
+		INSERT INTO alerta_stock(nombre_material,fecha,mensaje,resuelta)
+        VALUES(
+			nombreMaterial,
+            curdate(),
+            mensajes,
+            FALSE
+        );
+    END IF;
+END//
+
+
