@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author DAM212
+ * @author Hugo Fernández Calzado
  */
 public class GestorTrafico {
     
