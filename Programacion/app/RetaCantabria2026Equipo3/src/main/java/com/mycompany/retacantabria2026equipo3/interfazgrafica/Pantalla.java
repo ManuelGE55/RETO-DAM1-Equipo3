@@ -7,6 +7,7 @@ package com.mycompany.retacantabria2026equipo3.interfazgrafica;
 import com.mycompany.retacantabria2026equipo3.DAOs.InventarioDAO;
 import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
+import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
+    private static ArrayList<Material> materialesTotales = new ArrayList<>();
 
     /**
      * Creates new form Pantalla
@@ -33,16 +35,13 @@ public class Pantalla extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.jPanel2.setVisible(false);
+        this.jPanel3.setVisible(false);
         this.jMenuBar2.setVisible(false);
         this.setSize(770, 520);
         ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
         Image imgImagenIntro = imagenIntro.getImage();
         Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
         this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
-        ComboBoxCambiarEstado.addItem("DISPONIBLE");
-        ComboBoxCambiarEstado.addItem("PRESTADO");
-        ComboBoxCambiarEstado.addItem("EN_REPARACIÓN");
-        ComboBoxCambiarEstado.addItem("RETIRADO");
     }
 
     /**
@@ -217,6 +216,11 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         imprimirInforme.setText("Imprimir Informe");
+        imprimirInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirInformeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -352,7 +356,7 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -368,7 +372,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonSalirModificarMaterial)
                     .addComponent(BotonModificarMaterial))
-                .addGap(25, 25, 25))
+                .addGap(84, 84, 84))
         );
 
         jMenu3.setText("File");
@@ -436,10 +440,8 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuBar2.setVisible(true);
         rellenarComboBoxEstado();
         rellenarComboBoxCategoria();
-        materiales = InventarioDAO.cargarInventario();
+        materialesTotales = InventarioDAO.cargarInventario();
         rellenarTablaMateriales();
-        
-
         jPanel1.setVisible(false);
 
     }//GEN-LAST:event_BotonEntrarActionPerformed
@@ -479,6 +481,7 @@ public class Pantalla extends javax.swing.JFrame {
     private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
+        this.setSize(570,700);
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void CampoTextoCambiarUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarUbicacionActionPerformed
@@ -501,8 +504,13 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel3.setVisible(false);
         jPanel2.setVisible(true);
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
+
+    private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
+        GestorInformes.exportarInforme(materiales);
+    }//GEN-LAST:event_imprimirInformeActionPerformed
     private void rellenarTablaMateriales() {
         // Columnas
+        materiales.clear();
         boolean filtrado;
 
         String[] columnas = {
@@ -523,8 +531,8 @@ public class Pantalla extends javax.swing.JFrame {
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if (!materiales.isEmpty()) {
-            for (Material m : materiales) {
+        if (!materialesTotales.isEmpty()) {
+            for (Material m : materialesTotales) {
                 filtrado=true;
                 Object[] fila = {
                     m.getId(),
@@ -546,6 +554,7 @@ public class Pantalla extends javax.swing.JFrame {
 
                 if (filtrado) {
                     modelo.addRow(fila);
+                    materiales.add(m);
                 }
 
             }
@@ -564,6 +573,18 @@ public class Pantalla extends javax.swing.JFrame {
         modelo.addElement("RETIRADO");
 
         comboEstado.setModel(modelo);
+    }
+    private void rellenarComboBoxCambiarEstado() {
+
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+
+        
+        modelo.addElement("DISPONIBLE");
+        modelo.addElement("PRESTADO");
+        modelo.addElement("EN_REPARACION");
+        modelo.addElement("RETIRADO");
+
+        ComboBoxCambiarEstado.setModel(modelo);
     }
 
     private void rellenarComboBoxCategoria() {

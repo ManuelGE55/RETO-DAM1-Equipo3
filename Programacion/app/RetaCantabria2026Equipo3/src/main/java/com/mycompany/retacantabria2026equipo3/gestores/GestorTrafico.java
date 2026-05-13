@@ -40,8 +40,7 @@ public class GestorTrafico {
 //        return devolverDatos;
 //    }
     
-    public static void exportarInventario(List<Material> materiales) {
-        
+    public static void exportarInventario(List<Material> materiales) {     
         File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (contFicheros + 1) + ".xlsx");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(inventarioCSV, true))) {
             bw.write("Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion\n");

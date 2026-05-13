@@ -19,8 +19,8 @@ public class GestorInformes {
     
     // atributos que contará los archivos para ir creando archivos cada vez que se exporte uno nuevo
     private static final File carpetaFicheros = new File("src/main/Informes");
-    private static File[] listaFicheros = carpetaFicheros.listFiles();
-    private static int contFicheros = listaFicheros.length;
+    private static File[] listaFicheros = carpetaFicheros!=null?carpetaFicheros.listFiles():null;
+    private static int contFicheros = listaFicheros==null?0:listaFicheros.length;
     
     public static void exportarInforme(List<Material> materiales) {
         File materialesInforme = new File("src/main/Informes/inventarioInforme" + (contFicheros + 1) + ".txt");
