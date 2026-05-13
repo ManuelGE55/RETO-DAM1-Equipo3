@@ -17,14 +17,14 @@ import java.util.logging.Logger;
  */
 public class UbicacionDAO {
     
-    public static boolean existeId(Connection con, int id) {        
+    public static boolean existeId(int id) {        
         // Variables
         boolean resultado = true;
         PreparedStatement  ps = null;
         ResultSet rs = null;
         
         String s = "SELECT * FROM ubicacion WHERE id_ubicacion = ?";
-            try {
+            try (Connection con = AccesoBaseDatos.getInstance().getConn()){
                 // Preparamos la sentencia con los datos del vehiculo
                 ps = con.prepareStatement(s);               
                 ps.setInt(1, id);

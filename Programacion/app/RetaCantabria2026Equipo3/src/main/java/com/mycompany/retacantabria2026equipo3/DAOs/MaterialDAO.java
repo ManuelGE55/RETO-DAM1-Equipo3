@@ -23,12 +23,12 @@ public class MaterialDAO {
     //==========================================================================
     //ActucalizarEstado
     //Permite actualizar el estado de un material
-    public static int ActualizarEstado(Connection con, int cant, String est, int ubi, int id) {
+    public static int ActualizarEstado(int cant, String est, int ubi, int id) {
         int resultado = -1;
         PreparedStatement ps = null;
         String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
-        try {
-            if (existeId(con, id) && UbicacionDAO.existeId(con, id)) {
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+            if (existeId(id) && UbicacionDAO.existeId(id)) {
                 ps = con.prepareStatement(s);
                 ps.setInt(1,cant);
                 ps.setString(2, est);
@@ -49,14 +49,14 @@ public class MaterialDAO {
         return resultado;
     }
 
-    public static boolean existeId(Connection con, int id) {
+    public static boolean existeId(int id) {
         // Variables
         boolean resultado = true;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         String s = "SELECT * FROM material WHERE id_material = ?";
-        try {
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
             // Preparamos la sentencia con los datos del vehiculo
             ps = con.prepareStatement(s);
             ps.setInt(1, id);
