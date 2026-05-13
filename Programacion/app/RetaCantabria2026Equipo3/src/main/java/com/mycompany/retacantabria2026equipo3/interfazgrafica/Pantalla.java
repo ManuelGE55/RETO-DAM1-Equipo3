@@ -6,6 +6,9 @@ package com.mycompany.retacantabria2026equipo3.interfazgrafica;
 
 import com.mycompany.retacantabria2026equipo3.DAOs.AccesoBaseDatos;
 import com.mycompany.retacantabria2026equipo3.DAOs.InventarioDAO;
+import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
+import com.mycompany.retacantabria2026equipo3.enums.Estado;
+import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
@@ -26,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
+    private static ArrayList<Material> materialesTotales = new ArrayList<>();
 
     /**
      * Creates new form Pantalla
@@ -36,6 +40,7 @@ public class Pantalla extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.jPanel2.setVisible(false);
+        this.jPanel3.setVisible(false);
         this.jMenuBar2.setVisible(false);
         this.setSize(770, 520);
         ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
@@ -247,6 +252,11 @@ public class Pantalla extends javax.swing.JFrame {
         modificarMaterial.setText("Modificar Material");
 
         imprimirInforme.setText("Imprimir Informe");
+        imprimirInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirInformeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -313,6 +323,94 @@ public class Pantalla extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        CampoTextoCambiarCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextoCambiarCantidadActionPerformed(evt);
+            }
+        });
+
+        BotonSalirModificarMaterial.setText("Salir");
+        BotonSalirModificarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirModificarMaterialActionPerformed(evt);
+            }
+        });
+
+        BotonModificarMaterial.setText("Modificar");
+        BotonModificarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarMaterialActionPerformed(evt);
+            }
+        });
+
+        CampoTextoCambiarUbicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextoCambiarUbicacionActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Nueva cantidad:");
+
+        jLabel5.setText("Nuevo estado:");
+
+        jLabel6.setText("Nueva ubicación:");
+
+        ComboBoxCambiarEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxCambiarEstadoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(BotonSalirModificarMaterial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonModificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                        .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CampoTextoCambiarUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                            .addComponent(ComboBoxCambiarEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(36, 36, 36))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(ComboBoxCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(127, 127, 127)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CampoTextoCambiarUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(62, 62, 62)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonSalirModificarMaterial)
+                    .addComponent(BotonModificarMaterial))
+                .addGap(84, 84, 84))
+        );
+
         jMenu3.setText("File");
 
         exportarCSV.setText("Exportar CSV");
@@ -369,10 +467,8 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuBar2.setVisible(true);
         rellenarComboBoxEstado();
         rellenarComboBoxCategoria();
-        materiales = InventarioDAO.cargarInventario();
+        materialesTotales = InventarioDAO.cargarInventario();
         rellenarTablaMateriales();
-        
-
         jPanel1.setVisible(false);
 
     }//GEN-LAST:event_BotonEntrarActionPerformed
@@ -405,6 +501,24 @@ public class Pantalla extends javax.swing.JFrame {
         rellenarTablaMateriales();// TODO add your handling code here:
     }//GEN-LAST:event_comboCategoriaActionPerformed
 
+    private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoCambiarCantidadActionPerformed
+
+    private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
+        this.jPanel2.setVisible(false);
+        this.jPanel3.setVisible(true);
+        this.setSize(570,700);
+    }//GEN-LAST:event_modificarMaterialActionPerformed
+
+    private void CampoTextoCambiarUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarUbicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoCambiarUbicacionActionPerformed
+
+    private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
+//        MaterialDAO.ActualizarMaterial(CampoTextoCambiarCantidad.getText(), (Estado) CampoTextoCambiarUbicacion.getSelectedText(), CampoTextoCambiarUbicacion.getText()
+//                , );
+    }//GEN-LAST:event_BotonModificarMaterialActionPerformed
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
 
         try(Connection con = AccesoBaseDatos.getInstance().getConn()){
@@ -429,9 +543,23 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxCambiarEstadoActionPerformed
+
+    private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
+        CampoTextoCambiarCantidad.setText("");
+        CampoTextoCambiarUbicacion.setText("");
+        ComboBoxCambiarEstado.setSelectedIndex(0);
+        jLabel3.setVisible(false);
+        jPanel2.setVisible(true);
+    }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
+
+    private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
+        GestorInformes.exportarInforme(materiales);
+    }//GEN-LAST:event_imprimirInformeActionPerformed
     }//GEN-LAST:event_UsuarioActionPerformed
     private void rellenarTablaMateriales() {
         // Columnas
+        materiales.clear();
         boolean filtrado;
 
         String[] columnas = {
@@ -452,8 +580,8 @@ public class Pantalla extends javax.swing.JFrame {
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if (!materiales.isEmpty()) {
-            for (Material m : materiales) {
+        if (!materialesTotales.isEmpty()) {
+            for (Material m : materialesTotales) {
                 filtrado=true;
                 Object[] fila = {
                     m.getId(),
@@ -475,6 +603,7 @@ public class Pantalla extends javax.swing.JFrame {
 
                 if (filtrado) {
                     modelo.addRow(fila);
+                    materiales.add(m);
                 }
 
             }
@@ -493,6 +622,18 @@ public class Pantalla extends javax.swing.JFrame {
         modelo.addElement("RETIRADO");
 
         comboEstado.setModel(modelo);
+    }
+    private void rellenarComboBoxCambiarEstado() {
+
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+
+        
+        modelo.addElement("DISPONIBLE");
+        modelo.addElement("PRESTADO");
+        modelo.addElement("EN_REPARACION");
+        modelo.addElement("RETIRADO");
+
+        ComboBoxCambiarEstado.setModel(modelo);
     }
 
     private void rellenarComboBoxCategoria() {
