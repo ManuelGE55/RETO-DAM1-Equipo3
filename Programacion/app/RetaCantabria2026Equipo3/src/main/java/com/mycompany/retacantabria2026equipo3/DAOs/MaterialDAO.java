@@ -23,7 +23,7 @@ public class MaterialDAO {
     //==========================================================================
     //ActucalizarEstado
     //Permite actualizar el estado de un material
-    public static int ActualizarEstado(Connection con, int cant, String est, int ubi, int id) {
+    public static int ActualizarMaterial(Connection con, int cant, String est, int ubi, int id) {
         int resultado = -1;
         PreparedStatement ps = null;
         String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
