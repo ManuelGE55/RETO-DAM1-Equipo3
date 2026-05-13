@@ -9,7 +9,7 @@ import com.mycompany.retacantabria2026equipo3.enums.Estado;
 
 /**
  *
- * @author Hugo Fernández Calzado
+ * @author DAM212
  */
 public class Material {
     private int id;

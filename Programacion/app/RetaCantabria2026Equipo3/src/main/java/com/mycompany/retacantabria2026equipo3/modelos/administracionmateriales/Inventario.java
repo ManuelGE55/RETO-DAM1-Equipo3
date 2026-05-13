@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author Ciro Galán
+ * @author DAM212
  */
 public class Inventario {
     private List<Material> materiales;

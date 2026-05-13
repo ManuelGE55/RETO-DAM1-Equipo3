@@ -22,14 +22,13 @@ public class UsuarioDAO {
     //ESTE DAO ESTA ASIGNADO A : SAUL
     //==========================================================================
     //
-    
     /**
-     * Insertar Usuario
-     * Permite insertar un usuario en la base de datos
+     * Insertar Usuario Permite insertar un usuario en la base de datos
+     *
      * @param con
      * @param usuario
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static int insertarUsuario(Connection con, Usuario usuario) throws SQLException {
         int resultado = -1;
@@ -59,17 +58,42 @@ public class UsuarioDAO {
         return resultado;
     }
 
-    
+    public static boolean comprobarUsuario(Connection con, String email, String contraseña) throws SQLException {
+        boolean resultado = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String s = "SELECT contraseña FROM usuario WHERE email = ?";
+        try {
+            if (email != null && existeUsuario(con, email) && contraseña != null) {
+                ps = con.prepareStatement(s);
+                ps.setString(1, email);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    String bd = rs.getString("contraseña");
+                    if (contraseña == bd) {
+                        resultado = true;
+                    } else {
+                        resultado = false;
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+
     /**
-     * Existe Usuario
-     * Comprueba si un usuario ya existe
+     * Existe Usuario Comprueba si un usuario ya existe
+     *
      * @param con
      * @param email
-     * @return 
+     * @return
      */
     public static boolean existeUsuario(Connection con, String email) {
         // Variables
-        boolean resultado = true;
+        boolean resultado = false;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -89,13 +113,12 @@ public class UsuarioDAO {
         return resultado;
     }
 
-    
     /**
-     * Borrar Usuario
-     * Permite borrar un usuario en la base de datos
+     * Borrar Usuario Permite borrar un usuario en la base de datos
+     *
      * @param con
      * @param idUsuario
-     * @return 
+     * @return
      */
     public static int borrarUsuario(Connection con, int idUsuario) {
         int resultado = -1;

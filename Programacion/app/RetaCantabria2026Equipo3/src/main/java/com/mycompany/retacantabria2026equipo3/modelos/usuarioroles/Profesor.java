@@ -6,7 +6,7 @@ package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 
 /**
  *
- * @author Hugo Fernández Calzado
+ * @author DAM212
  */
 public class Profesor extends Usuario {
 
