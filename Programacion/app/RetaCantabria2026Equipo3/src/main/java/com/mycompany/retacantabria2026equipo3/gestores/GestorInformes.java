@@ -16,26 +16,22 @@ import java.util.List;
  * @author Hugo Fernández Calzado
  */
 public class GestorInformes {
-
+    
     // atributos que contará los archivos para ir creando archivos cada vez que se exporte uno nuevo
     private static final File carpetaFicheros = new File("src/main/Informes");
-    private static File[] listaFicheros = carpetaFicheros != null ? carpetaFicheros.listFiles() : null;
-    private static int contFicheros = listaFicheros == null ? 0 : listaFicheros.length;
-
+    private static File[] listaFicheros = carpetaFicheros!=null?carpetaFicheros.listFiles():null;
+    private static int contFicheros = listaFicheros==null?0:listaFicheros.length;
+    
     public static void exportarInforme(List<Material> materiales) {
-        if (!carpetaFicheros.exists()) {
-            carpetaFicheros.mkdirs();
-        }
-        File materialesInforme = new File("src/main/Informes/inventarioInforme" + (++contFicheros) + ".txt");
+        File materialesInforme = new File("src/main/Informes/inventarioInforme" + (contFicheros + 1) + ".txt");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(materialesInforme))) {
-            bw.write("--- Informe materiales " + (contFicheros) + " ---");
+            bw.write("--- Informe materiales " + (contFicheros + 1) + " ---");
             bw.newLine();
             bw.newLine();
             for (Material material : materiales) {
                 bw.write(material.toString());
                 bw.newLine();
             }
-            System.out.println(materialesInforme+" creado");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
