@@ -1,0 +1,38 @@
+[
+  {
+    "idMaterial": 1,
+    "nombre": "Arduino UNO",
+    "cantidad": 5,
+    "armario": "GENERAL",
+    "balda": "B002",
+    "cajon": "C00201",
+    "descripcion": "Placas Arduino para prácticas"
+  },
+  {
+    "idMaterial": 2,
+    "nombre": "Cable HDMI",
+    "cantidad": 12,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": "Cable HDMI 2 metros"
+  },
+  {
+    "idMaterial": 3,
+    "nombre": "Ratón Logitech",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "C00301",
+    "descripcion": "Ratones USB"
+  },
+  {
+    "idMaterial": 4,
+    "nombre": "Switch Cisco",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B004",
+    "cajon": "",
+    "descripcion": "Switch de 24 puertos"
+  }
+]
