@@ -6,8 +6,11 @@ package com.mycompany.retacantabria2026equipo3.gestores;
 
 /**
  *
- * @author DAM212
+ * @author Hugo Fernández Calzado
  */
 public class GestorLocalizaciones {
     
+    public void mostrarUbicacionWeb(int idMaterial) {
+        
+    }
 }
