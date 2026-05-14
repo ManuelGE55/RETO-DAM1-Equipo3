@@ -33,13 +33,15 @@ public class InventarioDAO {
         try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps=conn.prepareStatement(select);ResultSet resultado=ps.executeQuery();){
             
             while(resultado.next()){
-            Material m=new Material( resultado.getString(2),resultado.getString(3),resultado.getInt(4),resultado.getInt(5),Categoria.valueOf(resultado.getString(6).toUpperCase()),Estado.valueOf(resultado.getString(7).toUpperCase()),resultado.getString(8));
+            Material m=new Material(resultado.getString(2),resultado.getString(3),resultado.getInt(4),resultado.getInt(5),Categoria.valueOf(resultado.getString(6).toUpperCase()),Estado.valueOf(resultado.getString(7).toUpperCase()),resultado.getString(8));
                 m.setId(resultado.getInt(1));
                 listaMateriales.add(m);
             
             }
         }
-        catch(SQLException e){}
+        catch(SQLException e){
+            e.getSQLState();
+        }
         return listaMateriales;
     }
 }
