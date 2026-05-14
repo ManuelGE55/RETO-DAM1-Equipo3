@@ -42,11 +42,11 @@ public class Pantalla extends javax.swing.JFrame {
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(false);
         this.jMenuBar2.setVisible(false);
+        BotonEntrar.setVisible(false);
+        BotonSalir.setVisible(false);
+        Loggin.setVisible(true);
         this.setSize(770, 520);
-        ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
-        Image imgImagenIntro = imagenIntro.getImage();
-        Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
-        this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
+        ImagenIntro.setVisible(false);
     }
 
     /**
@@ -64,14 +64,12 @@ public class Pantalla extends javax.swing.JFrame {
         BotonSalir = new javax.swing.JButton();
         BotonEntrar = new javax.swing.JButton();
         ImagenIntro = new javax.swing.JLabel();
-        Loggin = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textoUsuario = new javax.swing.JTextPane();
+        Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TextoContraseña = new javax.swing.JTextPane();
         Contraseña = new javax.swing.JPasswordField();
         botonOk = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nombreMaterial = new javax.swing.JLabel();
@@ -129,11 +127,6 @@ public class Pantalla extends javax.swing.JFrame {
 
         Loggin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        textoUsuario.setText("Usuario");
-        jScrollPane2.setViewportView(textoUsuario);
-
-        Loggin.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
-
         Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsuarioActionPerformed(evt);
@@ -141,12 +134,11 @@ public class Pantalla extends javax.swing.JFrame {
         });
         Loggin.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 34, 378, -1));
 
-        TextoContraseña.setText("Contraseña");
-        jScrollPane3.setViewportView(TextoContraseña);
-
-        Loggin.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 68, -1, -1));
-
-        Contraseña.setText("jPasswordField1");
+        Contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContraseñaActionPerformed(evt);
+            }
+        });
         Loggin.add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, 378, -1));
 
         botonOk.setText("Ok");
@@ -157,37 +149,45 @@ public class Pantalla extends javax.swing.JFrame {
         });
         Loggin.add(botonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
+        jLabel5.setText("Contraseña");
+        Loggin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jLabel1.setText("Usuario");
+        Loggin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(435, 435, 435)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(ImagenIntro, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(298, 298, 298))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(425, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(292, Short.MAX_VALUE)
+                    .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(290, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(Loggin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(34, Short.MAX_VALUE)
+                    .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(280, Short.MAX_VALUE)))
         );
 
         jLabel2.setText("Estado:");
@@ -445,7 +445,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -461,7 +461,7 @@ public class Pantalla extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 55, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(7, 7, 7)
@@ -529,34 +529,47 @@ public class Pantalla extends javax.swing.JFrame {
     private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
-        this.setSize(570,700);
+        this.setSize(570, 700);
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
 
-        try{
+        try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
-            
-            boolean valido = UsuarioDAO.comprobarUsuario(email, contraseña);
-            
-            if(valido){
-                this.Loggin.setVisible(false);
-                this.jPanel1.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog (this, "Email o contraseña incorrectos");
+
+            boolean valido = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
+
+            if (valido) {
+                Loggin.setVisible(false);
+                BotonEntrar.setVisible(true);
+                BotonSalir.setVisible(true);
+                jPanel2.setVisible(true);
+
+                ImagenIntro.setVisible(true);
+                this.setSize(770, 520);
+                ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
+                Image imgImagenIntro = imagenIntro.getImage();
+                // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
+                Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(750, 450, Image.SCALE_SMOOTH);
+                this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
+                Contraseña.setText("");
+                Contraseña.requestFocus();
             }
-            
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
-            
+
         }
-        
+
     }//GEN-LAST:event_botonOkActionPerformed
 
-    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }                                                     
+    }
 
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
@@ -581,7 +594,11 @@ public class Pantalla extends javax.swing.JFrame {
     private void ComboBoxCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxCambiarEstadoActionPerformed
-                                           
+
+    private void ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContraseñaActionPerformed
+
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
@@ -607,7 +624,7 @@ public class Pantalla extends javax.swing.JFrame {
         // Rellenar tabla
         if (!materialesTotales.isEmpty()) {
             for (Material m : materialesTotales) {
-                filtrado=true;
+                filtrado = true;
                 Object[] fila = {
                     m.getId(),
                     m.getNombre(),
@@ -648,11 +665,11 @@ public class Pantalla extends javax.swing.JFrame {
 
         comboEstado.setModel(modelo);
     }
+
     private void rellenarComboBoxCambiarEstado() {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-        
         modelo.addElement("DISPONIBLE");
         modelo.addElement("PRESTADO");
         modelo.addElement("EN_REPARACION");
@@ -688,8 +705,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;
-    private javax.swing.JPanel Loggin;
-    private javax.swing.JTextPane TextoContraseña;
+    private javax.swing.JLayeredPane Loggin;
     private javax.swing.JTextField Usuario;
     private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonOk;
@@ -701,9 +717,11 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JMenu importarCSV;
     private javax.swing.JButton imprimirInforme;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -714,11 +732,8 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
-    private javax.swing.JTextPane textoUsuario;
     // End of variables declaration//GEN-END:variables
 }
