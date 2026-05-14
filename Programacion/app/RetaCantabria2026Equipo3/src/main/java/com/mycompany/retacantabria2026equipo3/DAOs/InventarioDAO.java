@@ -8,6 +8,9 @@ import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.M
 import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -22,10 +25,10 @@ public class InventarioDAO {
     
     //Este método crea un arrayList con todos los materiales de la base de datos
     //Después devuelve el arrayList
-    public static ArrayList<Material> cargarInventario(){
+    public static LinkedList<Material> cargarInventario(){
         
         //Variables
-        ArrayList<Material>listaMateriales=new ArrayList<>();
+        LinkedList<Material>listaMateriales=new LinkedList<>();
         
         
         String select="SELECT id_material,nombre,descripcion,cantidad,stock_minimo,categoria,estado,id_Ubicacion FROM material";
