@@ -96,11 +96,24 @@ function cargarMaterialesJSON() {
         })
         .catch(error => {
             console.error("Error al cargar inventario.json:", error);
+
+            materiales = [];
+            cargarListaComponentes();
+            verMapaGeneral();
         });
 }
 
 function cargarListaComponentes() {
     let lista = document.getElementById("listaComponentes");
+
+    console.log("Lista encontrada:", lista);
+    console.log("Materiales cargados:", materiales);
+
+    if (lista == null) {
+        console.error("No existe el elemento con id listaComponentes en el HTML");
+        return;
+    }
+
     lista.innerHTML = "";
 
     materiales.forEach(material => {
