@@ -4,16 +4,71 @@
  */
 package com.mycompany.retacantabria2026equipo3.DAOs;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author DAM121
  */
 public class MaterialDAO {
-    
+
     //==========================================================================
     //ESTE DAO ESTA ASIGNADO A : NAYA
     //==========================================================================
-    
     //ActucalizarEstado
     //Permite actualizar el estado de un material
+    public static int ActualizarEstado(int cant, String est, int ubi, int id) {
+        int resultado = -1;
+        PreparedStatement ps = null;
+        String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+            if (existeId(id) && UbicacionDAO.existeId(id)) {
+                ps = con.prepareStatement(s);
+                ps.setInt(1,cant);
+                ps.setString(2, est);
+                ps.setInt(3,ubi);
+                ps.setInt(4,id);
+                
+                int valor = ps.executeUpdate();
+                if (valor == 0) {
+                    resultado = -1;
+                } else {
+                    resultado = 0;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+
+    public static boolean existeId(int id) {
+        // Variables
+        boolean resultado = true;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String s = "SELECT * FROM material WHERE id_material = ?";
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+            // Preparamos la sentencia con los datos del vehiculo
+            ps = con.prepareStatement(s);
+            ps.setInt(1, id);
+            // Ejecutamos la sentencia.
+            rs = ps.executeQuery();
+            // Si la sentencia se ejecuta correctamente, devolvemos true
+            resultado = rs.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+
+        return resultado;
+    }
 }

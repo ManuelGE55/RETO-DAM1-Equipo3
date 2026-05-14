@@ -22,22 +22,21 @@ public class UsuarioDAO {
     //ESTE DAO ESTA ASIGNADO A : SAUL
     //==========================================================================
     //
-    
     /**
-     * Insertar Usuario
-     * Permite insertar un usuario en la base de datos
+     * Insertar Usuario Permite insertar un usuario en la base de datos
+     *
      * @param con
      * @param usuario
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public static int insertarUsuario(Connection con, Usuario usuario) throws SQLException {
+    public static int insertarUsuario(Usuario usuario) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
         String s = "INSERT INTO usuario (nombre, apellidos, email, contraseña, rol, activo) VALUES (?,?,?,?,?,?)";
 
-        if (usuario != null && !existeUsuario(con, usuario.getEmail())) {
-            try {
+        if (usuario != null && !existeUsuario(usuario.getEmail())) {
+            try (Connection con = AccesoBaseDatos.getInstance().getConn()){
                 ps = con.prepareStatement(s);
                 ps.setString(1, usuario.getNombre());
                 ps.setString(2, usuario.getApellidos());
@@ -59,22 +58,44 @@ public class UsuarioDAO {
         return resultado;
     }
 
-    
+    public static boolean comprobarUsuario(String email, String contraseña) throws SQLException {
+        boolean resultado = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String s = "SELECT contraseña FROM usuario WHERE email = ?";
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+            if (email != null && existeUsuario(email) && contraseña != null) {
+                ps = con.prepareStatement(s);
+                ps.setString(1, email);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    String bd = rs.getString("contraseña");
+                    resultado = contraseña.equals(bd);
+                    System.out.println("Usuario encontrado");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+
     /**
-     * Existe Usuario
-     * Comprueba si un usuario ya existe
+     * Existe Usuario Comprueba si un usuario ya existe
+     *
      * @param con
      * @param email
-     * @return 
+     * @return
      */
-    public static boolean existeUsuario(Connection con, String email) {
+    public static boolean existeUsuario(String email) {
         // Variables
-        boolean resultado = true;
+        boolean resultado = false;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         String s = "SELECT * FROM usuario WHERE email = ?";
-        try {
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
             // Preparamos la sentencia con los datos del propietario
             ps = con.prepareStatement(s);
             ps.setString(1, email);
@@ -89,13 +110,12 @@ public class UsuarioDAO {
         return resultado;
     }
 
-    
     /**
-     * Borrar Usuario
-     * Permite borrar un usuario en la base de datos
+     * Borrar Usuario Permite borrar un usuario en la base de datos
+     *
      * @param con
      * @param idUsuario
-     * @return 
+     * @return
      */
     public static int borrarUsuario(Connection con, int idUsuario) {
         int resultado = -1;
