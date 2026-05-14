@@ -268,7 +268,7 @@ BEGIN
     INTO @id_usuario
     FROM usuario
     WHERE activo IS TRUE;
-END//
+END //
 
 -- ESTE PROCEDIMIENTO SE TIENE QUE USAR DESDE EL PROGRAMA
 -- HAY QUE UTILIZARLO SIEMPRE QUE SE HAGA UNA MODIFICACIÓN EN LA BASE DE DATOS ¡¡MUY IMPORTANTE!!
@@ -291,7 +291,7 @@ BEGIN
     UNTIL contador=(SELECT count(*) FROM material)
     END REPEAT;
     SET @modo_actualizacion = FALSE;
-END//
+END //
 DELIMITER ;
 
 
@@ -328,7 +328,7 @@ BEGIN
 		VALUES(@id_usuario,NEW.id_material,curdate(),observaciones);
 	END IF;
     
-END//
+END //
 
 -- Este TRIGGER revisa que la cantidad de materiales no sea inferior al stock mínimo
 -- PARA QUE FUNCIONE, ANTES SE TIENE QUE HABER EJECUTADO actualizarCantidad()
@@ -356,6 +356,6 @@ BEGIN
             FALSE
         );
     END IF;
-END//
+END //
 
 
