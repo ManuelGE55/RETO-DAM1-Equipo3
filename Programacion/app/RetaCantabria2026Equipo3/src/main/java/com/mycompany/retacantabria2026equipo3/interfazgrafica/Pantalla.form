@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JOptionPane" name="jOptionPane1">
     </Component>
@@ -70,7 +70,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="657" max="32767" attributes="0"/>
+              <EmptySpace pref="369" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -79,8 +79,6 @@
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
-<<<<<<< Updated upstream
-=======
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -88,6 +86,7 @@
                   <EmptySpace pref="952" max="32767" attributes="0"/>
               </Group>
           </Group>
+
           <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -95,14 +94,14 @@
                   <EmptySpace pref="788" max="32767" attributes="0"/>
               </Group>
           </Group>
->>>>>>> Stashed changes
+
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="55" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -111,8 +110,6 @@
                   <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
-<<<<<<< Updated upstream
-=======
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -120,13 +117,14 @@
                   <EmptySpace pref="31" max="32767" attributes="0"/>
               </Group>
           </Group>
+
           <Group type="103" rootIndex="3" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="Loggin" min="-2" pref="261" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="275" max="32767" attributes="0"/>
               </Group>
           </Group>
->>>>>>> Stashed changes
+
       </Group>
     </DimensionLayout>
   </Layout>
@@ -216,7 +214,6 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-<<<<<<< Updated upstream
                   <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                   <Component id="Loggin" min="-2" pref="394" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -225,10 +222,11 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="435" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="BotonEntrar" min="-2" pref="135" max="-2" attributes="0"/>
                       <Component id="BotonSalir" min="-2" pref="135" max="-2" attributes="0"/>
-=======
+
                   <EmptySpace min="-2" pref="435" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -243,15 +241,25 @@
                           </Group>
                           <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
                       </Group>
->>>>>>> Stashed changes
+
                   </Group>
-                  <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
+                  <EmptySpace pref="425" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <Component id="ImagenIntro" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="292" max="32767" attributes="0"/>
+                      <Component id="Loggin" min="-2" pref="413" max="-2" attributes="0"/>
+                      <EmptySpace pref="290" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< Updated upstream
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="ImagenIntro" min="-2" pref="355" max="-2" attributes="0"/>
@@ -260,15 +268,24 @@
                           <Component id="Loggin" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-=======
               <Group type="102" attributes="0">
                   <Component id="ImagenIntro" min="-2" pref="355" max="-2" attributes="0"/>
->>>>>>> Stashed changes
+
+              <Group type="102" attributes="0">
+                  <Component id="ImagenIntro" min="-2" pref="355" max="-2" attributes="0"/>
+
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="BotonEntrar" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="BotonSalir" min="-2" pref="42" max="-2" attributes="0"/>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
+              </Group>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <Component id="Loggin" min="-2" pref="184" max="-2" attributes="0"/>
+                      <EmptySpace pref="280" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -292,6 +309,67 @@
         </Component>
         <Component class="javax.swing.JLabel" name="ImagenIntro">
         </Component>
+        <Container class="javax.swing.JLayeredPane" name="Loggin">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="false"/>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="Usuario">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsuarioActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="6" y="34" width="378" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="Contrase&#xf1;a">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Contrase&#xf1;aActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="6" y="95" width="378" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="botonOk">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ok"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonOkActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="160" y="140" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="10" y="70" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usuario"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="10" y="10" width="-1" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -486,6 +564,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar Material"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificarMaterialActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="imprimirInforme">
           <Properties>
@@ -504,7 +585,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Component id="BotonSalirModificarMaterial" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -512,44 +593,44 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="222" max="32767" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="105" max="32767" attributes="0"/>
                           <Component id="CampoTextoCambiarCantidad" min="-2" pref="169" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="CampoTextoCambiarUbicacion" pref="169" max="32767" attributes="0"/>
-                              <Component id="ComboBoxCambiarEstado" max="32767" attributes="0"/>
+                              <Component id="CampoTextoCambiarUbicacion" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ComboBoxCambiarEstado" alignment="0" pref="169" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="CampoTextoCambiarCantidad" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="CampoTextoCambiarCantidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="142" max="32767" attributes="0"/>
+                  <EmptySpace pref="90" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <Component id="ComboBoxCambiarEstado" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="ComboBoxCambiarEstado" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="CampoTextoCambiarUbicacion" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <Component id="CampoTextoCambiarUbicacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -588,17 +669,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CampoTextoCambiarUbicacionActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nueva cantidad:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo estado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nueva ubicaci&#xf3;n:"/>
           </Properties>
