@@ -10,6 +10,7 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
 import java.sql.Connection;
@@ -29,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
-    private static ArrayList<Material> inventario = new ArrayList<>();
+    public static Inventario inventario = new Inventario(new ArrayList<>());
 
     /**
      * Creates new form Pantalla
@@ -209,6 +210,11 @@ public class Pantalla extends javax.swing.JFrame {
         comboLocalizacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboLocalizacionMouseClicked(evt);
+            }
+        });
+        comboLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLocalizacionActionPerformed(evt);
             }
         });
 
@@ -431,7 +437,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(33, 33, 33)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(31, Short.MAX_VALUE)))
+                    .addContainerGap(43, Short.MAX_VALUE)))
         );
 
         pack();
@@ -547,6 +553,10 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraseñaActionPerformed
 
+    private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
+rellenarTablaMateriales();        // TODO add your handling code here:
+    }//GEN-LAST:event_comboLocalizacionActionPerformed
+
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
@@ -590,6 +600,9 @@ public class Pantalla extends javax.swing.JFrame {
 
                 if (!comboCategoria.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
+                }
+                if (!comboLocalizacion.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getCategoria().name().equals(comboLocalizacion.getSelectedItem());
                 }
 
                 if (filtrado) {
@@ -641,6 +654,30 @@ public class Pantalla extends javax.swing.JFrame {
 
         comboCategoria.setModel(modelo);
     }
+    private void rellenarComboBoxLocalizacion() {
+
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+
+    modelo.addElement("---");
+
+    String[] localizaciones = {
+        "2001",
+        "2003",
+        "2012",
+        "2201",
+        "2202",
+        "300901",
+        "301601",
+        "301603",
+        "301604"
+    };
+
+    for (String loc : localizaciones) {
+        modelo.addElement(loc);
+    }
+
+    comboLocalizacion.setModel(modelo);
+}
 
     /**
      * @param args the command line arguments

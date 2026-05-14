@@ -24,6 +24,9 @@ public class Inventario {
     public void setMateriales(ArrayList<Material> materiales) {
         this.materiales = materiales;
     }
+    public void anadirMaterial(Material m){
+        materiales.add(m);
+    }
     
     
 
