@@ -631,7 +631,7 @@ public class Pantalla extends javax.swing.JFrame {
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
-    }//GEN-LAST:event_UsuarioActionPerformed
+                                           
 
     private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
         // TODO add your handling code here:
@@ -694,9 +694,6 @@ public class Pantalla extends javax.swing.JFrame {
         // Rellenar tabla
         if (!inventario.getMateriales().isEmpty()) {
             for (Material m : inventario.getMateriales()) {
-                filtrado=true;
-        if (!materialesTotales.isEmpty()) {
-            for (Material m : materialesTotales) {
                 filtrado = true;
                 Object[] fila = {
                     m.getId(),
@@ -728,6 +725,8 @@ public class Pantalla extends javax.swing.JFrame {
         }
 
     }
+
+
 
     private void rellenarComboBoxEstado() {
 
