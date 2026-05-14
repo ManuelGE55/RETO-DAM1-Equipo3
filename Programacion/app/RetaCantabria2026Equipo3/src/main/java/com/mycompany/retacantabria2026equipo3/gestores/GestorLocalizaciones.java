@@ -10,7 +10,7 @@ package com.mycompany.retacantabria2026equipo3.gestores;
  */
 public class GestorLocalizaciones {
     
-    public void mostrarUbicacionWeb(int idMaterial) {
+    public void mostrarUbicacionWeb(String idUbicacion) {
         
     }
 }
