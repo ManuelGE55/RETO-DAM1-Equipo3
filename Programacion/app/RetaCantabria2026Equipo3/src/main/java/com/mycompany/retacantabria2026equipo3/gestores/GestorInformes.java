@@ -22,18 +22,22 @@ public class GestorInformes {
     private static File[] listaFicheros = carpetaFicheros!=null?carpetaFicheros.listFiles():null;
     private static int contFicheros = listaFicheros==null?0:listaFicheros.length;
     
-    public static void exportarInforme(List<Material> materiales) {
-        File materialesInforme = new File("src/main/Informes/inventarioInforme" + (contFicheros + 1) + ".txt");
+       public static void exportarInforme(List<Material> materiales) {
+        if (!carpetaFicheros.exists()) {
+            carpetaFicheros.mkdirs();
+        }
+        File materialesInforme = new File("src/main/Informes/inventarioInforme" + (++contFicheros) + ".txt");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(materialesInforme))) {
-            bw.write("--- Informe materiales " + (contFicheros + 1) + " ---");
+            bw.write("--- Informe materiales " + (contFicheros) + " ---");
             bw.newLine();
             bw.newLine();
             for (Material material : materiales) {
                 bw.write(material.toString());
                 bw.newLine();
             }
+            System.out.println(materialesInforme+" creado");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
+}
 }
