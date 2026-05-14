@@ -36,7 +36,7 @@ public class UsuarioDAO {
         String s = "INSERT INTO usuario (nombre, apellidos, email, contraseña, rol, activo) VALUES (?,?,?,?,?,?)";
 
         if (usuario != null && !existeUsuario(usuario.getEmail())) {
-            try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+            try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
                 ps = con.prepareStatement(s);
                 ps.setString(1, usuario.getNombre());
                 ps.setString(2, usuario.getApellidos());
@@ -59,26 +59,24 @@ public class UsuarioDAO {
     }
 
     public static boolean comprobarUsuario(String email, String contraseña) throws SQLException {
-        boolean resultado = false;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
         String s = "SELECT contraseña FROM usuario WHERE email = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
-            if (email != null && existeUsuario(email) && contraseña != null) {
-                ps = con.prepareStatement(s);
-                ps.setString(1, email);
-                rs = ps.executeQuery();
+        
+        try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
+
+            ps.setString(1, email);
+
+            try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     String bd = rs.getString("contraseña");
-                    resultado = contraseña.equals(bd);
                     System.out.println("Usuario encontrado");
+                    return contraseña.equals(bd);
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
-        return resultado;
+        return false;
     }
 
     /**
@@ -95,7 +93,7 @@ public class UsuarioDAO {
         ResultSet rs = null;
 
         String s = "SELECT * FROM usuario WHERE email = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
             // Preparamos la sentencia con los datos del propietario
             ps = con.prepareStatement(s);
             ps.setString(1, email);
