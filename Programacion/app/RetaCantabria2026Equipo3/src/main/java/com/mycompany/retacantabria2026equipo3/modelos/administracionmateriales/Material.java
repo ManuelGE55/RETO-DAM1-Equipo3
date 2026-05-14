@@ -6,12 +6,13 @@ package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
 
 import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
+import static com.mycompany.retacantabria2026equipo3.interfazgrafica.Pantalla.inventario;
 
 /**
  *
  * @author DAM212
  */
-public class Material {
+public class Material implements Comparable<Material> {
     private int id;
     private String nombre;
     private String descripcion;
@@ -75,6 +76,29 @@ public class Material {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Material other = (Material) obj;
+        return this.id == other.id;
+    }
+    
     
     /**
      * @author Hugo fernández Calzado
@@ -91,5 +115,10 @@ public class Material {
                 + "Estado: " + this.estado + " | "
                 + "ID Ubicación: " + this.idUbicacion + ""
                 + ")";
+    }
+
+    @Override
+    public int compareTo(Material o) {
+        return this.getId()-o.getId();
     }
 }

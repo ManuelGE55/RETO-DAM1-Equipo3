@@ -4,7 +4,10 @@
  */
 package com.mycompany.retacantabria2026equipo3.gestores;
 
-import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
+
+import com.mycompany.retacantabria2026equipo3.enums.Categoria;
+import com.mycompany.retacantabria2026equipo3.enums.Estado;
+import static com.mycompany.retacantabria2026equipo3.interfazgrafica.Pantalla.inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,32 +26,36 @@ public class GestorTrafico {
     
     // atributos que contará los archivos para ir creando archivos cada vez que se exporte uno nuevo
     private static final File carpetaFicheros = new File("src/main/CSVs");
-    private static File[] listaFicheros = carpetaFicheros.listFiles();
-    private static int contFicheros = listaFicheros.length;
+    private static File[] listaFicheros = carpetaFicheros != null ? carpetaFicheros.listFiles() : null;
+    private static int contFicheros = listaFicheros == null ? 0 : listaFicheros.length;
     
-//    public static String cargarInventario(File inventarioCSV) {
-//        String devolverDatos = "";
-//        String csvSplitBy = ",";
-//        try (BufferedReader br = new BufferedReader(new FileReader(inventarioCSV))) {
-//            String linea;
-//            while ((linea = br.readLine()) != null) {
-//                devolverDatos += linea + "\n";
-//            }
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return devolverDatos;
-//    }
+    public static void cargarInventario(File inventarioCSV) {
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(inventarioCSV))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+               String[] datos = linea.split(",");
+                   inventario.añadirMaterial(new Material(datos[0],datos[1],Integer.parseInt(datos[2]),Integer.parseInt(datos[3]),Categoria.valueOf(datos[4]),Estado.valueOf(datos[5]),datos[6]));
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     
-    public static void exportarInventario(List<Material> materiales) {     
-        File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (contFicheros + 1) + ".xlsx");
+    public static void exportarInventario(List<Material> materiales) {
+        if (!carpetaFicheros.exists()) {
+            carpetaFicheros.mkdirs();
+        }
+        File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (++contFicheros ) + ".xlsx");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(inventarioCSV, true))) {
             bw.write("Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion\n");
             for (Material material : materiales) {
-                bw.write(material.getId() + "," + material.getNombre() + "," + material.getDescripcion() + ","
+                bw.write(material.getNombre() + "," + material.getDescripcion() + ","
                         + "" + material.getCantidad() + "," + material.getStockMinimo() + "," + material.getCategoria() + "," + material.getEstado() + ","
                                 + material.getIdUbicacion() + "\n");
             }
+            
+            System.out.println(inventarioCSV+" creado");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

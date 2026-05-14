@@ -10,12 +10,17 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.gestores.GestorTrafico;
+import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,7 +34,8 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
-    private static ArrayList<Material> materialesTotales = new ArrayList<>();
+    public static Inventario inventario = new Inventario(new LinkedList<>());
+    
 
     /**
      * Creates new form Pantalla
@@ -43,6 +49,7 @@ public class Pantalla extends javax.swing.JFrame {
         this.jPanel3.setVisible(false);
         this.jMenuBar2.setVisible(false);
         this.setSize(770, 520);
+       
         ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
         Image imgImagenIntro = imagenIntro.getImage();
         Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
@@ -60,10 +67,6 @@ public class Pantalla extends javax.swing.JFrame {
 
         jOptionPane1 = new javax.swing.JOptionPane();
         jDialog1 = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
-        BotonSalir = new javax.swing.JButton();
-        BotonEntrar = new javax.swing.JButton();
-        ImagenIntro = new javax.swing.JLabel();
         Loggin = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         textoUsuario = new javax.swing.JTextPane();
@@ -72,6 +75,10 @@ public class Pantalla extends javax.swing.JFrame {
         TextoContraseña = new javax.swing.JTextPane();
         Contraseña = new javax.swing.JPasswordField();
         botonOk = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        BotonSalir = new javax.swing.JButton();
+        BotonEntrar = new javax.swing.JButton();
+        ImagenIntro = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nombreMaterial = new javax.swing.JLabel();
@@ -83,7 +90,6 @@ public class Pantalla extends javax.swing.JFrame {
         comboCategoria = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         comboLocalizacion = new javax.swing.JComboBox<>();
-        botonFiltrar = new javax.swing.JButton();
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
@@ -103,20 +109,6 @@ public class Pantalla extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        BotonSalir.setText("Salir");
-        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalirActionPerformed(evt);
-            }
-        });
-
-        BotonEntrar.setText("Entrar");
-        BotonEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonEntrarActionPerformed(evt);
-            }
-        });
 
         Loggin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -148,11 +140,26 @@ public class Pantalla extends javax.swing.JFrame {
         });
         Loggin.add(botonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
+        BotonSalir.setText("Salir");
+        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirActionPerformed(evt);
+            }
+        });
+
+        BotonEntrar.setText("Entrar");
+        BotonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEntrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(159, 159, 159)
                 .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -173,6 +180,24 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(169, 169, 169)
                         .addComponent(Loggin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+=======
+                .addGap(435, 435, 435)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(422, 422, 422)
+                        .addComponent(ImagenIntro, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(298, 298, 298))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> Stashed changes
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -241,11 +266,9 @@ public class Pantalla extends javax.swing.JFrame {
                 comboLocalizacionMouseClicked(evt);
             }
         });
-
-        botonFiltrar.setText("Filtrar");
-        botonFiltrar.addActionListener(new java.awt.event.ActionListener() {
+        comboLocalizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFiltrarActionPerformed(evt);
+                comboLocalizacionActionPerformed(evt);
             }
         });
 
@@ -281,9 +304,7 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonFiltrar)
-                        .addGap(18, 18, 18)
+                        .addGap(108, 108, 108)
                         .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,7 +335,6 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonFiltrar)
                                     .addComponent(modificarMaterial)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -414,6 +434,11 @@ public class Pantalla extends javax.swing.JFrame {
         jMenu3.setText("File");
 
         exportarCSV.setText("Exportar CSV");
+        exportarCSV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportarCSVMouseClicked(evt);
+            }
+        });
         jMenu3.add(exportarCSV);
 
         importarCSV.setText("Importar CSV");
@@ -436,6 +461,19 @@ public class Pantalla extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+<<<<<<< Updated upstream
+=======
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(952, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(788, Short.MAX_VALUE)))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,6 +485,18 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGap(7, 7, 7)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(50, Short.MAX_VALUE)))
+<<<<<<< Updated upstream
+=======
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(33, 33, 33)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(31, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 275, Short.MAX_VALUE)))
+>>>>>>> Stashed changes
         );
 
         pack();
@@ -467,7 +517,8 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuBar2.setVisible(true);
         rellenarComboBoxEstado();
         rellenarComboBoxCategoria();
-        materialesTotales = InventarioDAO.cargarInventario();
+        rellenarComboBoxLocalizacion();
+        inventario.setMateriales(InventarioDAO.cargarInventario());
         rellenarTablaMateriales();
         jPanel1.setVisible(false);
 
@@ -488,10 +539,6 @@ public class Pantalla extends javax.swing.JFrame {
     private void comboLocalizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboLocalizacionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_comboLocalizacionMouseClicked
-
-    private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonFiltrarActionPerformed
 
     private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
         rellenarTablaMateriales();
@@ -556,7 +603,39 @@ public class Pantalla extends javax.swing.JFrame {
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
+<<<<<<< Updated upstream
     }//GEN-LAST:event_UsuarioActionPerformed
+=======
+
+    private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoCambiarCantidadActionPerformed
+
+    private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
+
+    private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarMaterialActionPerformed
+
+    private void CampoTextoCambiarUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarUbicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoCambiarUbicacionActionPerformed
+
+    private void ComboBoxCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxCambiarEstadoActionPerformed
+
+    private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
+      rellenarTablaMateriales();
+    }//GEN-LAST:event_comboLocalizacionActionPerformed
+
+    private void exportarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarCSVMouseClicked
+       GestorTrafico.exportarInventario(materiales);
+    }//GEN-LAST:event_exportarCSVMouseClicked
+                                           
+>>>>>>> Stashed changes
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
@@ -580,8 +659,8 @@ public class Pantalla extends javax.swing.JFrame {
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if (!materialesTotales.isEmpty()) {
-            for (Material m : materialesTotales) {
+        if (!inventario.getMateriales().isEmpty()) {
+            for (Material m : inventario.getMateriales()) {
                 filtrado=true;
                 Object[] fila = {
                     m.getId(),
@@ -599,6 +678,9 @@ public class Pantalla extends javax.swing.JFrame {
 
                 if (!comboCategoria.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
+                }
+                if (!comboLocalizacion.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem());
                 }
 
                 if (filtrado) {
@@ -648,6 +730,23 @@ public class Pantalla extends javax.swing.JFrame {
 
         comboCategoria.setModel(modelo);
     }
+    private void rellenarComboBoxLocalizacion() {
+
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+
+    modelo.addElement("---");
+    modelo.addElement("2001");
+    modelo.addElement("2003");
+    modelo.addElement("2012");
+    modelo.addElement("2201");
+    modelo.addElement("2202");
+    modelo.addElement("300901");
+    modelo.addElement("301601");
+    modelo.addElement("301603");
+    modelo.addElement("301604");
+
+    comboLocalizacion.setModel(modelo);
+}
 
     /**
      * @param args the command line arguments
@@ -661,7 +760,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel Loggin;
     private javax.swing.JTextPane TextoContraseña;
     private javax.swing.JTextField Usuario;
-    private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboCategoria;

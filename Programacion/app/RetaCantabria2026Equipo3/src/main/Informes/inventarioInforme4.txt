@@ -1,0 +1,13 @@
+--- Informe materiales 4 ---
+
+Material(ID: 1 | Nombre: Manual | Descripción: Manual de Word 2007 | Cantidad: 3 | Stock mínimo: 1 | Categoría: 3 | Estado: DISPONIBLE | ID Ubicación: 2001)
+Material(ID: 2 | Nombre: Manual | Descripción: Manual de Word 2007 | Cantidad: 3 | Stock mínimo: 1 | Categoría: 3 | Estado: DISPONIBLE | ID Ubicación: 2001)
+Material(ID: 3 | Nombre: Manual | Descripción: Manual de Word 2007 | Cantidad: 3 | Stock mínimo: 1 | Categoría: 3 | Estado: DISPONIBLE | ID Ubicación: 2001)
+Material(ID: 4 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
+Material(ID: 5 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
+Material(ID: 6 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
+Material(ID: 7 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
+Material(ID: 8 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
+Material(ID: 9 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
+Material(ID: 10 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
+Material(ID: 11 | Nombre: Libro DAM | Descripción: Libro de texto 1ºDAM 2015 | Cantidad: 8 | Stock mínimo: 3 | Categoría: 8 | Estado: DISPONIBLE | ID Ubicación: 2003)
