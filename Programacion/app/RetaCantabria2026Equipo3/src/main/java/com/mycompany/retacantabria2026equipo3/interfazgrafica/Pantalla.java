@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
-    private static ArrayList<Material> materialesTotales = new ArrayList<>();
+    private static ArrayList<Material> inventario = new ArrayList<>();
 
     /**
      * Creates new form Pantalla

@@ -12,14 +12,20 @@ import java.util.List;
  * @author DAM212
  */
 public class Inventario {
-    private List<Material> materiales;
+    private ArrayList<Material> materiales;
     public Inventario(ArrayList<Material> materiales){
         this.materiales = materiales;
     }
 
-    public List<Material> getMateriales() {
+    public ArrayList<Material> getMateriales() {
         return materiales;
     }
+
+    public void setMateriales(ArrayList<Material> materiales) {
+        this.materiales = materiales;
+    }
+    
+    
 
     @Override
     public String toString() {
