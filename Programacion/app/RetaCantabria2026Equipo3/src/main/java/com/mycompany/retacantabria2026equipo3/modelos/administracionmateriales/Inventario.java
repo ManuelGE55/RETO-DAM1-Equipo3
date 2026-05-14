@@ -5,33 +5,21 @@
 package com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
  * @author DAM212
  */
 public class Inventario {
-    private LinkedList<Material> materiales;
-    public Inventario(LinkedList<Material> materiales){
+    private List<Material> materiales;
+    public Inventario(ArrayList<Material> materiales){
         this.materiales = materiales;
     }
 
-    public LinkedList<Material> getMateriales() {
+    public List<Material> getMateriales() {
         return materiales;
     }
-
-    public void setMateriales(LinkedList<Material> materiales) {
-        this.materiales = materiales;
-    }
-    public void añadirMaterial(Material m){
-        this.materiales.add(m);
-    }
-    
-    
 
     @Override
     public String toString() {
