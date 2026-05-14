@@ -18,7 +18,7 @@ CREAR TABLAS
 */
 
 
-CREATE TABLE ubicacion(
+CREATE TABLE IF NOT EXISTS ubicacion(
 	id_ubicacion INT,
     armario INT,
     balda INT,
@@ -26,7 +26,7 @@ CREATE TABLE ubicacion(
     descripcion VARCHAR(50),
     PRIMARY KEY(id_ubicacion)
 );
-CREATE TABLE material(
+CREATE TABLE IF NOT EXISTS material(
 	id_material INT AUTO_INCREMENT,
     nombre VARCHAR(30),
     descripcion VARCHAR(60),
@@ -46,17 +46,17 @@ CREATE TABLE IF NOT EXISTS alerta_stock (
 	resuelta boolean
     -- ,FOREIGN KEY (nombre_material) REFERENCES material(nombre)
 );
-CREATE TABLE usuario(
+CREATE TABLE IF NOT EXISTS usuario(
 	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
 	nombre VARCHAR(20),
 	apellidos VARCHAR(30),
 	email VARCHAR(30) UNIQUE,
-	contraseña VARCHAR(20),
+	contrasena VARCHAR(20),
 	rol ENUM ("profesor", "administrador"),
 	activo BOOLEAN,
 	fecha_creacion DATE
 );
-CREATE TABLE movimiento(
+CREATE TABLE IF NOT EXISTS movimiento(
 	id_movimiento INT AUTO_INCREMENT PRIMARY KEY,
 	id_usuario INT,
 	id_material INT,
@@ -259,6 +259,7 @@ PROCEDIMIENTOS Y FUNCIONES
 
 -- HAY QUE CAMBIAR ESTE PROCEDIMIENTO PARA QUE DEFINA LA VARIABLE CON LA ID DEL USUARIO QUE ESTÁ TRABAJANDO
 -- RECIBIR PARÁMETRO DESDE PROGRAMA
+
 DELIMITER //
 
 CREATE PROCEDURE definirIdUsuario()
@@ -267,13 +268,18 @@ BEGIN
 	SELECT id_usuario
     INTO @id_usuario
     FROM usuario
-    WHERE activo IS TRUE;
+    WHERE activo = TRUE;
 END //
+
+DELIMITER ;
 
 -- ESTE PROCEDIMIENTO SE TIENE QUE USAR DESDE EL PROGRAMA
 -- HAY QUE UTILIZARLO SIEMPRE QUE SE HAGA UNA MODIFICACIÓN EN LA BASE DE DATOS ¡¡MUY IMPORTANTE!!
+
+DELIMITER //
+
 CREATE PROCEDURE actualizarCantidad() -- FUNCIONA
-READS SQL DATA
+MODIFIES SQL DATA
 BEGIN
 	DECLARE contador INT;
     DECLARE newCantidad INT;
@@ -292,6 +298,7 @@ BEGIN
     END REPEAT;
     SET @modo_actualizacion = FALSE;
 END //
+
 DELIMITER ;
 
 
@@ -307,6 +314,7 @@ DROP TRIGGER IF EXISTS trg_actualizar_upd;
 
 
 -- Este TRIGGER tiene que registrar cada movimiento que haya en la base de datos
+
 DELIMITER //
 
 CREATE TRIGGER trg_movimiento
@@ -327,11 +335,15 @@ BEGIN
 		INSERT INTO movimiento(id_usuario,id_material,fecha,observacion)
 		VALUES(@id_usuario,NEW.id_material,curdate(),observaciones);
 	END IF;
-    
 END //
+
+DELIMITER ;
 
 -- Este TRIGGER revisa que la cantidad de materiales no sea inferior al stock mínimo
 -- PARA QUE FUNCIONE, ANTES SE TIENE QUE HABER EJECUTADO actualizarCantidad()
+
+DELIMITER //
+
 CREATE TRIGGER trg_alerta_stock
 AFTER DELETE ON material
 FOR EACH ROW
@@ -358,4 +370,4 @@ BEGIN
     END IF;
 END //
 
-
+DELIMITER ;
