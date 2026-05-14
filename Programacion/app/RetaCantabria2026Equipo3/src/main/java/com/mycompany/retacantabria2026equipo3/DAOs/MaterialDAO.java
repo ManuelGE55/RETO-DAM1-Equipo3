@@ -29,6 +29,8 @@ public class MaterialDAO {
         String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
         try (Connection con = AccesoBaseDatos.getInstance().getConn()){
             if (existeId(id) && UbicacionDAO.existeId(id)) {
+                System.out.println(existeId(id));
+                System.out.println(UbicacionDAO.existeId(id));
                 ps = con.prepareStatement(s);
                 ps.setInt(1,cant);
                 ps.setString(2, est);
@@ -42,9 +44,9 @@ public class MaterialDAO {
                     resultado = 0;
                 }
             }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(MaterialDAO.class.getName()).
-                    log(Level.SEVERE, null, ex);
+            System.out.println("no se pudo actualizar");;
         }
         return resultado;
     }

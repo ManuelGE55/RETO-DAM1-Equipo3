@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  * @author DAM212
  */
 public class Pantalla extends javax.swing.JFrame {
-
+    
     private static ArrayList<Material> materiales = new ArrayList<>();
     public static Inventario inventario = new Inventario(new ArrayList<>());
 
@@ -38,7 +38,7 @@ public class Pantalla extends javax.swing.JFrame {
     public Pantalla() {
         initComponents();
         //this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        this.setResizable(false); 
+        this.setResizable(false);        
         this.setSize(770, 520);
         this.setLocationRelativeTo(null);
         this.jPanel1.setVisible(true);
@@ -79,18 +79,17 @@ public class Pantalla extends javax.swing.JFrame {
         comboCategoria = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         comboLocalizacion = new javax.swing.JComboBox<>();
-        botonFiltrar = new javax.swing.JButton();
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         CampoTextoCambiarCantidad = new javax.swing.JTextField();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
-        CampoTextoCambiarUbicacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         ComboBoxCambiarEstado = new javax.swing.JComboBox<>();
+        ComboBoxCambiarLocalizacion = new javax.swing.JComboBox<>();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         exportarCSV = new javax.swing.JMenu();
@@ -218,13 +217,6 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        botonFiltrar.setText("Filtrar");
-        botonFiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFiltrarActionPerformed(evt);
-            }
-        });
-
         modificarMaterial.setText("Modificar Material");
         modificarMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,9 +254,7 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonFiltrar)
-                        .addGap(18, 18, 18)
+                        .addGap(108, 108, 108)
                         .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +285,6 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonFiltrar)
                                     .addComponent(modificarMaterial)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -324,12 +313,6 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        CampoTextoCambiarUbicacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoTextoCambiarUbicacionActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Nueva cantidad:");
 
         jLabel8.setText("Nuevo estado:");
@@ -340,6 +323,13 @@ public class Pantalla extends javax.swing.JFrame {
         ComboBoxCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxCambiarEstadoActionPerformed(evt);
+            }
+        });
+
+        ComboBoxCambiarLocalizacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxCambiarLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxCambiarLocalizacionActionPerformed(evt);
             }
         });
 
@@ -366,8 +356,8 @@ public class Pantalla extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CampoTextoCambiarUbicacion)
-                            .addComponent(ComboBoxCambiarEstado, 0, 169, Short.MAX_VALUE))))
+                            .addComponent(ComboBoxCambiarEstado, 0, 169, Short.MAX_VALUE)
+                            .addComponent(ComboBoxCambiarLocalizacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
@@ -381,11 +371,11 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(ComboBoxCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(127, 127, 127)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CampoTextoCambiarUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(62, 62, 62)
+                .addGap(121, 121, 121)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(ComboBoxCambiarLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonSalirModificarMaterial)
                     .addComponent(BotonModificarMaterial))
@@ -445,7 +435,6 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         nombreMaterial.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-        comboEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void comboEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstadoMouseClicked
@@ -468,10 +457,6 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboLocalizacionMouseClicked
 
-    private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonFiltrarActionPerformed
-
     private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
         rellenarTablaMateriales();
     }//GEN-LAST:event_comboEstadoActionPerformed
@@ -481,19 +466,27 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_comboCategoriaActionPerformed
 
     private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
-        this.jPanel2.setVisible(false);
+        if(jTable1.getSelectedRow()!=-1){
+            this.jPanel2.setVisible(false);
+        this.rellenarComboBoxActEstado();
+        this.rellenarComboBoxActLocalizacion();
         this.jPanel3.setVisible(true);
-        this.setSize(570, 700);
+        this.setSize(550, 600);
+        }
+        else{
+            //VENTANA DE EXCEPCION
+        }
+        
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
-
+        
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
-
+            
             boolean valido = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
-
+            
             if (valido) {
                 jPanel1.setVisible(false);
                 BotonSalir.setVisible(true);
@@ -506,20 +499,20 @@ public class Pantalla extends javax.swing.JFrame {
                 ImagenIntro.setVisible(true);
                 this.setSize(1380, 540);
                 this.setLocationRelativeTo(null);
-
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
                 Contraseña.setText("");
                 Contraseña.requestFocus();
             }
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
-
+            
         }
 
     }//GEN-LAST:event_botonOkActionPerformed
-
+    
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -527,7 +520,7 @@ public class Pantalla extends javax.swing.JFrame {
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
-
+    
 
     private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
         // TODO add your handling code here:
@@ -538,12 +531,13 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
 
     private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
+        MaterialDAO.ActualizarEstado(Integer.parseInt(CampoTextoCambiarCantidad.getText()), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(ComboBoxCambiarLocalizacion.getSelectedItem().toString()), Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()));
+        rellenarTablaMateriales();
+        jPanel3.setVisible(false);
+        this.setSize(1380, 540);
+        jPanel2.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonModificarMaterialActionPerformed
-
-    private void CampoTextoCambiarUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarUbicacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoTextoCambiarUbicacionActionPerformed
 
     private void ComboBoxCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarEstadoActionPerformed
         // TODO add your handling code here:
@@ -554,14 +548,18 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_ContraseñaActionPerformed
 
     private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
-rellenarTablaMateriales();        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_comboLocalizacionActionPerformed
 
+    private void ComboBoxCambiarLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarLocalizacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxCambiarLocalizacionActionPerformed
+    
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
         boolean filtrado;
-
+        
         String[] columnas = {
             "id_material",
             "nombre",
@@ -580,7 +578,6 @@ rellenarTablaMateriales();        // TODO add your handling code here:
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-
         if (!inventario.getMateriales().isEmpty()) {
             for (Material m : inventario.getMateriales()) {
                 filtrado = true;
@@ -597,87 +594,106 @@ rellenarTablaMateriales();        // TODO add your handling code here:
                 if (!comboEstado.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
                 }
-
+                
                 if (!comboCategoria.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
                 }
                 if (!comboLocalizacion.getSelectedItem().equals("---")) {
-                    filtrado = filtrado && m.getCategoria().name().equals(comboLocalizacion.getSelectedItem());
+                    filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem().toString());
                 }
-
+                
                 if (filtrado) {
                     modelo.addRow(fila);
                     materiales.add(m);
                 }
-
+                
             }
         }
-
-    }
         
+    }
     
-
     private void rellenarComboBoxEstado() {
-
+        
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-
+        
         modelo.addElement("---");
         modelo.addElement("DISPONIBLE");
         modelo.addElement("PRESTADO");
         modelo.addElement("EN_REPARACION");
         modelo.addElement("RETIRADO");
-
+        
         comboEstado.setModel(modelo);
     }
-
-    private void rellenarComboBoxCambiarEstado() {
-
+    
+    private void rellenarComboBoxActEstado() {
+        
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-
+        
         modelo.addElement("DISPONIBLE");
         modelo.addElement("PRESTADO");
         modelo.addElement("EN_REPARACION");
         modelo.addElement("RETIRADO");
-
+        
         ComboBoxCambiarEstado.setModel(modelo);
     }
-
+    
     private void rellenarComboBoxCategoria() {
-
+        
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-
+        
         modelo.addElement("---");
         modelo.addElement("CUADERNO");
         modelo.addElement("HARDWARE");
         modelo.addElement("HERRAMIENTA");
         modelo.addElement("FUNGIBLE");
-
+        
         comboCategoria.setModel(modelo);
     }
+
     private void rellenarComboBoxLocalizacion() {
-
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-
-    modelo.addElement("---");
-
-    String[] localizaciones = {
-        "2001",
-        "2003",
-        "2012",
-        "2201",
-        "2202",
-        "300901",
-        "301601",
-        "301603",
-        "301604"
-    };
-
-    for (String loc : localizaciones) {
-        modelo.addElement(loc);
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        String[] localizaciones = {
+            "---",
+            "2001",
+            "2003",
+            "2012",
+            "2201",
+            "2202",
+            "300901",
+            "301601",
+            "301603",
+            "301604"
+        };
+        
+        for (String loc : localizaciones) {
+            modelo.addElement(loc);
+        }
+        comboLocalizacion.setModel(modelo);
+        
     }
 
-    comboLocalizacion.setModel(modelo);
-}
+    private void rellenarComboBoxActLocalizacion() {
+        
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        
+        String[] localizaciones = {
+            "2001",
+            "2003",
+            "2012",
+            "2201",
+            "2202",
+            "300901",
+            "301601",
+            "301603",
+            "301604"
+        };
+        
+        for (String loc : localizaciones) {
+            modelo.addElement(loc);
+        }
+        
+        ComboBoxCambiarLocalizacion.setModel(modelo);
+    }
 
     /**
      * @param args the command line arguments
@@ -688,13 +704,12 @@ rellenarTablaMateriales();        // TODO add your handling code here:
     private javax.swing.JButton BotonSalir;
     private javax.swing.JButton BotonSalirModificarMaterial;
     private javax.swing.JTextField CampoTextoCambiarCantidad;
-    private javax.swing.JTextField CampoTextoCambiarUbicacion;
     private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
+    private javax.swing.JComboBox<String> ComboBoxCambiarLocalizacion;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;
     private javax.swing.JLayeredPane Loggin1;
     private javax.swing.JTextField Usuario;
-    private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboCategoria;
