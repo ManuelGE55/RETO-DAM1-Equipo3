@@ -10,17 +10,12 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
-import com.mycompany.retacantabria2026equipo3.gestores.GestorTrafico;
-import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -34,8 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
-    public static Inventario inventario = new Inventario(new LinkedList<>());
-    
+    private static ArrayList<Material> materialesTotales = new ArrayList<>();
 
     /**
      * Creates new form Pantalla
@@ -84,6 +78,7 @@ public class Pantalla extends javax.swing.JFrame {
         comboCategoria = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         comboLocalizacion = new javax.swing.JComboBox<>();
+        botonFiltrar = new javax.swing.JButton();
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -216,9 +211,11 @@ public class Pantalla extends javax.swing.JFrame {
                 comboLocalizacionMouseClicked(evt);
             }
         });
-        comboLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+
+        botonFiltrar.setText("Filtrar");
+        botonFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboLocalizacionActionPerformed(evt);
+                botonFiltrarActionPerformed(evt);
             }
         });
 
@@ -259,7 +256,9 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonFiltrar)
+                        .addGap(18, 18, 18)
                         .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,6 +289,7 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonFiltrar)
                                     .addComponent(modificarMaterial)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -389,11 +389,6 @@ public class Pantalla extends javax.swing.JFrame {
         jMenu3.setText("File");
 
         exportarCSV.setText("Exportar CSV");
-        exportarCSV.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exportarCSVMouseClicked(evt);
-            }
-        });
         jMenu3.add(exportarCSV);
 
         importarCSV.setText("Importar CSV");
@@ -431,7 +426,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(7, 7, 7)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(50, Short.MAX_VALUE)))
+                    .addContainerGap(62, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(33, 33, 33)
@@ -466,6 +461,10 @@ public class Pantalla extends javax.swing.JFrame {
     private void comboLocalizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboLocalizacionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_comboLocalizacionMouseClicked
+
+    private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonFiltrarActionPerformed
 
     private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
         rellenarTablaMateriales();
@@ -522,7 +521,7 @@ public class Pantalla extends javax.swing.JFrame {
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
-                                          
+
 
     private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
         // TODO add your handling code here:
@@ -544,21 +543,9 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxCambiarEstadoActionPerformed
 
-
-    private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
-      rellenarTablaMateriales();
-    }//GEN-LAST:event_comboLocalizacionActionPerformed
-
-    private void exportarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarCSVMouseClicked
-       GestorTrafico.exportarInventario(materiales);
-    }//GEN-LAST:event_exportarCSVMouseClicked
-                                           
-
-
     private void ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraseñaActionPerformed
-
 
     private void rellenarTablaMateriales() {
         // Columnas
@@ -583,6 +570,7 @@ public class Pantalla extends javax.swing.JFrame {
         jTable1.setModel(modelo);
 
         // Rellenar tabla
+
         if (!inventario.getMateriales().isEmpty()) {
             for (Material m : inventario.getMateriales()) {
                 filtrado = true;
@@ -602,9 +590,6 @@ public class Pantalla extends javax.swing.JFrame {
 
                 if (!comboCategoria.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
-                }
-                if (!comboLocalizacion.getSelectedItem().equals("---")) {
-                    filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem());
                 }
 
                 if (filtrado) {
@@ -656,23 +641,6 @@ public class Pantalla extends javax.swing.JFrame {
 
         comboCategoria.setModel(modelo);
     }
-    private void rellenarComboBoxLocalizacion() {
-
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-
-    modelo.addElement("---");
-    modelo.addElement("2001");
-    modelo.addElement("2003");
-    modelo.addElement("2012");
-    modelo.addElement("2201");
-    modelo.addElement("2202");
-    modelo.addElement("300901");
-    modelo.addElement("301601");
-    modelo.addElement("301603");
-    modelo.addElement("301604");
-
-    comboLocalizacion.setModel(modelo);
-}
 
     /**
      * @param args the command line arguments
@@ -689,6 +657,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel ImagenIntro;
     private javax.swing.JLayeredPane Loggin1;
     private javax.swing.JTextField Usuario;
+    private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboCategoria;

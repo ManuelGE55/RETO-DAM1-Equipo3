@@ -262,13 +262,11 @@ PROCEDIMIENTOS Y FUNCIONES
 
 DELIMITER //
 
-CREATE PROCEDURE definirIdUsuario()
+CREATE PROCEDURE definirIdUsuario(IN id INT)
 READS SQL DATA
 BEGIN
-	SELECT id_usuario
-    INTO @id_usuario
-    FROM usuario
-    WHERE activo = TRUE;
+	SELECT id
+    INTO @id_usuario;
 END //
 
 DELIMITER ;
