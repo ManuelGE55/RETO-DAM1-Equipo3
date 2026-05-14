@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
-    private static ArrayList<Material> materialesTotales = new ArrayList<>();
+    private static ArrayList<Material> inventario = new ArrayList<>();
 
     /**
      * Creates new form Pantalla
@@ -139,12 +139,6 @@ public class Pantalla extends javax.swing.JFrame {
 
         jLabel1.setText("Usuario");
         Loggin1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
-
-        jLabel5.setText("Contraseña");
-        Loggin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
-
-        jLabel1.setText("Usuario");
-        Loggin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -528,6 +522,7 @@ public class Pantalla extends javax.swing.JFrame {
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
+
     private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoTextoCambiarCantidadActionPerformed
@@ -575,8 +570,9 @@ public class Pantalla extends javax.swing.JFrame {
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if (!materialesTotales.isEmpty()) {
-            for (Material m : materialesTotales) {
+
+        if (!inventario.getMateriales().isEmpty()) {
+            for (Material m : inventario.getMateriales()) {
                 filtrado = true;
                 Object[] fila = {
                     m.getId(),
@@ -605,6 +601,8 @@ public class Pantalla extends javax.swing.JFrame {
         }
 
     }
+        
+    
 
     private void rellenarComboBoxEstado() {
 
