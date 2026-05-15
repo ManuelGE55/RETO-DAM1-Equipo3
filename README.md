@@ -1,5 +1,5 @@
 [![Java](https://img.shields.io/badge/Java-Manual%20de%20Usuario-orange)](Programacion/Manual%20de%20usuario/Plantilla%20manual%20usuario.docx)
-[![MySQL](https://img.shields.io/badge/MySQL-Base%20de%20Datos-blue)](Base%20de%20Datos/)
+[![MySQL](https://img.shields.io/badge/MySQL-Base%20de%20Datos-blue)](base_datos/)
 [![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)](https://github.com/SaulValdunciel/RETO-DAM1-Equipo3)
 
 # RETO-DAM1-Equipo3
