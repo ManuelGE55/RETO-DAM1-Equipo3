@@ -1,11 +1,6 @@
-![Java](https://img.shields.io/badge/Java-Swing-orange)
-[![MySQL](https://img.shields.io/badge/MySQL-Script%20SQL-blue)](Base%20de%20Datos/BaseDeDatos.sql)
-![AWS](https://img.shields.io/badge/AWS-EC2-yellow)
-![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)
-
-# RETO-DAM1-Equipo3
-
-## Gestión y Localización del Material del Taller de Informática
+[![Java](https://img.shields.io/badge/Java-Manual%20de%20Usuario-orange)](Programacion/Manual%20de%20usuario/Plantilla%20manual%20usuario.docx)
+[![MySQL](https://img.shields.io/badge/MySQL-Base%20de%20Datos-blue)](Base%20de%20Datos/)
+[![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)](https://github.com/SaulValdunciel/RETO-DAM1-Equipo3)
 
 # RETO-DAM1-Equipo3
 
