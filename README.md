@@ -229,7 +229,7 @@ El diagrama de arquitectura de los servidores muestra la infraestructura despleg
 
 La guía de despliegue documenta la configuración de la infraestructura en AWS, incluyendo VPC, subredes, instancias EC2, MySQL, Apache, SSH, SFTP, Security Groups y balanceador de carga.
 
-[📄 Ver Guía de despliegue](docs/Guia_despliegue_Equipo3.pdf)
+[📄 Ver Guía de despliegue](Guia_despliegue_Equipo3.pdf)
 
 ---
 
