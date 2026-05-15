@@ -193,7 +193,7 @@ En él aparecen las entidades principales del proyecto, como usuario, material, 
 
 ### Modelo relacional
 
-![Modelo relacional](Base%20de%20Datos/modelo_relacional.png)
+![Diagrama E/R](Base%20de%20Datos/Modelo%20E_R/modelorelacional.png)
 
 El modelo relacional muestra cómo se implementa la base de datos en MySQL, indicando las tablas, claves primarias, 
 claves foráneas, tipos de datos y relaciones entre las entidades.
