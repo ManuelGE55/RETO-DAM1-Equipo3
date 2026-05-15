@@ -1,0 +1,5 @@
+Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion
+Teclado USB,Teclado con conexión USB,2,1,HARDWARE,DISPONIBLE,300901
+Teclado USB,Teclado con conexión USB,2,1,HARDWARE,DISPONIBLE,300901
+Portatil,Portatil,1,1,HARDWARE,DISPONIBLE,2012
+Cable ethernet,Cable ethernet de 1 metro,1,1,HARDWARE,DISPONIBLE,301603

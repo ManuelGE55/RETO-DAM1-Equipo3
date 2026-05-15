@@ -4,6 +4,9 @@
  */
 package com.mycompany.retacantabria2026equipo3.gestores;
 
+import com.mycompany.retacantabria2026equipo3.enums.Categoria;
+import com.mycompany.retacantabria2026equipo3.enums.Estado;
+import static com.mycompany.retacantabria2026equipo3.interfazgrafica.Pantalla.inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.io.BufferedReader;
@@ -26,24 +29,21 @@ public class GestorTrafico {
     private static File[] listaFicheros = carpetaFicheros.listFiles();
     private static int contFicheros = listaFicheros.length;
     
-    public static String cargarInventario(File inventarioCSV) {
-        String devolverDatos = "";
-        String csvSplitBy = ",";
+public static void cargarInventario(File inventarioCSV) {
+        
         try (BufferedReader br = new BufferedReader(new FileReader(inventarioCSV))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                devolverDatos += linea + "\n";
+               String[] datos = linea.split(",");
+                   inventario.anadirMaterial(new Material(datos[0],datos[1],Integer.parseInt(datos[2]),Integer.parseInt(datos[3]),Categoria.valueOf(datos[4]),Estado.valueOf(datos[5]),datos[6]));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return devolverDatos;
     }
     
-    public static void exportarInventario(Inventario inventario) {
-        
+    public static void exportarInventario(List<Material> materiales) {     
         File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (contFicheros + 1) + ".xlsx");
-        List<Material> materiales = inventario.getMateriales();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(inventarioCSV, true))) {
             bw.write("Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion\n");
             for (Material material : materiales) {

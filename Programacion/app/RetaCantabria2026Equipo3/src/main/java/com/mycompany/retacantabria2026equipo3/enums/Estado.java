@@ -9,5 +9,5 @@ package com.mycompany.retacantabria2026equipo3.enums;
  * @author DAM121
  */
 public enum Estado {
-    DOSPONIBLE,PRESTADO,EN_REPARACION,RETIRADO
+    DISPONIBLE,PRESTADO,EN_REPARACION,RETIRADO
 }

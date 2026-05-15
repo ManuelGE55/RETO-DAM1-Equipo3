@@ -1,0 +1,6 @@
+--- Informe materiales 3 ---
+
+Material(ID: 12 | Nombre: Teclado USB | Descripción: Teclado con conexión USB | Cantidad: 2 | Stock mínimo: 1 | Categoría: 2 | Estado: DISPONIBLE | ID Ubicación: 300901)
+Material(ID: 13 | Nombre: Teclado USB | Descripción: Teclado con conexión USB | Cantidad: 2 | Stock mínimo: 1 | Categoría: 2 | Estado: DISPONIBLE | ID Ubicación: 300901)
+Material(ID: 16 | Nombre: Portatil | Descripción: Portatil | Cantidad: 1 | Stock mínimo: 1 | Categoría: 1 | Estado: DISPONIBLE | ID Ubicación: 2012)
+Material(ID: 21 | Nombre: Cable ethernet | Descripción: Cable ethernet de 1 metro | Cantidad: 1 | Stock mínimo: 1 | Categoría: 1 | Estado: DISPONIBLE | ID Ubicación: 301603)

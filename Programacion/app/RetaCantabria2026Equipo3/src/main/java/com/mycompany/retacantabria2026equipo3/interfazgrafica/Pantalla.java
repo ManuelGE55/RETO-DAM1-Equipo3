@@ -4,12 +4,22 @@
  */
 package com.mycompany.retacantabria2026equipo3.interfazgrafica;
 
+import com.mycompany.retacantabria2026equipo3.DAOs.AccesoBaseDatos;
+import com.mycompany.retacantabria2026equipo3.DAOs.InventarioDAO;
+import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
+import com.mycompany.retacantabria2026equipo3.enums.Estado;
+import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
+import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,22 +28,24 @@ import javax.swing.table.DefaultTableModel;
  * @author DAM212
  */
 public class Pantalla extends javax.swing.JFrame {
-private static ArrayList<Material> materiales= new ArrayList<>();
+    
+    private static ArrayList<Material> materiales = new ArrayList<>();
+    public static Inventario inventario = new Inventario(new ArrayList<>());
+
     /**
      * Creates new form Pantalla
      */
     public Pantalla() {
         initComponents();
         //this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        this.setResizable(false);
+        this.setResizable(false);        
+        this.setSize(770, 520);
         this.setLocationRelativeTo(null);
+        this.jPanel1.setVisible(true);
         this.jPanel2.setVisible(false);
+        this.jPanel3.setVisible(false);
         this.jMenuBar2.setVisible(false);
-        
-        ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
-        Image imgImagenIntro = imagenIntro.getImage();
-        Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
-        this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
+        BotonSalir.setVisible(false);
     }
 
     /**
@@ -46,10 +58,16 @@ private static ArrayList<Material> materiales= new ArrayList<>();
     private void initComponents() {
 
         jOptionPane1 = new javax.swing.JOptionPane();
+        jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
-        BotonSalir = new javax.swing.JButton();
-        BotonEntrar = new javax.swing.JButton();
         ImagenIntro = new javax.swing.JLabel();
+        Loggin1 = new javax.swing.JLayeredPane();
+        Usuario = new javax.swing.JTextField();
+        Contraseña = new javax.swing.JPasswordField();
+        botonOk = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        BotonSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nombreMaterial = new javax.swing.JLabel();
@@ -61,18 +79,66 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         comboCategoria = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         comboLocalizacion = new javax.swing.JComboBox<>();
-        botonFiltrar = new javax.swing.JButton();
+        modificarMaterial = new javax.swing.JButton();
+        imprimirInforme = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        CampoTextoCambiarCantidad = new javax.swing.JTextField();
+        BotonSalirModificarMaterial = new javax.swing.JButton();
+        BotonModificarMaterial = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        ComboBoxCambiarEstado = new javax.swing.JComboBox<>();
+        ComboBoxCambiarLocalizacion = new javax.swing.JComboBox<>();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         exportarCSV = new javax.swing.JMenu();
         importarCSV = new javax.swing.JMenu();
-        generarInforme = new javax.swing.JMenu();
-        categoria = new javax.swing.JMenu();
-        estado = new javax.swing.JMenu();
-        localizacion = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.add(ImagenIntro);
+
+        Loggin1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioActionPerformed(evt);
+            }
+        });
+        Loggin1.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 34, 378, -1));
+
+        Contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContraseñaActionPerformed(evt);
+            }
+        });
+        Loggin1.add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, 378, -1));
+
+        botonOk.setText("Ok");
+        botonOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOkActionPerformed(evt);
+            }
+        });
+        Loggin1.add(botonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+
+        jLabel5.setText("Contraseña");
+        Loggin1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jLabel1.setText("Usuario");
+        Loggin1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -80,39 +146,9 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                 BotonSalirActionPerformed(evt);
             }
         });
+        Loggin1.add(BotonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
-        BotonEntrar.setText("Entrar");
-        BotonEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonEntrarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(376, 376, 376))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
-        );
+        jPanel1.add(Loggin1);
 
         jLabel2.setText("Estado:");
 
@@ -120,6 +156,11 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         comboEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboEstadoMouseClicked(evt);
+            }
+        });
+        comboEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEstadoActionPerformed(evt);
             }
         });
 
@@ -156,6 +197,11 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                 comboCategoriaMouseClicked(evt);
             }
         });
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Armario/Balda");
 
@@ -165,11 +211,23 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                 comboLocalizacionMouseClicked(evt);
             }
         });
-
-        botonFiltrar.setText("Filtrar");
-        botonFiltrar.addActionListener(new java.awt.event.ActionListener() {
+        comboLocalizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFiltrarActionPerformed(evt);
+                comboLocalizacionActionPerformed(evt);
+            }
+        });
+
+        modificarMaterial.setText("Modificar Material");
+        modificarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarMaterialActionPerformed(evt);
+            }
+        });
+
+        imprimirInforme.setText("Imprimir Informe");
+        imprimirInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirInformeActionPerformed(evt);
             }
         });
 
@@ -179,28 +237,28 @@ private static ArrayList<Material> materiales= new ArrayList<>();
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
                 .addComponent(botonSalir)
-                .addGap(103, 103, 103)
-                .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(18, 18, 18)
+                .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(botonFiltrar)
-                        .addGap(24, 24, 24))))
+                        .addGap(108, 108, 108)
+                        .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,12 +266,8 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonFiltrar)))
+                        .addGap(23, 23, 23)
+                        .addComponent(imprimirInforme))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -223,12 +277,109 @@ private static ArrayList<Material> materiales= new ArrayList<>();
                                 .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botonSalir)
                             .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addGap(1, 1, 1)
-                        .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modificarMaterial)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(1, 1, 1)
+                                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        CampoTextoCambiarCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextoCambiarCantidadActionPerformed(evt);
+            }
+        });
+
+        BotonSalirModificarMaterial.setText("Salir");
+        BotonSalirModificarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirModificarMaterialActionPerformed(evt);
+            }
+        });
+
+        BotonModificarMaterial.setText("Modificar");
+        BotonModificarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarMaterialActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Nueva cantidad:");
+
+        jLabel8.setText("Nuevo estado:");
+
+        jLabel9.setText("Nueva ubicación:");
+
+        ComboBoxCambiarEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxCambiarEstadoActionPerformed(evt);
+            }
+        });
+
+        ComboBoxCambiarLocalizacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxCambiarLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxCambiarLocalizacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(BotonSalirModificarMaterial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonModificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ComboBoxCambiarEstado, 0, 169, Short.MAX_VALUE)
+                            .addComponent(ComboBoxCambiarLocalizacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(30, 30, 30))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(ComboBoxCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(121, 121, 121)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(ComboBoxCambiarLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonSalirModificarMaterial)
+                    .addComponent(BotonModificarMaterial))
+                .addGap(84, 84, 84))
         );
 
         jMenu3.setText("File");
@@ -239,28 +390,7 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         importarCSV.setText("Importar CSV");
         jMenu3.add(importarCSV);
 
-        generarInforme.setText("Generar Informe");
-
-        categoria.setText("Categoria");
-        generarInforme.add(categoria);
-
-        estado.setText("Estado");
-        generarInforme.add(estado);
-
-        localizacion.setText("Localizacion");
-        localizacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                localizacionMouseClicked(evt);
-            }
-        });
-        generarInforme.add(localizacion);
-
-        jMenu3.add(generarInforme);
-
         jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
 
@@ -268,23 +398,36 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(811, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(952, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 363, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(7, 7, 7)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(50, Short.MAX_VALUE)))
+                    .addContainerGap(62, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(33, 33, 33)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(43, Short.MAX_VALUE)))
         );
 
         pack();
@@ -292,23 +435,11 @@ private static ArrayList<Material> materiales= new ArrayList<>();
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         nombreMaterial.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-        comboEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void comboEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstadoMouseClicked
-        jTable1.setValueAt(comboEstado.getSelectedItem(),jTable1.getSelectedRow(),6);
-    }//GEN-LAST:event_comboEstadoMouseClicked
 
-    private void BotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarActionPerformed
-        jPanel2.setVisible(true);
-        jMenuBar2.setVisible(true);
-        rellenarTablaMateriales();
-        rellenarComboBoxEstado();
-        rellenarComboBoxCategoria();
-        //materiales = InventarioDAO.cargarInventario();
-        jPanel1.setVisible(false);
-        
-    }//GEN-LAST:event_BotonEntrarActionPerformed
+    }//GEN-LAST:event_comboEstadoMouseClicked
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         System.exit(0);
@@ -326,24 +457,118 @@ private static ArrayList<Material> materiales= new ArrayList<>();
         // TODO add your handling code here:
     }//GEN-LAST:event_comboLocalizacionMouseClicked
 
-    private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonFiltrarActionPerformed
+    private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
+        rellenarTablaMateriales();
+    }//GEN-LAST:event_comboEstadoActionPerformed
 
-    private void localizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_localizacionMouseClicked
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
+        rellenarTablaMateriales();// TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriaActionPerformed
+
+    private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
+        if(jTable1.getSelectedRow()!=-1){
+            this.jPanel2.setVisible(false);
+        this.rellenarComboBoxActEstado();
+        this.rellenarComboBoxActLocalizacion();
+        this.jPanel3.setVisible(true);
+        this.setSize(550, 600);
+        }
+        else{
+            //VENTANA DE EXCEPCION
+        }
         
-    }//GEN-LAST:event_localizacionMouseClicked
-private void rellenarTablaMateriales(){
+    }//GEN-LAST:event_modificarMaterialActionPerformed
+
+    private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
+        
+        try {
+            String email = Usuario.getText();
+            String contraseña = new String(Contraseña.getPassword());
+            
+            boolean valido = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
+            
+            if (valido) {
+                jPanel1.setVisible(false);
+                BotonSalir.setVisible(true);
+                jPanel2.setVisible(true);
+                inventario.setMateriales(InventarioDAO.cargarInventario());
+                rellenarComboBoxCategoria();
+                rellenarComboBoxEstado();
+                rellenarComboBoxLocalizacion();
+                rellenarTablaMateriales();
+                ImagenIntro.setVisible(true);
+                this.setSize(1380, 540);
+                this.setLocationRelativeTo(null);
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
+                Contraseña.setText("");
+                Contraseña.requestFocus();
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+
+    }//GEN-LAST:event_botonOkActionPerformed
+    
+    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
+        GestorInformes.exportarInforme(materiales);
+    }//GEN-LAST:event_imprimirInformeActionPerformed
+    
+
+    private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoCambiarCantidadActionPerformed
+
+    private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
+
+    private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
+        MaterialDAO.ActualizarEstado(Integer.parseInt(CampoTextoCambiarCantidad.getText()), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(ComboBoxCambiarLocalizacion.getSelectedItem().toString()), Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()));
+        rellenarTablaMateriales();
+        jPanel3.setVisible(false);
+        this.setSize(1380, 540);
+        jPanel2.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonModificarMaterialActionPerformed
+
+    private void ComboBoxCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxCambiarEstadoActionPerformed
+
+    private void ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContraseñaActionPerformed
+
+    private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboLocalizacionActionPerformed
+
+    private void ComboBoxCambiarLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarLocalizacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBoxCambiarLocalizacionActionPerformed
+    
+    private void rellenarTablaMateriales() {
         // Columnas
+        materiales.clear();
+        boolean filtrado;
+        
         String[] columnas = {
-                "id_material",
-                "nombre",
-                "descripcion",
-                "cantidad",
-                "stock_minimo",
-                "categoria",
-                "estado",
-                "id_ubicacion"
+            "id_material",
+            "nombre",
+            "descripcion",
+            "cantidad",
+            "stock_minimo",
+            "categoria",
+            "estado",
+            "id_ubicacion"
         };
 
         // Modelo
@@ -353,10 +578,10 @@ private void rellenarTablaMateriales(){
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if(!materiales.isEmpty()){
-            for (Material m : materiales) {
-
-            Object[] fila = {
+        if (!inventario.getMateriales().isEmpty()) {
+            for (Material m : inventario.getMateriales()) {
+                filtrado = true;
+                Object[] fila = {
                     m.getId(),
                     m.getNombre(),
                     m.getDescripcion(),
@@ -365,69 +590,152 @@ private void rellenarTablaMateriales(){
                     m.getCategoria(),
                     m.getEstado(),
                     m.getIdUbicacion()
-            };
-
-            modelo.addRow(fila);
-        }
+                };
+                if (!comboEstado.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
+                }
+                
+                if (!comboCategoria.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
+                }
+                if (!comboLocalizacion.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem().toString());
+                }
+                
+                if (filtrado) {
+                    modelo.addRow(fila);
+                    materiales.add(m);
+                }
+                
+            }
         }
         
-}
+    }
+    
+    private void rellenarComboBoxEstado() {
+        
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        
+        modelo.addElement("---");
+        modelo.addElement("DISPONIBLE");
+        modelo.addElement("PRESTADO");
+        modelo.addElement("EN_REPARACION");
+        modelo.addElement("RETIRADO");
+        
+        comboEstado.setModel(modelo);
+    }
+    
+    private void rellenarComboBoxActEstado() {
+        
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        
+        modelo.addElement("DISPONIBLE");
+        modelo.addElement("PRESTADO");
+        modelo.addElement("EN_REPARACION");
+        modelo.addElement("RETIRADO");
+        
+        ComboBoxCambiarEstado.setModel(modelo);
+    }
+    
+    private void rellenarComboBoxCategoria() {
+        
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        
+        modelo.addElement("---");
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HARDWARE");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
+        
+        comboCategoria.setModel(modelo);
+    }
 
-private void rellenarComboBoxEstado() {
+    private void rellenarComboBoxLocalizacion() {
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        String[] localizaciones = {
+            "---",
+            "2001",
+            "2003",
+            "2012",
+            "2201",
+            "2202",
+            "300901",
+            "301601",
+            "301603",
+            "301604"
+        };
+        
+        for (String loc : localizaciones) {
+            modelo.addElement(loc);
+        }
+        comboLocalizacion.setModel(modelo);
+        
+    }
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-
-    modelo.addElement("  ---  ");
-    modelo.addElement("DISPONIBLE");
-    modelo.addElement("PRESTADO");
-    modelo.addElement("EN_REPARACION");
-    modelo.addElement("RETIRADO");
-
-    comboEstado.setModel(modelo);
-}
-private void rellenarComboBoxCategoria() {
-
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-
-    modelo.addElement("  ---  ");
-    modelo.addElement("HARDWARE");
-    modelo.addElement("HERRAMIENTA");
-    modelo.addElement("FUNGIBLE");
-
-    comboCategoria.setModel(modelo);
-}
-
+    private void rellenarComboBoxActLocalizacion() {
+        
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        
+        String[] localizaciones = {
+            "2001",
+            "2003",
+            "2012",
+            "2201",
+            "2202",
+            "300901",
+            "301601",
+            "301603",
+            "301604"
+        };
+        
+        for (String loc : localizaciones) {
+            modelo.addElement(loc);
+        }
+        
+        ComboBoxCambiarLocalizacion.setModel(modelo);
+    }
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonEntrar;
+    private javax.swing.JButton BotonModificarMaterial;
     private javax.swing.JButton BotonSalir;
+    private javax.swing.JButton BotonSalirModificarMaterial;
+    private javax.swing.JTextField CampoTextoCambiarCantidad;
+    private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
+    private javax.swing.JComboBox<String> ComboBoxCambiarLocalizacion;
+    private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;
-    private javax.swing.JButton botonFiltrar;
+    private javax.swing.JLayeredPane Loggin1;
+    private javax.swing.JTextField Usuario;
+    private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JMenu categoria;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboLocalizacion;
-    private javax.swing.JMenu estado;
     private javax.swing.JMenu exportarCSV;
-    private javax.swing.JMenu generarInforme;
     private javax.swing.JMenu importarCSV;
+    private javax.swing.JButton imprimirInforme;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JMenu localizacion;
+    private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
     // End of variables declaration//GEN-END:variables
 }
