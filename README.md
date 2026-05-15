@@ -1,3 +1,12 @@
+![Java](https://img.shields.io/badge/Java-Swing-orange)
+![MySQL](https://img.shields.io/badge/MySQL-Database-blue)
+![AWS](https://img.shields.io/badge/AWS-EC2-yellow)
+![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)
+
+# RETO-DAM1-Equipo3
+
+## Gestión y Localización del Material del Taller de Informática
+
 # RETO-DAM1-Equipo3
 
 ## Gestión y Localización del Material del Taller de Informática
@@ -99,13 +108,8 @@ La base de datos fue desarrollada en MySQL y diseñada para gestionar:
 - usuarios,
 - movimientos.
 
-## Diagrama E/R
-
-Meter la imagen
-
-## Modelo relacional
-
-Meter la imagen
+- [Ver Diagrama E/R](#diagrama-er)
+- [Ver Modelo relacional](#modelo-relacional)
 
 ## Triggers implementados
 
@@ -115,6 +119,9 @@ Meter la imagen
 ## Aplicación de escritorio
 
 La aplicación fue desarrollada en Java utilizando Swing y NetBeans.
+
+- [Ver Diagrama de clases](#diagrama-de-clases)
+- [Ver Diagrama de casos de uso](#diagrama-de-casos-de-uso)
 
 ## Características
 
@@ -141,9 +148,11 @@ Permite visualizar:
 - baldas,
 - ubicación del material.
 
-# Infraestructura AWS
+## Infraestructura AWS
 
 La infraestructura cloud fue desplegada en AWS Academy.
+
+- [Ver Diagrama de arquitectura AWS](#diagrama-de-arquitectura-aws)
 
 ## Arquitectura
 
