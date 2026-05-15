@@ -1,5 +1,5 @@
 ![Java](https://img.shields.io/badge/Java-Swing-orange)
-![MySQL](https://img.shields.io/badge/MySQL-Database-blue)
+[![MySQL](https://img.shields.io/badge/MySQL-Script%20SQL-blue)](Base%20de%20Datos/BaseDeDatos.sql)
 ![AWS](https://img.shields.io/badge/AWS-EC2-yellow)
 ![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)
 
