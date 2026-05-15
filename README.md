@@ -1,5 +1,5 @@
 [![Java](https://img.shields.io/badge/Java-Manual%20de%20Usuario-orange)](Programacion/Manual%20de%20usuario/Plantilla%20manual%20usuario.docx)
-[![MySQL](https://img.shields.io/badge/MySQL-Base%20de%20Datos-blue)](base_datos/)
+[![MySQL](https://img.shields.io/badge/MySQL-Script%20SQL-blue)](Base%20de%20Datos/BaseDeDatos.sql)
 [![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)](https://github.com/SaulValdunciel/RETO-DAM1-Equipo3)
 
 # RETO-DAM1-Equipo3
@@ -174,7 +174,7 @@ La infraestructura cloud fue desplegada en AWS Academy.
 
 ### Diagrama de casos de uso
 
-![Diagrama de casos de uso](docs/diagramas/casos_uso.png)
+![Diagrama de clases](DiagramaDeClases/Captura%20de%20pantalla%202026-05-07%20160532.png)
 
 Este diagrama representa los actores principales de la aplicación y las acciones que puede realizar cada uno.  
 Se diferencian los perfiles de Usuario, Profesor y Administrador, mostrando funcionalidades como iniciar sesión, 
@@ -184,7 +184,7 @@ consultar inventario, filtrar materiales, modificar material, gestionar ubicacio
 
 ### Diagrama E/R
 
-![Diagrama E/R](docs/diagramas/diagrama_er.png)
+![Diagrama E/R](Base%20de%20Datos/Modelo%20E_R/BaseDeDatosRE.png)
 
 El diagrama entidad-relación representa la estructura lógica de la base de datos del sistema de inventario.  
 En él aparecen las entidades principales del proyecto, como usuario, material, ubicación, movimiento y alerta de stock, junto con sus relaciones.
@@ -193,7 +193,7 @@ En él aparecen las entidades principales del proyecto, como usuario, material, 
 
 ### Modelo relacional
 
-![Modelo relacional](docs/diagramas/modelo_relacional.png)
+![Modelo relacional](Base%20de%20Datos/modelorelacional.png)
 
 El modelo relacional muestra cómo se implementa la base de datos en MySQL, indicando las tablas, claves primarias, 
 claves foráneas, tipos de datos y relaciones entre las entidades.
@@ -202,7 +202,7 @@ claves foráneas, tipos de datos y relaciones entre las entidades.
 
 ### Diagrama de clases
 
-![Diagrama de clases](docs/diagramas/diagrama_clases.png)
+![Diagrama de clases](DiagramaDeClases/Captura%20de%20pantalla%202026-05-07%20160532.png)
 
 El diagrama de clases representa la estructura orientada a objetos de la aplicación Java.  
 Incluye las clases principales del sistema, como Usuario, Administrador, Profesor, Inventario, Material, 
@@ -212,7 +212,7 @@ Ubicación y las clases DAO encargadas del acceso a la base de datos.
 
 ### Diagrama de arquitectura AWS
 
-![Diagrama de arquitectura AWS](docs/diagramas/arquitectura_aws.png)
+![Diagrama de arquitectura AWS](arquitecturadered.png)
 
 El diagrama de arquitectura AWS muestra la infraestructura desplegada para el reto: VPC, subredes públicas, instancias EC2, servidor de base de datos, servidores web, balanceador de carga, Elastic IP y reglas principales de acceso.
 
