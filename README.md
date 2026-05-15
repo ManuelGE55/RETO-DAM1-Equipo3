@@ -210,11 +210,11 @@ Ubicación y las clases DAO encargadas del acceso a la base de datos.
 
 ---
 
-### Diagrama de arquitectura AWS
+### Diagrama de arquitectura de los servidores
 
 ![Diagrama de arquitectura AWS](arquitecturadered.png)
 
-El diagrama de arquitectura AWS muestra la infraestructura desplegada para el reto: VPC, subredes públicas, instancias EC2, servidor de base de datos, servidores web, balanceador de carga, Elastic IP y reglas principales de acceso.
+El diagrama de arquitectura de los servidores muestra la infraestructura desplegada para el reto: VPC, subredes públicas, instancias EC2, servidor de base de datos, servidores web, balanceador de carga, Elastic IP y reglas principales de acceso.
 
 ## Resultados obtenidos
 
