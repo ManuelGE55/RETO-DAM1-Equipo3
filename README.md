@@ -1,5 +1,7 @@
 [![Java](https://img.shields.io/badge/Java-Manual%20de%20Usuario-orange)](Programacion/Manual%20de%20usuario/Plantilla%20manual%20usuario.docx)
 [![MySQL](https://img.shields.io/badge/MySQL-Script%20SQL-blue)](Base%20de%20Datos/BaseDeDatos.sql)
+[![AWS](https://img.shields.io/badge/AWS-Guía%20de%20Despliegue-yellow)](Guia_despliegue_Equipo3.pdf)
+[![Lenguaje de Marcas](https://img.shields.io/badge/Web-Documentación%20Técnica-blue)](Documentación_Técnica_Web.pdf)
 [![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)](https://github.com/SaulValdunciel/RETO-DAM1-Equipo3)
 
 # RETO-DAM1-Equipo3
@@ -238,6 +240,14 @@ La guía de despliegue documenta la configuración de la infraestructura en AWS,
 El manual de usuario explica el funcionamiento de la aplicación de escritorio, sus requisitos, perfiles de usuario, opciones disponibles y generación de informes.
 
 [📄 Ver Manual de usuario](docs/Manual_usuario_Equipo3.pdf)
+
+---
+
+## Documentación de la web
+
+La documentación de la página web explica la estructura, y el funcionamiento interno de la web, los lengujes utilizados y el funcinamiento de esta.
+
+[📄 Ver Documentación de la web](Documentación_Técnica_Web.pdf)
 
 ## Organización del equipo
 
