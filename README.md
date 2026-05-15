@@ -174,7 +174,7 @@ La infraestructura cloud fue desplegada en AWS Academy.
 
 ### Diagrama de casos de uso
 
-![Diagrama de clases](DiagramaDeClases/Captura%20de%20pantalla%202026-05-07%20160532.png)
+![Diagrama de casos de uso](Programacion/Diagrama%20de%20caso%20de%20uso.png)
 
 Este diagrama representa los actores principales de la aplicación y las acciones que puede realizar cada uno.  
 Se diferencian los perfiles de Usuario, Profesor y Administrador, mostrando funcionalidades como iniciar sesión, 
@@ -193,7 +193,7 @@ En él aparecen las entidades principales del proyecto, como usuario, material, 
 
 ### Modelo relacional
 
-![Modelo relacional](Base%20de%20Datos/modelorelacional.png)
+![Modelo relacional](Base%20de%20Datos/modelo_relacional.png)
 
 El modelo relacional muestra cómo se implementa la base de datos en MySQL, indicando las tablas, claves primarias, 
 claves foráneas, tipos de datos y relaciones entre las entidades.
