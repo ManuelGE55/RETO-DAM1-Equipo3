@@ -30,14 +30,20 @@ CREATE TABLE IF NOT EXISTS material(
 	id_material INT AUTO_INCREMENT,
     nombre VARCHAR(30),
     descripcion VARCHAR(60),
-    cantidad INT,
-    stock_minimo INT,
-    categoria ENUM("Hardware","Herramienta","Fungible","Cuaderno"),
     estado ENUM("Disponible","Prestado","En reparación","Retirado"),
     id_ubicacion INT,
     PRIMARY KEY(id_material),
     FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id_ubicacion)
 );
+
+CREATE TABLE IF NOT EXISTS datos_material(
+	nombre VARCHAR(30) PRIMARY KEY,
+    cantidad INT,
+    stock_minimo INT,
+    categoria ENUM("Hardware","Herramienta","Fungible","Cuaderno"),
+    FOREIGN KEY (nombre) REFERENCES material(nombre)
+);
+
 CREATE TABLE IF NOT EXISTS alerta_stock (
 	id_alerta INT auto_increment PRIMARY KEY,
 	nombre_material VARCHAR(30),
@@ -204,36 +210,57 @@ INSERT INTO material VALUES
     -- la cantidad tiene que bajar en todos los materiales con EL MISMO NOMBRE,
     -- no con la misma categoría
 
-    (1,"Manual","Manual de Word 2007",3,1,"Cuaderno","Disponible",2001),
-    (2,"Manual","Manual de Word 2007",3,1,"Cuaderno","Disponible",2001),
-    (3,"Manual","Manual de Word 2007",3,1,"Cuaderno","Disponible",2001),
+    (1,"Manual","Manual de Word 2007","Disponible",2001),
+    (2,"Manual","Manual de Word 2007","Disponible",2001),
+    (3,"Manual","Manual de Word 2007","Disponible",2001),
     
-    (4,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
-    (5,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
-    (6,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
-    (7,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
-    (8,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
-    (9,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
-    (10,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
-    (11,"Libro DAM","Libro de texto 1ºDAM 2015",8,3,"Cuaderno","Disponible",2003),
+    (4,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (5,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (6,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (7,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (8,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (9,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (10,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (11,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
     
-    (12,"Teclado USB","Teclado con conexión USB",2,1,"Hardware","Disponible",300901),
-    (13,"Teclado USB","Teclado con conexión USB",2,1,"Hardware","Disponible",300901),
+    (12,"Teclado USB","Teclado con conexión USB","Disponible",300901),
+    (13,"Teclado USB","Teclado con conexión USB", "Disponible",300901),
     
-    (14,"Pistola de silicona","Pistola de silicona",1,1,"Herramienta","Disponible",301604),
+    (14,"Pistola de silicona","Pistola de silicona","Disponible",301604),
     
-    (15,"Mascara","Proteccion para los ojos",1,1,"Herramienta","Disponible",301601),
+    (15,"Mascara","Proteccion para los ojos","Disponible",301601),
     
-    (16,"Portatil","Portatil",1,1,"Hardware","Disponible",2012),
+    (16,"Portatil","Portatil","Disponible",2012),
     
-    (17,"Tinta","Tinta para la impresora",1,1,"Fungible","Disponible",2202),
+    (17,"Tinta","Tinta para la impresora","Disponible",2202),
     
-    (18,"Tornillos","Caja de tornillos pequeños",3,2,"Fungible","Disponible",2201),
-    (19,"Tornillos","Caja de tornillos pequeños",3,2,"Fungible","Disponible",2201),
-    (20,"Tornillos","Caja de tornillos pequeños",3,2,"Fungible","Disponible",2201),
+    (18,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
+    (19,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
+    (20,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
     
-    (21,"Cable ethernet","Cable ethernet de 1 metro",1,1,"Hardware","Disponible",301603)
+    (21,"Cable ethernet","Cable ethernet de 1 metro","Disponible",301603)
 ;
+
+INSERT INTO datos_material VALUES
+	("Manual",3,1,"Cuaderno"),
+    
+    ("Libro DAM",8,3,"Cuaderno"),
+    
+    ("Teclado USB",2,1,"Hardware"),
+    
+    ("Pistola de silicona",1,1,"Herramienta"),
+    
+    ("Mascara",1,1,"Herramienta"),
+    
+    ("Portatil",1,1,"Hardware"),
+    
+    ("Tinta",1,1,"Fungible"),
+    
+    ("Tornillos",3,2,"Fungible"),
+    
+    ("Cable ethernet",1,1,"Hardware")
+;
+
 INSERT INTO usuario VALUES
 	(1,"Roberto","Macho Gonzalez","robermach@gmail.com",1234,"profesor",true,"2026-04-28"),
     (2,"Pedro","Sanchez","pedrosanxe@gmail.com",4321,"profesor",true,"2018-10-15"),
@@ -290,7 +317,7 @@ BEGIN
 		-- Contar cuantos materiales hay con el mismo nombre
         SELECT count(*) INTO newCantidad FROM material WHERE nombre=nombreMat;
 	 	-- Actualizar campo "cantidad" de esos materiales con el resultado obtenido
-        UPDATE material SET cantidad=newCantidad WHERE nombre=nombreMat;
+        UPDATE datos_material SET cantidad=newCantidad WHERE nombre=nombreMat;
         SET contador=contador+1;
     UNTIL contador=(SELECT count(*) FROM material)
     END REPEAT;
