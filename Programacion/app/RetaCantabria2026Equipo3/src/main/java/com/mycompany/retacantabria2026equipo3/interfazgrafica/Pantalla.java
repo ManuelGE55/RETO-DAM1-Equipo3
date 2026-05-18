@@ -12,6 +12,7 @@ import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
+import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,6 +32,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
     public static Inventario inventario = new Inventario(new ArrayList<>());
+    public static Usuario usuario;
 
     /**
      * Creates new form Pantalla
@@ -532,10 +534,9 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
+            usuario =UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
 
-            boolean valido = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
-
-            if (valido) {
+            if (usuario!=null) {
                 Loggin.setVisible(false);
                 jPanel1.setVisible(true);
                 
