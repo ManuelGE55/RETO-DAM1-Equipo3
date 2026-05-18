@@ -10,6 +10,7 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.awt.Image;
 import java.sql.Connection;
@@ -29,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
-    private static ArrayList<Material> materialesTotales = new ArrayList<>();
+    public static Inventario inventario = new Inventario(new ArrayList<>());
 
     /**
      * Creates new form Pantalla
@@ -498,7 +499,7 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuBar2.setVisible(true);
         rellenarComboBoxEstado();
         rellenarComboBoxCategoria();
-        materialesTotales = InventarioDAO.cargarInventario();
+        inventario.setMateriales(InventarioDAO.cargarInventario());
         rellenarTablaMateriales();
         jPanel1.setVisible(false);
 
@@ -619,8 +620,8 @@ public class Pantalla extends javax.swing.JFrame {
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if (!materialesTotales.isEmpty()) {
-            for (Material m : materialesTotales) {
+        if (!inventario.getMateriales().isEmpty()) {
+            for (Material m : inventario.getMateriales()) {
                 filtrado = true;
                 Object[] fila = {
                     m.getId(),
@@ -733,4 +734,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
     // End of variables declaration//GEN-END:variables
+
+    
 }
