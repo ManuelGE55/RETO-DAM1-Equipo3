@@ -42,6 +42,9 @@ public static void cargarInventario(File inventarioCSV) {
     }
     
     public static void exportarInventario(List<Material> materiales) {     
+        if (!carpetaFicheros.exists()) {
+            carpetaFicheros.mkdirs();
+        }
         File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (++contFicheros) + ".xlsx");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(inventarioCSV, true))) {
             bw.write("Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion\n");
