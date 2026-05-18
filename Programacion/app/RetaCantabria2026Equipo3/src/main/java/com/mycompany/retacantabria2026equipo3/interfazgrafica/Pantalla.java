@@ -498,7 +498,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.setSize(790, 520);
-        Loggin.setVisible(true);
+        jPanel1.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_botonSalirActionPerformed
