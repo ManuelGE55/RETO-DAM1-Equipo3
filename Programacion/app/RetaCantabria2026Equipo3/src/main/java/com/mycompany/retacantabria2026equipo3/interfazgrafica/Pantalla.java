@@ -508,15 +508,14 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         System.exit(0);
+        GeneradorJSONInventario generador = new GeneradorJSONInventario();
+        generador.generarJSONInventario();
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.setSize(790,520);
         Loggin.setVisible(true);
         jPanel2.setVisible(false);
-        
-        GeneradorJSONInventario generador = new GeneradorJSONInventario();
-        generador.generarJSONInventario();
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
