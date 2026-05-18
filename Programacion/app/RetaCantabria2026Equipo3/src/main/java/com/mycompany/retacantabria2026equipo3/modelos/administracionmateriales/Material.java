@@ -15,18 +15,16 @@ public class Material {
     private int id;
     private String nombre;
     private String descripcion;
-    private int cantidad;
+    private static int cantidad;
     private int stockMinimo;
     private Categoria categoria;
     private Estado estado;
     private String idUbicacion;
 
-    public Material(String nombre, String descripcion, int cantidad, int stockMinimo, Categoria categoria, Estado estado, String idUbicacion) {
+    public Material(String nombre, String descripcion, Categoria categoria, Estado estado, String idUbicacion) {
         
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.cantidad = cantidad;
-        this.stockMinimo = stockMinimo;
         this.categoria = categoria;
         this.estado = estado;
         this.idUbicacion = idUbicacion;

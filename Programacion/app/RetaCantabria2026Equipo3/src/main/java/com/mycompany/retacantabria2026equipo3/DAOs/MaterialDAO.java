@@ -23,20 +23,20 @@ public class MaterialDAO {
     //==========================================================================
     //ActucalizarEstado
     //Permite actualizar el estado de un material
-    public static int ActualizarEstado(int cant, String est, int ubi, int id) {
+    public static int ActualizarEstado(String descr, String est, int ubi, int id) {
         int resultado = -1;
         PreparedStatement ps = null;
-        String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
+        String s = "UPDATE material SET descripción = ? , estado = ?, id_ubicacion = ?  WHERE id_material = ?";
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
             if (existeId(id) && UbicacionDAO.existeId(id)) {
                 System.out.println(existeId(id));
                 System.out.println(UbicacionDAO.existeId(id));
                 ps = con.prepareStatement(s);
-                ps.setInt(1, cant);
+                ps.setString(1,descr);
                 ps.setString(2, est);
-                ps.setInt(3, ubi);
-                ps.setInt(4, id);
-
+                ps.setInt(3,ubi);
+                ps.setInt(4,id);
+                
                 int valor = ps.executeUpdate();
                 if (valor == 0) {
                     resultado = -1;
@@ -44,7 +44,7 @@ public class MaterialDAO {
                     resultado = 0;
                 }
             }
-
+            
         } catch (SQLException ex) {
             System.out.println("no se pudo actualizar");;
         }
@@ -58,7 +58,7 @@ public class MaterialDAO {
         ResultSet rs = null;
 
         String s = "SELECT * FROM material WHERE id_material = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
             // Preparamos la sentencia con los datos del vehiculo
             ps = con.prepareStatement(s);
             ps.setInt(1, id);
@@ -73,7 +73,7 @@ public class MaterialDAO {
 
         return resultado;
     }
-
+    
     public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
 
         String sql = """

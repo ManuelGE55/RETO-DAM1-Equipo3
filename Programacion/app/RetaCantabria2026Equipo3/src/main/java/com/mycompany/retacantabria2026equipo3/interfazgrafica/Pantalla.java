@@ -13,6 +13,9 @@ import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
 import com.mycompany.retacantabria2026equipo3.json.GeneradorJSONInventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
+import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Administrador;
+import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Profesor;
+import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -32,6 +35,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
     public static Inventario inventario = new Inventario(new ArrayList<>());
+    public static Usuario usuario;
 
     /**
      * Creates new form Pantalla
@@ -44,17 +48,17 @@ public class Pantalla extends javax.swing.JFrame {
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(false);
         this.jMenuBar2.setVisible(false);
-        this.jPanel1.setVisible(false);
+        this.jPanel1.setVisible(true);
         BotonEntrar.setVisible(true);
         BotonSalir.setVisible(true);
-        Loggin.setVisible(true);
+        Loggin.setVisible(false);
         ImagenIntro.setVisible(true);
-                this.setSize(790, 520);
-                ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
-                Image imgImagenIntro = imagenIntro.getImage();
-                // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
-                Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
-                this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
+        this.setSize(790, 520);
+        ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
+        Image imgImagenIntro = imagenIntro.getImage();
+        // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
+        Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
+        this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
     }
 
     /**
@@ -484,13 +488,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_comboEstadoMouseClicked
 
     private void BotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarActionPerformed
-        this.setSize(1350, 550);
-        jPanel2.setVisible(true);
-        jMenuBar2.setVisible(true);
-        rellenarComboBoxEstado();
-        rellenarComboBoxCategoria();
-        inventario.setMateriales(InventarioDAO.cargarInventario());
-        rellenarTablaMateriales();
+        Loggin.setVisible(true);
         jPanel1.setVisible(false);
 
     }//GEN-LAST:event_BotonEntrarActionPerformed
@@ -498,11 +496,11 @@ public class Pantalla extends javax.swing.JFrame {
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         GeneradorJSONInventario generador = new GeneradorJSONInventario();
         generador.generarJSONInventario();
-        System.exit(0);    
+        System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        this.setSize(790,520);
+        this.setSize(790, 520);
         Loggin.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
@@ -535,13 +533,20 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
+            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
 
-            boolean valido = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
-
-            if (valido) {
+            if (usuario != null) {
+                if (usuario instanceof Profesor) {
+                    modificarMaterial.setVisible(false);
+                }
+                this.setSize(1350, 550);
+                jPanel2.setVisible(true);
+                jMenuBar2.setVisible(true);
+                rellenarComboBoxEstado();
+                rellenarComboBoxCategoria();
+                inventario.setMateriales(InventarioDAO.cargarInventario());
+                rellenarTablaMateriales();
                 Loggin.setVisible(false);
-                jPanel1.setVisible(true);
-                
 
             } else {
                 JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
@@ -596,11 +601,8 @@ public class Pantalla extends javax.swing.JFrame {
         boolean filtrado;
 
         String[] columnas = {
-            "id_material",
             "nombre",
             "descripcion",
-            "cantidad",
-            "stock_minimo",
             "categoria",
             "estado",
             "id_ubicacion"
@@ -617,11 +619,8 @@ public class Pantalla extends javax.swing.JFrame {
             for (Material m : inventario.getMateriales()) {
                 filtrado = true;
                 Object[] fila = {
-                    m.getId(),
                     m.getNombre(),
                     m.getDescripcion(),
-                    m.getCantidad(),
-                    m.getStockMinimo(),
                     m.getCategoria(),
                     m.getEstado(),
                     m.getIdUbicacion()
@@ -727,5 +726,4 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel nombreMaterial;
     // End of variables declaration//GEN-END:variables
 
-    
 }
