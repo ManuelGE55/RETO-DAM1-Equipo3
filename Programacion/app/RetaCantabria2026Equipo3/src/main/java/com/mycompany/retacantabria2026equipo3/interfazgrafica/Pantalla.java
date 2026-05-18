@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  * @author DAM212
  */
 public class Pantalla extends javax.swing.JFrame {
-    
+
     private static ArrayList<Material> materiales = new ArrayList<>();
     public static Inventario inventario = new Inventario(new ArrayList<>());
 
@@ -38,14 +38,22 @@ public class Pantalla extends javax.swing.JFrame {
     public Pantalla() {
         initComponents();
         //this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        this.setResizable(false);        
-        this.setSize(770, 520);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.jPanel1.setVisible(true);
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(false);
         this.jMenuBar2.setVisible(false);
-        BotonSalir.setVisible(false);
+        this.jPanel1.setVisible(false);
+        BotonEntrar.setVisible(true);
+        BotonSalir.setVisible(true);
+        Loggin.setVisible(true);
+        ImagenIntro.setVisible(true);
+                this.setSize(790, 520);
+                ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
+                Image imgImagenIntro = imagenIntro.getImage();
+                // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
+                Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
+                this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
     }
 
     /**
@@ -59,15 +67,16 @@ public class Pantalla extends javax.swing.JFrame {
 
         jOptionPane1 = new javax.swing.JOptionPane();
         jDialog1 = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
-        ImagenIntro = new javax.swing.JLabel();
-        Loggin1 = new javax.swing.JLayeredPane();
+        Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JPasswordField();
         botonOk = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         BotonSalir = new javax.swing.JButton();
+        BotonEntrar = new javax.swing.JButton();
+        ImagenIntro = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nombreMaterial = new javax.swing.JLabel();
@@ -79,17 +88,18 @@ public class Pantalla extends javax.swing.JFrame {
         comboCategoria = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         comboLocalizacion = new javax.swing.JComboBox<>();
+        botonFiltrar = new javax.swing.JButton();
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         CampoTextoCambiarCantidad = new javax.swing.JTextField();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
+        CampoTextoCambiarUbicacion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         ComboBoxCambiarEstado = new javax.swing.JComboBox<>();
-        ComboBoxCambiarLocalizacion = new javax.swing.JComboBox<>();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         exportarCSV = new javax.swing.JMenu();
@@ -108,23 +118,21 @@ public class Pantalla extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.add(ImagenIntro);
-
-        Loggin1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Loggin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsuarioActionPerformed(evt);
             }
         });
-        Loggin1.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 34, 378, -1));
+        Loggin.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 34, 378, -1));
 
         Contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ContraseñaActionPerformed(evt);
             }
         });
-        Loggin1.add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, 378, -1));
+        Loggin.add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, 378, -1));
 
         botonOk.setText("Ok");
         botonOk.addActionListener(new java.awt.event.ActionListener() {
@@ -132,13 +140,13 @@ public class Pantalla extends javax.swing.JFrame {
                 botonOkActionPerformed(evt);
             }
         });
-        Loggin1.add(botonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+        Loggin.add(botonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
 
         jLabel5.setText("Contraseña");
-        Loggin1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        Loggin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jLabel1.setText("Usuario");
-        Loggin1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+        Loggin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -146,9 +154,38 @@ public class Pantalla extends javax.swing.JFrame {
                 BotonSalirActionPerformed(evt);
             }
         });
-        Loggin1.add(BotonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
-        jPanel1.add(Loggin1);
+        BotonEntrar.setText("Entrar");
+        BotonEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEntrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(318, 318, 318)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(542, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
 
         jLabel2.setText("Estado:");
 
@@ -211,9 +248,11 @@ public class Pantalla extends javax.swing.JFrame {
                 comboLocalizacionMouseClicked(evt);
             }
         });
-        comboLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+
+        botonFiltrar.setText("Filtrar");
+        botonFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboLocalizacionActionPerformed(evt);
+                botonFiltrarActionPerformed(evt);
             }
         });
 
@@ -254,7 +293,9 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonFiltrar)
+                        .addGap(18, 18, 18)
                         .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,6 +326,7 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonFiltrar)
                                     .addComponent(modificarMaterial)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -313,6 +355,12 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        CampoTextoCambiarUbicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextoCambiarUbicacionActionPerformed(evt);
+            }
+        });
+
         jLabel7.setText("Nueva cantidad:");
 
         jLabel8.setText("Nuevo estado:");
@@ -323,13 +371,6 @@ public class Pantalla extends javax.swing.JFrame {
         ComboBoxCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxCambiarEstadoActionPerformed(evt);
-            }
-        });
-
-        ComboBoxCambiarLocalizacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        ComboBoxCambiarLocalizacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBoxCambiarLocalizacionActionPerformed(evt);
             }
         });
 
@@ -356,8 +397,8 @@ public class Pantalla extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ComboBoxCambiarEstado, 0, 169, Short.MAX_VALUE)
-                            .addComponent(ComboBoxCambiarLocalizacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(CampoTextoCambiarUbicacion)
+                            .addComponent(ComboBoxCambiarEstado, 0, 169, Short.MAX_VALUE))))
                 .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
@@ -371,11 +412,11 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(ComboBoxCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(121, 121, 121)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
-                    .addComponent(ComboBoxCambiarLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addGap(127, 127, 127)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CampoTextoCambiarUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(62, 62, 62)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonSalirModificarMaterial)
                     .addComponent(BotonModificarMaterial))
@@ -401,7 +442,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(811, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -412,12 +453,17 @@ public class Pantalla extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(952, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(189, 189, 189)
+                    .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(775, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 363, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(7, 7, 7)
@@ -428,6 +474,11 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGap(33, 33, 33)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(43, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(125, 125, 125)
+                    .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(224, Short.MAX_VALUE)))
         );
 
         pack();
@@ -435,18 +486,33 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         nombreMaterial.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        comboEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void comboEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstadoMouseClicked
 
     }//GEN-LAST:event_comboEstadoMouseClicked
 
+    private void BotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarActionPerformed
+        this.setSize(1350, 550);
+        jPanel2.setVisible(true);
+        jMenuBar2.setVisible(true);
+        rellenarComboBoxEstado();
+        rellenarComboBoxCategoria();
+        inventario.setMateriales(InventarioDAO.cargarInventario());
+        rellenarTablaMateriales();
+        jPanel1.setVisible(false);
+
+    }//GEN-LAST:event_BotonEntrarActionPerformed
+
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        // TODO add your handling code here:
+        this.setSize(790,520);
+        Loggin.setVisible(true);
+        jPanel2.setVisible(false);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
@@ -457,6 +523,10 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboLocalizacionMouseClicked
 
+    private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonFiltrarActionPerformed
+
     private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
         rellenarTablaMateriales();
     }//GEN-LAST:event_comboEstadoActionPerformed
@@ -466,53 +536,37 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_comboCategoriaActionPerformed
 
     private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
-        if(jTable1.getSelectedRow()!=-1){
-            this.jPanel2.setVisible(false);
-        this.rellenarComboBoxActEstado();
-        this.rellenarComboBoxActLocalizacion();
+        this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
-        this.setSize(550, 600);
-        }
-        else{
-            //VENTANA DE EXCEPCION
-        }
-        
+        this.setSize(570, 700);
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
-        
+
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
-            
+
             boolean valido = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
-            
+
             if (valido) {
-                jPanel1.setVisible(false);
-                BotonSalir.setVisible(true);
-                jPanel2.setVisible(true);
-                inventario.setMateriales(InventarioDAO.cargarInventario());
-                rellenarComboBoxCategoria();
-                rellenarComboBoxEstado();
-                rellenarComboBoxLocalizacion();
-                rellenarTablaMateriales();
-                ImagenIntro.setVisible(true);
-                this.setSize(1380, 540);
-                this.setLocationRelativeTo(null);
+                Loggin.setVisible(false);
+                jPanel1.setVisible(true);
                 
+
             } else {
                 JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
                 Contraseña.setText("");
                 Contraseña.requestFocus();
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
-            
+
         }
 
     }//GEN-LAST:event_botonOkActionPerformed
-    
+
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
@@ -520,24 +574,24 @@ public class Pantalla extends javax.swing.JFrame {
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
-    
 
     private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoTextoCambiarCantidadActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
-        // TODO add your handling code here:
+        this.setSize(1350, 550);
+        jPanel2.setVisible(true);
+        jPanel3.setVisible(false);
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
 
     private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
-        MaterialDAO.ActualizarEstado(Integer.parseInt(CampoTextoCambiarCantidad.getText()), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(ComboBoxCambiarLocalizacion.getSelectedItem().toString()), Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()));
-        rellenarTablaMateriales();
-        jPanel3.setVisible(false);
-        this.setSize(1380, 540);
-        jPanel2.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonModificarMaterialActionPerformed
+
+    private void CampoTextoCambiarUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarUbicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoCambiarUbicacionActionPerformed
 
     private void ComboBoxCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarEstadoActionPerformed
         // TODO add your handling code here:
@@ -547,19 +601,11 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraseñaActionPerformed
 
-    private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboLocalizacionActionPerformed
-
-    private void ComboBoxCambiarLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxCambiarLocalizacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboBoxCambiarLocalizacionActionPerformed
-    
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
         boolean filtrado;
-        
+
         String[] columnas = {
             "id_material",
             "nombre",
@@ -594,105 +640,57 @@ public class Pantalla extends javax.swing.JFrame {
                 if (!comboEstado.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
                 }
-                
+
                 if (!comboCategoria.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
                 }
-                if (!comboLocalizacion.getSelectedItem().equals("---")) {
-                    filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem().toString());
-                }
-                
+
                 if (filtrado) {
                     modelo.addRow(fila);
                     materiales.add(m);
                 }
-                
+
             }
         }
-        
+
     }
-    
+
     private void rellenarComboBoxEstado() {
-        
+
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        
+
         modelo.addElement("---");
         modelo.addElement("DISPONIBLE");
         modelo.addElement("PRESTADO");
         modelo.addElement("EN_REPARACION");
         modelo.addElement("RETIRADO");
-        
+
         comboEstado.setModel(modelo);
     }
-    
-    private void rellenarComboBoxActEstado() {
-        
+
+    private void rellenarComboBoxCambiarEstado() {
+
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        
+
         modelo.addElement("DISPONIBLE");
         modelo.addElement("PRESTADO");
         modelo.addElement("EN_REPARACION");
         modelo.addElement("RETIRADO");
-        
+
         ComboBoxCambiarEstado.setModel(modelo);
     }
-    
+
     private void rellenarComboBoxCategoria() {
-        
+
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        
+
         modelo.addElement("---");
         modelo.addElement("CUADERNO");
         modelo.addElement("HARDWARE");
         modelo.addElement("HERRAMIENTA");
         modelo.addElement("FUNGIBLE");
-        
+
         comboCategoria.setModel(modelo);
-    }
-
-    private void rellenarComboBoxLocalizacion() {
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        String[] localizaciones = {
-            "---",
-            "2001",
-            "2003",
-            "2012",
-            "2201",
-            "2202",
-            "300901",
-            "301601",
-            "301603",
-            "301604"
-        };
-        
-        for (String loc : localizaciones) {
-            modelo.addElement(loc);
-        }
-        comboLocalizacion.setModel(modelo);
-        
-    }
-
-    private void rellenarComboBoxActLocalizacion() {
-        
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        
-        String[] localizaciones = {
-            "2001",
-            "2003",
-            "2012",
-            "2201",
-            "2202",
-            "300901",
-            "301601",
-            "301603",
-            "301604"
-        };
-        
-        for (String loc : localizaciones) {
-            modelo.addElement(loc);
-        }
-        
-        ComboBoxCambiarLocalizacion.setModel(modelo);
     }
 
     /**
@@ -700,16 +698,18 @@ public class Pantalla extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonEntrar;
     private javax.swing.JButton BotonModificarMaterial;
     private javax.swing.JButton BotonSalir;
     private javax.swing.JButton BotonSalirModificarMaterial;
     private javax.swing.JTextField CampoTextoCambiarCantidad;
+    private javax.swing.JTextField CampoTextoCambiarUbicacion;
     private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
-    private javax.swing.JComboBox<String> ComboBoxCambiarLocalizacion;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;
-    private javax.swing.JLayeredPane Loggin1;
+    private javax.swing.JLayeredPane Loggin;
     private javax.swing.JTextField Usuario;
+    private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboCategoria;
@@ -738,4 +738,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
     // End of variables declaration//GEN-END:variables
+
+    
 }

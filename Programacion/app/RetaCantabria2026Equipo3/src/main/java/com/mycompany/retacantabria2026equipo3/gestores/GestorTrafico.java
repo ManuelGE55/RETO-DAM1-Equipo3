@@ -7,7 +7,6 @@ package com.mycompany.retacantabria2026equipo3.gestores;
 import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import static com.mycompany.retacantabria2026equipo3.interfazgrafica.Pantalla.inventario;
-import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -26,8 +25,8 @@ public class GestorTrafico {
     
     // atributos que contará los archivos para ir creando archivos cada vez que se exporte uno nuevo
     private static final File carpetaFicheros = new File("src/main/CSVs");
-    private static File[] listaFicheros = carpetaFicheros.listFiles();
-    private static int contFicheros = listaFicheros.length;
+    private static File[] listaFicheros = carpetaFicheros!=null?carpetaFicheros.listFiles():null;
+    private static int contFicheros = listaFicheros==null?0:listaFicheros.length;
     
 public static void cargarInventario(File inventarioCSV) {
         
@@ -43,7 +42,10 @@ public static void cargarInventario(File inventarioCSV) {
     }
     
     public static void exportarInventario(List<Material> materiales) {     
-        File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (contFicheros + 1) + ".xlsx");
+        if (!carpetaFicheros.exists()) {
+            carpetaFicheros.mkdirs();
+        }
+        File inventarioCSV = new File("src/main/CSVs/inventarioCSV" + (++contFicheros) + ".xlsx");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(inventarioCSV, true))) {
             bw.write("Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion\n");
             for (Material material : materiales) {
