@@ -23,7 +23,10 @@ public class GestorInformes {
     private static int contFicheros = listaFicheros==null?0:listaFicheros.length;
     
     public static void exportarInforme(List<Material> materiales) {
-        File materialesInforme = new File("src/main/Informes/inventarioInforme" + (contFicheros + 1) + ".txt");
+        if (!carpetaFicheros.exists()) {
+            carpetaFicheros.mkdirs();
+        }
+        File materialesInforme = new File("src/main/Informes/inventarioInforme" + (++contFicheros) + ".txt");
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(materialesInforme))) {
             bw.write("--- Informe materiales " + (contFicheros + 1) + " ---");
             bw.newLine();
