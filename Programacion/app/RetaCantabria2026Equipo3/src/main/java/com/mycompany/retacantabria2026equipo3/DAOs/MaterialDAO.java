@@ -23,16 +23,16 @@ public class MaterialDAO {
     //==========================================================================
     //ActucalizarEstado
     //Permite actualizar el estado de un material
-    public static int ActualizarEstado(int cant, String est, int ubi, int id) {
+    public static int ActualizarEstado(String descr, String est, int ubi, int id) {
         int resultado = -1;
         PreparedStatement ps = null;
-        String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
+        String s = "UPDATE material SET descripción = ? , estado = ?, id_ubicacion = ?  WHERE id_material = ?";
         try (Connection con = AccesoBaseDatos.getInstance().getConn()){
             if (existeId(id) && UbicacionDAO.existeId(id)) {
                 System.out.println(existeId(id));
                 System.out.println(UbicacionDAO.existeId(id));
                 ps = con.prepareStatement(s);
-                ps.setInt(1,cant);
+                ps.setString(1,descr);
                 ps.setString(2, est);
                 ps.setInt(3,ubi);
                 ps.setInt(4,id);

@@ -537,7 +537,7 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
-            usuario =UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
+            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
 
             if (usuario!=null) {
                 Loggin.setVisible(false);
@@ -597,11 +597,8 @@ public class Pantalla extends javax.swing.JFrame {
         boolean filtrado;
 
         String[] columnas = {
-            "id_material",
             "nombre",
             "descripcion",
-            "cantidad",
-            "stock_minimo",
             "categoria",
             "estado",
             "id_ubicacion"
@@ -618,11 +615,8 @@ public class Pantalla extends javax.swing.JFrame {
             for (Material m : inventario.getMateriales()) {
                 filtrado = true;
                 Object[] fila = {
-                    m.getId(),
                     m.getNombre(),
                     m.getDescripcion(),
-                    m.getCantidad(),
-                    m.getStockMinimo(),
                     m.getCategoria(),
                     m.getEstado(),
                     m.getIdUbicacion()

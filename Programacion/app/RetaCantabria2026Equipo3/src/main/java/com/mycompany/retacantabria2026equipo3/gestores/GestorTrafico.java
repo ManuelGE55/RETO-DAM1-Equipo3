@@ -34,7 +34,7 @@ public static void cargarInventario(File inventarioCSV) {
             String linea;
             while ((linea = br.readLine()) != null) {
                String[] datos = linea.split(",");
-                   inventario.anadirMaterial(new Material(datos[0],datos[1],Integer.parseInt(datos[2]),Integer.parseInt(datos[3]),Categoria.valueOf(datos[4]),Estado.valueOf(datos[5]),datos[6]));
+                   inventario.anadirMaterial(new Material(datos[0],datos[1],Categoria.valueOf(datos[2]),Estado.valueOf(datos[3]),datos[4]));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
