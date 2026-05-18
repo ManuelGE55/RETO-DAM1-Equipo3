@@ -27,16 +27,16 @@ public class MaterialDAO {
         int resultado = -1;
         PreparedStatement ps = null;
         String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
             if (existeId(id) && UbicacionDAO.existeId(id)) {
                 System.out.println(existeId(id));
                 System.out.println(UbicacionDAO.existeId(id));
                 ps = con.prepareStatement(s);
-                ps.setInt(1,cant);
+                ps.setInt(1, cant);
                 ps.setString(2, est);
-                ps.setInt(3,ubi);
-                ps.setInt(4,id);
-                
+                ps.setInt(3, ubi);
+                ps.setInt(4, id);
+
                 int valor = ps.executeUpdate();
                 if (valor == 0) {
                     resultado = -1;
@@ -44,7 +44,7 @@ public class MaterialDAO {
                     resultado = 0;
                 }
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("no se pudo actualizar");;
         }
@@ -58,7 +58,7 @@ public class MaterialDAO {
         ResultSet rs = null;
 
         String s = "SELECT * FROM material WHERE id_material = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+        try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
             // Preparamos la sentencia con los datos del vehiculo
             ps = con.prepareStatement(s);
             ps.setInt(1, id);
@@ -73,22 +73,24 @@ public class MaterialDAO {
 
         return resultado;
     }
-    
+
     public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
-    String sql = """
+
+        String sql = """
         SELECT 
             m.id_material,
             m.nombre,
             m.descripcion,
-            m.cantidad,
+            dm.cantidad AS cantidad,
             u.armario,
             u.balda,
             u.cajon
         FROM material m
+        INNER JOIN datos_material dm ON m.nombre = dm.nombre
         LEFT JOIN ubicacion u ON m.id_ubicacion = u.id_ubicacion
     """;
 
-    PreparedStatement ps = con.prepareStatement(sql);
-    return ps.executeQuery();
-}
+        PreparedStatement ps = con.prepareStatement(sql);
+        return ps.executeQuery();
+    }
 }
