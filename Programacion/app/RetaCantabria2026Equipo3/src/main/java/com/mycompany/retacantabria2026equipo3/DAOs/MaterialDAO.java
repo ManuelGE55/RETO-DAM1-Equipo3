@@ -29,6 +29,8 @@ public class MaterialDAO {
         String s = "UPDATE material SET cantidad = ?, estado = ?, id_ubicacion = ?  WHERE id_material = ?";
         try (Connection con = AccesoBaseDatos.getInstance().getConn()){
             if (existeId(id) && UbicacionDAO.existeId(id)) {
+                System.out.println(existeId(id));
+                System.out.println(UbicacionDAO.existeId(id));
                 ps = con.prepareStatement(s);
                 ps.setInt(1,cant);
                 ps.setString(2, est);
@@ -42,9 +44,9 @@ public class MaterialDAO {
                     resultado = 0;
                 }
             }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(MaterialDAO.class.getName()).
-                    log(Level.SEVERE, null, ex);
+            System.out.println("no se pudo actualizar");;
         }
         return resultado;
     }
@@ -71,4 +73,22 @@ public class MaterialDAO {
 
         return resultado;
     }
+    
+    public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
+    String sql = """
+        SELECT 
+            m.id_material,
+            m.nombre,
+            m.descripcion,
+            m.cantidad,
+            u.armario,
+            u.balda,
+            u.cajon
+        FROM material m
+        LEFT JOIN ubicacion u ON m.id_ubicacion = u.id_ubicacion
+    """;
+
+    PreparedStatement ps = con.prepareStatement(sql);
+    return ps.executeQuery();
+}
 }

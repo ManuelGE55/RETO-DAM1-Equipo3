@@ -509,7 +509,9 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        // TODO add your handling code here:
+        this.setSize(790,520);
+        Loggin.setVisible(true);
+        jPanel2.setVisible(false);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
@@ -577,7 +579,9 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoTextoCambiarCantidadActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
-        // TODO add your handling code here:
+        this.setSize(1350, 550);
+        jPanel2.setVisible(true);
+        jPanel3.setVisible(false);
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
 
     private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
