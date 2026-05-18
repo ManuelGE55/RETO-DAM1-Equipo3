@@ -62,13 +62,15 @@ public class UsuarioDAO {
 
     public static Usuario comprobarUsuario(String email, String contraseña) throws SQLException {
         Usuario usuario=null;
-        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol FROM usuario WHERE email = ?";
+        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol FROM usuario WHERE email = ? AND contraseña=?";
         
         try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
 
             ps.setString(1, email);
+            ps.setString(2, contraseña);
 
             try (ResultSet rs = ps.executeQuery()) {
+                System.out.println(rs.getString(3));
                 if (rs.next()) {
                     if(rs.getBoolean(4)){
                         usuario = rs.getString(5).equals("profesor")? new Profesor():new Administrador();
