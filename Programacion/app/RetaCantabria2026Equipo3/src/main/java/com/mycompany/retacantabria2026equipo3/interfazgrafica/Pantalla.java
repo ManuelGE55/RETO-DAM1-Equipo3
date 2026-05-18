@@ -10,7 +10,9 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
+import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -29,7 +31,8 @@ import javax.swing.table.DefaultTableModel;
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
-    private static ArrayList<Material> materialesTotales = new ArrayList<>();
+    public static Inventario inventario = new Inventario(new ArrayList<>());
+    public static Usuario usuario;
 
     /**
      * Creates new form Pantalla
@@ -87,7 +90,6 @@ public class Pantalla extends javax.swing.JFrame {
         comboCategoria = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         comboLocalizacion = new javax.swing.JComboBox<>();
-        botonFiltrar = new javax.swing.JButton();
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -248,13 +250,6 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        botonFiltrar.setText("Filtrar");
-        botonFiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFiltrarActionPerformed(evt);
-            }
-        });
-
         modificarMaterial.setText("Modificar Material");
         modificarMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,9 +287,7 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonFiltrar)
-                        .addGap(18, 18, 18)
+                        .addGap(108, 108, 108)
                         .addComponent(modificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(imprimirInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +318,6 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonFiltrar)
                                     .addComponent(modificarMaterial)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -498,7 +490,7 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuBar2.setVisible(true);
         rellenarComboBoxEstado();
         rellenarComboBoxCategoria();
-        materialesTotales = InventarioDAO.cargarInventario();
+        inventario.setMateriales(InventarioDAO.cargarInventario());
         rellenarTablaMateriales();
         jPanel1.setVisible(false);
 
@@ -512,6 +504,7 @@ public class Pantalla extends javax.swing.JFrame {
         this.setSize(790,520);
         Loggin.setVisible(true);
         jPanel2.setVisible(false);
+        jMenuBar2.setVisible(false);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
@@ -521,10 +514,6 @@ public class Pantalla extends javax.swing.JFrame {
     private void comboLocalizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboLocalizacionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_comboLocalizacionMouseClicked
-
-    private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonFiltrarActionPerformed
 
     private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
         rellenarTablaMateriales();
@@ -545,10 +534,9 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
+            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
 
-            boolean valido = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
-
-            if (valido) {
+            if (usuario!=null) {
                 Loggin.setVisible(false);
                 jPanel1.setVisible(true);
                 
@@ -606,11 +594,8 @@ public class Pantalla extends javax.swing.JFrame {
         boolean filtrado;
 
         String[] columnas = {
-            "id_material",
             "nombre",
             "descripcion",
-            "cantidad",
-            "stock_minimo",
             "categoria",
             "estado",
             "id_ubicacion"
@@ -623,15 +608,12 @@ public class Pantalla extends javax.swing.JFrame {
         jTable1.setModel(modelo);
 
         // Rellenar tabla
-        if (!materialesTotales.isEmpty()) {
-            for (Material m : materialesTotales) {
+        if (!inventario.getMateriales().isEmpty()) {
+            for (Material m : inventario.getMateriales()) {
                 filtrado = true;
                 Object[] fila = {
-                    m.getId(),
                     m.getNombre(),
                     m.getDescripcion(),
-                    m.getCantidad(),
-                    m.getStockMinimo(),
                     m.getCategoria(),
                     m.getEstado(),
                     m.getIdUbicacion()
@@ -708,7 +690,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel ImagenIntro;
     private javax.swing.JLayeredPane Loggin;
     private javax.swing.JTextField Usuario;
-    private javax.swing.JButton botonFiltrar;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboCategoria;
@@ -737,4 +718,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -28,12 +28,23 @@ public class InventarioDAO {
         ArrayList<Material>listaMateriales=new ArrayList<>();
         
         
-        String select="SELECT id_material,nombre,descripcion,cantidad,stock_minimo,categoria,estado,id_Ubicacion FROM material";
+        String select="""
+                      SELECT 
+                          id_material,
+                          datos_material.nombre,
+                          descripcion,
+                          datos_material.categoria,
+                          estado,
+                          id_ubicacion
+                      FROM material
+                      INNER JOIN datos_material
+                          ON material.nombre = datos_material.nombre;
+                      """;
         
         try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps=conn.prepareStatement(select);ResultSet resultado=ps.executeQuery();){
             
             while(resultado.next()){
-            Material m=new Material(resultado.getString(2),resultado.getString(3),resultado.getInt(4),resultado.getInt(5),Categoria.valueOf(resultado.getString(6).toUpperCase()),Estado.valueOf(resultado.getString(7).toUpperCase()),resultado.getString(8));
+            Material m=new Material(resultado.getString(2),resultado.getString(3),Categoria.valueOf(resultado.getString(4).toUpperCase()),Estado.valueOf(resultado.getString(5).toUpperCase()),resultado.getString(6));
                 m.setId(resultado.getInt(1));
                 listaMateriales.add(m);
             
