@@ -4,6 +4,8 @@
  */
 package com.mycompany.retacantabria2026equipo3.DAOs;
 
+import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Administrador;
+import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Profesor;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,8 +44,8 @@ public class UsuarioDAO {
                 ps.setString(2, usuario.getApellidos());
                 ps.setString(3, usuario.getEmail());
                 ps.setString(4, usuario.getContraseña());
-                ps.setString(5, usuario.getRol());
-                ps.setBoolean(6, usuario.isActivo());
+                ps.setString(5, usuario.getClass().getName());
+                ps.setBoolean(6, true);
                 int valor = ps.executeUpdate();
                 // Si la sentencia se ejecuta correctamente, devolvemos 0
                 if (valor == 0) {
@@ -58,8 +60,9 @@ public class UsuarioDAO {
         return resultado;
     }
 
-    public static boolean comprobarUsuario(String email, String contraseña) throws SQLException {
-        String s = "SELECT contraseña FROM usuario WHERE email = ?";
+    public static Usuario comprobarUsuario(String email, String contraseña) throws SQLException {
+        Usuario usuario=null;
+        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol FROM usuario WHERE email = ?";
         
         try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
 
@@ -67,16 +70,24 @@ public class UsuarioDAO {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    String bd = rs.getString("contraseña");
-                    System.out.println("Usuario encontrado");
-                    return contraseña.equals(bd);
+                    if(rs.getBoolean(4)){
+                        usuario = rs.getString(5).equals("profesor")? new Profesor():new Administrador();
+                        usuario.setNombre(rs.getString(1));
+                        usuario.setApellidos(rs.getString(2));
+                        usuario.setNombre(rs.getString(3));
+                        usuario.setNombre(rs.getString(4));
+                    }
+                    else{
+                        //USUARIO INACTIVO
+                    }
+                    
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw ex;
         }
-        return false;
+        return usuario;
     }
 
     /**
