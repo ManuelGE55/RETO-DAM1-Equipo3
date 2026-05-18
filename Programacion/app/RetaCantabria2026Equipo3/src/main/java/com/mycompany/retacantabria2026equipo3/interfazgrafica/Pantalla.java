@@ -10,6 +10,7 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.json.GeneradorJSONInventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
@@ -497,6 +498,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonEntrarActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
+        GeneradorJSONInventario generador = new GeneradorJSONInventario();
+        generador.generarJSONInventario();
         System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
