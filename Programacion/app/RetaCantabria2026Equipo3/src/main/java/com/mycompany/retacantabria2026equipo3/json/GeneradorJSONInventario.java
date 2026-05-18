@@ -169,11 +169,4 @@ public class GeneradorJSONInventario {
             System.out.println("Error ejecutando SSH: " + e.getMessage());
         }
     }
-
-    public static void main(String[] args) {
-
-        GeneradorJSONInventario generador = new GeneradorJSONInventario();
-
-        generador.generarJSONInventario();
-    }
 }
