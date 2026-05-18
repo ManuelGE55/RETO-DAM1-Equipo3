@@ -496,9 +496,9 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonEntrarActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
-        System.exit(0);
         GeneradorJSONInventario generador = new GeneradorJSONInventario();
         generador.generarJSONInventario();
+        System.exit(0);    
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
