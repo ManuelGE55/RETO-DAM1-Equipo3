@@ -50,7 +50,7 @@ public class MaterialDAO {
         }
         return resultado;
     }
-
+    
     public static boolean existeId(int id) {
         // Variables
         boolean resultado = true;
@@ -75,20 +75,22 @@ public class MaterialDAO {
     }
     
     public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
-    String sql = """
+
+        String sql = """
         SELECT 
             m.id_material,
             m.nombre,
             m.descripcion,
-            m.cantidad,
+            dm.cantidad AS cantidad,
             u.armario,
             u.balda,
             u.cajon
         FROM material m
+        INNER JOIN datos_material dm ON m.nombre = dm.nombre
         LEFT JOIN ubicacion u ON m.id_ubicacion = u.id_ubicacion
     """;
 
-    PreparedStatement ps = con.prepareStatement(sql);
-    return ps.executeQuery();
-}
+        PreparedStatement ps = con.prepareStatement(sql);
+        return ps.executeQuery();
+    }
 }
