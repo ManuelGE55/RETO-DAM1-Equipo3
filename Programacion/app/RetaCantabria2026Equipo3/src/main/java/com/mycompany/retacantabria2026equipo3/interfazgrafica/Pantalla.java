@@ -10,6 +10,7 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.json.GeneradorJSONInventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
@@ -85,6 +86,8 @@ public class Pantalla extends javax.swing.JFrame {
         botonCancelarInsertarMaterial2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        comboBoxInsertarCategoria = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
         Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JPasswordField();
@@ -120,10 +123,10 @@ public class Pantalla extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         CampoTextoDescripcion = new javax.swing.JTextArea();
         panelInsertarComponente = new javax.swing.JPanel();
-        textoNombreInsertarComponente = new javax.swing.JTextField();
+        textoNombreInsertarMaterial = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         textoDescripcionInsertarMaterial = new javax.swing.JTextArea();
-        comoBoxEstadoInsertarMaterial = new javax.swing.JComboBox<>();
+        comboBoxEstadoInsertarMaterial = new javax.swing.JComboBox<>();
         comboBoxCategoriaInsertarMaterial = new javax.swing.JComboBox<>();
         comboBoxLocalizacionInsertarMaterial = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -159,12 +162,21 @@ public class Pantalla extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         botonAñadir.setText("Añadir");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
 
         botonCancelarInsertarMaterial2.setText("Cancelar");
 
         jLabel6.setText("Cantidad");
 
         jLabel10.setText("Stock minimo");
+
+        comboBoxInsertarCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel16.setText("Categoria");
 
         javax.swing.GroupLayout dialogoNuevoMaterialLayout = new javax.swing.GroupLayout(dialogoNuevoMaterial.getContentPane());
         dialogoNuevoMaterial.getContentPane().setLayout(dialogoNuevoMaterialLayout);
@@ -173,18 +185,22 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoNuevoMaterialLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(dialogoNuevoMaterialLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dialogoNuevoMaterialLayout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                         .addComponent(textoCantidadInsertarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dialogoNuevoMaterialLayout.createSequentialGroup()
                         .addComponent(botonCancelarInsertarMaterial2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonAñadir)))
+                        .addComponent(botonAñadir))
+                    .addGroup(dialogoNuevoMaterialLayout.createSequentialGroup()
+                        .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboBoxInsertarCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))))
                 .addGap(64, 64, 64))
         );
         dialogoNuevoMaterialLayout.setVerticalGroup(
@@ -198,7 +214,11 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comboBoxInsertarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAñadir)
                     .addComponent(botonCancelarInsertarMaterial2))
@@ -514,13 +534,11 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(84, 84, 84))
         );
 
-        textoNombreInsertarComponente.setText("jTextField1");
-
         textoDescripcionInsertarMaterial.setColumns(20);
         textoDescripcionInsertarMaterial.setRows(5);
         jScrollPane2.setViewportView(textoDescripcionInsertarMaterial);
 
-        comoBoxEstadoInsertarMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxEstadoInsertarMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboBoxCategoriaInsertarMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -571,9 +589,9 @@ public class Pantalla extends javax.swing.JFrame {
                         .addGroup(panelInsertarComponenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInsertarComponenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane2)
-                                .addComponent(textoNombreInsertarComponente)
+                                .addComponent(textoNombreInsertarMaterial)
                                 .addComponent(comboBoxCategoriaInsertarMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(comoBoxEstadoInsertarMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboBoxEstadoInsertarMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(comboBoxLocalizacionInsertarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botonInsertar1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(65, 65, 65))))
@@ -583,7 +601,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(panelInsertarComponenteLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(panelInsertarComponenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoNombreInsertarComponente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoNombreInsertarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(36, 36, 36)
                 .addGroup(panelInsertarComponenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,7 +609,7 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addGap(55, 55, 55)
                 .addGroup(panelInsertarComponenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comoBoxEstadoInsertarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxEstadoInsertarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(27, 27, 27)
                 .addGroup(panelInsertarComponenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -821,7 +839,16 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_textoCantidadInsertarMaterialActionPerformed
 
     private void botonInsertar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertar1ActionPerformed
-        // TODO add your handling code here:
+       if(textoNombreInsertarMaterial.getText()==null || textoDescripcionInsertarMaterial.getText()==null){
+           try {
+               if(MaterialDAO.existeMaterial(textoNombreInsertarMaterial.getText(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()))){
+                   MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(),textoDescripcionInsertarMaterial.getText(),comboBoxEstadoInsertarMaterial.getSelectedItem().toString(),comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+       }
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
     private void botonCancelarInsertarMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarInsertarMaterial1ActionPerformed
@@ -833,6 +860,10 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_añadirMaterialActionPerformed
+
+    private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas
@@ -944,11 +975,12 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboBoxCategoriaInsertarMaterial;
+    private javax.swing.JComboBox<String> comboBoxEstadoInsertarMaterial;
+    private javax.swing.JComboBox<String> comboBoxInsertarCategoria;
     private javax.swing.JComboBox<String> comboBoxLocalizacionInsertarMaterial;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboLocalizacion;
-    private javax.swing.JComboBox<String> comoBoxEstadoInsertarMaterial;
     private javax.swing.JDialog dialogoNuevoMaterial;
     private javax.swing.JMenu exportarCSV;
     private javax.swing.JMenu importarCSV;
@@ -961,6 +993,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -985,7 +1018,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel panelInsertarComponente;
     private javax.swing.JTextField textoCantidadInsertarMaterial;
     private javax.swing.JTextArea textoDescripcionInsertarMaterial;
-    private javax.swing.JTextField textoNombreInsertarComponente;
+    private javax.swing.JTextField textoNombreInsertarMaterial;
     // End of variables declaration//GEN-END:variables
 
 }
