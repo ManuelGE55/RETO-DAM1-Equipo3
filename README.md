@@ -149,7 +149,7 @@ Permite visualizar:
 
 La infraestructura cloud fue desplegada en AWS Academy.
 
-- [Ver Diagrama de arquitectura AWS](#diagrama-de-arquitectura-aws)
+- [Ver Diagrama de arquitectura AWS](#diagrama-de-arquitectura-de-los-servidores)
 
 ## Arquitectura
 

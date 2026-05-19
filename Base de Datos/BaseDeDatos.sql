@@ -1,5 +1,7 @@
 /*
-Crear base de datos
+==============================================================================================================================================
+CREAR BASE DE DATOS
+==============================================================================================================================================
 */
 
 DROP DATABASE IF EXISTS `inventario`;
@@ -11,10 +13,13 @@ DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS alerta_stock;
 DROP TABLE IF EXISTS material;
 DROP TABLE IF EXISTS ubicacion;
+DROP TABLE IF EXISTS datos_material;
 
 
 /*
+==============================================================================================================================================
 CREAR TABLAS
+==============================================================================================================================================
 */
 
 
@@ -26,22 +31,23 @@ CREATE TABLE IF NOT EXISTS ubicacion(
     descripcion VARCHAR(50),
     PRIMARY KEY(id_ubicacion)
 );
-CREATE TABLE IF NOT EXISTS material(
-	id_material INT AUTO_INCREMENT,
-    nombre VARCHAR(30),
-    descripcion VARCHAR(60),
-    estado ENUM("Disponible","Prestado","En reparación","Retirado"),
-    id_ubicacion INT,
-    PRIMARY KEY(id_material),
-    FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id_ubicacion)
-);
 
 CREATE TABLE IF NOT EXISTS datos_material(
 	nombre VARCHAR(30) PRIMARY KEY,
     cantidad INT,
     stock_minimo INT,
-    categoria ENUM("Hardware","Herramienta","Fungible","Cuaderno"),
-    FOREIGN KEY (nombre) REFERENCES material(nombre)
+    categoria ENUM("HARDWARE","HERRAMIENTA","FUNGIBLE","CUADERNO")
+);
+
+CREATE TABLE IF NOT EXISTS material(
+	id_material INT AUTO_INCREMENT,
+    nombre VARCHAR(30),
+    descripcion VARCHAR(60),
+    estado ENUM("DISPONIBLE","PRESTADO","EN_REPARACION","RETIRADO"),
+    id_ubicacion INT,
+    PRIMARY KEY(id_material),
+    FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id_ubicacion),
+    FOREIGN KEY (nombre) REFERENCES datos_material(nombre)
 );
 
 CREATE TABLE IF NOT EXISTS alerta_stock (
@@ -57,7 +63,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 	nombre VARCHAR(20),
 	apellidos VARCHAR(30),
 	email VARCHAR(30) UNIQUE,
-	contrasena VARCHAR(20),
+	contraseña VARCHAR(20),
 	rol ENUM ("profesor", "administrador"),
 	activo BOOLEAN,
 	fecha_creacion DATE
@@ -74,7 +80,9 @@ CREATE TABLE IF NOT EXISTS movimiento(
 
 
 /*
+==============================================================================================================================================
 INSERTAR DATOS
+==============================================================================================================================================
 */
 
 
@@ -196,69 +204,58 @@ INSERT INTO ubicacion VALUES
     (301802,NULL,2018,301802,"Cajon C01802")
 ;
 
-INSERT INTO material VALUES
-	
-    -- ¡¡LEER ESTO!!
-    
-    -- En un objeto Material se están guardando atributos individuales (categoría y estado)
-    -- pero también se están guardando atributos generales (stock_minimo y cantidad).
-    -- Lo ideal sería que ese stock mínimo, y la cantidad actual se guardasen en un
-    -- objeto general (inventario); pero también se pueden guardar en cada material, aunque
-    -- el valor tendría que ser siempre el mismo.
-    
-    -- Cuando un material cambia su estado de "Disponible" a cualquier otro
-    -- la cantidad tiene que bajar en todos los materiales con EL MISMO NOMBRE,
-    -- no con la misma categoría
+INSERT INTO datos_material VALUES	-- ESTO MEJOR HACERLO CON UN PROCEDIMIENTO QUE SE EJECUTE AL FINAL DE LA BASE, Y CON UN TRIGGER
 
-    (1,"Manual","Manual de Word 2007","Disponible",2001),
-    (2,"Manual","Manual de Word 2007","Disponible",2001),
-    (3,"Manual","Manual de Word 2007","Disponible",2001),
+	("Manual",3,1,"CUADERNO"),
     
-    (4,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (5,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (6,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (7,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (8,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (9,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (10,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (11,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    ("Libro DAM",8,3,"CUADERNO"),
     
-    (12,"Teclado USB","Teclado con conexión USB","Disponible",300901),
-    (13,"Teclado USB","Teclado con conexión USB", "Disponible",300901),
+    ("Teclado USB",2,1,"HARDWARE"),
     
-    (14,"Pistola de silicona","Pistola de silicona","Disponible",301604),
+    ("Pistola de silicona",1,1,"HERRAMIENTA"),
     
-    (15,"Mascara","Proteccion para los ojos","Disponible",301601),
+    ("Mascara",1,1,"HERRAMIENTA"),
     
-    (16,"Portatil","Portatil","Disponible",2012),
+    ("Portatil",1,1,"HARDWARE"),
     
-    (17,"Tinta","Tinta para la impresora","Disponible",2202),
+    ("Tinta",1,1,"FUNGIBLE"),
     
-    (18,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
-    (19,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
-    (20,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
+    ("Tornillos",3,2,"FUNGIBLE"),
     
-    (21,"Cable ethernet","Cable ethernet de 1 metro","Disponible",301603)
+    ("Cable ethernet",1,1,"HARDWARE")
 ;
 
-INSERT INTO datos_material VALUES
-	("Manual",3,1,"Cuaderno"),
+INSERT INTO material VALUES
+
+    (1,"Manual","Manual de Word 2007","DISPONIBLE",2001),
+    (2,"Manual","Manual de Word 2007","DISPONIBLE",2001),
+    (3,"Manual","Manual de Word 2007","DISPONIBLE",2001),
     
-    ("Libro DAM",8,3,"Cuaderno"),
+    (4,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (5,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (6,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (7,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (8,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (9,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (10,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (11,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
     
-    ("Teclado USB",2,1,"Hardware"),
+    (12,"Teclado USB","Teclado con conexión USB","DISPONIBLE",300901),
+    (13,"Teclado USB","Teclado con conexión USB", "DISPONIBLE",300901),
     
-    ("Pistola de silicona",1,1,"Herramienta"),
+    (14,"Pistola de silicona","Pistola de silicona","DISPONIBLE",301604),
     
-    ("Mascara",1,1,"Herramienta"),
+    (15,"Mascara","Proteccion para los ojos","DISPONIBLE",301601),
     
-    ("Portatil",1,1,"Hardware"),
+    (16,"Portatil","Portatil","DISPONIBLE",2012),
     
-    ("Tinta",1,1,"Fungible"),
+    (17,"Tinta","Tinta para la impresora","DISPONIBLE",2202),
     
-    ("Tornillos",3,2,"Fungible"),
+    (18,"Tornillos","Caja de tornillos pequeños","DISPONIBLE",2201),
+    (19,"Tornillos","Caja de tornillos pequeños","DISPONIBLE",2201),
+    (20,"Tornillos","Caja de tornillos pequeños","DISPONIBLE",2201),
     
-    ("Cable ethernet",1,1,"Hardware")
+    (21,"Cable ethernet","Cable ethernet de 1 metro","DISPONIBLE",301603)
 ;
 
 INSERT INTO usuario VALUES
@@ -269,106 +266,78 @@ INSERT INTO usuario VALUES
 
 
 /*
+==============================================================================================================================================
 VARIABLES
+==============================================================================================================================================
 */
 
 SET @id_usuario=NULL;
+SET @modo_actualizacion=FALSE;
+
 -- El modo actualización sirve para permitir (FALSE) o bloquear el trigger movimiento (TRUE).
 -- Si está en FALSE, la tabla movimiento no registrará nada
 -- Esto sirve para usar actualizarCantidad() sin que se genere un montón de filas en la tabla movimiento
-SET @modo_actualizacion=FALSE;
 
 
 /*
-PROCEDIMIENTOS Y FUNCIONES
+==============================================================================================================================================
+PROCEDIMIENTOS
+==============================================================================================================================================
 */
 
 
--- HAY QUE CAMBIAR ESTE PROCEDIMIENTO PARA QUE DEFINA LA VARIABLE CON LA ID DEL USUARIO QUE ESTÁ TRABAJANDO
--- RECIBIR PARÁMETRO DESDE PROGRAMA
+-- Este procedimiento se tiene que utilizar desde la aplicación.
+-- Recibe el identificador del usuario que esté utilizando la aplicación,
+-- y mete ese identificador dentro de la variable local @id_usuario
 
 DELIMITER //
-
 CREATE PROCEDURE definirIdUsuario(IN id INT)
 READS SQL DATA
 BEGIN
 	SELECT id
     INTO @id_usuario;
 END //
-
 DELIMITER ;
 
--- ESTE PROCEDIMIENTO SE TIENE QUE USAR DESDE EL PROGRAMA
--- HAY QUE UTILIZARLO SIEMPRE QUE SE HAGA UNA MODIFICACIÓN EN LA BASE DE DATOS ¡¡MUY IMPORTANTE!!
 
-DELIMITER //
-
-CREATE PROCEDURE actualizarCantidad() -- FUNCIONA
-MODIFIES SQL DATA
-BEGIN
-	DECLARE contador INT;
-    DECLARE newCantidad INT;
-    DECLARE nombreMat VARCHAR(30);
-    SET contador=1;
-    SET @modo_actualizacion = TRUE;
-    REPEAT 
-		-- Seleccionar nombre de material
-        SELECT nombre INTO nombreMat FROM material WHERE id_material=contador;
-		-- Contar cuantos materiales hay con el mismo nombre
-        SELECT count(*) INTO newCantidad FROM material WHERE nombre=nombreMat;
-	 	-- Actualizar campo "cantidad" de esos materiales con el resultado obtenido
-        UPDATE datos_material SET cantidad=newCantidad WHERE nombre=nombreMat;
-        SET contador=contador+1;
-    UNTIL contador=(SELECT count(*) FROM material)
-    END REPEAT;
-    SET @modo_actualizacion = FALSE;
-END //
-
-DELIMITER ;
+-- INSERTAR NUEVOS TIPOS DE MATERIALES EN datos_material
 
 
 /*
+==============================================================================================================================================
 TRIGGERS
+==============================================================================================================================================
 */
 
 
-DROP TRIGGER IF EXISTS trg_movimiento;
-DROP TRIGGER IF EXISTS trg_alerta_stock;
-DROP TRIGGER IF EXISTS trg_actualizar_del;
-DROP TRIGGER IF EXISTS trg_actualizar_upd;
-
-
--- Este TRIGGER tiene que registrar cada movimiento que haya en la base de datos
+-- Este TRIGGER registra actualizaciones en dentro de la tabla "material"
+-- Inserta una fila en la tabla "movimiento" con el id del usuario, el id del material,
+-- la fecha actual y un comentario con lo que se ha modificado.
 
 DELIMITER //
-
 CREATE TRIGGER trg_movimiento
 AFTER UPDATE ON material
 FOR EACH ROW
 BEGIN
 	DECLARE observaciones VARCHAR(80);
 	SET observaciones = 'Se ha modificado : ';
-    
 	IF @modo_actualizacion = FALSE THEN
-		IF NEW.nombre!=OLD.nombre THEN SET observaciones = concat(observaciones,'nombre ');END IF;
-		IF NEW.descripcion!=OLD.descripcion THEN SET observaciones = concat(observaciones,'descripcion ');END IF;
-		IF NEW.stock_minimo!=OLD.stock_minimo THEN SET observaciones = concat(observaciones,'stock_minimo ');END IF;
-		IF NEW.categoria!=OLD.categoria THEN SET observaciones = concat(observaciones,'categoria ');END IF;
-		IF NEW.estado!=OLD.estado THEN SET observaciones = concat(observaciones,'estado ');END IF;
 		IF NEW.id_ubicacion!=OLD.id_ubicacion THEN SET observaciones = concat(observaciones,'id_ubicacion ');END IF;
-    
+        IF NEW.estado!=OLD.estado THEN SET observaciones = concat(observaciones,'estado ');END IF;
+        IF NEW.descripcion!=OLD.descripcion THEN SET observaciones = concat(observaciones,'descripcion ');END IF;
+        IF NEW.nombre!=OLD.nombre THEN SET observaciones = concat(observaciones,'nombre ');END IF;
 		INSERT INTO movimiento(id_usuario,id_material,fecha,observacion)
 		VALUES(@id_usuario,NEW.id_material,curdate(),observaciones);
 	END IF;
 END //
-
 DELIMITER ;
 
--- Este TRIGGER revisa que la cantidad de materiales no sea inferior al stock mínimo
--- PARA QUE FUNCIONE, ANTES SE TIENE QUE HABER EJECUTADO actualizarCantidad()
+-- Este TRIGGER se activa cuando se elimina una fila de la tabla "material"
+-- Si el nuevo número de materiales con un mismo nombre, es menor al stock_minimo
+-- registrado en la fila "datos_material" correspondiente, se inserta una nueva
+-- fila en la tabla "alerta_stock"
 
 DELIMITER //
-
 CREATE TRIGGER trg_alerta_stock
 AFTER DELETE ON material
 FOR EACH ROW
@@ -377,13 +346,13 @@ BEGIN
     DECLARE diferencia INT;
     DECLARE nombreMaterial VARCHAR(30);
     DECLARE cantidadActual INT;
-    
+    DECLARE stockMin INT;
     SET nombreMaterial = OLD.nombre;
-    
     SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial;
-    
-	IF(cantidadActual<OLD.stock_minimo) THEN
-		SET diferencia = OLD.stock_minimo-cantidadActual;
+    SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
+    UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
+	IF(cantidadActual<stockMin) THEN
+		SET diferencia = stockMin-cantidadActual;
 		SET mensajes = concat('La diferencia entre cantidad y stock mínimo es de ',diferencia);
 		INSERT INTO alerta_stock(nombre_material,fecha,mensaje,resuelta)
         VALUES(
@@ -394,5 +363,18 @@ BEGIN
         );
     END IF;
 END //
-
 DELIMITER ;
+
+-- 
+
+DELIMITER //
+CREATE TRIGGER actualizarCantidad -- FUNCIONA
+AFTER INSERT ON material
+FOR EACH ROW
+BEGIN
+    DECLARE newCantidad INT;
+	-- Contar cuantos materiales hay con el mismo nombre
+	SELECT count(*) INTO newCantidad FROM material WHERE nombre=new.nombre;
+	-- Actualizar campo "cantidad" de esos materiales con el resultado obtenido
+	UPDATE datos_material SET cantidad=newCantidad WHERE nombre=new.nombre;
+END //
