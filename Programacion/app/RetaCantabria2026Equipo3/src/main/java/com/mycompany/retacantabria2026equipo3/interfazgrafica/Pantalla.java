@@ -61,6 +61,8 @@ public class Pantalla extends javax.swing.JFrame {
         // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
         Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
         this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
+        rellenarComboBoxEstado();
+        rellenarComboBoxCambiarEstado();
     }
 
     /**
@@ -588,12 +590,20 @@ public class Pantalla extends javax.swing.JFrame {
         int fila = jTable1.getSelectedRow();
         int id = 0;
         if (fila != -1) {
-            Material obj = inventario.getMateriales().get(fila);   // lista que usaste para cargar la tabla
+            Material obj = inventario.getMateriales().get(fila);
             id = obj.getId();
         }
         try {
-            
-            MaterialDAO.ActualizarEstado(CampoTextoDescripción.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
+            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripción.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
+            if (resultado == -1) {
+                JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
+            } else {
+                this.setSize(1350, 550);
+                jPanel2.setVisible(true);
+                jPanel3.setVisible(false);
+                inventario.setMateriales(InventarioDAO.cargarInventario());
+                rellenarTablaMateriales();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
         }
