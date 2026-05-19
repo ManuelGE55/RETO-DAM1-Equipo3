@@ -16,11 +16,14 @@ import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.M
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Administrador;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Profesor;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
+import com.mycompany.retacantabria2026equipo3.seguriddmd5.SeguridadMD5;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -59,6 +62,8 @@ public class Pantalla extends javax.swing.JFrame {
         // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
         Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
         this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
+        rellenarComboBoxEstado();
+        rellenarComboBoxCambiarEstado();
     }
 
     /**
@@ -103,7 +108,7 @@ public class Pantalla extends javax.swing.JFrame {
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        CampoTextoDescripción = new javax.swing.JTextField();
+        CampoTextoDescripcion = new javax.swing.JTextField();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
         CampoTextoCambiarUbicacion = new javax.swing.JTextField();
@@ -408,9 +413,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        CampoTextoDescripción.addActionListener(new java.awt.event.ActionListener() {
+        CampoTextoDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoTextoDescripciónActionPerformed(evt);
+                CampoTextoDescripcionActionPerformed(evt);
             }
         });
 
@@ -462,7 +467,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CampoTextoDescripción))
+                        .addComponent(CampoTextoDescripcion))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,7 +485,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(CampoTextoDescripción, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CampoTextoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
@@ -662,8 +667,8 @@ public class Pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        nombreMaterial.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-        comboEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
+        nombreMaterial.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        comboEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void comboEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstadoMouseClicked
@@ -684,7 +689,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.setSize(790, 520);
-        jPanel1.setVisible(true);
+        Loggin.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_botonSalirActionPerformed
@@ -709,7 +714,9 @@ public class Pantalla extends javax.swing.JFrame {
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
         this.setSize(570, 700);
-        CampoTextoDescripción.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        CampoTextoDescripcion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        CampoTextoCambiarUbicacion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+        comboLocalizacion.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
@@ -754,9 +761,9 @@ public class Pantalla extends javax.swing.JFrame {
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
-    private void CampoTextoDescripciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoDescripciónActionPerformed
-        
-    }//GEN-LAST:event_CampoTextoDescripciónActionPerformed
+    private void CampoTextoDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoDescripcionActionPerformed
+
+    }//GEN-LAST:event_CampoTextoDescripcionActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
         this.setSize(1350, 550);
@@ -765,7 +772,26 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
 
     private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
-        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
+        int id = 0;
+        if (fila != -1) {
+            Material obj = inventario.getMateriales().get(fila);
+            id = obj.getId();
+        }
+        try {
+            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripcion.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
+            if (resultado == -1) {
+                JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
+            } else {
+                this.setSize(1350, 550);
+                jPanel2.setVisible(true);
+                jPanel3.setVisible(false);
+                inventario.setMateriales(InventarioDAO.cargarInventario());
+                rellenarTablaMateriales();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BotonModificarMaterialActionPerformed
 
     private void CampoTextoCambiarUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarUbicacionActionPerformed
@@ -888,7 +914,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton BotonSalir;
     private javax.swing.JButton BotonSalirModificarMaterial;
     private javax.swing.JTextField CampoTextoCambiarUbicacion;
-    private javax.swing.JTextField CampoTextoDescripción;
+    private javax.swing.JTextField CampoTextoDescripcion;
     private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;

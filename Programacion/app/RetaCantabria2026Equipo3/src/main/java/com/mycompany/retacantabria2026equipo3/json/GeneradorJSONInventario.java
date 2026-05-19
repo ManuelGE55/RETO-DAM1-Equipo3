@@ -80,6 +80,20 @@ public class GeneradorJSONInventario {
 
     private String convertirBalda(int armarioBD, int baldaBD) {
 
+        if (armarioBD == 0) {
+            // GENERAL: 2001 -> B001, 2016 -> B016
+            if (baldaBD >= 2000 && baldaBD < 3000) {
+                baldaBD = baldaBD - 2000;
+            }
+
+            return String.format("B%03d", baldaBD);
+        }
+
+        // A2: 2201 -> B201, 2202 -> B202
+        if (baldaBD >= 2000) {
+            baldaBD = baldaBD - 2000;
+        }
+
         return String.format("B%03d", baldaBD);
     }
 
@@ -87,6 +101,11 @@ public class GeneradorJSONInventario {
 
         if (cajonBD == 0) {
             return "";
+        }
+
+        // 301603 -> 1603
+        if (cajonBD >= 300000) {
+            cajonBD = cajonBD - 300000;
         }
 
         return String.format("C%05d", cajonBD);
@@ -169,6 +188,5 @@ public class GeneradorJSONInventario {
             System.out.println("Error ejecutando SSH: " + e.getMessage());
         }
     }
-
 
 }
