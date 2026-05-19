@@ -16,6 +16,7 @@ import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.M
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Administrador;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Profesor;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
+import com.mycompany.retacantabria2026equipo3.seguriddmd5.SeguridadMD5;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -533,7 +534,8 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
-            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
+            String contraseñaHash = SeguridadMD5.generarMD5(contraseña);
+            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseñaHash);
 
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
