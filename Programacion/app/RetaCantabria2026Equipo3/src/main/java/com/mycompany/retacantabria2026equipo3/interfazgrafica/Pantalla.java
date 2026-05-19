@@ -16,6 +16,7 @@ import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.M
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Administrador;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Profesor;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
+import com.mycompany.retacantabria2026equipo3.seguriddmd5.SeguridadMD5;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -96,7 +97,7 @@ public class Pantalla extends javax.swing.JFrame {
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        CampoTextoDescripción = new javax.swing.JTextField();
+        CampoTextoCambiarCantidad = new javax.swing.JTextField();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
         CampoTextoCambiarUbicacion = new javax.swing.JTextField();
@@ -329,9 +330,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        CampoTextoDescripción.addActionListener(new java.awt.event.ActionListener() {
+        CampoTextoCambiarCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoTextoDescripciónActionPerformed(evt);
+                CampoTextoCambiarCantidadActionPerformed(evt);
             }
         });
 
@@ -355,13 +356,13 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Descripción:");
+        jLabel7.setText("Nueva cantidad:");
 
         jLabel8.setText("Nuevo estado:");
 
         jLabel9.setText("Nueva ubicación:");
 
-        ComboBoxCambiarEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Prestado", "En reparación", "Retirado" }));
+        ComboBoxCambiarEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ComboBoxCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxCambiarEstadoActionPerformed(evt);
@@ -377,13 +378,13 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(BotonSalirModificarMaterial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotonModificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CampoTextoDescripción))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,13 +401,13 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(CampoTextoDescripción, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(ComboBoxCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addGap(127, 127, 127)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CampoTextoCambiarUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -501,7 +502,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.setSize(790, 520);
-        jPanel1.setVisible(true);
+        Loggin.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_botonSalirActionPerformed
@@ -526,7 +527,6 @@ public class Pantalla extends javax.swing.JFrame {
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
         this.setSize(570, 700);
-        CampoTextoDescripción.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
@@ -534,7 +534,8 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             String email = Usuario.getText();
             String contraseña = new String(Contraseña.getPassword());
-            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
+            String contraseñaHash = SeguridadMD5.generarMD5(contraseña);
+            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseñaHash);
 
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
@@ -570,9 +571,9 @@ public class Pantalla extends javax.swing.JFrame {
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
-    private void CampoTextoDescripciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoDescripciónActionPerformed
-        
-    }//GEN-LAST:event_CampoTextoDescripciónActionPerformed
+    private void CampoTextoCambiarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoCambiarCantidadActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
         this.setSize(1350, 550);
@@ -691,8 +692,8 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton BotonModificarMaterial;
     private javax.swing.JButton BotonSalir;
     private javax.swing.JButton BotonSalirModificarMaterial;
+    private javax.swing.JTextField CampoTextoCambiarCantidad;
     private javax.swing.JTextField CampoTextoCambiarUbicacion;
-    private javax.swing.JTextField CampoTextoDescripción;
     private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;
