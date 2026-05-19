@@ -11,6 +11,7 @@ package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 public abstract class Usuario {
     
     protected String nombre,apellidos,email,contraseña;
+    protected int id;
 
     public Usuario() {
     }
@@ -52,6 +53,14 @@ public abstract class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+    
+    public void setId(int id){
+        this.id=id;
+    }
+    
+    public int getId(){
+        return id;
     }
     
     @Override

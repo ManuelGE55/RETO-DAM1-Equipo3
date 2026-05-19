@@ -23,7 +23,7 @@ public class MaterialDAO {
     //==========================================================================
     //ActucalizarEstado
     //Permite actualizar el estado de un material
-    public static int ActualizarEstado(String descr, String est, int ubi, int id) throws SQLException {
+    public static int ActualizarEstado(String descr, String est, int ubi, int id, int id_usu) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
         String s = "UPDATE material SET descripcion = ? , estado = ?, id_ubicacion = ?  WHERE id_material = ?";
@@ -39,7 +39,8 @@ public class MaterialDAO {
                 ps.setString(2, est);
                 ps.setInt(3, ubi);
                 ps.setInt(4, id);
-
+                UsuarioDAO.pasarUsuario(id_usu, con);
+                
                 int valor = ps.executeUpdate();
                 if (valor == 0) {
                     resultado = -1;
@@ -56,7 +57,6 @@ public class MaterialDAO {
     }
 
     public static boolean existeId(int id) throws SQLException {
-        // Variables
         boolean resultado = true;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -64,12 +64,9 @@ public class MaterialDAO {
         String s = "SELECT * FROM material WHERE id_material = ?";
         Connection con = AccesoBaseDatos.getInstance().getConn();
         try {
-            // Preparamos la sentencia con los datos del vehiculo
             ps = con.prepareStatement(s);
             ps.setInt(1, id);
-            // Ejecutamos la sentencia.
             rs = ps.executeQuery();
-            // Si la sentencia se ejecuta correctamente, devolvemos true
             resultado = rs.next();
             if (ps != null) ps.close();
         } catch (SQLException ex) {

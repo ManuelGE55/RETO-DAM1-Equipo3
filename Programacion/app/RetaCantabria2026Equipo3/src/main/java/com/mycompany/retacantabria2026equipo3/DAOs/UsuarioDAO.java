@@ -32,9 +32,12 @@ public class UsuarioDAO {
      * @return
      * @throws SQLException
      */
-    public static void pasarUsuario(int id) {
+    
+    
+    
+    public static void pasarUsuario(int id, Connection con) {
         String s = "{CALL definirIdUsuario(?)}";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
+        try {
             PreparedStatement ps = con.prepareStatement(s);
             ps.setInt(1, id);
             ps.execute();
@@ -73,7 +76,7 @@ public class UsuarioDAO {
 
     public static Usuario comprobarUsuario(String email, String contraseña) throws SQLException {
         Usuario usuario = null;
-        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol FROM usuario WHERE email = ?";
+        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol,id_usuario FROM usuario WHERE email = ?";
 
         try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
 
@@ -87,6 +90,7 @@ public class UsuarioDAO {
                         usuario.setApellidos(rs.getString(2));
                         usuario.setEmail(rs.getString(3));
                         usuario.setContraseña(rs.getString(4));
+                        usuario.setId(rs.getInt(7));
                     } else {
                         //USUARIO INACTIVO
                     }
