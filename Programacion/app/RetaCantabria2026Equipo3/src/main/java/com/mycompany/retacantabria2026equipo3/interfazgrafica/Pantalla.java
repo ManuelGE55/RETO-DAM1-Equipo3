@@ -66,6 +66,8 @@ public class Pantalla extends javax.swing.JFrame {
         this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
         rellenarComboBoxEstado();
         rellenarComboBoxCambiarEstado(ComboBoxCambiarEstado);
+        rellenarComboBoxCambiarEstado(comboEstado);
+        rellenarComboBoxCategoria(comboCategoria);
     }
 
     /**
@@ -911,6 +913,19 @@ public class Pantalla extends javax.swing.JFrame {
 
         box.setModel(modelo);
     }
+    
+    private void rellenarComboBoxCategoria(JComboBox<String> box) {
+
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+
+        modelo.addElement("HARDWARE");
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
+
+        box.setModel(modelo);
+    }
+    
 
     private void rellenarComboBoxCategoria() {
 
