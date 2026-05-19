@@ -508,7 +508,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         comboBoxLocalizacionInsertarMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel11.setText("jLabel11");
+        jLabel11.setText("Nombre:");
 
         jLabel12.setText("Descripcion");
 
@@ -518,7 +518,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         jLabel15.setText("Localizacion:");
 
-        botonInsertar1.setText("jButton1");
+        botonInsertar1.setText("Añadir");
         botonInsertar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonInsertar1ActionPerformed(evt);
