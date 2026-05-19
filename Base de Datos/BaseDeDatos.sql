@@ -26,6 +26,14 @@ CREATE TABLE IF NOT EXISTS ubicacion(
     descripcion VARCHAR(50),
     PRIMARY KEY(id_ubicacion)
 );
+
+CREATE TABLE IF NOT EXISTS datos_material(
+	nombre VARCHAR(30) PRIMARY KEY,
+    cantidad INT,
+    stock_minimo INT,
+    categoria ENUM("Hardware","Herramienta","Fungible","Cuaderno")
+);
+
 CREATE TABLE IF NOT EXISTS material(
 	id_material INT AUTO_INCREMENT,
     nombre VARCHAR(30),
@@ -33,15 +41,8 @@ CREATE TABLE IF NOT EXISTS material(
     estado ENUM("Disponible","Prestado","En reparación","Retirado"),
     id_ubicacion INT,
     PRIMARY KEY(id_material),
-    FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id_ubicacion)
-);
-
-CREATE TABLE IF NOT EXISTS datos_material(
-	nombre VARCHAR(30) PRIMARY KEY,
-    cantidad INT,
-    stock_minimo INT,
-    categoria ENUM("Hardware","Herramienta","Fungible","Cuaderno"),
-    FOREIGN KEY (nombre) REFERENCES material(nombre)
+    FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id_ubicacion),
+    FOREIGN KEY (nombre) REFERENCES datos_material(nombre)
 );
 
 CREATE TABLE IF NOT EXISTS alerta_stock (
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 	nombre VARCHAR(20),
 	apellidos VARCHAR(30),
 	email VARCHAR(30) UNIQUE,
-	contrasena VARCHAR(20),
+	contraseña VARCHAR(20),
 	rol ENUM ("profesor", "administrador"),
 	activo BOOLEAN,
 	fecha_creacion DATE
@@ -196,6 +197,26 @@ INSERT INTO ubicacion VALUES
     (301802,NULL,2018,301802,"Cajon C01802")
 ;
 
+INSERT INTO datos_material VALUES
+	("Manual",3,1,"Cuaderno"),
+    
+    ("Libro DAM",8,3,"Cuaderno"),
+    
+    ("Teclado USB",2,1,"Hardware"),
+    
+    ("Pistola de silicona",1,1,"Herramienta"),
+    
+    ("Mascara",1,1,"Herramienta"),
+    
+    ("Portatil",1,1,"Hardware"),
+    
+    ("Tinta",1,1,"Fungible"),
+    
+    ("Tornillos",3,2,"Fungible"),
+    
+    ("Cable ethernet",1,1,"Hardware")
+;
+
 INSERT INTO material VALUES
 	
     -- ¡¡LEER ESTO!!
@@ -241,26 +262,6 @@ INSERT INTO material VALUES
     (21,"Cable ethernet","Cable ethernet de 1 metro","Disponible",301603)
 ;
 
-INSERT INTO datos_material VALUES
-	("Manual",3,1,"Cuaderno"),
-    
-    ("Libro DAM",8,3,"Cuaderno"),
-    
-    ("Teclado USB",2,1,"Hardware"),
-    
-    ("Pistola de silicona",1,1,"Herramienta"),
-    
-    ("Mascara",1,1,"Herramienta"),
-    
-    ("Portatil",1,1,"Hardware"),
-    
-    ("Tinta",1,1,"Fungible"),
-    
-    ("Tornillos",3,2,"Fungible"),
-    
-    ("Cable ethernet",1,1,"Hardware")
-;
-
 INSERT INTO usuario VALUES
 	(1,"Roberto","Macho Gonzalez","robermach@gmail.com",1234,"profesor",true,"2026-04-28"),
     (2,"Pedro","Sanchez","pedrosanxe@gmail.com",4321,"profesor",true,"2018-10-15"),
@@ -303,25 +304,15 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE actualizarCantidad() -- FUNCIONA
-MODIFIES SQL DATA
+CREATE TRIGGER actualizarCantidad -- FUNCIONA
+AFTER INSERT ON material
+FOR EACH ROW
 BEGIN
-	DECLARE contador INT;
     DECLARE newCantidad INT;
-    DECLARE nombreMat VARCHAR(30);
-    SET contador=1;
-    SET @modo_actualizacion = TRUE;
-    REPEAT 
-		-- Seleccionar nombre de material
-        SELECT nombre INTO nombreMat FROM material WHERE id_material=contador;
 		-- Contar cuantos materiales hay con el mismo nombre
-        SELECT count(*) INTO newCantidad FROM material WHERE nombre=nombreMat;
+        SELECT count(*) INTO newCantidad FROM material WHERE nombre=new.nombre;
 	 	-- Actualizar campo "cantidad" de esos materiales con el resultado obtenido
-        UPDATE datos_material SET cantidad=newCantidad WHERE nombre=nombreMat;
-        SET contador=contador+1;
-    UNTIL contador=(SELECT count(*) FROM material)
-    END REPEAT;
-    SET @modo_actualizacion = FALSE;
+        UPDATE datos_material SET cantidad=newCantidad WHERE nombre=new.nombre;
 END //
 
 DELIMITER ;
@@ -350,11 +341,6 @@ BEGIN
 	SET observaciones = 'Se ha modificado : ';
     
 	IF @modo_actualizacion = FALSE THEN
-		IF NEW.nombre!=OLD.nombre THEN SET observaciones = concat(observaciones,'nombre ');END IF;
-		IF NEW.descripcion!=OLD.descripcion THEN SET observaciones = concat(observaciones,'descripcion ');END IF;
-		IF NEW.stock_minimo!=OLD.stock_minimo THEN SET observaciones = concat(observaciones,'stock_minimo ');END IF;
-		IF NEW.categoria!=OLD.categoria THEN SET observaciones = concat(observaciones,'categoria ');END IF;
-		IF NEW.estado!=OLD.estado THEN SET observaciones = concat(observaciones,'estado ');END IF;
 		IF NEW.id_ubicacion!=OLD.id_ubicacion THEN SET observaciones = concat(observaciones,'id_ubicacion ');END IF;
     
 		INSERT INTO movimiento(id_usuario,id_material,fecha,observacion)
@@ -370,7 +356,7 @@ DELIMITER ;
 DELIMITER //
 
 CREATE TRIGGER trg_alerta_stock
-AFTER DELETE ON material
+AFTER DELETE ON datos_material
 FOR EACH ROW
 BEGIN
 	DECLARE mensajes VARCHAR(60);
