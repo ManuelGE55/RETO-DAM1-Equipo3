@@ -50,7 +50,7 @@ public class MaterialDAO {
         }
         return resultado;
     }
-
+    
     public static boolean existeId(int id) {
         // Variables
         boolean resultado = true;
