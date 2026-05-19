@@ -36,14 +36,14 @@ CREATE TABLE IF NOT EXISTS datos_material(
 	nombre VARCHAR(30) PRIMARY KEY,
     cantidad INT,
     stock_minimo INT,
-    categoria ENUM("Hardware","Herramienta","Fungible","Cuaderno")
+    categoria ENUM("HARDWARE","HERRAMIENTA","FUNGIBLE","CUADERNO")
 );
 
 CREATE TABLE IF NOT EXISTS material(
 	id_material INT AUTO_INCREMENT,
     nombre VARCHAR(30),
     descripcion VARCHAR(60),
-    estado ENUM("Disponible","Prestado","En reparación","Retirado"),
+    estado ENUM("DISPONIBLE","PRESTADO","EN_REPARACION","RETIRADO"),
     id_ubicacion INT,
     PRIMARY KEY(id_material),
     FOREIGN KEY (id_ubicacion) REFERENCES ubicacion(id_ubicacion),
@@ -206,56 +206,56 @@ INSERT INTO ubicacion VALUES
 
 INSERT INTO datos_material VALUES	-- ESTO MEJOR HACERLO CON UN PROCEDIMIENTO QUE SE EJECUTE AL FINAL DE LA BASE, Y CON UN TRIGGER
 
-	("Manual",3,1,"Cuaderno"),
+	("Manual",3,1,"CUADERNO"),
     
-    ("Libro DAM",8,3,"Cuaderno"),
+    ("Libro DAM",8,3,"CUADERNO"),
     
-    ("Teclado USB",2,1,"Hardware"),
+    ("Teclado USB",2,1,"HARDWARE"),
     
-    ("Pistola de silicona",1,1,"Herramienta"),
+    ("Pistola de silicona",1,1,"HERRAMIENTA"),
     
-    ("Mascara",1,1,"Herramienta"),
+    ("Mascara",1,1,"HERRAMIENTA"),
     
-    ("Portatil",1,1,"Hardware"),
+    ("Portatil",1,1,"HARDWARE"),
     
-    ("Tinta",1,1,"Fungible"),
+    ("Tinta",1,1,"FUNGIBLE"),
     
-    ("Tornillos",3,2,"Fungible"),
+    ("Tornillos",3,2,"FUNGIBLE"),
     
-    ("Cable ethernet",1,1,"Hardware")
+    ("Cable ethernet",1,1,"HARDWARE")
 ;
 
 INSERT INTO material VALUES
 
-    (1,"Manual","Manual de Word 2007","Disponible",2001),
-    (2,"Manual","Manual de Word 2007","Disponible",2001),
-    (3,"Manual","Manual de Word 2007","Disponible",2001),
+    (1,"Manual","Manual de Word 2007","DISPONIBLE",2001),
+    (2,"Manual","Manual de Word 2007","DISPONIBLE",2001),
+    (3,"Manual","Manual de Word 2007","DISPONIBLE",2001),
     
-    (4,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (5,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (6,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (7,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (8,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (9,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (10,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
-    (11,"Libro DAM","Libro de texto 1ºDAM 2015","Disponible",2003),
+    (4,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (5,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (6,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (7,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (8,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (9,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (10,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
+    (11,"Libro DAM","Libro de texto 1ºDAM 2015","DISPONIBLE",2003),
     
-    (12,"Teclado USB","Teclado con conexión USB","Disponible",300901),
-    (13,"Teclado USB","Teclado con conexión USB", "Disponible",300901),
+    (12,"Teclado USB","Teclado con conexión USB","DISPONIBLE",300901),
+    (13,"Teclado USB","Teclado con conexión USB", "DISPONIBLE",300901),
     
-    (14,"Pistola de silicona","Pistola de silicona","Disponible",301604),
+    (14,"Pistola de silicona","Pistola de silicona","DISPONIBLE",301604),
     
-    (15,"Mascara","Proteccion para los ojos","Disponible",301601),
+    (15,"Mascara","Proteccion para los ojos","DISPONIBLE",301601),
     
-    (16,"Portatil","Portatil","Disponible",2012),
+    (16,"Portatil","Portatil","DISPONIBLE",2012),
     
-    (17,"Tinta","Tinta para la impresora","Disponible",2202),
+    (17,"Tinta","Tinta para la impresora","DISPONIBLE",2202),
     
-    (18,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
-    (19,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
-    (20,"Tornillos","Caja de tornillos pequeños","Disponible",2201),
+    (18,"Tornillos","Caja de tornillos pequeños","DISPONIBLE",2201),
+    (19,"Tornillos","Caja de tornillos pequeños","DISPONIBLE",2201),
+    (20,"Tornillos","Caja de tornillos pequeños","DISPONIBLE",2201),
     
-    (21,"Cable ethernet","Cable ethernet de 1 metro","Disponible",301603)
+    (21,"Cable ethernet","Cable ethernet de 1 metro","DISPONIBLE",301603)
 ;
 
 INSERT INTO usuario VALUES
