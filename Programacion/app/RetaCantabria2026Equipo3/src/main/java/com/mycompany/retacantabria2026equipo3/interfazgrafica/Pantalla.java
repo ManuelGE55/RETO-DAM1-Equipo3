@@ -26,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -64,7 +65,7 @@ public class Pantalla extends javax.swing.JFrame {
         Image resolucionImagenIntro = imgImagenIntro.getScaledInstance(ImagenIntro.getWidth(), ImagenIntro.getHeight(), Image.SCALE_SMOOTH);
         this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
         rellenarComboBoxEstado();
-        rellenarComboBoxCambiarEstado();
+        rellenarComboBoxCambiarEstado(ComboBoxCambiarEstado);
     }
 
     /**
@@ -725,10 +726,11 @@ public class Pantalla extends javax.swing.JFrame {
     private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
-        this.setSize(570, 700);
+        this.setSize(570, 600);
         CampoTextoDescripcion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         CampoTextoCambiarUbicacion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
         comboLocalizacion.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+        jMenuBar2.setVisible(false);
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
@@ -745,7 +747,7 @@ public class Pantalla extends javax.swing.JFrame {
                     modificarMaterial.setVisible(true);
                     añadirMaterial.setVisible(true);
                 }
-                this.setSize(1350, 550);
+                this.setSize(1370, 550);
                 jPanel2.setVisible(true);
                 jMenuBar2.setVisible(true);
                 rellenarComboBoxEstado();
@@ -776,9 +778,10 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
-        this.setSize(1350, 550);
+        this.setSize(1370, 550);
         jPanel2.setVisible(true);
         jPanel3.setVisible(false);
+        jMenuBar2.setVisible(true);
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
 
     private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
@@ -789,15 +792,18 @@ public class Pantalla extends javax.swing.JFrame {
             id = obj.getId();
         }
         try {
+            UsuarioDAO.pasarUsuario(id);
             int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripcion.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
-                this.setSize(1350, 550);
+                this.setSize(1370, 550);
                 jPanel2.setVisible(true);
                 jPanel3.setVisible(false);
                 inventario.setMateriales(InventarioDAO.cargarInventario());
                 rellenarTablaMateriales();
+                jMenuBar2.setVisible(true);
+                JOptionPane.showMessageDialog(this, "Material modificado correctamente");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
@@ -895,7 +901,7 @@ public class Pantalla extends javax.swing.JFrame {
         comboEstado.setModel(modelo);
     }
 
-    private void rellenarComboBoxCambiarEstado() {
+    private void rellenarComboBoxCambiarEstado(JComboBox<String> box) {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
@@ -904,7 +910,7 @@ public class Pantalla extends javax.swing.JFrame {
         modelo.addElement("EN_REPARACION");
         modelo.addElement("RETIRADO");
 
-        ComboBoxCambiarEstado.setModel(modelo);
+        box.setModel(modelo);
     }
 
     private void rellenarComboBoxCategoria() {
