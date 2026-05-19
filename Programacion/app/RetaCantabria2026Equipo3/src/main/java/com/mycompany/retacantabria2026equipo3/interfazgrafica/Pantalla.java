@@ -715,13 +715,14 @@ public class Pantalla extends javax.swing.JFrame {
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
 
         try {
-            String email = Usuario.getText();
-            String contraseña = new String(Contraseña.getPassword());
-            usuario = UsuarioDAO.comprobarUsuario(email.toLowerCase(), contraseña);
+            usuario = UsuarioDAO.comprobarUsuario(Usuario.getText().toLowerCase(),String.copyValueOf(Contraseña.getPassword()));
 
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
                     modificarMaterial.setVisible(false);
+                }
+                else{
+                    modificarMaterial.setVisible(true);
                 }
                 this.setSize(1350, 550);
                 jPanel2.setVisible(true);
