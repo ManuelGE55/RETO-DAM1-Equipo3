@@ -23,42 +23,47 @@ public class MaterialDAO {
     //==========================================================================
     //ActucalizarEstado
     //Permite actualizar el estado de un material
-    public static int ActualizarEstado(String descr, String est, int ubi, int id) {
+    public static int ActualizarEstado(String descr, String est, int ubi, int id) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
-        String s = "UPDATE material SET descripción = ? , estado = ?, id_ubicacion = ?  WHERE id_material = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
-            if (existeId(id) && UbicacionDAO.existeId(id)) {
-                System.out.println(existeId(id));
-                System.out.println(UbicacionDAO.existeId(id));
+        String s = "UPDATE material SET descripcion = ? , estado = ?, id_ubicacion = ?  WHERE id_material = ?";
+        Connection con = AccesoBaseDatos.getInstance().getConn();
+        try {
+            boolean uno = existeId(id);
+            boolean dos = UbicacionDAO.existeId(ubi);
+            System.out.println(uno);
+            System.out.println(dos);
+            if (uno && dos) {
                 ps = con.prepareStatement(s);
-                ps.setString(1,descr);
+                ps.setString(1, descr);
                 ps.setString(2, est);
-                ps.setInt(3,ubi);
-                ps.setInt(4,id);
-                
+                ps.setInt(3, ubi);
+                ps.setInt(4, id);
+
                 int valor = ps.executeUpdate();
                 if (valor == 0) {
                     resultado = -1;
                 } else {
                     resultado = 0;
                 }
+                if (ps != null) ps.close();
             }
-            
+
         } catch (SQLException ex) {
-            System.out.println("no se pudo actualizar");;
+            ex.printStackTrace();
         }
         return resultado;
     }
-    
-    public static boolean existeId(int id) {
+
+    public static boolean existeId(int id) throws SQLException {
         // Variables
         boolean resultado = true;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         String s = "SELECT * FROM material WHERE id_material = ?";
-        try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+        Connection con = AccesoBaseDatos.getInstance().getConn();
+        try {
             // Preparamos la sentencia con los datos del vehiculo
             ps = con.prepareStatement(s);
             ps.setInt(1, id);
@@ -66,6 +71,7 @@ public class MaterialDAO {
             rs = ps.executeQuery();
             // Si la sentencia se ejecuta correctamente, devolvemos true
             resultado = rs.next();
+            if (ps != null) ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(MaterialDAO.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -73,7 +79,7 @@ public class MaterialDAO {
 
         return resultado;
     }
-    
+
     public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
 
         String sql = """

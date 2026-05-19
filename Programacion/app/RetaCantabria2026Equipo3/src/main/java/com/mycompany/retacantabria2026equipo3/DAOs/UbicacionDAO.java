@@ -17,14 +17,15 @@ import java.util.logging.Logger;
  */
 public class UbicacionDAO {
     
-    public static boolean existeId(int id) {        
+    public static boolean existeId(int id) throws SQLException {        
         // Variables
         boolean resultado = true;
         PreparedStatement  ps = null;
         ResultSet rs = null;
         
         String s = "SELECT * FROM ubicacion WHERE id_ubicacion = ?";
-            try (Connection con = AccesoBaseDatos.getInstance().getConn()){
+        Connection con = AccesoBaseDatos.getInstance().getConn();
+            try{
                 // Preparamos la sentencia con los datos del vehiculo
                 ps = con.prepareStatement(s);               
                 ps.setInt(1, id);
@@ -32,6 +33,7 @@ public class UbicacionDAO {
                 rs = ps.executeQuery();
                 // Si la sentencia se ejecuta correctamente, devolvemos true
                 resultado = rs.next();
+                if (ps != null) ps.close();
             } catch (SQLException ex) {
                 Logger.getLogger(UbicacionDAO.class.getName()).
                         log(Level.SEVERE, null, ex);

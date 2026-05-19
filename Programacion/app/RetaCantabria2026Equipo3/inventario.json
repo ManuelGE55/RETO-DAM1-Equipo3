@@ -4,8 +4,8 @@
     "nombre": "Cable ethernet",
     "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B2016",
-    "cajon": "C301603",
+    "balda": "B2003",
+    "cajon": "",
     "descripcion": "Cable ethernet de 1 metro"
   },
   {
@@ -15,7 +15,7 @@
     "armario": "GENERAL",
     "balda": "B2003",
     "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
+    "descripcion": "Libro de texto 1ºDAM 2015. Tiene una esquina rota."
   },
   {
     "idMaterial": 5,
