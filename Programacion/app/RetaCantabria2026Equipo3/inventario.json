@@ -4,8 +4,8 @@
     "nombre": "Cable ethernet",
     "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B2003",
-    "cajon": "",
+    "balda": "B016",
+    "cajon": "C01603",
     "descripcion": "Cable ethernet de 1 metro"
   },
   {
@@ -13,16 +13,16 @@
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015. Tiene una esquina rota."
+    "descripcion": "Libro de texto 1ºDAM 2015"
   },
   {
     "idMaterial": 5,
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
@@ -31,7 +31,7 @@
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
@@ -40,7 +40,7 @@
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
@@ -49,7 +49,7 @@
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
@@ -58,7 +58,7 @@
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
@@ -67,7 +67,7 @@
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
@@ -76,7 +76,7 @@
     "nombre": "Libro DAM",
     "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B2003",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
@@ -85,7 +85,7 @@
     "nombre": "Manual",
     "cantidad": 3,
     "armario": "GENERAL",
-    "balda": "B2001",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Manual de Word 2007"
   },
@@ -94,7 +94,7 @@
     "nombre": "Manual",
     "cantidad": 3,
     "armario": "GENERAL",
-    "balda": "B2001",
+    "balda": "B001",
     "cajon": "",
     "descripcion": "Manual de Word 2007"
   },
@@ -103,7 +103,7 @@
     "nombre": "Manual",
     "cantidad": 3,
     "armario": "GENERAL",
-    "balda": "B2001",
+    "balda": "B001",
     "cajon": "",
     "descripcion": "Manual de Word 2007"
   },
@@ -112,8 +112,8 @@
     "nombre": "Mascara",
     "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B2016",
-    "cajon": "C301601",
+    "balda": "B016",
+    "cajon": "C01601",
     "descripcion": "Proteccion para los ojos"
   },
   {
@@ -121,8 +121,8 @@
     "nombre": "Pistola de silicona",
     "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B2016",
-    "cajon": "C301604",
+    "balda": "B016",
+    "cajon": "C01604",
     "descripcion": "Pistola de silicona"
   },
   {
@@ -130,7 +130,7 @@
     "nombre": "Portatil",
     "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B2012",
+    "balda": "B012",
     "cajon": "",
     "descripcion": "Portatil"
   },
@@ -139,8 +139,8 @@
     "nombre": "Teclado USB",
     "cantidad": 2,
     "armario": "GENERAL",
-    "balda": "B2009",
-    "cajon": "C300901",
+    "balda": "B009",
+    "cajon": "C00901",
     "descripcion": "Teclado con conexión USB"
   },
   {
@@ -148,8 +148,8 @@
     "nombre": "Teclado USB",
     "cantidad": 2,
     "armario": "GENERAL",
-    "balda": "B2009",
-    "cajon": "C300901",
+    "balda": "B009",
+    "cajon": "C00901",
     "descripcion": "Teclado con conexión USB"
   },
   {
@@ -157,7 +157,7 @@
     "nombre": "Tinta",
     "cantidad": 1,
     "armario": "A2",
-    "balda": "B2202",
+    "balda": "B202",
     "cajon": "",
     "descripcion": "Tinta para la impresora"
   },
@@ -166,7 +166,7 @@
     "nombre": "Tornillos",
     "cantidad": 3,
     "armario": "A2",
-    "balda": "B2201",
+    "balda": "B201",
     "cajon": "",
     "descripcion": "Caja de tornillos pequeños"
   },
@@ -175,7 +175,7 @@
     "nombre": "Tornillos",
     "cantidad": 3,
     "armario": "A2",
-    "balda": "B2201",
+    "balda": "B201",
     "cajon": "",
     "descripcion": "Caja de tornillos pequeños"
   },
@@ -184,7 +184,7 @@
     "nombre": "Tornillos",
     "cantidad": 3,
     "armario": "A2",
-    "balda": "B2201",
+    "balda": "B201",
     "cajon": "",
     "descripcion": "Caja de tornillos pequeños"
   }

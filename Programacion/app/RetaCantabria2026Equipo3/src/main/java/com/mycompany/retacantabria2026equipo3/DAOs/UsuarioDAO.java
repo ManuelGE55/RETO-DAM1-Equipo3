@@ -32,6 +32,20 @@ public class UsuarioDAO {
      * @return
      * @throws SQLException
      */
+    
+    
+    
+    public static void pasarUsuario(int id, Connection con) {
+        String s = "{CALL definirIdUsuario(?)}";
+        try {
+            PreparedStatement ps = con.prepareStatement(s);
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static int insertarUsuario(Usuario usuario) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
@@ -61,26 +75,26 @@ public class UsuarioDAO {
     }
 
     public static Usuario comprobarUsuario(String email, String contraseña) throws SQLException {
-        Usuario usuario=null;
-        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol FROM usuario WHERE email = ?";
-        
+        Usuario usuario = null;
+        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol,id_usuario FROM usuario WHERE email = ?";
+
         try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
 
             ps.setString(1, email);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    if(rs.getBoolean(5)){
-                        usuario = rs.getString(6).equals("profesor")? new Profesor():new Administrador();
+                    if (rs.getBoolean(5)) {
+                        usuario = rs.getString(6).equals("profesor") ? new Profesor() : new Administrador();
                         usuario.setNombre(rs.getString(1));
                         usuario.setApellidos(rs.getString(2));
                         usuario.setEmail(rs.getString(3));
                         usuario.setContraseña(rs.getString(4));
-                    }
-                    else{
+                        usuario.setId(rs.getInt(7));
+                    } else {
                         //USUARIO INACTIVO
                     }
-                    
+
                 }
             }
         } catch (SQLException ex) {
@@ -118,8 +132,6 @@ public class UsuarioDAO {
 
         return resultado;
     }
-    
-    
 
     /**
      * Borrar Usuario Permite borrar un usuario en la base de datos

@@ -316,19 +316,17 @@ TRIGGERS
 
 DELIMITER //
 CREATE TRIGGER trg_movimiento
-AFTER UPDATE ON material
+BEFORE UPDATE ON material
 FOR EACH ROW
 BEGIN
 	DECLARE observaciones VARCHAR(80);
 	SET observaciones = 'Se ha modificado : ';
-	IF @modo_actualizacion = FALSE THEN
 		IF NEW.id_ubicacion!=OLD.id_ubicacion THEN SET observaciones = concat(observaciones,'id_ubicacion ');END IF;
         IF NEW.estado!=OLD.estado THEN SET observaciones = concat(observaciones,'estado ');END IF;
         IF NEW.descripcion!=OLD.descripcion THEN SET observaciones = concat(observaciones,'descripcion ');END IF;
         IF NEW.nombre!=OLD.nombre THEN SET observaciones = concat(observaciones,'nombre ');END IF;
 		INSERT INTO movimiento(id_usuario,id_material,fecha,observacion)
 		VALUES(@id_usuario,NEW.id_material,curdate(),observaciones);
-	END IF;
 END //
 DELIMITER ;
 
