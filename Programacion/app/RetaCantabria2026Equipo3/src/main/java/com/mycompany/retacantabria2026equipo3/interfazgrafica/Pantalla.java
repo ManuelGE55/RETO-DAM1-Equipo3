@@ -10,6 +10,7 @@ import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorInformes;
 import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
+import com.mycompany.retacantabria2026equipo3.exceptions.DatosNoAsignadosException;
 import com.mycompany.retacantabria2026equipo3.json.GeneradorJSONInventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
@@ -56,6 +57,7 @@ public class Pantalla extends javax.swing.JFrame {
         BotonEntrar.setVisible(true);
         BotonSalir.setVisible(true);
         Loggin.setVisible(false);
+        panelRegistrarUsuario.setVisible(false);
         ImagenIntro.setVisible(true);
         panelInsertarComponente.setVisible(false);
         this.setSize(790, 520);
@@ -66,6 +68,9 @@ public class Pantalla extends javax.swing.JFrame {
         this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
         rellenarComboBoxEstado();
         rellenarComboBoxCambiarEstado(ComboBoxCambiarEstado);
+        // rellena la combobox del panel de registrar usuario
+        ComboBoxUsuarioRol.addItem("PROFESOR");
+        ComboBoxUsuarioRol.addItem("ADMINISTRADOR");
     }
 
     /**
@@ -110,6 +115,7 @@ public class Pantalla extends javax.swing.JFrame {
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         añadirMaterial = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
@@ -134,6 +140,14 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         botonInsertar1 = new javax.swing.JButton();
         botonCancelarInsertarMaterial1 = new javax.swing.JButton();
+        panelRegistrarUsuario = new javax.swing.JPanel();
+        CampoUsuarioNombre = new javax.swing.JTextField();
+        CampoUsuarioApellidos = new javax.swing.JTextField();
+        CampoUsuarioEmail = new javax.swing.JTextField();
+        CampoUsuarioContrasena = new javax.swing.JPasswordField();
+        ComboBoxUsuarioRol = new javax.swing.JComboBox<>();
+        BotonSalirRegistrarUsuario = new javax.swing.JButton();
+        BotonRegistrarUsuario = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         exportarCSV = new javax.swing.JMenu();
@@ -360,6 +374,13 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -367,7 +388,9 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botonSalir)
-                .addGap(18, 18, 18)
+                .addGap(73, 73, 73)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +407,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(añadirMaterial)
                         .addGap(37, 37, 37)
                         .addComponent(modificarMaterial)
@@ -408,22 +431,24 @@ public class Pantalla extends javax.swing.JFrame {
                             .addComponent(botonSalir)
                             .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(1, 1, 1)
-                                .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(1, 1, 1)
-                                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(imprimirInforme)
                             .addComponent(modificarMaterial)
-                            .addComponent(añadirMaterial))))
+                            .addComponent(añadirMaterial)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(1, 1, 1)
+                                    .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(1, 1, 1)
+                                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -609,6 +634,62 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
+        ComboBoxUsuarioRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        BotonSalirRegistrarUsuario.setText("Salir");
+        BotonSalirRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirRegistrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        BotonRegistrarUsuario.setText("Registrar");
+        BotonRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonRegistrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRegistrarUsuarioLayout = new javax.swing.GroupLayout(panelRegistrarUsuario);
+        panelRegistrarUsuario.setLayout(panelRegistrarUsuarioLayout);
+        panelRegistrarUsuarioLayout.setHorizontalGroup(
+            panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CampoUsuarioNombre)
+                    .addComponent(CampoUsuarioApellidos)
+                    .addComponent(CampoUsuarioEmail)
+                    .addComponent(CampoUsuarioContrasena)
+                    .addComponent(ComboBoxUsuarioRol, 0, 116, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
+        );
+        panelRegistrarUsuarioLayout.setVerticalGroup(
+            panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addContainerGap(72, Short.MAX_VALUE)
+                .addComponent(CampoUsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(CampoUsuarioApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(CampoUsuarioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(CampoUsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(ComboBoxUsuarioRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+        );
+
         jMenu3.setText("File");
 
         exportarCSV.setText("Exportar CSV");
@@ -648,6 +729,11 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(panelInsertarComponente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 934, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(45, Short.MAX_VALUE)
+                    .addComponent(panelRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(176, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -674,6 +760,11 @@ public class Pantalla extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(panelInsertarComponente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(14, Short.MAX_VALUE)
+                    .addComponent(panelRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(23, Short.MAX_VALUE)))
         );
 
         pack();
@@ -736,14 +827,13 @@ public class Pantalla extends javax.swing.JFrame {
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
 
         try {
-            usuario = UsuarioDAO.comprobarUsuario(Usuario.getText().toLowerCase(),String.copyValueOf(Contraseña.getPassword()));
+            usuario = UsuarioDAO.comprobarUsuario(Usuario.getText().toLowerCase(), String.copyValueOf(Contraseña.getPassword()));
 
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
                     modificarMaterial.setVisible(false);
                     añadirMaterial.setVisible(false);
-                }
-                else{
+                } else {
                     modificarMaterial.setVisible(true);
                     añadirMaterial.setVisible(true);
                 }
@@ -840,6 +930,38 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_añadirMaterialActionPerformed
 
+    private void BotonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarUsuarioActionPerformed
+        Usuario usuarioRegistrar = null;
+        char[] contrasenaChars = CampoUsuarioContrasena.getPassword();
+        String contrasena = new String(contrasenaChars);
+        try {
+            if (!CampoUsuarioNombre.getText().equals("") && !CampoUsuarioApellidos.getText().equals("") && !contrasena.equals("")
+                    && ComboBoxUsuarioRol.getSelectedIndex() == -1) {
+                throw new DatosNoAsignadosException("Error: Algunos de los campos están sin asignar.");
+            }
+            if (ComboBoxUsuarioRol.getSelectedItem().equals("PROFESOR")) {
+                usuarioRegistrar = new Profesor(CampoUsuarioEmail.getText(), false, CampoUsuarioNombre.getText(), CampoUsuarioApellidos.getText(), "PROFESOR", contrasena);
+            } else if (ComboBoxUsuarioRol.getSelectedItem().equals("ADMINISTRADOR")) {
+                usuarioRegistrar = new Profesor(CampoUsuarioEmail.getText(), false, CampoUsuarioNombre.getText(), CampoUsuarioApellidos.getText(), "PROFESOR", contrasena);
+            }
+            
+            UsuarioDAO.insertarUsuario(usuarioRegistrar);
+        } catch (DatosNoAsignadosException e) {
+            JOptionPane.showMessageDialog(null, "Datos no asignados", e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en base de datos", e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_BotonRegistrarUsuarioActionPerformed
+
+    private void BotonSalirRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirRegistrarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonSalirRegistrarUsuarioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        panelRegistrarUsuario.setVisible(true);
+        jPanel2.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
@@ -933,11 +1055,18 @@ public class Pantalla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonEntrar;
     private javax.swing.JButton BotonModificarMaterial;
+    private javax.swing.JButton BotonRegistrarUsuario;
     private javax.swing.JButton BotonSalir;
     private javax.swing.JButton BotonSalirModificarMaterial;
+    private javax.swing.JButton BotonSalirRegistrarUsuario;
     private javax.swing.JTextField CampoTextoCambiarUbicacion;
     private javax.swing.JTextArea CampoTextoDescripcion;
+    private javax.swing.JTextField CampoUsuarioApellidos;
+    private javax.swing.JPasswordField CampoUsuarioContrasena;
+    private javax.swing.JTextField CampoUsuarioEmail;
+    private javax.swing.JTextField CampoUsuarioNombre;
     private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
+    private javax.swing.JComboBox<String> ComboBoxUsuarioRol;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;
     private javax.swing.JLayeredPane Loggin;
@@ -959,6 +1088,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JMenu exportarCSV;
     private javax.swing.JMenu importarCSV;
     private javax.swing.JButton imprimirInforme;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -989,6 +1119,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
     private javax.swing.JPanel panelInsertarComponente;
+    private javax.swing.JPanel panelRegistrarUsuario;
     private javax.swing.JTextField textoCantidadInsertarMaterial;
     private javax.swing.JTextArea textoDescripcionInsertarMaterial;
     private javax.swing.JTextField textoNombreInsertarComponente;
