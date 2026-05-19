@@ -107,6 +107,7 @@ La base de datos fue desarrollada en MySQL y diseñada para gestionar:
 
 - [Ver Diagrama E/R](#diagrama-er)
 - [Ver Modelo relacional](#modelo-relacional)
+- [Ver Documentación completa](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/blob/main/Base%20de%20Datos/Documentaci%C3%B3n%20Base%20de%20datos.pdf)
 
 ## Triggers implementados
 
