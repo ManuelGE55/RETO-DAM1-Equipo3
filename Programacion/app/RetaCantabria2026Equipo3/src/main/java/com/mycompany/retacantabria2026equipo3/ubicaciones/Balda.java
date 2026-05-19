@@ -9,17 +9,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Clase que representa una balda dentro del sistema de almacenamiento.
  *
- * @author DAM212
+ * Hereda de la clase abstracta de Ubicacion.
+ *
+ * @author Ciro Galán
  */
-public class Balda extends Ubicacion{
+public class Balda extends Ubicacion {
 
+    /**
+     * Constructor de la clase Balda.
+     *
+     * @param materiales
+     * @param descripcion
+     *
+     * @author Ciro Galán
+     */
     public Balda(ArrayList materiales, String descripcion) {
         super(materiales, descripcion);
     }
-  
-    
 
+    /**
+     * Devuelve la información de la balda en formato texto.
+     *
+     * @return
+     *
+     * @author Ciro Galán
+     */
     @Override
     public String toString() {
         return "Cajon{" + "descripcion=" + descripcion + '}';

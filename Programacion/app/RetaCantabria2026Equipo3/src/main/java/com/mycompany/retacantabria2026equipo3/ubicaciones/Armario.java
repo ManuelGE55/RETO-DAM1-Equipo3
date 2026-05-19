@@ -9,17 +9,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author DAM212
+ *Clase que representa un armario dentro del sistema
+ * de almacenamiento.
+ * 
+ * Hereda de la clase abstracta Ubicacion.
+ * 
+ * @author Ciro Galán
  */
 public class Armario extends Ubicacion {
-
+    /**
+     * Constructor de la clase Armario.
+     * 
+     * @param materiales
+     * @param descripcion 
+     * 
+     * @author Ciro Galán
+     */
     public Armario(ArrayList materiales, String descripcion) {
         super(materiales, descripcion);
     }
     
      
-
+    /**
+     * Devuelva la información del armario en formato texto.
+     * 
+     * @return 
+     * 
+     * @author Ciro Galán
+     */
     @Override
     public String toString() {
         return "Cajon{" + "descripcion=" + descripcion + '}';
