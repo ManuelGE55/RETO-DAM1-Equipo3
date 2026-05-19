@@ -101,7 +101,7 @@ public class Pantalla extends javax.swing.JFrame {
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        CampoTextoCambiarCantidad = new javax.swing.JTextField();
+        CampoTextoDescripcion = new javax.swing.JTextField();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
         CampoTextoCambiarUbicacion = new javax.swing.JTextField();
@@ -334,9 +334,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        CampoTextoCambiarCantidad.addActionListener(new java.awt.event.ActionListener() {
+        CampoTextoDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoTextoCambiarCantidadActionPerformed(evt);
+                CampoTextoDescripcionActionPerformed(evt);
             }
         });
 
@@ -360,13 +360,13 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Nueva cantidad:");
+        jLabel7.setText("Descripción:");
 
         jLabel8.setText("Nuevo estado:");
 
         jLabel9.setText("Nueva ubicación:");
 
-        ComboBoxCambiarEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxCambiarEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Prestado", "En reparación", "Retirado" }));
         ComboBoxCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxCambiarEstadoActionPerformed(evt);
@@ -382,13 +382,13 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(BotonSalirModificarMaterial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                         .addComponent(BotonModificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                        .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CampoTextoDescripcion))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,13 +405,13 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CampoTextoCambiarCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addComponent(CampoTextoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(ComboBoxCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(127, 127, 127)
+                .addGap(56, 56, 56)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CampoTextoCambiarUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -531,7 +531,7 @@ public class Pantalla extends javax.swing.JFrame {
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
         this.setSize(570, 700);
-        CampoTextoDescripción.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        CampoTextoDescripcion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         CampoTextoCambiarUbicacion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
         comboLocalizacion.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
     }//GEN-LAST:event_modificarMaterialActionPerformed
@@ -578,9 +578,9 @@ public class Pantalla extends javax.swing.JFrame {
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
-    private void CampoTextoDescripciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoDescripciónActionPerformed
+    private void CampoTextoDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoDescripcionActionPerformed
 
-    }//GEN-LAST:event_CampoTextoDescripciónActionPerformed
+    }//GEN-LAST:event_CampoTextoDescripcionActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
         this.setSize(1350, 550);
@@ -596,7 +596,7 @@ public class Pantalla extends javax.swing.JFrame {
             id = obj.getId();
         }
         try {
-            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripción.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
+            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripcion.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
@@ -718,8 +718,8 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton BotonModificarMaterial;
     private javax.swing.JButton BotonSalir;
     private javax.swing.JButton BotonSalirModificarMaterial;
-    private javax.swing.JTextField CampoTextoCambiarCantidad;
     private javax.swing.JTextField CampoTextoCambiarUbicacion;
+    private javax.swing.JTextField CampoTextoDescripcion;
     private javax.swing.JComboBox<String> ComboBoxCambiarEstado;
     private javax.swing.JPasswordField Contraseña;
     private javax.swing.JLabel ImagenIntro;
