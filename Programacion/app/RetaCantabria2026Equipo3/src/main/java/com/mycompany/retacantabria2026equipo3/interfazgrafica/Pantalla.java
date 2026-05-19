@@ -21,6 +21,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -479,8 +481,8 @@ public class Pantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        nombreMaterial.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-        comboEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 6).toString());
+        nombreMaterial.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        comboEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void comboEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstadoMouseClicked
@@ -527,6 +529,8 @@ public class Pantalla extends javax.swing.JFrame {
         this.jPanel3.setVisible(true);
         this.setSize(570, 700);
         CampoTextoDescripción.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        CampoTextoCambiarUbicacion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+        comboLocalizacion.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
@@ -571,7 +575,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
     private void CampoTextoDescripciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoDescripciónActionPerformed
-        
+
     }//GEN-LAST:event_CampoTextoDescripciónActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
@@ -581,7 +585,17 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
 
     private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
-        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
+        int id = 0;
+        if (fila != -1) {
+            Material obj = inventario.getMateriales().get(fila);   // lista que usaste para cargar la tabla
+            id = obj.getId();
+        }
+        try {
+            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripción.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
+        } catch (SQLException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BotonModificarMaterialActionPerformed
 
     private void CampoTextoCambiarUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoCambiarUbicacionActionPerformed
