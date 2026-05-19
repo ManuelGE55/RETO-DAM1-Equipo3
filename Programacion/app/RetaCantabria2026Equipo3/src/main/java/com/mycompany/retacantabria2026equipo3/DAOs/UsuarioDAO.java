@@ -118,6 +118,8 @@ public class UsuarioDAO {
 
         return resultado;
     }
+    
+    
 
     /**
      * Borrar Usuario Permite borrar un usuario en la base de datos

@@ -592,7 +592,8 @@ public class Pantalla extends javax.swing.JFrame {
             id = obj.getId();
         }
         try {
-            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripción.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
+            
+            MaterialDAO.ActualizarEstado(CampoTextoDescripción.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id);
         } catch (SQLException ex) {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
         }
