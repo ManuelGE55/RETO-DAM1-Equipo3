@@ -14,6 +14,7 @@ public abstract class Usuario {
     
     protected String nombre,apellidos,email,contraseña;
     protected Rol rol;
+    protected int id;
 
     public Usuario() {
     }
@@ -64,6 +65,14 @@ public abstract class Usuario {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+    
+    public void setId(int id){
+        this.id=id;
+    }
+    
+    public int getId(){
+        return id;
     }
     
     @Override
