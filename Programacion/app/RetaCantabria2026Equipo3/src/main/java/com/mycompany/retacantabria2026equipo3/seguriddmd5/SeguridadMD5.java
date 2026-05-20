@@ -7,13 +7,28 @@ package com.mycompany.retacantabria2026equipo3.seguriddmd5;
 import java.security.MessageDigest;
 
 /**
+ * Clase encargada de generar hashes MD5 para el almacenamiento seguro de
+ * contraseñas.
  *
- * @author DAM127
+ * Permite convertir un texto plano en una cadena cifrada mediante el algoritmo
+ * MD5.
+ *
+ * @author Saúl Valdunciel
  */
 public class SeguridadMD5 {
 
     public static String generarMD5(String texto) {
-
+        /**
+         * Genera el hash MD5 de un texto.
+         *
+         * El método transforma una cadena de texto en su representación cifrada
+         * utilizando el algoritmo MD5.
+         *
+         * @param texto
+         * @return
+         *
+         * @author Saúl Valdunciel
+         */
         try {
 
             MessageDigest md = MessageDigest.getInstance("MD5");

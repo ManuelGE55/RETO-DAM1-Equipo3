@@ -89,6 +89,12 @@ public class Pantalla extends javax.swing.JFrame {
 
         jOptionPane1 = new javax.swing.JOptionPane();
         jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
+        jLabel10 = new javax.swing.JLabel();
+        botonAñadirInsertarTipoMaterial = new javax.swing.JButton();
+        botonSalirInsertarTipoMaterial = new javax.swing.JButton();
+        textoStockMinimo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JPasswordField();
@@ -166,11 +172,68 @@ public class Pantalla extends javax.swing.JFrame {
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 165, Short.MAX_VALUE)
+        );
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel10.setText("NUEVO MATERIAL:");
+
+        botonAñadirInsertarTipoMaterial.setText("Añadir");
+        botonAñadirInsertarTipoMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirInsertarTipoMaterialActionPerformed(evt);
+            }
+        });
+
+        botonSalirInsertarTipoMaterial.setText("Salir");
+        botonSalirInsertarTipoMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirInsertarTipoMaterialActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Stock minimo:");
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDialog2Layout.createSequentialGroup()
+                        .addComponent(botonSalirInsertarTipoMaterial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonAñadirInsertarTipoMaterial))
+                    .addGroup(jDialog2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addComponent(textoStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(47, 47, 47))
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(textoStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonSalirInsertarTipoMaterial)
+                    .addComponent(botonAñadirInsertarTipoMaterial))
+                .addGap(23, 23, 23))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -436,75 +499,59 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1417, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(328, 328, 328)
+                .addComponent(jLabel2)
+                .addGap(120, 120, 120)
+                .addComponent(jLabel3)
+                .addGap(78, 78, 78)
+                .addComponent(jLabel4))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(botonSalir)
                 .addGap(27, 27, 27)
                 .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonGestionUsuarios)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonMapa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(añadirMaterial)
-                        .addGap(37, 37, 37)
-                        .addComponent(modificarMaterial)))
+                .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonGestionUsuarios)
+                .addGap(26, 26, 26)
+                .addComponent(botonMapa)
+                .addGap(38, 38, 38)
+                .addComponent(añadirMaterial)
+                .addGap(37, 37, 37)
+                .addComponent(modificarMaterial)
                 .addGap(31, 31, 31)
-                .addComponent(imprimirInforme)
-                .addContainerGap())
-            .addComponent(jScrollPane1)
+                .addComponent(imprimirInforme))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(1, 1, 1)
-                                    .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(modificarMaterial)
-                                    .addComponent(añadirMaterial)
-                                    .addComponent(imprimirInforme)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(1, 1, 1)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(botonGestionUsuarios)
-                                        .addComponent(botonMapa)))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(1, 1, 1)
-                                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(añadirMaterial)
+                    .addComponent(modificarMaterial)
+                    .addComponent(imprimirInforme)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(botonSalir)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonSalir)
+                            .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonGestionUsuarios)
+                            .addComponent(botonMapa)))))
         );
 
         BotonSalirModificarMaterial.setText("Salir");
@@ -894,7 +941,7 @@ public class Pantalla extends javax.swing.JFrame {
                     modificarMaterial.setVisible(true);
                     añadirMaterial.setVisible(true);
                 }
-                this.setSize(1390, 550);
+                this.setSize(1500, 550);
                 jPanel2.setVisible(true);
                 jMenuBar2.setVisible(true);
                 rellenarComboBoxEstado();
@@ -926,7 +973,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
-        this.setSize(1390, 550);
+        this.setSize(1500, 550);
         jPanel2.setVisible(true);
         jPanel3.setVisible(false);
         jMenuBar2.setVisible(true);
@@ -944,7 +991,7 @@ public class Pantalla extends javax.swing.JFrame {
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
-                this.setSize(1390, 550);
+                this.setSize(1500, 550);
                 jPanel2.setVisible(true);
                 jPanel3.setVisible(false);
                 inventario.setMateriales(InventarioDAO.cargarInventario());
@@ -972,7 +1019,8 @@ public class Pantalla extends javax.swing.JFrame {
 
                     MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
                 } else {
-                    MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()));
+                    jDialog2.setSize(400,300);
+                   jDialog2.setVisible(true);
                 }
                 jPanel2.setVisible(true);
                 rellenarTablaMateriales();
@@ -1080,6 +1128,18 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error de DriverConexion", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonMapaActionPerformed
+
+    private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
+       MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()),Integer.parseInt(textoStockMinimo.getText()));
+       jDialog2.setVisible(false);
+       panelInsertarComponente.setVisible(false);
+    }//GEN-LAST:event_botonAñadirInsertarTipoMaterialActionPerformed
+
+    private void botonSalirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirInsertarTipoMaterialActionPerformed
+       jDialog2.setVisible(false);
+       panelInsertarComponente.setVisible(false);
+       jPanel2.setVisible(true);
+    }//GEN-LAST:event_botonSalirInsertarTipoMaterialActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas
@@ -1420,12 +1480,14 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLayeredPane Loggin;
     private javax.swing.JTextField Usuario;
     private javax.swing.JButton añadirMaterial;
+    private javax.swing.JButton botonAñadirInsertarTipoMaterial;
     private javax.swing.JButton botonCancelarInsertarMaterial1;
     private javax.swing.JButton botonGestionUsuarios;
     private javax.swing.JButton botonInsertar1;
     private javax.swing.JButton botonMapa;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JButton botonSalirInsertarTipoMaterial;
     private javax.swing.JComboBox<String> comboBoxCambiarUbicacion;
     private javax.swing.JComboBox<String> comboBoxCategoriaInsertarMaterial;
     private javax.swing.JComboBox<String> comboBoxEstadoInsertarMaterial;
@@ -1437,7 +1499,9 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JMenu importarCSV;
     private javax.swing.JButton imprimirInforme;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1453,6 +1517,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1473,6 +1538,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JPanel panelRegistrarUsuario;
     private javax.swing.JTextArea textoDescripcionInsertarMaterial;
     private javax.swing.JTextField textoNombreInsertarMaterial;
+    private javax.swing.JTextField textoStockMinimo;
     // End of variables declaration//GEN-END:variables
 
 }

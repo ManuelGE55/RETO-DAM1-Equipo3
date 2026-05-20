@@ -8,8 +8,39 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Clase encargada de generar el archivo JSON del inventario a partir de los
+ * datos almacenados en la base de datos.
+ *
+ * Además de generar el JSON, también se encarga de:
+ *
+ * - Obtener los materiales desde la base de datos. - Convertir los
+ * identificadores internos de armarios, baldas y cajones a un formato legible.
+ * - Escapar caracteres especiales para evitar errores JSON. - Subir
+ * automáticamente el archivo al servidor mediante SCP. - Copiar el JSON al
+ * directorio de Apache del servidor web.
+ *
+ * El archivo generado es utilizado posteriormente por la página web del
+ * inventario.
+ *
+ * @author Saúl Valdunciel
+ */
 public class GeneradorJSONInventario {
 
+    /**
+     * Genera el archivo inventario.json utilizando los materiales obtenidos
+     * desde la base de datos.
+     *
+     * El método recorre todos los materiales y construye manualmente la
+     * estructura JSON que será utilizada por la página web del proyecto.
+     *
+     * Una vez generado el archivo:
+     *
+     * - Se sube automáticamente al servidor EC2. - Se copia al directorio de
+     * Apache para su publicación.
+     *
+     * @author Saúl Valdunciel
+     */
     public void generarJSONInventario() {
 
         String rutaArchivo = "inventario.json";
@@ -62,6 +93,19 @@ public class GeneradorJSONInventario {
         subirJSONServidor();
     }
 
+    /**
+     * Convierte el identificador numérico del armario almacenado en la base de
+     * datos a un formato legible.
+     *
+     * Ejemplos:
+     *
+     * 11 -> A1 12 -> A2 0 -> GENERAL
+     *
+     * @param armarioBD
+     * @return
+     *
+     * @author Saúl Valdunciel
+     */
     private String convertirArmario(int armarioBD) {
 
         if (armarioBD == 0) {
@@ -78,6 +122,20 @@ public class GeneradorJSONInventario {
         return "A" + armarioBD;
     }
 
+    /**
+     * Convierte el identificador numérico de la balda a un formato legible para
+     * el JSON.
+     *
+     * Ejemplos:
+     *
+     * 2001 -> B001 2201 -> B201
+     *
+     * @param armarioBD
+     * @param baldaBD
+     * @return
+     *
+     * @author Saúl Valdunciel
+     */
     private String convertirBalda(int armarioBD, int baldaBD) {
 
         if (armarioBD == 0) {
@@ -97,6 +155,21 @@ public class GeneradorJSONInventario {
         return String.format("B%03d", baldaBD);
     }
 
+    /**
+     * Convierte el identificador numérico del cajón a un formato legible para
+     * el JSON.
+     *
+     * Ejemplo:
+     *
+     * 301603 -> C01603
+     *
+     * @param armarioBD
+     * @param baldaBD
+     * @param cajonBD
+     * @return
+     *
+     * @author Saúl Valdunciel
+     */
     private String convertirCajon(int armarioBD, int baldaBD, int cajonBD) {
 
         if (cajonBD == 0) {
@@ -111,6 +184,18 @@ public class GeneradorJSONInventario {
         return String.format("C%05d", cajonBD);
     }
 
+    /**
+     * Escapa caracteres especales para evitar errores de formato dentro del
+     * archivo JSON.
+     *
+     * Sustituye caracteres como barras y comillas dobles por sus equivalentes
+     * escapados.
+     *
+     * @param texto
+     * @return
+     *
+     * @author Saúl Valdunciel
+     */
     private String escaparJSON(String texto) {
 
         if (texto == null) {
@@ -121,15 +206,27 @@ public class GeneradorJSONInventario {
                 .replace("\"", "\\\"");
     }
 
+    /**
+     * Sube el archivo inventario json al servidor EC2 mediante el protocolo
+     * SCP.
+     *
+     * Una vez subido correctamente, llama automáticamente al método encargado
+     * de copiar el archivo al directorio de Apache.
+     *
+     * @author Saúl Valdunciel
+     */
     private void subirJSONServidor() {
 
         try {
 
+            String rutaPem = "Reto.pem";
+            String rutaJson = "inventario.json";
+
             ProcessBuilder pb = new ProcessBuilder(
                     "scp",
                     "-i",
-                    "D:\\Usuarios\\DAM127\\Downloads\\Reto.pem",
-                    "D:\\Usuarios\\DAM127\\Documents\\GitHub\\RETO-DAM1-Equipo3\\Programacion\\app\\RetaCantabria2026Equipo3\\inventario.json",
+                    rutaPem,
+                    rutaJson,
                     "ubuntu@52.44.197.21:/home/ubuntu/"
             );
 
@@ -156,14 +253,24 @@ public class GeneradorJSONInventario {
         }
     }
 
+    /**
+     * Copia el archivo inventario.json al directorio utilizado por Apache para
+     * servir la página web.
+     *
+     * La copia se realiza remotamente mediante SSH.
+     *
+     * @author Saúl Valdunciel
+     */
     private void copiarJSONApache() {
 
         try {
 
+            String rutaPem = "Reto.pem";
+
             ProcessBuilder pb = new ProcessBuilder(
                     "ssh",
                     "-i",
-                    "D:\\Usuarios\\DAM127\\Downloads\\Reto.pem",
+                    rutaPem,
                     "ubuntu@52.44.197.21",
                     "sudo cp /home/ubuntu/inventario.json /var/www/html/"
             );
