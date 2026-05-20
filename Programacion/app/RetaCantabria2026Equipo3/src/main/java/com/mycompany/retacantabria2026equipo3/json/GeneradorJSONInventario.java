@@ -138,6 +138,10 @@ public class GeneradorJSONInventario {
      */
     private String convertirBalda(int armarioBD, int baldaBD) {
 
+        if (baldaBD == 0) {
+            return "";
+        }
+        
         if (armarioBD == 0) {
             // GENERAL: 2001 -> B001, 2016 -> B016
             if (baldaBD >= 2000 && baldaBD < 3000) {
