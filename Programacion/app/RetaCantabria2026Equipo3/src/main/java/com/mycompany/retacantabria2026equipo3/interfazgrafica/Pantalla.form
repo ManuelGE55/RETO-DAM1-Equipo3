@@ -444,7 +444,9 @@
                           <Component id="comboLocalizacion" min="-2" pref="89" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botonGestionUsuarios" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="33" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="botonMapa" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                           <Component id="añadirMaterial" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="modificarMaterial" min="-2" max="-2" attributes="0"/>
@@ -488,6 +490,7 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="comboLocalizacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="botonGestionUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonMapa" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -644,6 +647,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGestionUsuariosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonMapa">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mapa"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMapaActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

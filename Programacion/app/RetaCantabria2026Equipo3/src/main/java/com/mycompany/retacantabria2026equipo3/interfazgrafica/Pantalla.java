@@ -124,6 +124,7 @@ public class Pantalla extends javax.swing.JFrame {
         imprimirInforme = new javax.swing.JButton();
         añadirMaterial = new javax.swing.JButton();
         botonGestionUsuarios = new javax.swing.JButton();
+        botonMapa = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
@@ -421,6 +422,13 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        botonMapa.setText("Mapa");
+        botonMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMapaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -447,7 +455,9 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonGestionUsuarios)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonMapa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(añadirMaterial)
                         .addGap(37, 37, 37)
                         .addComponent(modificarMaterial)))
@@ -482,7 +492,8 @@ public class Pantalla extends javax.swing.JFrame {
                                     .addGap(1, 1, 1)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(botonGestionUsuarios)))
+                                        .addComponent(botonGestionUsuarios)
+                                        .addComponent(botonMapa)))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addGap(1, 1, 1)
@@ -1048,6 +1059,10 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGestionUsuariosActionPerformed
 
+    private void botonMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMapaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonMapaActionPerformed
+
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
@@ -1390,6 +1405,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton botonCancelarInsertarMaterial1;
     private javax.swing.JButton botonGestionUsuarios;
     private javax.swing.JButton botonInsertar1;
+    private javax.swing.JButton botonMapa;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboBoxCambiarUbicacion;
