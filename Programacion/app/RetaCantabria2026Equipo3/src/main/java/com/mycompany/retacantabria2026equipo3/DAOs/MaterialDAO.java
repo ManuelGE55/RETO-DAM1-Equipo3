@@ -4,11 +4,14 @@
  */
 package com.mycompany.retacantabria2026equipo3.DAOs;
 
+import com.mycompany.retacantabria2026equipo3.enums.Categoria;
+import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +24,47 @@ public class MaterialDAO {
     //==========================================================================
     //ESTE DAO ESTA ASIGNADO A : NAYA
     //==========================================================================
+    public static void InsertarMaterial(String nombre,String descripcion,String estado,String IdUbicacion){
+        String sql="INSERT INTO material VALUES(?,?,?,?)";
+        try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1,nombre);
+            ps.setString(2,descripcion);
+            ps.setString(3,estado);
+            ps.setString(4,IdUbicacion);
+            int resultado = ps.executeUpdate();
+            if(resultado!=1){
+                //NO SE PUDO AÑADIR EL MATERIAL
+            }
+            else{
+                //SE AÑADIO CORRECTAMENTE
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public static void InsertarTipoMaterial(String nombre,String descripcion,Estado estado,String IdUbicacion,int cantidad,int stockMinimo,Categoria categoria){
+        String sql="INSERT INTO datos_material VALUES(?,?,?,?)";
+        try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1,nombre);
+            ps.setInt(2,cantidad);
+            ps.setInt(3,stockMinimo);
+            ps.setString(4,categoria.name());
+            int resultado = ps.executeUpdate();
+            if(resultado!=1){
+                //NO SE PUDO AÑADIR EL MATERIAL
+                
+            }
+            else{
+                //SE AÑADIO CORRECTAMENTE
+                InsertarMaterial(nombre,descripcion,estado.name(),IdUbicacion);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     //ActucalizarEstado
     //Permite actualizar el estado de un material
     public static boolean trigger(String nombre) throws SQLException {
@@ -92,6 +136,31 @@ public class MaterialDAO {
             if (ps != null) {
                 ps.close();
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+
+        return resultado;
+    }
+    public static boolean existeMaterial(String nombre,Categoria categoria) throws SQLException {
+        // Variables
+        boolean resultado = true;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String s = "SELECT * FROM material WHERE nombre = ? AND categoria = ? ";
+        Connection con = AccesoBaseDatos.getInstance().getConn();
+        try {
+            // Preparamos la sentencia con los datos del vehiculo
+            ps = con.prepareStatement(s);
+            ps.setString(1,nombre);
+            ps.setString(1,categoria.name());
+            // Ejecutamos la sentencia.
+            rs = ps.executeQuery();
+            // Si la sentencia se ejecuta correctamente, devolvemos true
+            resultado = rs.next();
+            if (ps != null) ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(MaterialDAO.class.getName()).
                     log(Level.SEVERE, null, ex);

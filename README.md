@@ -205,7 +205,7 @@ claves foráneas, tipos de datos y relaciones entre las entidades.
 
 ### Diagrama de clases
 
-![Diagrama de clases](DiagramaDeClases/Captura%20de%20pantalla%202026-05-07%20160532.png)
+![Diagrama de clases](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/blob/main/DiagramaDeClases/DiagramaDeClases.png)
 
 El diagrama de clases representa la estructura orientada a objetos de la aplicación Java.  
 Incluye las clases principales del sistema, como Usuario, Administrador, Profesor, Inventario, Material, 
