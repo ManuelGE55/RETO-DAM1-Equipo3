@@ -84,48 +84,88 @@ const estructura = {
     }
 };
 
-let materiales = [];
-
-function cargarMaterialesJSON() {
-    fetch("inventario.json")
-        .then(respuesta => respuesta.json())
-        .then(datos => {
-            materiales = datos;
-            cargarListaComponentes();
-            verMapaGeneral();
-        })
-        .catch(error => {
-            console.error("Error al cargar inventario.json:", error);
-
-            materiales = [];
-            cargarListaComponentes();
-            verMapaGeneral();
-        });
-}
-
-function cargarListaComponentes() {
-    let lista = document.getElementById("listaComponentes");
-
-    console.log("Lista encontrada:", lista);
-    console.log("Materiales cargados:", materiales);
-
-    if (lista == null) {
-        console.error("No existe el elemento con id listaComponentes en el HTML");
-        return;
-    }
-
-    lista.innerHTML = "";
-
-    materiales.forEach(material => {
-        lista.innerHTML += `
-            <li>
-                <button onclick="buscarMaterial('${material.nombre}')">
-                    ${material.nombre}
-                </button>
-            </li>
-        `;
-    });
-}
+const materiales = [
+    {
+        nombre: "Arduino UNO",
+        cantidad: 5,
+        armario: "GENERAL",
+        balda: "B002",
+        cajon: "C00201",
+        descripcion: "Placas Arduino para prácticas"
+    },
+    {
+        nombre: "Cable HDMI",
+        cantidad: 10,
+        armario: "GENERAL",
+        balda: "B010",
+        cajon: "C01001",
+        descripcion: "Cables HDMI para monitores"
+    },
+    {
+        nombre: "Raspberry Pi",
+        cantidad: 3,
+        armario: "GENERAL",
+        balda: "B003",
+        cajon: "C00301",
+        descripcion: "Miniordenadores Raspberry"
+    },
+    {
+        nombre: "Protoboard",
+        cantidad: 8,
+        armario: "GENERAL",
+        balda: "B006",
+        cajon: "C00601",
+        descripcion: "Placas de pruebas electrónicas"
+    },
+    {
+        nombre: "Resistencias",
+        cantidad: 100,
+        armario: "GENERAL",
+        balda: "B008",
+        cajon: "C00801",
+        descripcion: "Resistencias varias"
+    },
+    {
+        nombre: "Cable VGA",
+        cantidad: 7,
+        armario: "GENERAL",
+        balda: "B009",
+        cajon: "C00901",
+        descripcion: "Cables VGA para monitores antiguos"
+    },
+    {
+        nombre: "Fuente ATX",
+        cantidad: 4,
+        armario: "A1",
+        balda: "B103",
+        cajon: "",
+        descripcion: "Fuentes de alimentación ATX"
+    },
+    {
+        nombre: "ESP32",
+        cantidad: 12,
+        armario: "GENERAL",
+        balda: "B016",
+        cajon: "C01603",
+        descripcion: "Microcontroladores ESP32 con WiFi"
+    },
+    {
+        nombre: "Switch 24 Puertos",
+        cantidad: 2,
+        armario: "A5",
+        balda: "B507",
+        cajon: "",
+        descripcion: "Switches de red para prácticas"
+    },
+    {
+        nombre: "LED Azul",
+        cantidad: 60,
+        armario: "GENERAL",
+        balda: "B008",
+        cajon: "C00803",
+        descripcion: "LEDs azules de 5mm"
+    },
+];
 
 function verMapaGeneral() {
     document.getElementById("tituloMapa").innerHTML = "Vista general del armario";
@@ -411,4 +451,4 @@ function crearTextoMateriales(lista) {
     return texto;
 }
 
-cargarMaterialesJSON();
+verMapaGeneral();
