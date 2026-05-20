@@ -94,8 +94,8 @@ public class GeneradorJSONInventario {
     }
 
     /**
-     * Convierte el identificador numérico del armario almacenado en la base
-     * de datos a un formato legible.
+     * Convierte el identificador numérico del armario almacenado en la base de
+     * datos a un formato legible.
      *
      * Ejemplos:
      *
@@ -103,7 +103,7 @@ public class GeneradorJSONInventario {
      *
      * @param armarioBD
      * @return
-     * 
+     *
      * @author Saúl Valdunciel
      */
     private String convertirArmario(int armarioBD) {
@@ -121,19 +121,19 @@ public class GeneradorJSONInventario {
 
         return "A" + armarioBD;
     }
+
     /**
-     * Convierte el identificador numérico de la balda
-     * a un formato legible para el JSON.
-     * 
+     * Convierte el identificador numérico de la balda a un formato legible para
+     * el JSON.
+     *
      * Ejemplos:
-     * 
-     * 2001 -> B001
-     * 2201 -> B201
-     * 
+     *
+     * 2001 -> B001 2201 -> B201
+     *
      * @param armarioBD
      * @param baldaBD
-     * @return 
-     * 
+     * @return
+     *
      * @author Saúl Valdunciel
      */
     private String convertirBalda(int armarioBD, int baldaBD) {
@@ -154,19 +154,20 @@ public class GeneradorJSONInventario {
 
         return String.format("B%03d", baldaBD);
     }
+
     /**
-     * Convierte el identificador numérico del cajón
-     * a un formato legible para el JSON.
-     * 
+     * Convierte el identificador numérico del cajón a un formato legible para
+     * el JSON.
+     *
      * Ejemplo:
-     * 
+     *
      * 301603 -> C01603
-     * 
+     *
      * @param armarioBD
      * @param baldaBD
      * @param cajonBD
-     * @return 
-     * 
+     * @return
+     *
      * @author Saúl Valdunciel
      */
     private String convertirCajon(int armarioBD, int baldaBD, int cajonBD) {
@@ -182,16 +183,17 @@ public class GeneradorJSONInventario {
 
         return String.format("C%05d", cajonBD);
     }
+
     /**
-     * Escapa caracteres especales para evitar errores
-     * de formato dentro del archivo JSON.
-     * 
-     * Sustituye caracteres como barras y comillas dobles
-     * por sus equivalentes escapados.
-     * 
+     * Escapa caracteres especales para evitar errores de formato dentro del
+     * archivo JSON.
+     *
+     * Sustituye caracteres como barras y comillas dobles por sus equivalentes
+     * escapados.
+     *
      * @param texto
-     * @return 
-     * 
+     * @return
+     *
      * @author Saúl Valdunciel
      */
     private String escaparJSON(String texto) {
@@ -203,14 +205,14 @@ public class GeneradorJSONInventario {
         return texto.replace("\\", "\\\\")
                 .replace("\"", "\\\"");
     }
+
     /**
-     * Sube el archivo inventario json al servidor EC2
-     * mediante el protocolo SCP.
-     * 
-     * Una vez subido correctamente, llama automáticamente
-     * al método encargado de copiar el archivo
-     * al directorio de Apache.
-     * 
+     * Sube el archivo inventario json al servidor EC2 mediante el protocolo
+     * SCP.
+     *
+     * Una vez subido correctamente, llama automáticamente al método encargado
+     * de copiar el archivo al directorio de Apache.
+     *
      * @author Saúl Valdunciel
      */
     private void subirJSONServidor() {
@@ -247,12 +249,13 @@ public class GeneradorJSONInventario {
             System.out.println("Error ejecutando SCP: " + e.getMessage());
         }
     }
+
     /**
-     * Copia el archivo inventario.json al directorio
-     * utilizado por Apache para servir la página web.
-     * 
+     * Copia el archivo inventario.json al directorio utilizado por Apache para
+     * servir la página web.
+     *
      * La copia se realiza remotamente mediante SSH.
-     * 
+     *
      * @author Saúl Valdunciel
      */
     private void copiarJSONApache() {

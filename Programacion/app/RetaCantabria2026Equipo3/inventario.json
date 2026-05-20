@@ -2,7 +2,7 @@
   {
     "idMaterial": 1,
     "nombre": "Manual",
-    "cantidad": 3,
+    "cantidad": 5,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
@@ -11,7 +11,7 @@
   {
     "idMaterial": 2,
     "nombre": "Manual",
-    "cantidad": 3,
+    "cantidad": 5,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
@@ -20,7 +20,7 @@
   {
     "idMaterial": 3,
     "nombre": "Manual",
-    "cantidad": 3,
+    "cantidad": 5,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
@@ -29,7 +29,7 @@
   {
     "idMaterial": 4,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -38,7 +38,7 @@
   {
     "idMaterial": 5,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -47,7 +47,7 @@
   {
     "idMaterial": 6,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -56,7 +56,7 @@
   {
     "idMaterial": 7,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -65,7 +65,7 @@
   {
     "idMaterial": 8,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -74,7 +74,7 @@
   {
     "idMaterial": 9,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -83,7 +83,7 @@
   {
     "idMaterial": 10,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -92,7 +92,7 @@
   {
     "idMaterial": 11,
     "nombre": "Libro DAM",
-    "cantidad": 8,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -187,5 +187,41 @@
     "balda": "B016",
     "cajon": "C01603",
     "descripcion": "Cable ethernet de 1 metro"
+  },
+  {
+    "idMaterial": 22,
+    "nombre": "Manual",
+    "cantidad": 5,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "hola"
+  },
+  {
+    "idMaterial": 23,
+    "nombre": "manual",
+    "cantidad": 5,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "hola"
+  },
+  {
+    "idMaterial": 24,
+    "nombre": "Hola",
+    "cantidad": 1,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "adios"
+  },
+  {
+    "idMaterial": 25,
+    "nombre": "ADIOS",
+    "cantidad": 1,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "descripcion"
   }
 ]

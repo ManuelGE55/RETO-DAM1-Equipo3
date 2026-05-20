@@ -13,16 +13,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author DAM121
+ * Clase DAO encargada de gestionar las operaciones
+ * relacionadas con los materiales en la base de datos.
+ * 
+ * Permite actulizar materiales, comprobar si existen
+ * y obtener los datos necesarios para generar el JSON
+ * del inventario.
+ * 
+ * @author Naya Ruiz
  */
 public class MaterialDAO {
 
-    //==========================================================================
-    //ESTE DAO ESTA ASIGNADO A : NAYA
-    //==========================================================================
-    //ActucalizarEstado
-    //Permite actualizar el estado de un material
+    /**
+     * Actualiza los datos principales de un material.
+     * 
+     * Modifica ka descripción, el estado y la ubicación
+     * del material indicado, siempre que exista tanto
+     * el material como la ubicación.
+     * 
+     * @param descr
+     * @param est
+     * @param ubi
+     * @param id
+     * @return
+     * @throws SQLException
+     * 
+     * @author Naya Ruiz
+     */
     public static int ActualizarEstado(String descr, String est, int ubi, int id) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
@@ -54,7 +71,16 @@ public class MaterialDAO {
         }
         return resultado;
     }
-
+    /**
+     * Comprueba si existe un material en la base de datos
+     * a partir de su identificador.
+     * 
+     * @param id
+     * @return
+     * @throws SQLException 
+     * 
+     * @author Naya Ruiz
+     */
     public static boolean existeId(int id) throws SQLException {
         // Variables
         boolean resultado = true;
@@ -79,7 +105,19 @@ public class MaterialDAO {
 
         return resultado;
     }
-
+    /**
+     * Obtiene los materiales necesarios para generar
+     * el archivo JSON del inventario.
+     * 
+     * La consulta obtiene información del material,
+     * datos asociados y ubicación física.
+     * 
+     * @param con
+     * @return
+     * @throws SQLException 
+     * 
+     * @author Naya Ruiz
+     */
     public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
 
         String sql = """
