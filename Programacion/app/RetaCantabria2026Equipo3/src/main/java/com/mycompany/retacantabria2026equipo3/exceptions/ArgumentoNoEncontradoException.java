@@ -5,11 +5,24 @@
 package com.mycompany.retacantabria2026equipo3.exceptions;
 
 /**
+ * Excepción personalizada lanzada cuando un argumento o identificador no existe
+ * dentro del sistema.
+ *
+ * Se utiliza principalmente para indicar que una ubicación solicitada no ha
+ * sido encontrada.
+ *
  *
  * @author Hugo Fernández Calzado
  */
 public class ArgumentoNoEncontradoException extends Exception {
-    
+
+    /**
+     * Constructor de la excepción.
+     *
+     * @param message
+     *
+     * @author Hugo Fernández
+     */
     public ArgumentoNoEncontradoException(String message) {
         super(message);
     }
