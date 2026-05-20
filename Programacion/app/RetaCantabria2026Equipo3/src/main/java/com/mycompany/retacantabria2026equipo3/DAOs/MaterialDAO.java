@@ -147,23 +147,24 @@ public class MaterialDAO {
 
         return resultado;
     }
-    public static boolean existeMaterial(String nombre,String categoria) throws SQLException {
+    public static boolean existeMaterial(String nombre) throws SQLException {
         // Variables
         boolean resultado = false;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String s = "SELECT * FROM datos_material WHERE nombre = ? AND categoria = ? ";
+        String s = "SELECT * FROM datos_material WHERE nombre = ?";
         Connection con = AccesoBaseDatos.getInstance().getConn();
         try {
             // Preparamos la sentencia con los datos del vehiculo
             ps = con.prepareStatement(s);
-            ps.setString(1,nombre);
-            ps.setString(2,categoria);
+            ps.setString(1,nombre.trim());
             // Ejecutamos la sentencia.
             rs = ps.executeQuery();
             // Si la sentencia se ejecuta correctamente, devolvemos true
-            resultado = rs.next();
+            if(rs.next()){
+                resultado=true;
+            }
             if (ps != null) ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(MaterialDAO.class.getName()).
