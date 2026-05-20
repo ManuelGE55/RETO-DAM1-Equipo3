@@ -346,7 +346,7 @@ BEGIN
     DECLARE cantidadActual INT;
     DECLARE stockMin INT;
     SET nombreMaterial = OLD.nombre;
-    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial;
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado=DISPONIBLE;
     SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
     UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
 	IF(cantidadActual<stockMin) THEN
@@ -361,6 +361,33 @@ BEGIN
         );
     END IF;
 END //
+
+CREATE TRIGGER trg_alerta_stock_up
+AFTER UPDATE ON material
+FOR EACH ROW
+BEGIN
+	DECLARE mensajes VARCHAR(60);
+    DECLARE diferencia INT;
+    DECLARE nombreMaterial VARCHAR(30);
+    DECLARE cantidadActual INT;
+    DECLARE stockMin INT;
+    SET nombreMaterial = OLD.nombre;
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado=DISPONIBLE;
+    SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
+    UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
+	IF(cantidadActual<stockMin) THEN
+		SET diferencia = stockMin-cantidadActual;
+		SET mensajes = concat('La diferencia entre cantidad y stock mínimo es de ',diferencia);
+		INSERT INTO alerta_stock(nombre_material,fecha,mensaje,resuelta)
+        VALUES(
+			nombreMaterial,
+            curdate(),
+            mensajes,
+            FALSE
+        );
+    END IF;
+END //
+
 DELIMITER ;
 
 -- 
