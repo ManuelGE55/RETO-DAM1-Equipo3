@@ -219,11 +219,14 @@ public class GeneradorJSONInventario {
 
         try {
 
+            String rutaPem = "Reto.pem";
+            String rutaJson = "inventario.json";
+
             ProcessBuilder pb = new ProcessBuilder(
                     "scp",
                     "-i",
-                    "D:\\Usuarios\\DAM127\\Downloads\\Reto.pem",
-                    "D:\\Usuarios\\DAM127\\Documents\\GitHub\\RETO-DAM1-Equipo3\\Programacion\\app\\RetaCantabria2026Equipo3\\inventario.json",
+                    rutaPem,
+                    rutaJson,
                     "ubuntu@52.44.197.21:/home/ubuntu/"
             );
 
@@ -262,10 +265,12 @@ public class GeneradorJSONInventario {
 
         try {
 
+            String rutaPem = "Reto.pem";
+
             ProcessBuilder pb = new ProcessBuilder(
                     "ssh",
                     "-i",
-                    "Reto.pem",
+                    rutaPem,
                     "ubuntu@52.44.197.21",
                     "sudo cp /home/ubuntu/inventario.json /var/www/html/"
             );
