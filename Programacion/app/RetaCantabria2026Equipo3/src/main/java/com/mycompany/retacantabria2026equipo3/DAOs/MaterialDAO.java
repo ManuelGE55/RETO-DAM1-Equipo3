@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  * Clase DAO encargada de gestionar las operaciones relacionadas con los
@@ -40,9 +41,11 @@ public class MaterialDAO {
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
                 System.out.println("no se pudo añadir el material");
+                JOptionPane.showMessageDialog(null, "Insertar material", "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 //SE AÑADIO CORRECTAMENTE
                 System.out.println("Se añadio correctamente");
+                JOptionPane.showMessageDialog(null, "Insertar material", "Material añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
@@ -62,11 +65,13 @@ public class MaterialDAO {
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
                 System.out.println("no se pudo añadir el tipo material");
+                JOptionPane.showMessageDialog(null, "Insertar tipo de material", "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 //SE AÑADIO CORRECTAMENTE
                 InsertarMaterial(nombre, descripcion, estado, IdUbicacion);
                 System.out.println("Se añadio el tipo material correctamente");
+                JOptionPane.showMessageDialog(null, "Insertar tipo de material", "Tipo añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
