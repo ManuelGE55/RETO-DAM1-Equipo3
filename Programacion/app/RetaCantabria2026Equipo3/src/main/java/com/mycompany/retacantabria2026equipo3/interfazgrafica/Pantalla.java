@@ -929,9 +929,11 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
-
         try {
             usuario = UsuarioDAO.comprobarUsuario(Usuario.getText().toLowerCase(), String.copyValueOf(Contraseña.getPassword()));
+        } catch (SQLException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
             if (usuario != null) {
                 if (usuario instanceof Profesor) {
@@ -952,14 +954,23 @@ public class Pantalla extends javax.swing.JFrame {
                 Loggin.setVisible(false);
 
             } else {
-                JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
-                Contraseña.setText("");
-                Contraseña.requestFocus();
+                modificarMaterial.setVisible(true);
+                añadirMaterial.setVisible(true);
             }
+            this.setSize(1390, 550);
+            jPanel2.setVisible(true);
+            jMenuBar2.setVisible(true);
+            rellenarComboBoxEstado();
+            rellenarComboBoxCategoria();
+            rellenarComboBoxLocalizacion();
+            inventario.setMateriales(InventarioDAO.cargarInventario());
+            rellenarTablaMateriales();
+            Loggin.setVisible(false);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-
+        } else {
+            JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
+            Contraseña.setText("");
+            Contraseña.requestFocus();
         }
 
     }//GEN-LAST:event_botonOkActionPerformed
@@ -1501,7 +1512,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1517,7 +1527,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
