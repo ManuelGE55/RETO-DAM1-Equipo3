@@ -116,8 +116,6 @@ public class Pantalla extends javax.swing.JFrame {
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         añadirMaterial = new javax.swing.JButton();
-        añadir = new javax.swing.JButton();
-        eliminar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
@@ -386,20 +384,6 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        añadir.setText("añadir");
-        añadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                añadirActionPerformed(evt);
-            }
-        });
-
-        eliminar.setText("eliminar");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -407,11 +391,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botonSalir)
-                .addGap(104, 104, 104)
-                .addComponent(añadir)
-                .addGap(57, 57, 57)
-                .addComponent(eliminar)
-                .addGap(47, 47, 47)
+                .addGap(353, 353, 353)
                 .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,7 +414,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(modificarMaterial)
                         .addGap(34, 34, 34)))
                 .addComponent(imprimirInforme)
-                .addGap(20, 20, 20))
+                .addContainerGap())
             .addComponent(jScrollPane1)
         );
         jPanel2Layout.setVerticalGroup(
@@ -460,18 +440,14 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(1, 1, 1)
-                                    .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(1, 1, 1)
-                                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(añadir)
-                                .addComponent(eliminar)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(1, 1, 1)
+                                .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(1, 1, 1)
+                                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1077,11 +1053,6 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel2.setVisible(true);
     }//GEN-LAST:event_BotonSalirRegistrarUsuarioActionPerformed
 
-    private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
-        panelRegistrarUsuario.setVisible(true);
-        jPanel2.setVisible(false);
-    }//GEN-LAST:event_añadirActionPerformed
-
     private void BotonBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarUsuarioActionPerformed
         String email;
         try {
@@ -1103,11 +1074,6 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error en base de datos", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_BotonBorrarUsuarioActionPerformed
-
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        panelBorrarUsuario.setVisible(true);
-        jPanel2.setVisible(false);
-    }//GEN-LAST:event_eliminarActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas
@@ -1231,7 +1197,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel ImagenIntro;
     private javax.swing.JLayeredPane Loggin;
     private javax.swing.JTextField Usuario;
-    private javax.swing.JButton añadir;
     private javax.swing.JButton añadirMaterial;
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonCancelarInsertarMaterial1;
@@ -1246,7 +1211,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboLocalizacion;
     private javax.swing.JComboBox<String> comoBoxEstadoInsertarMaterial;
     private javax.swing.JDialog dialogoNuevoMaterial;
-    private javax.swing.JButton eliminar;
     private javax.swing.JMenu exportarCSV;
     private javax.swing.JMenu importarCSV;
     private javax.swing.JButton imprimirInforme;
