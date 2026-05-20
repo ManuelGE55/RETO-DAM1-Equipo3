@@ -12,33 +12,49 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase DAO encargada de consultar información relacionada con las ubicaciones
+ * almacenadas en la base de datos.
  *
- * @author DAM101
+ * Permite comprobar si una ubicación existe antes de asignarla a un material.
+ *
+ * @author Naya Ruiz
  */
 public class UbicacionDAO {
-    
-    public static boolean existeId(int id) throws SQLException {        
+
+    /**
+     * Comprueba si existe una ubicación en la base de datos a partir de su
+     * identificador
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     *
+     * @author Naya Ruiz
+     */
+    public static boolean existeId(int id) throws SQLException {
         // Variables
         boolean resultado = true;
-        PreparedStatement  ps = null;
+        PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         String s = "SELECT * FROM ubicacion WHERE id_ubicacion = ?";
         Connection con = AccesoBaseDatos.getInstance().getConn();
-            try{
-                // Preparamos la sentencia con los datos del vehiculo
-                ps = con.prepareStatement(s);               
-                ps.setInt(1, id);
-                // Ejecutamos la sentencia.
-                rs = ps.executeQuery();
-                // Si la sentencia se ejecuta correctamente, devolvemos true
-                resultado = rs.next();
-                if (ps != null) ps.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UbicacionDAO.class.getName()).
-                        log(Level.SEVERE, null, ex);
+        try {
+            // Preparamos la sentencia con los datos del vehiculo
+            ps = con.prepareStatement(s);
+            ps.setInt(1, id);
+            // Ejecutamos la sentencia.
+            rs = ps.executeQuery();
+            // Si la sentencia se ejecuta correctamente, devolvemos true
+            resultado = rs.next();
+            if (ps != null) {
+                ps.close();
             }
-        
+        } catch (SQLException ex) {
+            Logger.getLogger(UbicacionDAO.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+
         return resultado;
     }
 }
