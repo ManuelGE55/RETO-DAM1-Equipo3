@@ -71,8 +71,8 @@ public class Pantalla extends javax.swing.JFrame {
         this.ImagenIntro.setIcon(new ImageIcon(resolucionImagenIntro));
         rellenarComboBoxEstado();
         rellenarComboBoxCambiarEstado(ComboBoxCambiarEstado);
-        // rellena la combobox del panel de registrar usuario
-        rellenarComboBoxCambiarRol(ComboBoxUsuarioRol);
+        rellenarComboBoxCambiarEstado(comboEstado);
+        rellenarComboBoxCategoria(comboCategoria);
     }
 
     /**
@@ -932,8 +932,19 @@ public class Pantalla extends javax.swing.JFrame {
         this.setSize(570, 600);
         CampoTextoDescripcion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
         CampoTextoCambiarUbicacion.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
-        comboLocalizacion.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
+        ComboBoxCambiarEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
         jMenuBar2.setVisible(false);
+        int fila = jTable1.getSelectedRow();
+        Material obj= inventario.getMateriales().get(fila);
+        boolean trigger;
+        try {
+            trigger = MaterialDAO.trigger(obj.getNombre());
+            if(trigger){
+                JOptionPane.showMessageDialog(this, "La cantidad de este material es inferior a su stock minimo");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_modificarMaterialActionPerformed
 
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
@@ -949,7 +960,7 @@ public class Pantalla extends javax.swing.JFrame {
                     modificarMaterial.setVisible(true);
                     añadirMaterial.setVisible(true);
                 }
-                this.setSize(1370, 550);
+                this.setSize(1390, 550);
                 jPanel2.setVisible(true);
                 jMenuBar2.setVisible(true);
                 rellenarComboBoxEstado();
@@ -980,7 +991,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
-        this.setSize(1370, 550);
+        this.setSize(1390, 550);
         jPanel2.setVisible(true);
         jPanel3.setVisible(false);
         jMenuBar2.setVisible(true);
@@ -990,7 +1001,7 @@ public class Pantalla extends javax.swing.JFrame {
         int fila = jTable1.getSelectedRow();
         int id = 0;
         if (fila != -1) {
-            Material obj = inventario.getMateriales().get(fila);
+            Material obj= inventario.getMateriales().get(fila);
             id = obj.getId();
         }
         try {
@@ -998,7 +1009,7 @@ public class Pantalla extends javax.swing.JFrame {
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
-                this.setSize(1370, 550);
+                this.setSize(1390, 550);
                 jPanel2.setVisible(true);
                 jPanel3.setVisible(false);
                 inventario.setMateriales(InventarioDAO.cargarInventario());
@@ -1188,6 +1199,19 @@ public class Pantalla extends javax.swing.JFrame {
 
         box.setModel(modelo);
     }
+    
+    private void rellenarComboBoxCategoria(JComboBox<String> box) {
+
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+
+        modelo.addElement("HARDWARE");
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
+
+        box.setModel(modelo);
+    }
+    
 
     private void rellenarComboBoxCambiarRol(JComboBox<String> box) {
 
