@@ -86,15 +86,6 @@ public class Pantalla extends javax.swing.JFrame {
 
         jOptionPane1 = new javax.swing.JOptionPane();
         jDialog1 = new javax.swing.JDialog();
-        dialogoNuevoMaterial = new javax.swing.JDialog();
-        textoCantidadInsertarMaterial = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        botonAñadir = new javax.swing.JButton();
-        botonCancelarInsertarMaterial2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        comboBoxInsertarCategoria = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
         Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JPasswordField();
@@ -175,89 +166,6 @@ public class Pantalla extends javax.swing.JFrame {
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        textoCantidadInsertarMaterial.setText("jTextField1");
-        textoCantidadInsertarMaterial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCantidadInsertarMaterialActionPerformed(evt);
-            }
-        });
-
-        jTextField1.setText("jTextField1");
-
-        botonAñadir.setText("Añadir");
-        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAñadirActionPerformed(evt);
-            }
-        });
-
-        botonCancelarInsertarMaterial2.setText("Cancelar");
-        botonCancelarInsertarMaterial2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarInsertarMaterial2ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Cantidad");
-
-        jLabel10.setText("Stock minimo");
-
-        comboBoxInsertarCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboBoxInsertarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxInsertarCategoriaActionPerformed(evt);
-            }
-        });
-
-        jLabel16.setText("Categoria");
-
-        javax.swing.GroupLayout dialogoNuevoMaterialLayout = new javax.swing.GroupLayout(dialogoNuevoMaterial.getContentPane());
-        dialogoNuevoMaterial.getContentPane().setLayout(dialogoNuevoMaterialLayout);
-        dialogoNuevoMaterialLayout.setHorizontalGroup(
-            dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoNuevoMaterialLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dialogoNuevoMaterialLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                        .addComponent(textoCantidadInsertarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, dialogoNuevoMaterialLayout.createSequentialGroup()
-                        .addComponent(botonCancelarInsertarMaterial2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonAñadir))
-                    .addGroup(dialogoNuevoMaterialLayout.createSequentialGroup()
-                        .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboBoxInsertarCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))))
-                .addGap(64, 64, 64))
-        );
-        dialogoNuevoMaterialLayout.setVerticalGroup(
-            dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoNuevoMaterialLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoCantidadInsertarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(33, 33, 33)
-                .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(31, 31, 31)
-                .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(comboBoxInsertarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(dialogoNuevoMaterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAñadir)
-                    .addComponent(botonCancelarInsertarMaterial2))
-                .addGap(24, 24, 24))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -965,6 +873,7 @@ public class Pantalla extends javax.swing.JFrame {
                 jMenuBar2.setVisible(true);
                 rellenarComboBoxEstado();
                 rellenarComboBoxCategoria();
+                rellenarComboBoxLocalizacion();
                 inventario.setMateriales(InventarioDAO.cargarInventario());
                 rellenarTablaMateriales();
                 Loggin.setVisible(false);
@@ -1005,7 +914,7 @@ public class Pantalla extends javax.swing.JFrame {
             id = obj.getId();
         }
         try {
-            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripcion.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()),id, usuario.getId());
+            int resultado = MaterialDAO.ActualizarEstado(CampoTextoDescripcion.getText(), ComboBoxCambiarEstado.getSelectedItem().toString(), Integer.parseInt(CampoTextoCambiarUbicacion.getText()), id, usuario.getId());
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
@@ -1034,25 +943,27 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraseñaActionPerformed
 
-    private void textoCantidadInsertarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCantidadInsertarMaterialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoCantidadInsertarMaterialActionPerformed
-
     private void botonInsertar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertar1ActionPerformed
-       if(textoNombreInsertarMaterial.getText()==null || textoDescripcionInsertarMaterial.getText()==null){
-           try {
-               if(MaterialDAO.existeMaterial(textoNombreInsertarMaterial.getText(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()))){
-                   MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(),textoDescripcionInsertarMaterial.getText(),comboBoxEstadoInsertarMaterial.getSelectedItem().toString(),comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
-               }
-               else{
-                   dialogoNuevoMaterial.setVisible(true);
-                   rellenarComboBoxCambiarCategoria();
-               }
-           } catch (SQLException ex) {
-               Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           
-       }
+        if (textoNombreInsertarMaterial.getText()!= null || textoDescripcionInsertarMaterial.getText()!= null) {
+            try {System.out.println(MaterialDAO.existeMaterial(textoNombreInsertarMaterial.getText(), comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()));
+                if (MaterialDAO.existeMaterial(textoNombreInsertarMaterial.getText(), comboBoxCategoriaInsertarMaterial.getSelectedItem().toString())) {
+                    
+                    MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
+                } else {
+                    MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()));
+                }
+                jPanel2.setVisible(true);
+                    rellenarTablaMateriales();
+                panelInsertarComponente.setVisible(false);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        else{
+            //NOMBRE O DESCRIPCION NULA
+        }
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
     private void botonCancelarInsertarMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarInsertarMaterial1ActionPerformed
@@ -1061,6 +972,9 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarInsertarMaterial1ActionPerformed
 
     private void añadirMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirMaterialActionPerformed
+        rellenarComboBoxCambiarCategoria(comboBoxCategoriaInsertarMaterial);
+        rellenarComboBoxCambiarEstado(comboBoxEstadoInsertarMaterial);
+        rellenarComboBoxCambiarLocalizacion(comboBoxLocalizacionInsertarMaterial);
         panelInsertarComponente.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
@@ -1223,6 +1137,210 @@ public class Pantalla extends javax.swing.JFrame {
         box.setModel(modelo);
     }
 
+    private void rellenarComboBoxCambiarCategoria(JComboBox<String> box) {
+
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HARDWARE");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
+
+        box.setModel(modelo);
+    }
+
+    private void rellenarComboBoxCambiarLocalizacion(JComboBox<String> box) {
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        modelo.addElement("11");
+        modelo.addElement("12");
+        modelo.addElement("13");
+        modelo.addElement("14");
+        modelo.addElement("15");
+        modelo.addElement("2001");
+        modelo.addElement("2002");
+        modelo.addElement("2003");
+        modelo.addElement("2004");
+        modelo.addElement("2005");
+        modelo.addElement("2006");
+        modelo.addElement("2007");
+        modelo.addElement("2008");
+        modelo.addElement("2009");
+        modelo.addElement("2010");
+        modelo.addElement("2011");
+        modelo.addElement("2012");
+        modelo.addElement("2013");
+        modelo.addElement("2014");
+        modelo.addElement("2015");
+        modelo.addElement("2016");
+        modelo.addElement("2017");
+        modelo.addElement("2018");
+        modelo.addElement("2101");
+        modelo.addElement("2102");
+        modelo.addElement("2103");
+        modelo.addElement("2104");
+        modelo.addElement("2105");
+        modelo.addElement("2106");
+        modelo.addElement("2107");
+        modelo.addElement("2108");
+        modelo.addElement("2109");
+        modelo.addElement("2110");
+        modelo.addElement("2111");
+        modelo.addElement("2112");
+        modelo.addElement("2201");
+        modelo.addElement("2202");
+        modelo.addElement("2301");
+        modelo.addElement("2302");
+        modelo.addElement("2401");
+        modelo.addElement("2402");
+        modelo.addElement("2501");
+        modelo.addElement("2502");
+        modelo.addElement("2503");
+        modelo.addElement("2504");
+        modelo.addElement("2505");
+        modelo.addElement("2506");
+        modelo.addElement("2507");
+        modelo.addElement("2508");
+        modelo.addElement("2509");
+        modelo.addElement("2510");
+        modelo.addElement("2511");
+        modelo.addElement("2512");
+        modelo.addElement("300201");
+        modelo.addElement("300202");
+        modelo.addElement("300203");
+        modelo.addElement("300204");
+        modelo.addElement("300205");
+        modelo.addElement("300206");
+        modelo.addElement("300301");
+        modelo.addElement("300601");
+        modelo.addElement("300602");
+        modelo.addElement("300603");
+        modelo.addElement("300604");
+        modelo.addElement("300605");
+        modelo.addElement("300606");
+        modelo.addElement("300701");
+        modelo.addElement("300801");
+        modelo.addElement("300802");
+        modelo.addElement("300803");
+        modelo.addElement("300804");
+        modelo.addElement("300805");
+        modelo.addElement("300901");
+        modelo.addElement("300902");
+        modelo.addElement("301001");
+        modelo.addElement("301002");
+        modelo.addElement("301003");
+        modelo.addElement("301004");
+        modelo.addElement("301301");
+        modelo.addElement("301302");
+        modelo.addElement("301401");
+        modelo.addElement("301402");
+        modelo.addElement("301601");
+        modelo.addElement("301602");
+        modelo.addElement("301603");
+        modelo.addElement("301604");
+        modelo.addElement("301605");
+        modelo.addElement("301701");
+        modelo.addElement("301801");
+        modelo.addElement("301802");
+
+        box.setModel(modelo);
+    }
+    private void rellenarComboBoxLocalizacion() {
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        modelo.addElement("---");
+        modelo.addElement("11");
+        modelo.addElement("12");
+        modelo.addElement("13");
+        modelo.addElement("14");
+        modelo.addElement("15");
+        modelo.addElement("2001");
+        modelo.addElement("2002");
+        modelo.addElement("2003");
+        modelo.addElement("2004");
+        modelo.addElement("2005");
+        modelo.addElement("2006");
+        modelo.addElement("2007");
+        modelo.addElement("2008");
+        modelo.addElement("2009");
+        modelo.addElement("2010");
+        modelo.addElement("2011");
+        modelo.addElement("2012");
+        modelo.addElement("2013");
+        modelo.addElement("2014");
+        modelo.addElement("2015");
+        modelo.addElement("2016");
+        modelo.addElement("2017");
+        modelo.addElement("2018");
+        modelo.addElement("2101");
+        modelo.addElement("2102");
+        modelo.addElement("2103");
+        modelo.addElement("2104");
+        modelo.addElement("2105");
+        modelo.addElement("2106");
+        modelo.addElement("2107");
+        modelo.addElement("2108");
+        modelo.addElement("2109");
+        modelo.addElement("2110");
+        modelo.addElement("2111");
+        modelo.addElement("2112");
+        modelo.addElement("2201");
+        modelo.addElement("2202");
+        modelo.addElement("2301");
+        modelo.addElement("2302");
+        modelo.addElement("2401");
+        modelo.addElement("2402");
+        modelo.addElement("2501");
+        modelo.addElement("2502");
+        modelo.addElement("2503");
+        modelo.addElement("2504");
+        modelo.addElement("2505");
+        modelo.addElement("2506");
+        modelo.addElement("2507");
+        modelo.addElement("2508");
+        modelo.addElement("2509");
+        modelo.addElement("2510");
+        modelo.addElement("2511");
+        modelo.addElement("2512");
+        modelo.addElement("300201");
+        modelo.addElement("300202");
+        modelo.addElement("300203");
+        modelo.addElement("300204");
+        modelo.addElement("300205");
+        modelo.addElement("300206");
+        modelo.addElement("300301");
+        modelo.addElement("300601");
+        modelo.addElement("300602");
+        modelo.addElement("300603");
+        modelo.addElement("300604");
+        modelo.addElement("300605");
+        modelo.addElement("300606");
+        modelo.addElement("300701");
+        modelo.addElement("300801");
+        modelo.addElement("300802");
+        modelo.addElement("300803");
+        modelo.addElement("300804");
+        modelo.addElement("300805");
+        modelo.addElement("300901");
+        modelo.addElement("300902");
+        modelo.addElement("301001");
+        modelo.addElement("301002");
+        modelo.addElement("301003");
+        modelo.addElement("301004");
+        modelo.addElement("301301");
+        modelo.addElement("301302");
+        modelo.addElement("301401");
+        modelo.addElement("301402");
+        modelo.addElement("301601");
+        modelo.addElement("301602");
+        modelo.addElement("301603");
+        modelo.addElement("301604");
+        modelo.addElement("301605");
+        modelo.addElement("301701");
+        modelo.addElement("301801");
+        modelo.addElement("301802");
+
+        comboLocalizacion.setModel(modelo);
+    }
+
     private void rellenarComboBoxCategoria() {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1263,26 +1381,21 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLayeredPane Loggin;
     private javax.swing.JTextField Usuario;
     private javax.swing.JButton añadirMaterial;
-    private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonCancelarInsertarMaterial1;
-    private javax.swing.JButton botonCancelarInsertarMaterial2;
     private javax.swing.JButton botonInsertar1;
     private javax.swing.JButton botonOk;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboBoxCategoriaInsertarMaterial;
     private javax.swing.JComboBox<String> comboBoxEstadoInsertarMaterial;
-    private javax.swing.JComboBox<String> comboBoxInsertarCategoria;
     private javax.swing.JComboBox<String> comboBoxLocalizacionInsertarMaterial;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboLocalizacion;
-    private javax.swing.JDialog dialogoNuevoMaterial;
     private javax.swing.JMenu exportarCSV;
     private javax.swing.JMenu importarCSV;
     private javax.swing.JButton imprimirInforme;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1298,7 +1411,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1312,7 +1424,6 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
     private javax.swing.JPanel panelBorrarUsuario;
