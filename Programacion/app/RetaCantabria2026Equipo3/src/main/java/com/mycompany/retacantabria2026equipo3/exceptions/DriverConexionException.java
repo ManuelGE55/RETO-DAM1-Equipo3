@@ -5,8 +5,15 @@
 package com.mycompany.retacantabria2026equipo3.exceptions;
 
 /**
- *
- * @author DAM212
+ * Excepción personalizada lanzada cuando
+ * ocurre un error de conexión con el driver
+ * del navegador utilizado por Selenium.
+ * 
+ * Esta excepción se utiliza cuando el sistema
+ * no puede ejecutar correctamente acciones
+ * sobre la página web de localizaciones.
+ * 
+ * @author Hugo Fernández
  */
 public class DriverConexionException extends Exception {
     
