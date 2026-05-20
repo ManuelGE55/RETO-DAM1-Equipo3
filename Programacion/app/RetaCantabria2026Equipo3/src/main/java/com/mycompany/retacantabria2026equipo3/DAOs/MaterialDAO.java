@@ -44,7 +44,7 @@ public class MaterialDAO {
                 JOptionPane.showMessageDialog(null, "Insertar material", "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 //SE AÑADIO CORRECTAMENTE
-                System.out.println("Se añadido correctamente");
+                System.out.println("Se añadio correctamente");
                 JOptionPane.showMessageDialog(null, "Insertar material", "Material añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
             }
 
