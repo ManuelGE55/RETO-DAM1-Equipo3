@@ -5,8 +5,16 @@
 package com.mycompany.retacantabria2026equipo3.gestores;
 
 /**
- *
- * @author DAM212
+ * Clase encargada de gestionar los préstamos
+ * de materiales del inventario.
+ * 
+ * Permitirá controlar:
+ * 
+ * - Materiales prestados.
+ * - Usuarios responsables.
+ * - Fechas de préstamo y devolución.
+ * 
+ * @author Hugo Fernández
  */
 public class GestorPrestamos {
     
