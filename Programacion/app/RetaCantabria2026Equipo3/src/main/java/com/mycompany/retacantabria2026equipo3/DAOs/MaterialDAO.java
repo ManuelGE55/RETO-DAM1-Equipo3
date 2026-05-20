@@ -46,12 +46,12 @@ public class MaterialDAO {
         }
         
     }
-    public static void InsertarTipoMaterial(String nombre,String descripcion,String estado,String IdUbicacion,Categoria categoria){
+    public static void InsertarTipoMaterial(String nombre,String descripcion,String estado,String IdUbicacion,Categoria categoria,int stockMinimo){
         String sql="INSERT INTO datos_material (nombre, cantidad, stock_minimo, categoria) VALUES(?,?,?,?)";
         try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(1,nombre);
             ps.setInt(2,1);
-            ps.setInt(3,1);
+            ps.setInt(3,stockMinimo);
             ps.setString(4,categoria.name());
             int resultado = ps.executeUpdate();
             if(resultado!=1){
