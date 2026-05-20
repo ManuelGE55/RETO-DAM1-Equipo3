@@ -41,6 +41,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author DAM212
  */
+
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
@@ -90,11 +91,11 @@ public class Pantalla extends javax.swing.JFrame {
         jOptionPane1 = new javax.swing.JOptionPane();
         jDialog1 = new javax.swing.JDialog();
         jDialog2 = new javax.swing.JDialog();
-        jLabel10 = new javax.swing.JLabel();
         botonAñadirInsertarTipoMaterial = new javax.swing.JButton();
         botonSalirInsertarTipoMaterial = new javax.swing.JButton();
         textoStockMinimo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JPasswordField();
@@ -179,10 +180,6 @@ public class Pantalla extends javax.swing.JFrame {
             .addGap(0, 165, Short.MAX_VALUE)
         );
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel10.setText("NUEVO MATERIAL:");
-
         botonAñadirInsertarTipoMaterial.setText("Añadir");
         botonAñadirInsertarTipoMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +195,10 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         jLabel6.setText("Stock minimo:");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel10.setText("NUEVO MATERIAL:");
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
@@ -216,16 +217,16 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(textoStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47))
             .addGroup(jDialog2Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addGap(98, 98, 98)
                 .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel10)
+                .addGap(47, 47, 47)
                 .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(textoStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -935,29 +936,15 @@ public class Pantalla extends javax.swing.JFrame {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-            if (usuario != null) {
-                if (usuario instanceof Profesor) {
-                    modificarMaterial.setVisible(false);
-                    añadirMaterial.setVisible(false);
-                } else {
-                    modificarMaterial.setVisible(true);
-                    añadirMaterial.setVisible(true);
-                }
-                this.setSize(1500, 550);
-                jPanel2.setVisible(true);
-                jMenuBar2.setVisible(true);
-                rellenarComboBoxEstado();
-                rellenarComboBoxCategoria();
-                rellenarComboBoxLocalizacion();
-                inventario.setMateriales(InventarioDAO.cargarInventario());
-                rellenarTablaMateriales();
-                Loggin.setVisible(false);
-
+        if (usuario != null) {
+            if (usuario instanceof Profesor) {
+                modificarMaterial.setVisible(false);
+                añadirMaterial.setVisible(false);
             } else {
                 modificarMaterial.setVisible(true);
                 añadirMaterial.setVisible(true);
             }
-            this.setSize(1390, 550);
+            this.setSize(1500, 550);
             jPanel2.setVisible(true);
             jMenuBar2.setVisible(true);
             rellenarComboBoxEstado();
@@ -968,16 +955,23 @@ public class Pantalla extends javax.swing.JFrame {
             Loggin.setVisible(false);
 
         } else {
-            JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
-            Contraseña.setText("");
-            Contraseña.requestFocus();
+            modificarMaterial.setVisible(true);
+            añadirMaterial.setVisible(true);
         }
-
+        this.setSize(1390, 550);
+        jPanel2.setVisible(true);
+        jMenuBar2.setVisible(true);
+        rellenarComboBoxEstado();
+        rellenarComboBoxCategoria();
+        rellenarComboBoxLocalizacion();
+        inventario.setMateriales(InventarioDAO.cargarInventario());
+        rellenarTablaMateriales();
+        Loggin.setVisible(false);
     }//GEN-LAST:event_botonOkActionPerformed
 
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+    // TODO add your handling code here:
+}
 
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
@@ -1030,8 +1024,8 @@ public class Pantalla extends javax.swing.JFrame {
 
                     MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
                 } else {
-                    jDialog2.setSize(400,300);
-                   jDialog2.setVisible(true);
+                    jDialog2.setSize(400, 300);
+                    jDialog2.setVisible(true);
                 }
                 jPanel2.setVisible(true);
                 rellenarTablaMateriales();
@@ -1129,7 +1123,7 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             if (jTable1.getSelectedRow() != -1) {
                 String idUbicacion = (String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getColumnCount() - 1);
-                GestorLocalizaciones.mostrarUbicacionWeb(idUbicacion);                
+                GestorLocalizaciones.mostrarUbicacionWeb(idUbicacion);
             } else {
                 JOptionPane.showMessageDialog(null, "Error: Se debe de seleccionar un material para acceder a su mapa.", "Material no seleccionado", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -1141,329 +1135,329 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMapaActionPerformed
 
     private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
-       MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()),Integer.parseInt(textoStockMinimo.getText()));
-       jDialog2.setVisible(false);
-       panelInsertarComponente.setVisible(false);
+        MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()), Integer.parseInt(textoStockMinimo.getText()));
+        jDialog2.setVisible(false);
+        panelInsertarComponente.setVisible(false);
     }//GEN-LAST:event_botonAñadirInsertarTipoMaterialActionPerformed
 
     private void botonSalirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirInsertarTipoMaterialActionPerformed
-       jDialog2.setVisible(false);
-       panelInsertarComponente.setVisible(false);
-       jPanel2.setVisible(true);
+        jDialog2.setVisible(false);
+        panelInsertarComponente.setVisible(false);
+        jPanel2.setVisible(true);
     }//GEN-LAST:event_botonSalirInsertarTipoMaterialActionPerformed
 
     private void rellenarTablaMateriales() {
-        // Columnas
-        materiales.clear();
-        boolean filtrado;
+    // Columnas
+    materiales.clear();
+    boolean filtrado;
 
-        String[] columnas = {
-            "nombre",
-            "descripcion",
-            "categoria",
-            "estado",
-            "id_ubicacion"
-        };
+    String[] columnas = {
+        "nombre",
+        "descripcion",
+        "categoria",
+        "estado",
+        "id_ubicacion"
+    };
 
-        // Modelo
-        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+    // Modelo
+    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        // Tabla
-        jTable1.setModel(modelo);
+    // Tabla
+    jTable1.setModel(modelo);
 
-        // Rellenar tabla
-        if (!inventario.getMateriales().isEmpty()) {
-            for (Material m : inventario.getMateriales()) {
-                filtrado = true;
-                Object[] fila = {
-                    m.getNombre(),
-                    m.getDescripcion(),
-                    m.getCategoria(),
-                    m.getEstado(),
-                    m.getIdUbicacion()
-                };
-                if (!comboEstado.getSelectedItem().equals("---")) {
-                    filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
-                }
-
-                if (!comboCategoria.getSelectedItem().equals("---")) {
-                    filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
-                }
-
-                if (filtrado) {
-                    modelo.addRow(fila);
-                    materiales.add(m);
-                }
-
+    // Rellenar tabla
+    if (!inventario.getMateriales().isEmpty()) {
+        for (Material m : inventario.getMateriales()) {
+            filtrado = true;
+            Object[] fila = {
+                m.getNombre(),
+                m.getDescripcion(),
+                m.getCategoria(),
+                m.getEstado(),
+                m.getIdUbicacion()
+            };
+            if (!comboEstado.getSelectedItem().equals("---")) {
+                filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
             }
-        }
 
+            if (!comboCategoria.getSelectedItem().equals("---")) {
+                filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
+            }
+
+            if (filtrado) {
+                modelo.addRow(fila);
+                materiales.add(m);
+            }
+
+        }
     }
+
+}
 
     private void rellenarComboBoxEstado() {
 
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-        modelo.addElement("---");
-        modelo.addElement("DISPONIBLE");
-        modelo.addElement("PRESTADO");
-        modelo.addElement("EN_REPARACION");
-        modelo.addElement("RETIRADO");
+    modelo.addElement("---");
+    modelo.addElement("DISPONIBLE");
+    modelo.addElement("PRESTADO");
+    modelo.addElement("EN_REPARACION");
+    modelo.addElement("RETIRADO");
 
-        comboEstado.setModel(modelo);
-    }
+    comboEstado.setModel(modelo);
+}
 
     private void rellenarComboBoxCambiarEstado(JComboBox<String> box) {
 
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-        modelo.addElement("DISPONIBLE");
-        modelo.addElement("PRESTADO");
-        modelo.addElement("EN_REPARACION");
-        modelo.addElement("RETIRADO");
+    modelo.addElement("DISPONIBLE");
+    modelo.addElement("PRESTADO");
+    modelo.addElement("EN_REPARACION");
+    modelo.addElement("RETIRADO");
 
-        box.setModel(modelo);
-    }
+    box.setModel(modelo);
+}
 
     private void rellenarComboBoxCategoria(JComboBox<String> box) {
 
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-        modelo.addElement("HARDWARE");
-        modelo.addElement("CUADERNO");
-        modelo.addElement("HERRAMIENTA");
-        modelo.addElement("FUNGIBLE");
+    modelo.addElement("HARDWARE");
+    modelo.addElement("CUADERNO");
+    modelo.addElement("HERRAMIENTA");
+    modelo.addElement("FUNGIBLE");
 
-        box.setModel(modelo);
-    }
+    box.setModel(modelo);
+}
 
     private void rellenarComboBoxCambiarRol(JComboBox<String> box) {
 
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-        modelo.addElement("ADMINISTRADOR");
-        modelo.addElement("PROFESOR");
+    modelo.addElement("ADMINISTRADOR");
+    modelo.addElement("PROFESOR");
 
-        box.setModel(modelo);
-    }
+    box.setModel(modelo);
+}
 
     private void rellenarComboBoxCambiarCategoria(JComboBox<String> box) {
 
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-        modelo.addElement("CUADERNO");
-        modelo.addElement("HARDWARE");
-        modelo.addElement("HERRAMIENTA");
-        modelo.addElement("FUNGIBLE");
+    modelo.addElement("CUADERNO");
+    modelo.addElement("HARDWARE");
+    modelo.addElement("HERRAMIENTA");
+    modelo.addElement("FUNGIBLE");
 
-        box.setModel(modelo);
-    }
+    box.setModel(modelo);
+}
 
     private void rellenarComboBoxCambiarLocalizacion(JComboBox<String> box) {
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        modelo.addElement("11");
-        modelo.addElement("12");
-        modelo.addElement("13");
-        modelo.addElement("14");
-        modelo.addElement("15");
-        modelo.addElement("2001");
-        modelo.addElement("2002");
-        modelo.addElement("2003");
-        modelo.addElement("2004");
-        modelo.addElement("2005");
-        modelo.addElement("2006");
-        modelo.addElement("2007");
-        modelo.addElement("2008");
-        modelo.addElement("2009");
-        modelo.addElement("2010");
-        modelo.addElement("2011");
-        modelo.addElement("2012");
-        modelo.addElement("2013");
-        modelo.addElement("2014");
-        modelo.addElement("2015");
-        modelo.addElement("2016");
-        modelo.addElement("2017");
-        modelo.addElement("2018");
-        modelo.addElement("2101");
-        modelo.addElement("2102");
-        modelo.addElement("2103");
-        modelo.addElement("2104");
-        modelo.addElement("2105");
-        modelo.addElement("2106");
-        modelo.addElement("2107");
-        modelo.addElement("2108");
-        modelo.addElement("2109");
-        modelo.addElement("2110");
-        modelo.addElement("2111");
-        modelo.addElement("2112");
-        modelo.addElement("2201");
-        modelo.addElement("2202");
-        modelo.addElement("2301");
-        modelo.addElement("2302");
-        modelo.addElement("2401");
-        modelo.addElement("2402");
-        modelo.addElement("2501");
-        modelo.addElement("2502");
-        modelo.addElement("2503");
-        modelo.addElement("2504");
-        modelo.addElement("2505");
-        modelo.addElement("2506");
-        modelo.addElement("2507");
-        modelo.addElement("2508");
-        modelo.addElement("2509");
-        modelo.addElement("2510");
-        modelo.addElement("2511");
-        modelo.addElement("2512");
-        modelo.addElement("300201");
-        modelo.addElement("300202");
-        modelo.addElement("300203");
-        modelo.addElement("300204");
-        modelo.addElement("300205");
-        modelo.addElement("300206");
-        modelo.addElement("300301");
-        modelo.addElement("300601");
-        modelo.addElement("300602");
-        modelo.addElement("300603");
-        modelo.addElement("300604");
-        modelo.addElement("300605");
-        modelo.addElement("300606");
-        modelo.addElement("300701");
-        modelo.addElement("300801");
-        modelo.addElement("300802");
-        modelo.addElement("300803");
-        modelo.addElement("300804");
-        modelo.addElement("300805");
-        modelo.addElement("300901");
-        modelo.addElement("300902");
-        modelo.addElement("301001");
-        modelo.addElement("301002");
-        modelo.addElement("301003");
-        modelo.addElement("301004");
-        modelo.addElement("301301");
-        modelo.addElement("301302");
-        modelo.addElement("301401");
-        modelo.addElement("301402");
-        modelo.addElement("301601");
-        modelo.addElement("301602");
-        modelo.addElement("301603");
-        modelo.addElement("301604");
-        modelo.addElement("301605");
-        modelo.addElement("301701");
-        modelo.addElement("301801");
-        modelo.addElement("301802");
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    modelo.addElement("11");
+    modelo.addElement("12");
+    modelo.addElement("13");
+    modelo.addElement("14");
+    modelo.addElement("15");
+    modelo.addElement("2001");
+    modelo.addElement("2002");
+    modelo.addElement("2003");
+    modelo.addElement("2004");
+    modelo.addElement("2005");
+    modelo.addElement("2006");
+    modelo.addElement("2007");
+    modelo.addElement("2008");
+    modelo.addElement("2009");
+    modelo.addElement("2010");
+    modelo.addElement("2011");
+    modelo.addElement("2012");
+    modelo.addElement("2013");
+    modelo.addElement("2014");
+    modelo.addElement("2015");
+    modelo.addElement("2016");
+    modelo.addElement("2017");
+    modelo.addElement("2018");
+    modelo.addElement("2101");
+    modelo.addElement("2102");
+    modelo.addElement("2103");
+    modelo.addElement("2104");
+    modelo.addElement("2105");
+    modelo.addElement("2106");
+    modelo.addElement("2107");
+    modelo.addElement("2108");
+    modelo.addElement("2109");
+    modelo.addElement("2110");
+    modelo.addElement("2111");
+    modelo.addElement("2112");
+    modelo.addElement("2201");
+    modelo.addElement("2202");
+    modelo.addElement("2301");
+    modelo.addElement("2302");
+    modelo.addElement("2401");
+    modelo.addElement("2402");
+    modelo.addElement("2501");
+    modelo.addElement("2502");
+    modelo.addElement("2503");
+    modelo.addElement("2504");
+    modelo.addElement("2505");
+    modelo.addElement("2506");
+    modelo.addElement("2507");
+    modelo.addElement("2508");
+    modelo.addElement("2509");
+    modelo.addElement("2510");
+    modelo.addElement("2511");
+    modelo.addElement("2512");
+    modelo.addElement("300201");
+    modelo.addElement("300202");
+    modelo.addElement("300203");
+    modelo.addElement("300204");
+    modelo.addElement("300205");
+    modelo.addElement("300206");
+    modelo.addElement("300301");
+    modelo.addElement("300601");
+    modelo.addElement("300602");
+    modelo.addElement("300603");
+    modelo.addElement("300604");
+    modelo.addElement("300605");
+    modelo.addElement("300606");
+    modelo.addElement("300701");
+    modelo.addElement("300801");
+    modelo.addElement("300802");
+    modelo.addElement("300803");
+    modelo.addElement("300804");
+    modelo.addElement("300805");
+    modelo.addElement("300901");
+    modelo.addElement("300902");
+    modelo.addElement("301001");
+    modelo.addElement("301002");
+    modelo.addElement("301003");
+    modelo.addElement("301004");
+    modelo.addElement("301301");
+    modelo.addElement("301302");
+    modelo.addElement("301401");
+    modelo.addElement("301402");
+    modelo.addElement("301601");
+    modelo.addElement("301602");
+    modelo.addElement("301603");
+    modelo.addElement("301604");
+    modelo.addElement("301605");
+    modelo.addElement("301701");
+    modelo.addElement("301801");
+    modelo.addElement("301802");
 
-        box.setModel(modelo);
-    }
+    box.setModel(modelo);
+}
 
     private void rellenarComboBoxLocalizacion() {
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        modelo.addElement("---");
-        modelo.addElement("11");
-        modelo.addElement("12");
-        modelo.addElement("13");
-        modelo.addElement("14");
-        modelo.addElement("15");
-        modelo.addElement("2001");
-        modelo.addElement("2002");
-        modelo.addElement("2003");
-        modelo.addElement("2004");
-        modelo.addElement("2005");
-        modelo.addElement("2006");
-        modelo.addElement("2007");
-        modelo.addElement("2008");
-        modelo.addElement("2009");
-        modelo.addElement("2010");
-        modelo.addElement("2011");
-        modelo.addElement("2012");
-        modelo.addElement("2013");
-        modelo.addElement("2014");
-        modelo.addElement("2015");
-        modelo.addElement("2016");
-        modelo.addElement("2017");
-        modelo.addElement("2018");
-        modelo.addElement("2101");
-        modelo.addElement("2102");
-        modelo.addElement("2103");
-        modelo.addElement("2104");
-        modelo.addElement("2105");
-        modelo.addElement("2106");
-        modelo.addElement("2107");
-        modelo.addElement("2108");
-        modelo.addElement("2109");
-        modelo.addElement("2110");
-        modelo.addElement("2111");
-        modelo.addElement("2112");
-        modelo.addElement("2201");
-        modelo.addElement("2202");
-        modelo.addElement("2301");
-        modelo.addElement("2302");
-        modelo.addElement("2401");
-        modelo.addElement("2402");
-        modelo.addElement("2501");
-        modelo.addElement("2502");
-        modelo.addElement("2503");
-        modelo.addElement("2504");
-        modelo.addElement("2505");
-        modelo.addElement("2506");
-        modelo.addElement("2507");
-        modelo.addElement("2508");
-        modelo.addElement("2509");
-        modelo.addElement("2510");
-        modelo.addElement("2511");
-        modelo.addElement("2512");
-        modelo.addElement("300201");
-        modelo.addElement("300202");
-        modelo.addElement("300203");
-        modelo.addElement("300204");
-        modelo.addElement("300205");
-        modelo.addElement("300206");
-        modelo.addElement("300301");
-        modelo.addElement("300601");
-        modelo.addElement("300602");
-        modelo.addElement("300603");
-        modelo.addElement("300604");
-        modelo.addElement("300605");
-        modelo.addElement("300606");
-        modelo.addElement("300701");
-        modelo.addElement("300801");
-        modelo.addElement("300802");
-        modelo.addElement("300803");
-        modelo.addElement("300804");
-        modelo.addElement("300805");
-        modelo.addElement("300901");
-        modelo.addElement("300902");
-        modelo.addElement("301001");
-        modelo.addElement("301002");
-        modelo.addElement("301003");
-        modelo.addElement("301004");
-        modelo.addElement("301301");
-        modelo.addElement("301302");
-        modelo.addElement("301401");
-        modelo.addElement("301402");
-        modelo.addElement("301601");
-        modelo.addElement("301602");
-        modelo.addElement("301603");
-        modelo.addElement("301604");
-        modelo.addElement("301605");
-        modelo.addElement("301701");
-        modelo.addElement("301801");
-        modelo.addElement("301802");
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    modelo.addElement("---");
+    modelo.addElement("11");
+    modelo.addElement("12");
+    modelo.addElement("13");
+    modelo.addElement("14");
+    modelo.addElement("15");
+    modelo.addElement("2001");
+    modelo.addElement("2002");
+    modelo.addElement("2003");
+    modelo.addElement("2004");
+    modelo.addElement("2005");
+    modelo.addElement("2006");
+    modelo.addElement("2007");
+    modelo.addElement("2008");
+    modelo.addElement("2009");
+    modelo.addElement("2010");
+    modelo.addElement("2011");
+    modelo.addElement("2012");
+    modelo.addElement("2013");
+    modelo.addElement("2014");
+    modelo.addElement("2015");
+    modelo.addElement("2016");
+    modelo.addElement("2017");
+    modelo.addElement("2018");
+    modelo.addElement("2101");
+    modelo.addElement("2102");
+    modelo.addElement("2103");
+    modelo.addElement("2104");
+    modelo.addElement("2105");
+    modelo.addElement("2106");
+    modelo.addElement("2107");
+    modelo.addElement("2108");
+    modelo.addElement("2109");
+    modelo.addElement("2110");
+    modelo.addElement("2111");
+    modelo.addElement("2112");
+    modelo.addElement("2201");
+    modelo.addElement("2202");
+    modelo.addElement("2301");
+    modelo.addElement("2302");
+    modelo.addElement("2401");
+    modelo.addElement("2402");
+    modelo.addElement("2501");
+    modelo.addElement("2502");
+    modelo.addElement("2503");
+    modelo.addElement("2504");
+    modelo.addElement("2505");
+    modelo.addElement("2506");
+    modelo.addElement("2507");
+    modelo.addElement("2508");
+    modelo.addElement("2509");
+    modelo.addElement("2510");
+    modelo.addElement("2511");
+    modelo.addElement("2512");
+    modelo.addElement("300201");
+    modelo.addElement("300202");
+    modelo.addElement("300203");
+    modelo.addElement("300204");
+    modelo.addElement("300205");
+    modelo.addElement("300206");
+    modelo.addElement("300301");
+    modelo.addElement("300601");
+    modelo.addElement("300602");
+    modelo.addElement("300603");
+    modelo.addElement("300604");
+    modelo.addElement("300605");
+    modelo.addElement("300606");
+    modelo.addElement("300701");
+    modelo.addElement("300801");
+    modelo.addElement("300802");
+    modelo.addElement("300803");
+    modelo.addElement("300804");
+    modelo.addElement("300805");
+    modelo.addElement("300901");
+    modelo.addElement("300902");
+    modelo.addElement("301001");
+    modelo.addElement("301002");
+    modelo.addElement("301003");
+    modelo.addElement("301004");
+    modelo.addElement("301301");
+    modelo.addElement("301302");
+    modelo.addElement("301401");
+    modelo.addElement("301402");
+    modelo.addElement("301601");
+    modelo.addElement("301602");
+    modelo.addElement("301603");
+    modelo.addElement("301604");
+    modelo.addElement("301605");
+    modelo.addElement("301701");
+    modelo.addElement("301801");
+    modelo.addElement("301802");
 
-        comboLocalizacion.setModel(modelo);
-    }
+    comboLocalizacion.setModel(modelo);
+}
 
     private void rellenarComboBoxCategoria() {
 
-        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-        modelo.addElement("---");
-        modelo.addElement("CUADERNO");
-        modelo.addElement("HARDWARE");
-        modelo.addElement("HERRAMIENTA");
-        modelo.addElement("FUNGIBLE");
+    modelo.addElement("---");
+    modelo.addElement("CUADERNO");
+    modelo.addElement("HARDWARE");
+    modelo.addElement("HERRAMIENTA");
+    modelo.addElement("FUNGIBLE");
 
-        comboCategoria.setModel(modelo);
-    }
+    comboCategoria.setModel(modelo);
+}
 
     /**
      * @param args the command line arguments
@@ -1512,6 +1506,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1527,6 +1522,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
