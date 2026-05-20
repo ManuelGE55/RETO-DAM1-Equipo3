@@ -4,6 +4,8 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 
+import com.mycompany.retacantabria2026equipo3.enums.Rol;
+
 /**
  *
  * @author DAM212
@@ -11,15 +13,17 @@ package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 public abstract class Usuario {
     
     protected String nombre,apellidos,email,contraseña;
+    protected Rol rol;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre,String apellidos,String email,String contraseña) {
+    public Usuario(String nombre,String apellidos,String email,String contraseña, Rol rol) {
         this.email = email;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.contraseña = contraseña;
+        this.rol = rol;
     }
 
     public String getEmail() {
@@ -52,6 +56,14 @@ public abstract class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
     
     @Override
