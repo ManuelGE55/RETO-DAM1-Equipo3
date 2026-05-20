@@ -169,12 +169,22 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         botonCancelarInsertarMaterial2.setText("Cancelar");
+        botonCancelarInsertarMaterial2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarInsertarMaterial2ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Cantidad");
 
         jLabel10.setText("Stock minimo");
 
         comboBoxInsertarCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxInsertarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxInsertarCategoriaActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("Categoria");
 
@@ -844,6 +854,10 @@ public class Pantalla extends javax.swing.JFrame {
                if(MaterialDAO.existeMaterial(textoNombreInsertarMaterial.getText(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()))){
                    MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(),textoDescripcionInsertarMaterial.getText(),comboBoxEstadoInsertarMaterial.getSelectedItem().toString(),comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
                }
+               else{
+                   dialogoNuevoMaterial.setVisible(true);
+                   rellenarComboBoxCambiarCategoria();
+               }
            } catch (SQLException ex) {
                Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -852,7 +866,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
     private void botonCancelarInsertarMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarInsertarMaterial1ActionPerformed
-        // TODO add your handling code here:
+        panelInsertarComponente.setVisible(false);
+        jPanel2.setVisible(true);
     }//GEN-LAST:event_botonCancelarInsertarMaterial1ActionPerformed
 
     private void añadirMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirMaterialActionPerformed
@@ -864,6 +879,15 @@ public class Pantalla extends javax.swing.JFrame {
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void botonCancelarInsertarMaterial2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarInsertarMaterial2ActionPerformed
+panelInsertarComponente.setVisible(false);
+        jPanel2.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCancelarInsertarMaterial2ActionPerformed
+
+    private void comboBoxInsertarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxInsertarCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxInsertarCategoriaActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas

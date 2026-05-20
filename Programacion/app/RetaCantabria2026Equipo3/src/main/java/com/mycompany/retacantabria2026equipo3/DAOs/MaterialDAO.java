@@ -54,10 +54,11 @@ public class MaterialDAO {
             int resultado = ps.executeUpdate();
             if(resultado!=1){
                 //NO SE PUDO AÑADIR EL MATERIAL
-                InsertarMaterial(nombre,descripcion,estado,IdUbicacion);
+                
             }
             else{
                 //SE AÑADIO CORRECTAMENTE
+                InsertarMaterial(nombre,descripcion,estado.name(),IdUbicacion);
             }
             
         } catch (SQLException ex) {
