@@ -13,6 +13,9 @@ import com.mycompany.retacantabria2026equipo3.DAOs.UsuarioDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Rol;
 import com.mycompany.retacantabria2026equipo3.exceptions.DatosNoAsignadosException;
 import com.mycompany.retacantabria2026equipo3.enums.Categoria;
+import com.mycompany.retacantabria2026equipo3.exceptions.ArgumentoNoEncontradoException;
+import com.mycompany.retacantabria2026equipo3.exceptions.DriverConexionException;
+import com.mycompany.retacantabria2026equipo3.gestores.GestorLocalizaciones;
 import com.mycompany.retacantabria2026equipo3.json.GeneradorJSONInventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
@@ -826,6 +829,11 @@ public class Pantalla extends javax.swing.JFrame {
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         GeneradorJSONInventario generador = new GeneradorJSONInventario();
         generador.generarJSONInventario();
+        if (GestorLocalizaciones.cerrarWebDriver()) {
+            System.out.println("Driver de la web cerrado.");
+        } else {
+            System.out.println("Error: El Driver de la web no se cerró correctamente.");
+        }
         System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
@@ -861,11 +869,11 @@ public class Pantalla extends javax.swing.JFrame {
         ComboBoxCambiarEstado.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 3).toString());
         jMenuBar2.setVisible(false);
         int fila = jTable1.getSelectedRow();
-        Material obj= inventario.getMateriales().get(fila);
+        Material obj = inventario.getMateriales().get(fila);
         boolean trigger;
         try {
             trigger = MaterialDAO.trigger(obj.getNombre());
-            if(trigger){
+            if (trigger) {
                 JOptionPane.showMessageDialog(this, "La cantidad de este material es inferior a su stock minimo");
             }
         } catch (SQLException ex) {
@@ -928,7 +936,7 @@ public class Pantalla extends javax.swing.JFrame {
         int fila = jTable1.getSelectedRow();
         int id = 0;
         if (fila != -1) {
-            Material obj= inventario.getMateriales().get(fila);
+            Material obj = inventario.getMateriales().get(fila);
             id = obj.getId();
         }
         try {
@@ -958,24 +966,23 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_ContraseñaActionPerformed
 
     private void botonInsertar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertar1ActionPerformed
-        if (textoNombreInsertarMaterial.getText()!= null || textoDescripcionInsertarMaterial.getText()!= null) {
+        if (textoNombreInsertarMaterial.getText() != null || textoDescripcionInsertarMaterial.getText() != null) {
             try {
                 if (MaterialDAO.existeMaterial(textoNombreInsertarMaterial.getText())) {
-                    
+
                     MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
                 } else {
-                    MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()));
+                    MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()));
                 }
                 jPanel2.setVisible(true);
-                    rellenarTablaMateriales();
+                rellenarTablaMateriales();
                 panelInsertarComponente.setVisible(false);
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }
-        else{
+        } else {
             //NOMBRE O DESCRIPCION NULA
         }
     }//GEN-LAST:event_botonInsertar1ActionPerformed
@@ -1060,7 +1067,18 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonGestionUsuariosActionPerformed
 
     private void botonMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMapaActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (jTable1.getSelectedRow() != -1) {
+                String idUbicacion = (String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getColumnCount() - 1);
+                GestorLocalizaciones.mostrarUbicacionWeb(idUbicacion);                
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: Se debe de seleccionar un material para acceder a su mapa.", "Material no seleccionado", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (ArgumentoNoEncontradoException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
+        } catch (DriverConexionException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error de DriverConexion", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_botonMapaActionPerformed
 
     private void rellenarTablaMateriales() {
@@ -1135,7 +1153,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         box.setModel(modelo);
     }
-    
+
     private void rellenarComboBoxCategoria(JComboBox<String> box) {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1147,7 +1165,6 @@ public class Pantalla extends javax.swing.JFrame {
 
         box.setModel(modelo);
     }
-    
 
     private void rellenarComboBoxCambiarRol(JComboBox<String> box) {
 
@@ -1266,6 +1283,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         box.setModel(modelo);
     }
+
     private void rellenarComboBoxLocalizacion() {
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         modelo.addElement("---");
