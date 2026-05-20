@@ -1032,6 +1032,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         } else {
             //NOMBRE O DESCRIPCION NULA
+            JOptionPane.showMessageDialog(null, "Insertar material", "Nombre y/o descripcion es nula", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
