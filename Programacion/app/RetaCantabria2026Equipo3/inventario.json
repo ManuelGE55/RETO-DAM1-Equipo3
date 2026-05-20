@@ -1,98 +1,17 @@
 [
   {
-    "idMaterial": 21,
-    "nombre": "Cable ethernet",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B016",
-    "cajon": "C01603",
-    "descripcion": "Cable ethernet de 1 metro"
-  },
-  {
-    "idMaterial": 4,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 5,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 6,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 7,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 8,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 9,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 10,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 11,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
     "idMaterial": 1,
     "nombre": "Manual",
-    "cantidad": 3,
+    "cantidad": 5,
     "armario": "GENERAL",
-    "balda": "B003",
+    "balda": "B001",
     "cajon": "",
     "descripcion": "Manual de Word 2007"
   },
   {
     "idMaterial": 2,
     "nombre": "Manual",
-    "cantidad": 3,
+    "cantidad": 5,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
@@ -101,38 +20,83 @@
   {
     "idMaterial": 3,
     "nombre": "Manual",
-    "cantidad": 3,
+    "cantidad": 5,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
     "descripcion": "Manual de Word 2007"
   },
   {
-    "idMaterial": 15,
-    "nombre": "Mascara",
-    "cantidad": 1,
+    "idMaterial": 4,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
     "armario": "GENERAL",
-    "balda": "B016",
-    "cajon": "C01601",
-    "descripcion": "Proteccion para los ojos"
-  },
-  {
-    "idMaterial": 14,
-    "nombre": "Pistola de silicona",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B016",
-    "cajon": "C01604",
-    "descripcion": "Pistola de silicona"
-  },
-  {
-    "idMaterial": 16,
-    "nombre": "Portatil",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B012",
+    "balda": "B003",
     "cajon": "",
-    "descripcion": "Portatil"
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 5,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 6,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 7,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 8,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 9,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 10,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 11,
+    "nombre": "Libro DAM",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
   },
   {
     "idMaterial": 12,
@@ -151,6 +115,33 @@
     "balda": "B009",
     "cajon": "C00901",
     "descripcion": "Teclado con conexión USB"
+  },
+  {
+    "idMaterial": 14,
+    "nombre": "Pistola de silicona",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B016",
+    "cajon": "C01604",
+    "descripcion": "Pistola de silicona"
+  },
+  {
+    "idMaterial": 15,
+    "nombre": "Mascara",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B016",
+    "cajon": "C01601",
+    "descripcion": "Proteccion para los ojos"
+  },
+  {
+    "idMaterial": 16,
+    "nombre": "Portatil",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B012",
+    "cajon": "",
+    "descripcion": "Portatil"
   },
   {
     "idMaterial": 17,
@@ -187,5 +178,50 @@
     "balda": "B201",
     "cajon": "",
     "descripcion": "Caja de tornillos pequeños"
+  },
+  {
+    "idMaterial": 21,
+    "nombre": "Cable ethernet",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B016",
+    "cajon": "C01603",
+    "descripcion": "Cable ethernet de 1 metro"
+  },
+  {
+    "idMaterial": 22,
+    "nombre": "Manual",
+    "cantidad": 5,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "hola"
+  },
+  {
+    "idMaterial": 23,
+    "nombre": "manual",
+    "cantidad": 5,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "hola"
+  },
+  {
+    "idMaterial": 24,
+    "nombre": "Hola",
+    "cantidad": 1,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "adios"
+  },
+  {
+    "idMaterial": 25,
+    "nombre": "ADIOS",
+    "cantidad": 1,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "descripcion"
   }
 ]
