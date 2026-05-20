@@ -265,7 +265,7 @@ public class GeneradorJSONInventario {
             ProcessBuilder pb = new ProcessBuilder(
                     "ssh",
                     "-i",
-                    "D:\\Usuarios\\DAM127\\Downloads\\Reto.pem",
+                    "Reto.pem",
                     "ubuntu@52.44.197.21",
                     "sudo cp /home/ubuntu/inventario.json /var/www/html/"
             );
