@@ -4,6 +4,8 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 
+import com.mycompany.retacantabria2026equipo3.enums.Rol;
+
 /**
  *
  * @author DAM212
@@ -14,8 +16,8 @@ public class Administrador extends Usuario {
         super();
     }
 
-    public Administrador(String email, boolean activo, String nombre, String apellidos, String rol, String contraseña) {
-        super(nombre,apellidos,email,contraseña);
+    public Administrador(String email, boolean activo, String nombre, String apellidos, String contraseña, Rol rol) {
+        super(nombre,apellidos,email,contraseña, rol);
     }
     
     @Override

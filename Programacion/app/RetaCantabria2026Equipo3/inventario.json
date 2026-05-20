@@ -85,6 +85,7 @@
     "nombre": "Manual",
     "cantidad": 3,
     "armario": "GENERAL",
+    "balda": "B001",
     "balda": "B003",
     "cajon": "",
     "descripcion": "Manual de Word 2007"
