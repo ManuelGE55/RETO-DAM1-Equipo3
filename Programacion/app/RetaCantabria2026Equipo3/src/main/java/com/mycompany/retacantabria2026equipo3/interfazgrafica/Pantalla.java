@@ -1130,7 +1130,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMapaActionPerformed
 
     private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
-       MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()),Integer.parseInt(textoStockMinimo.getText()));
+//       MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()),Integer.parseInt(textoStockMinimo.getText()));
        jDialog2.setVisible(false);
        panelInsertarComponente.setVisible(false);
     }//GEN-LAST:event_botonAñadirInsertarTipoMaterialActionPerformed
