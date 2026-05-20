@@ -5,8 +5,18 @@
 package com.mycompany.retacantabria2026equipo3.enums;
 
 /**
- *
- * @author DAM121
+ * Enumeración que representa los disintos
+ * estados posibles de un material
+ * dentro del inventario.
+ * 
+ * Los materiales pueden encontrarse:
+ * 
+ * - Disponibles para su uso.
+ * - Prestados.
+ * - En reparación.
+ * - Retirados del sistema.
+ * 
+ * @author Ciro Galán
  */
 public enum Estado {
     DISPONIBLE,PRESTADO,EN_REPARACION,RETIRADO

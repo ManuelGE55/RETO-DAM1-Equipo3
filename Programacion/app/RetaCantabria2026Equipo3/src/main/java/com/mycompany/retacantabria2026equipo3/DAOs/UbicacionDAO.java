@@ -12,33 +12,45 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author DAM101
+ * Enumeración que representa los disintos
+ * estados posibles de un material
+ * dentro del inventario.
+ * 
+ * Los materiales pueden encontrarse:
+ * 
+ * - Disponibles para su uso.
+ * - Prestados.
+ * - En reparación.
+ * - Retirados del sistema.
+ * 
+ * @author Ciro Galán
  */
 public class UbicacionDAO {
-    
-    public static boolean existeId(int id) throws SQLException {        
+
+    public static boolean existeId(int id) throws SQLException {
         // Variables
         boolean resultado = true;
-        PreparedStatement  ps = null;
+        PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         String s = "SELECT * FROM ubicacion WHERE id_ubicacion = ?";
         Connection con = AccesoBaseDatos.getInstance().getConn();
-            try{
-                // Preparamos la sentencia con los datos del vehiculo
-                ps = con.prepareStatement(s);               
-                ps.setInt(1, id);
-                // Ejecutamos la sentencia.
-                rs = ps.executeQuery();
-                // Si la sentencia se ejecuta correctamente, devolvemos true
-                resultado = rs.next();
-                if (ps != null) ps.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UbicacionDAO.class.getName()).
-                        log(Level.SEVERE, null, ex);
+        try {
+            // Preparamos la sentencia con los datos del vehiculo
+            ps = con.prepareStatement(s);
+            ps.setInt(1, id);
+            // Ejecutamos la sentencia.
+            rs = ps.executeQuery();
+            // Si la sentencia se ejecuta correctamente, devolvemos true
+            resultado = rs.next();
+            if (ps != null) {
+                ps.close();
             }
-        
+        } catch (SQLException ex) {
+            Logger.getLogger(UbicacionDAO.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+
         return resultado;
     }
 }

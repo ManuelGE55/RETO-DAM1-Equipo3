@@ -8,8 +8,13 @@ import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.M
 import java.util.ArrayList;
 
 /**
- *
- * @author DAM212
+ * Clase encargada de gestionar las operaciones
+ * relacionadas con el inventario del sistema.
+ * 
+ * Esta clase acturá como intermediario entre
+ * la interfaz gráfica y los materiales almacenados.
+ * 
+ * @author Hugo Fernández
  */
 public class GestorInventario {
 }
