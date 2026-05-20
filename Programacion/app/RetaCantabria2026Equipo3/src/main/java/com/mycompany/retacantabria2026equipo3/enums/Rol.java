@@ -5,8 +5,16 @@
 package com.mycompany.retacantabria2026equipo3.enums;
 
 /**
- *
- * @author DAM212
+ * Enumeración que representa los disintos
+ * roles posibles de un usuario
+ * dentro de la app.
+ * 
+ * Los roles pueden ser:
+ * 
+ * - Profesor.
+ * - Administrador.
+ * 
+ * @author Ciro Galán
  */
 public enum Rol {
     PROFESOR, ADMINISTRADOR;
