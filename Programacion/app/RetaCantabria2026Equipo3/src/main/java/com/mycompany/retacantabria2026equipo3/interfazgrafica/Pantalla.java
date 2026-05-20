@@ -739,7 +739,7 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             trigger = MaterialDAO.trigger(obj.getNombre());
             if(trigger){
-                JOptionPane.showMessageDialog(this, "La cantidad de este materiale es inferior a su stock minimo");
+                JOptionPane.showMessageDialog(this, "La cantidad de este material es inferior a su stock minimo");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
