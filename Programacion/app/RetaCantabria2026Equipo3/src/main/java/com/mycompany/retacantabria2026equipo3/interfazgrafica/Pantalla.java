@@ -552,7 +552,8 @@ public class Pantalla extends javax.swing.JFrame {
                             .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonGestionUsuarios)
-                            .addComponent(botonMapa)))))
+                            .addComponent(botonMapa))))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         BotonSalirModificarMaterial.setText("Salir");
@@ -955,18 +956,9 @@ public class Pantalla extends javax.swing.JFrame {
             Loggin.setVisible(false);
 
         } else {
-            modificarMaterial.setVisible(true);
-            añadirMaterial.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Contraseña o email incorrecto");
+            Contraseña.setText("");
         }
-        this.setSize(1390, 550);
-        jPanel2.setVisible(true);
-        jMenuBar2.setVisible(true);
-        rellenarComboBoxEstado();
-        rellenarComboBoxCategoria();
-        rellenarComboBoxLocalizacion();
-        inventario.setMateriales(InventarioDAO.cargarInventario());
-        rellenarTablaMateriales();
-        Loggin.setVisible(false);
     }//GEN-LAST:event_botonOkActionPerformed
 
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {

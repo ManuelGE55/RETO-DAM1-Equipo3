@@ -38,7 +38,7 @@
   {
     "idMaterial": 4,
     "nombre": "Libro DAM",
-    "cantidad": 3,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -47,7 +47,7 @@
   {
     "idMaterial": 5,
     "nombre": "Libro DAM",
-    "cantidad": 3,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -56,7 +56,7 @@
   {
     "idMaterial": 6,
     "nombre": "Libro DAM",
-    "cantidad": 3,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -65,7 +65,7 @@
   {
     "idMaterial": 7,
     "nombre": "Libro DAM",
-    "cantidad": 3,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -74,7 +74,7 @@
   {
     "idMaterial": 8,
     "nombre": "Libro DAM",
-    "cantidad": 3,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -83,16 +83,16 @@
   {
     "idMaterial": 9,
     "nombre": "Libro DAM",
-    "cantidad": 3,
-    "armario": "GENERAL",
-    "balda": "B003",
+    "cantidad": 2,
+    "armario": "A1",
+    "balda": "B000",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
   {
     "idMaterial": 10,
     "nombre": "Libro DAM",
-    "cantidad": 3,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -101,7 +101,7 @@
   {
     "idMaterial": 11,
     "nombre": "Libro DAM",
-    "cantidad": 3,
+    "cantidad": 2,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
