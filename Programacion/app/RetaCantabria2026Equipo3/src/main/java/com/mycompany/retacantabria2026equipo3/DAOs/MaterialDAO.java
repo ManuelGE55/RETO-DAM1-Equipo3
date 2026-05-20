@@ -23,6 +23,25 @@ public class MaterialDAO {
     //==========================================================================
     //ActucalizarEstado
     //Permite actualizar el estado de un material
+    public static boolean trigger(String nombre) throws SQLException {
+        boolean resultado = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String s = "SELECT * FROM alerta_stock WHERE nombre_material = ? AND resuelta = false";
+        Connection con = AccesoBaseDatos.getInstance().getConn();
+        try {
+            ps = con.prepareStatement(s);
+            ps.setString(1, nombre);
+            
+            rs = ps.executeQuery();
+            resultado = rs.next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return resultado;
+
+    }
+
     public static int ActualizarEstado(String descr, String est, int ubi, int id, int id_usu) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
@@ -40,14 +59,16 @@ public class MaterialDAO {
                 ps.setInt(3, ubi);
                 ps.setInt(4, id);
                 UsuarioDAO.pasarUsuario(id_usu, con);
-                
+
                 int valor = ps.executeUpdate();
                 if (valor == 0) {
                     resultado = -1;
                 } else {
                     resultado = 0;
                 }
-                if (ps != null) ps.close();
+                if (ps != null) {
+                    ps.close();
+                }
             }
 
         } catch (SQLException ex) {
@@ -68,7 +89,9 @@ public class MaterialDAO {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             resultado = rs.next();
-            if (ps != null) ps.close();
+            if (ps != null) {
+                ps.close();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MaterialDAO.class.getName()).
                     log(Level.SEVERE, null, ex);
