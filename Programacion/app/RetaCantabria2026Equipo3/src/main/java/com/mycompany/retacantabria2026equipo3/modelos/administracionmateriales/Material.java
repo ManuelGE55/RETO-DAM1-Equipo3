@@ -8,16 +8,10 @@ import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 
 /**
- * Clase que representa un material almacenado dentro del inventario del
- * sistema.
  *
- * Cada material posee información como su nombre, cantidad disponible y
- * ubicación asignada
- *
- * @author Hugo Fernández
+ * @author DAM212
  */
 public class Material {
-
     private int id;
     private String nombre;
     private String descripcion;
@@ -27,19 +21,8 @@ public class Material {
     private Estado estado;
     private String idUbicacion;
 
-    /**
-     * Contructor de la clase Material.
-     *
-     * @param nombre
-     * @param descripcion
-     * @param categoria
-     * @param estado
-     * @param idUbicacion
-     *
-     * @author Hugo Fernández
-     */
     public Material(String nombre, String descripcion, Categoria categoria, Estado estado, String idUbicacion) {
-
+        
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -47,9 +30,11 @@ public class Material {
         this.idUbicacion = idUbicacion;
     }
 
+
     public int getId() {
         return id;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -58,6 +43,7 @@ public class Material {
     public String getDescripcion() {
         return descripcion;
     }
+
 
     public int getCantidad() {
         return cantidad;
@@ -75,6 +61,7 @@ public class Material {
         return estado;
     }
 
+
     public String getIdUbicacion() {
         return idUbicacion;
     }
@@ -86,13 +73,9 @@ public class Material {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-
+    
     /**
-     * Devuelve la información del material en formato texto.
-     *
-     * @return
-     *
-     * @author Hugo Fernández
+     * @author Hugo fernández Calzado
      */
     @Override
     public String toString() {

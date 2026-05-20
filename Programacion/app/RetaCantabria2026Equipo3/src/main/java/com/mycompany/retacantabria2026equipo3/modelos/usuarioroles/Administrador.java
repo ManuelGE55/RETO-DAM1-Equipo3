@@ -4,55 +4,32 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 
+import com.mycompany.retacantabria2026equipo3.enums.Rol;
+
 /**
- * Clase que representa a un administrador del sistema.
  *
- * Hereda de la clase Usuario y dispone de permisos avanzados para la gestión
- * completa de la app.
- *
- * @author Hugo Fernández
+ * @author DAM212
  */
 public class Administrador extends Usuario {
 
-    /**
-     * Constructor por defecto de la clase Administrador.
-     *
-     * @author Hugo Fernández
-     */
     public Administrador() {
         super();
     }
-    /**
-     * Constructo de la clase Administrador.
-     * 
-     * @param email
-     * @param activo
-     * @param nombre
-     * @param apellidos
-     * @param rol
-     * @param contraseña
-     * 
-     * @author Hugo Fernández
-     */
-    public Administrador(String email, boolean activo, String nombre, String apellidos, String rol, String contraseña) {
-        super(nombre, apellidos, email, contraseña);
-    }
-    /**
-     * Devuelve la información del administrador.
-     * 
-     * @return 
-     * 
-     * @author Hugo Fernández
-     */
-    @Override
-    public String toString() {
-        return "Administrador("
-                + "Nombre: " + this.nombre + " | "
-                + "Email: " + this.email + ""
-                + ")";
-    }
 
-    // metodos para Frontend
+    public Administrador(String email, boolean activo, String nombre, String apellidos, String contraseña, Rol rol) {
+        super(nombre,apellidos,email,contraseña, rol);
+    }
+    
+    @Override
+   public String toString() {
+       return "Administrador("
+               + "Nombre: " + this.nombre + " | "
+               + "Email: " + this.email + ""
+               + ")";
+   }
+   
+   // metodos para Frontend
+
 //    @Override
 //    public String consultarInventario() {
 //        

@@ -12,26 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Clase DAO encargada de consultar información
- * relacionada con las ubicaciones almacenadas
- * en la base de datos.
- * 
- * Permite comprobar si una ubicación existe
- * antes de asignarla a un material.
- * 
- * @author Naya Ruiz
+ *
+ * @author DAM101
  */
 public class UbicacionDAO {
-    /**
-     * Comprueba si existe una ubicación en la base
-     * de datos a partir de su identificador
-     * 
-     * @param id
-     * @return
-     * @throws SQLException 
-     * 
-     * @author Naya Ruiz
-     */
+    
     public static boolean existeId(int id) throws SQLException {        
         // Variables
         boolean resultado = true;

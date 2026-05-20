@@ -4,40 +4,27 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 
+import com.mycompany.retacantabria2026equipo3.enums.Rol;
+
 /**
- *Clase que representa un usuario del sistema.
- * 
- * Un usuario puede iniciar sesión en la app
- * y tiene un rol determinado dentro del sistema.
- * 
- * @author Hugo Fernández
+ *
+ * @author DAM212
  */
 public abstract class Usuario {
     
     protected String nombre,apellidos,email,contraseña;
-    
-    /**
-     * Construtor por defecto de la clase Usuario.
-     * 
-     * @author Hugo Fernández
-     */
+    protected Rol rol;
+    protected int id;
+
     public Usuario() {
     }
-    /**
-     * Constructor de la clase Usuario.
-     * 
-     * @param nombre
-     * @param apellidos
-     * @param email
-     * @param contraseña 
-     * 
-     * @author Hugo Fernández
-     */
-    public Usuario(String nombre,String apellidos,String email,String contraseña) {
+
+    public Usuario(String nombre,String apellidos,String email,String contraseña, Rol rol) {
         this.email = email;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.contraseña = contraseña;
+        this.rol = rol;
     }
 
     public String getEmail() {
@@ -71,13 +58,23 @@ public abstract class Usuario {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    /**
-     * Devuelve la información del usuario en formato texto.
-     * 
-     * @return 
-     * 
-     * @author Hugo Fernándezs
-     */
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    
+    public void setId(int id){
+        this.id=id;
+    }
+    
+    public int getId(){
+        return id;
+    }
+    
     @Override
     public abstract String toString();
     

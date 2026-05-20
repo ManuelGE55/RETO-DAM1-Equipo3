@@ -4,46 +4,22 @@
  */
 package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 
+import com.mycompany.retacantabria2026equipo3.enums.Rol;
+
 /**
- *Clase que representa a un profesor del sistema.
- * 
- * Hereda de la clase Usuario y posee permisos
- * especificos relacionados con la gestión
- * del inventario.
- * 
- * @author Hugo Fernández
+ *
+ * @author DAM212
  */
 public class Profesor extends Usuario {
-    /**
-     * Constructor por defecto de la clase profesor.
-     * 
-     * @author Hugo Fernández
-     */
+
     public Profesor() {
         super();
     }
-    /**
-     * Constructor de la clase profesor
-     * 
-     * @param email
-     * @param activo
-     * @param nombre
-     * @param apellidos
-     * @param rol
-     * @param contraseña 
-     * 
-     * @author Hugo Fernández
-     */
-    public Profesor(String email, boolean activo, String nombre, String apellidos, String rol, String contraseña) {
-        super(nombre,apellidos,email,contraseña);
+
+    public Profesor(String email, boolean activo, String nombre, String apellidos, String contraseña, Rol rol) {
+        super(nombre,apellidos,email,contraseña, rol);
     }
-    /**
-     * Devuelve la información del profesor en formato texto.
-     * 
-     * @return 
-     * 
-     * @author Hugo Fernández
-     */
+    
     @Override
     public String toString() {
         return "Profesor("

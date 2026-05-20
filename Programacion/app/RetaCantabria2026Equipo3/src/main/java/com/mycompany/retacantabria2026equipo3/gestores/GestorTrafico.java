@@ -18,68 +18,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase encargada de gestionar la importación y exportación de inventarios en
- * formato CSV.
  *
- * Permite:
- *
- * - Exportar materiales del inventario. - Importar materiales desde archivos
- * CSV. - Generar automáticamente nuevos archivos numerados para evitar
- * sobrescrituras.
- *
- * @author Hugo Fernández
+ * @author DAM212
  */
 public class GestorTrafico {
-
+    
     // atributos que contará los archivos para ir creando archivos cada vez que se exporte uno nuevo
     private static final File carpetaFicheros = new File("src/main/CSVs");
-    private static File[] listaFicheros = carpetaFicheros != null ? carpetaFicheros.listFiles() : null;
-    private static int contFicheros = listaFicheros == null ? 0 : listaFicheros.length;
-
-    /**
-     * Carga materiales desde un archivo CSV
-     * y los añade al inventario del sistema.
-     * 
-     * Cada línea del archivo es interpretada
-     * como un material independiente
-     * 
-     * @param inventarioCSV
-     * 
-     * @author Hugo Fernández
-     */
-    public static void cargarInventario(File inventarioCSV) {
-
+    private static File[] listaFicheros = carpetaFicheros!=null?carpetaFicheros.listFiles():null;
+    private static int contFicheros = listaFicheros==null?0:listaFicheros.length;
+    
+public static void cargarInventario(File inventarioCSV) {
+        
         try (BufferedReader br = new BufferedReader(new FileReader(inventarioCSV))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                inventario.anadirMaterial(new Material(datos[0], datos[1], Categoria.valueOf(datos[2]), Estado.valueOf(datos[3]), datos[4]));
+               String[] datos = linea.split(",");
+                   inventario.anadirMaterial(new Material(datos[0],datos[1],Categoria.valueOf(datos[2]),Estado.valueOf(datos[3]),datos[4]));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
-
-    /**
-     * Exporta los materiales del inventario
-     * a un archivo CSV.
-     * 
-     * El archivo generado contiene toda la información
-     * necesaria de cada material:
-     * 
-     * - ID
-     * - Nombre
-     * - Descripción
-     * - Cantidad
-     * - Categoría
-     * - Estado
-     * - Ubicación
-     * 
-     * @param materiales 
-     * 
-     * @author Hugo Fernández
-     */
-    public static void exportarInventario(List<Material> materiales) {
+    
+    public static void exportarInventario(List<Material> materiales) {     
         if (!carpetaFicheros.exists()) {
             carpetaFicheros.mkdirs();
         }
@@ -89,7 +51,7 @@ public class GestorTrafico {
             for (Material material : materiales) {
                 bw.write(material.getId() + "," + material.getNombre() + "," + material.getDescripcion() + ","
                         + "" + material.getCantidad() + "," + material.getStockMinimo() + "," + material.getCategoria() + "," + material.getEstado() + ","
-                        + material.getIdUbicacion() + "\n");
+                                + material.getIdUbicacion() + "\n");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

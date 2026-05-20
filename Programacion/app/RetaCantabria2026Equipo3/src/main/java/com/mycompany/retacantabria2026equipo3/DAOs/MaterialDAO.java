@@ -4,43 +4,93 @@
  */
 package com.mycompany.retacantabria2026equipo3.DAOs;
 
+import com.mycompany.retacantabria2026equipo3.enums.Categoria;
+import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Clase DAO encargada de gestionar las operaciones
- * relacionadas con los materiales en la base de datos.
- * 
- * Permite actulizar materiales, comprobar si existen
- * y obtener los datos necesarios para generar el JSON
- * del inventario.
- * 
- * @author Naya Ruiz
+ *
+ * @author DAM121
  */
 public class MaterialDAO {
 
-    /**
-     * Actualiza los datos principales de un material.
-     * 
-     * Modifica ka descripción, el estado y la ubicación
-     * del material indicado, siempre que exista tanto
-     * el material como la ubicación.
-     * 
-     * @param descr
-     * @param est
-     * @param ubi
-     * @param id
-     * @return
-     * @throws SQLException
-     * 
-     * @author Naya Ruiz
-     */
-    public static int ActualizarEstado(String descr, String est, int ubi, int id) throws SQLException {
+    //==========================================================================
+    //ESTE DAO ESTA ASIGNADO A : NAYA
+    //==========================================================================
+    public static void InsertarMaterial(String nombre,String descripcion,String estado,String IdUbicacion){
+        String sql="INSERT INTO material(nombre, descripcion, estado,id_ubicacion) VALUES(?,?,?,?)";
+        try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1,nombre);
+            ps.setString(2,descripcion);
+            ps.setString(3,estado);
+            ps.setString(4,IdUbicacion);
+            int resultado = ps.executeUpdate();
+            if(resultado!=1){
+                //NO SE PUDO AÑADIR EL MATERIAL
+                System.out.println("no se pudo añadir el material");
+            }
+            else{
+                //SE AÑADIO CORRECTAMENTE
+                System.out.println("Se añadio correctamente");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public static void InsertarTipoMaterial(String nombre,String descripcion,String estado,String IdUbicacion,Categoria categoria){
+        String sql="INSERT INTO datos_material (nombre, cantidad, stock_minimo, categoria) VALUES(?,?,?,?)";
+        try(Connection conn = AccesoBaseDatos.getInstance().getConn();PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setString(1,nombre);
+            ps.setInt(2,1);
+            ps.setInt(3,1);
+            ps.setString(4,categoria.name());
+            int resultado = ps.executeUpdate();
+            if(resultado!=1){
+                //NO SE PUDO AÑADIR EL MATERIAL
+                System.out.println("no se pudo añadir el tipo material");
+                
+            }
+            else{
+                //SE AÑADIO CORRECTAMENTE
+                InsertarMaterial(nombre,descripcion,estado,IdUbicacion);
+                System.out.println("Se añadio el tipo material correctamente");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //ActucalizarEstado
+    //Permite actualizar el estado de un material
+    public static boolean trigger(String nombre) throws SQLException {
+        boolean resultado = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String s = "SELECT * FROM alerta_stock WHERE nombre_material = ? AND resuelta = false";
+        Connection con = AccesoBaseDatos.getInstance().getConn();
+        try {
+            ps = con.prepareStatement(s);
+            ps.setString(1, nombre);
+            
+            rs = ps.executeQuery();
+            resultado = rs.next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return resultado;
+
+    }
+
+    public static int ActualizarEstado(String descr, String est, int ubi, int id, int id_usu) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
         String s = "UPDATE material SET descripcion = ? , estado = ?, id_ubicacion = ?  WHERE id_material = ?";
@@ -56,6 +106,7 @@ public class MaterialDAO {
                 ps.setString(2, est);
                 ps.setInt(3, ubi);
                 ps.setInt(4, id);
+                UsuarioDAO.pasarUsuario(id_usu, con);
 
                 int valor = ps.executeUpdate();
                 if (valor == 0) {
@@ -63,7 +114,9 @@ public class MaterialDAO {
                 } else {
                     resultado = 0;
                 }
-                if (ps != null) ps.close();
+                if (ps != null) {
+                    ps.close();
+                }
             }
 
         } catch (SQLException ex) {
@@ -71,18 +124,8 @@ public class MaterialDAO {
         }
         return resultado;
     }
-    /**
-     * Comprueba si existe un material en la base de datos
-     * a partir de su identificador.
-     * 
-     * @param id
-     * @return
-     * @throws SQLException 
-     * 
-     * @author Naya Ruiz
-     */
+
     public static boolean existeId(int id) throws SQLException {
-        // Variables
         boolean resultado = true;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -90,13 +133,38 @@ public class MaterialDAO {
         String s = "SELECT * FROM material WHERE id_material = ?";
         Connection con = AccesoBaseDatos.getInstance().getConn();
         try {
-            // Preparamos la sentencia con los datos del vehiculo
             ps = con.prepareStatement(s);
             ps.setInt(1, id);
+            rs = ps.executeQuery();
+            resultado = rs.next();
+            if (ps != null) {
+                ps.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MaterialDAO.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
+
+        return resultado;
+    }
+    public static boolean existeMaterial(String nombre) throws SQLException {
+        // Variables
+        boolean resultado = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String s = "SELECT * FROM datos_material WHERE nombre = ?";
+        Connection con = AccesoBaseDatos.getInstance().getConn();
+        try {
+            // Preparamos la sentencia con los datos del vehiculo
+            ps = con.prepareStatement(s);
+            ps.setString(1,nombre.trim());
             // Ejecutamos la sentencia.
             rs = ps.executeQuery();
             // Si la sentencia se ejecuta correctamente, devolvemos true
-            resultado = rs.next();
+            if(rs.next()){
+                resultado=true;
+            }
             if (ps != null) ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(MaterialDAO.class.getName()).
@@ -105,19 +173,7 @@ public class MaterialDAO {
 
         return resultado;
     }
-    /**
-     * Obtiene los materiales necesarios para generar
-     * el archivo JSON del inventario.
-     * 
-     * La consulta obtiene información del material,
-     * datos asociados y ubicación física.
-     * 
-     * @param con
-     * @return
-     * @throws SQLException 
-     * 
-     * @author Naya Ruiz
-     */
+
     public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
 
         String sql = """
