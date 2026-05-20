@@ -107,6 +107,7 @@ La base de datos fue desarrollada en MySQL y diseñada para gestionar:
 
 - [Ver Diagrama E/R](#diagrama-er)
 - [Ver Modelo relacional](#modelo-relacional)
+- [Ver Documentación completa](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/blob/main/Base%20de%20Datos/Documentaci%C3%B3n%20Base%20de%20datos.pdf)
 
 ## Triggers implementados
 
@@ -204,7 +205,7 @@ claves foráneas, tipos de datos y relaciones entre las entidades.
 
 ### Diagrama de clases
 
-![Diagrama de clases](DiagramaDeClases/Captura%20de%20pantalla%202026-05-07%20160532.png)
+![Diagrama de clases](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/blob/main/DiagramaDeClases/DiagramaDeClases.png)
 
 El diagrama de clases representa la estructura orientada a objetos de la aplicación Java.  
 Incluye las clases principales del sistema, como Usuario, Administrador, Profesor, Inventario, Material, 

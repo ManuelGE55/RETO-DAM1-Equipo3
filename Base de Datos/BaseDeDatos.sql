@@ -316,19 +316,17 @@ TRIGGERS
 
 DELIMITER //
 CREATE TRIGGER trg_movimiento
-AFTER UPDATE ON material
+BEFORE UPDATE ON material
 FOR EACH ROW
 BEGIN
 	DECLARE observaciones VARCHAR(80);
 	SET observaciones = 'Se ha modificado : ';
-	IF @modo_actualizacion = FALSE THEN
 		IF NEW.id_ubicacion!=OLD.id_ubicacion THEN SET observaciones = concat(observaciones,'id_ubicacion ');END IF;
         IF NEW.estado!=OLD.estado THEN SET observaciones = concat(observaciones,'estado ');END IF;
         IF NEW.descripcion!=OLD.descripcion THEN SET observaciones = concat(observaciones,'descripcion ');END IF;
         IF NEW.nombre!=OLD.nombre THEN SET observaciones = concat(observaciones,'nombre ');END IF;
 		INSERT INTO movimiento(id_usuario,id_material,fecha,observacion)
 		VALUES(@id_usuario,NEW.id_material,curdate(),observaciones);
-	END IF;
 END //
 DELIMITER ;
 
@@ -348,7 +346,7 @@ BEGIN
     DECLARE cantidadActual INT;
     DECLARE stockMin INT;
     SET nombreMaterial = OLD.nombre;
-    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial;
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado=DISPONIBLE;
     SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
     UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
 	IF(cantidadActual<stockMin) THEN
@@ -363,6 +361,33 @@ BEGIN
         );
     END IF;
 END //
+
+CREATE TRIGGER trg_alerta_stock_up
+AFTER UPDATE ON material
+FOR EACH ROW
+BEGIN
+	DECLARE mensajes VARCHAR(60);
+    DECLARE diferencia INT;
+    DECLARE nombreMaterial VARCHAR(30);
+    DECLARE cantidadActual INT;
+    DECLARE stockMin INT;
+    SET nombreMaterial = OLD.nombre;
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado=DISPONIBLE;
+    SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
+    UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
+	IF(cantidadActual<stockMin) THEN
+		SET diferencia = stockMin-cantidadActual;
+		SET mensajes = concat('La diferencia entre cantidad y stock mínimo es de ',diferencia);
+		INSERT INTO alerta_stock(nombre_material,fecha,mensaje,resuelta)
+        VALUES(
+			nombreMaterial,
+            curdate(),
+            mensajes,
+            FALSE
+        );
+    END IF;
+END //
+
 DELIMITER ;
 
 -- 
