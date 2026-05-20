@@ -5,6 +5,7 @@
 package com.mycompany.retacantabria2026equipo3;
 
 import com.mycompany.retacantabria2026equipo3.DAOs.AccesoBaseDatos;
+import com.mycompany.retacantabria2026equipo3.gestores.GestorLocalizaciones;
 import com.mycompany.retacantabria2026equipo3.interfazgrafica.Pantalla;
 
 /**

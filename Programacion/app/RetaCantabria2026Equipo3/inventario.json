@@ -241,5 +241,14 @@
     "balda": "B201",
     "cajon": "",
     "descripcion": "Caja de tornillos pequeños"
+  },
+  {
+    "idMaterial": 28,
+    "nombre": "za",
+    "cantidad": 1,
+    "armario": "A1",
+    "balda": "B000",
+    "cajon": "",
+    "descripcion": "z"
   }
 ]

@@ -5,8 +5,13 @@
 package com.mycompany.retacantabria2026equipo3.enums;
 
 /**
- *
- * @author DAM121
+ * Enumeración que representa las diferentes
+ * categorías de materiales del inventario.
+ * 
+ * Permite clasificar los materiales
+ * según su tipo o utilidad.
+ * 
+ * @author Ciro Galán
  */
 public enum Categoria {
     CUADERNO,HARDWARE,HERRAMIENTA,FUNGIBLE

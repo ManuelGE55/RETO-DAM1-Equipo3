@@ -5,11 +5,17 @@
 package com.mycompany.retacantabria2026equipo3.exceptions;
 
 /**
+ * Excepción personalizada lanzada cuando un argumento o identificador no existe
+ * dentro del sistema.
  *
- * @author DAM212
+ * Se utiliza principalmente para indicar que una ubicación solicitada no ha
+ * sido encontrada.
+ *
+ *
+ * @author Hugo Fernández Calzado
  */
 public class DriverConexionException extends Exception {
-    
+
     public DriverConexionException(String message) {
         super(message);
     }

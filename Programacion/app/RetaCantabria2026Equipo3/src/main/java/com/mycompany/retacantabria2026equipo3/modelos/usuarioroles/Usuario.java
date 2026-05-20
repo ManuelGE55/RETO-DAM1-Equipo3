@@ -7,19 +7,38 @@ package com.mycompany.retacantabria2026equipo3.modelos.usuarioroles;
 import com.mycompany.retacantabria2026equipo3.enums.Rol;
 
 /**
+ * Clase que representa un usuario del sistema.
  *
- * @author DAM212
+ * Un usuario puede iniciar sesión en la app y tiene un rol determinado dentro
+ * del sistema.
+ *
+ * @author Hugo Fernández
  */
 public abstract class Usuario {
-    
-    protected String nombre,apellidos,email,contraseña;
+
+    protected String nombre, apellidos, email, contraseña;
     protected Rol rol;
     protected int id;
 
+    /**
+     * Construtor por defecto de la clase Usuario.
+     *
+     * @author Hugo Fernández
+     */
     public Usuario() {
     }
 
-    public Usuario(String nombre,String apellidos,String email,String contraseña, Rol rol) {
+    /**
+     * Constructor de la clase Usuario.
+     *
+     * @param nombre
+     * @param apellidos
+     * @param email
+     * @param contraseña
+     *
+     * @author Hugo Fernández
+     */
+    public Usuario(String nombre, String apellidos, String email, String contraseña, Rol rol) {
         this.email = email;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -66,20 +85,26 @@ public abstract class Usuario {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
-    public void setId(int id){
-        this.id=id;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    
-    public int getId(){
+
+    public int getId() {
         return id;
     }
-    
+
+    /**
+     * Devuelve la información del usuario en formato texto.
+     *
+     * @return
+     *
+     * @author Hugo Fernándezs
+     */
     @Override
     public abstract String toString();
-    
+
     // metodos para Frontend
-    
 //    public abstract String consultarInventario();
 //    
 //    public abstract String localizarMaterial();
@@ -87,5 +112,4 @@ public abstract class Usuario {
 //    public abstract boolean registarPrestamo();
 //    
 //    public abstract boolean login(String password);
-    
 }

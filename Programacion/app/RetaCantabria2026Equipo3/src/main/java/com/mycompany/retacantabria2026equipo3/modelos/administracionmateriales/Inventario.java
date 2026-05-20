@@ -8,12 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Clase encargada de gestionar el inventario general del sistema.
  *
- * @author DAM212
+ * Permite almacenar y añadir materiales registrados en la app.
+ *
+ * @author Hugo Fernández
  */
 public class Inventario {
+
     private ArrayList<Material> materiales;
-    public Inventario(ArrayList<Material> materiales){
+
+    /**
+     * Constructor de la clase Inventario
+     *
+     * @param materiales
+     *
+     * @author Hugo Fernández
+     */
+    public Inventario(ArrayList<Material> materiales) {
         this.materiales = materiales;
     }
 
@@ -24,16 +36,28 @@ public class Inventario {
     public void setMateriales(ArrayList<Material> materiales) {
         this.materiales = materiales;
     }
-    public void anadirMaterial(Material m){
+
+    /**
+     * Añade un material al inventario.
+     *
+     * @param m
+     *
+     * @author Hugo Fernández
+     */
+    public void anadirMaterial(Material m) {
         materiales.add(m);
     }
-    
-    
 
+    /**
+     * Devuelve la información del inventario en formato texto.
+     *
+     * @return
+     *
+     * @author Hugo Fernández
+     */
     @Override
     public String toString() {
         return "Inventario{" + "materiales=" + materiales + '}';
     }
-    
-    
+
 }
