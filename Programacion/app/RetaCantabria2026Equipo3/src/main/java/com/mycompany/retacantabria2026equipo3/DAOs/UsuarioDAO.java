@@ -79,11 +79,12 @@ public class UsuarioDAO {
 
     public static Usuario comprobarUsuario(String email, String contraseña) throws SQLException {
         Usuario usuario = null;
-        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol,id_usuario FROM usuario WHERE email = ?";
+        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol,id_usuario FROM usuario WHERE email = ? AND contraseña = ?";
 
         try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
 
             ps.setString(1, email);
+            ps.setString(2,contraseña);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -91,8 +92,8 @@ public class UsuarioDAO {
                         usuario = rs.getString(6).equals("profesor") ? new Profesor() : new Administrador();
                         usuario.setNombre(rs.getString(1));
                         usuario.setApellidos(rs.getString(2));
-                        usuario.setEmail(rs.getString(3));
-                        usuario.setContraseña(rs.getString(4));
+                        usuario.setEmail(rs.getString(4));
+                        usuario.setContraseña(rs.getString(3));
                         usuario.setId(rs.getInt(7));
                     } else {
                         //USUARIO INACTIVO
@@ -122,12 +123,9 @@ public class UsuarioDAO {
 
         String s = "SELECT * FROM usuario WHERE email = ?";
         try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
-            // Preparamos la sentencia con los datos del propietario
             ps = con.prepareStatement(s);
             ps.setString(1, email);
-            // Ejecutamos la sentencia.
             rs = ps.executeQuery();
-            // Si la sentencia se ejecuta correctamente, devolvemos true
             resultado = rs.next();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
