@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,6 +98,7 @@ public class UsuarioDAO {
                         usuario.setId(rs.getInt(7));
                     } else {
                         //USUARIO INACTIVO
+                        JOptionPane.showMessageDialog(null, "Comprobar usuario", "El usuario está inactivo", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                 }
