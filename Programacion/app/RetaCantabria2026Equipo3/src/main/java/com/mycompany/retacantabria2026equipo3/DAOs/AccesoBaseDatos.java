@@ -10,8 +10,13 @@ import java.util.Properties;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Singleton.java to edit this template
  */
 /**
+ * Clase encargada de gestionar la conexión con la base de datos MySQL del
+ * inventario.
  *
- * @author dam121
+ * Utiliza el patrón Singleton para mantener una única instancia de conexión
+ * reutilizable durante la ejecución de la aplicación.
+ *
+ * @author Ciro Galán
  */
 public class AccesoBaseDatos {
 
@@ -23,6 +28,14 @@ public class AccesoBaseDatos {
     private static final String URL = "jdbc:mysql://44.217.68.114/" + BD; //URL de la base de datos
 //    private static final String URL = "jdbc:mysql://127.0.0.1:3306/" + BD; //URL de la base de datos
 
+    /**
+     * Contructor privado de la clase.
+     *
+     * Inicializa la conexión con la base de datos utilizando las credenciales y
+     * la URL definidos como constantes.
+     *
+     * @author Ciro Galán
+     */
     private AccesoBaseDatos() {
         try {
             Properties properties = new Properties();
@@ -44,15 +57,39 @@ public class AccesoBaseDatos {
         }
     }
 
+    /**
+     * Devuelve la única instancia de acceso a la base de datos.
+     *
+     * @return
+     *
+     * @author Ciro Galán
+     */
     public static AccesoBaseDatos getInstance() {
         return AccesoBaseDatosHolder.INSTANCE;
     }
 
+    /**
+     * Clase interna utilizada para implementar el patrón Singleton de forma
+     * segura.
+     *
+     * @author Ciro Galán
+     */
     private static class AccesoBaseDatosHolder {
 
         private static final AccesoBaseDatos INSTANCE = new AccesoBaseDatos();
     }
 
+    /**
+     * Devuelve la conexión activa con la base de datos.
+     *
+     * Si la conexión está cerrada o no existe, se vuelve a crear
+     * automáticamente.
+     *
+     * @return
+     * @throws SQLException
+     *
+     * @author Ciro Galán
+     */
     public Connection getConn() throws SQLException {
         if (conn == null || conn.isClosed()) {
             conn = DriverManager.getConnection(URL, USUARIO, CLAVE);
