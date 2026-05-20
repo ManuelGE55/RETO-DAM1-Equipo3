@@ -12,8 +12,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
+ * Clase encargada de gestionar la visualización de ubicaciones físicas del
+ * inventario mediante una página web interactiva.
  *
- * @author Hugo Fernández Calzado
+ * Utiliza Selenium WebDriver y JavaScriptExecutor para controlar
+ * automáticamente la web de localizaciones del proyecto.
+ *
+ * Permite mostrar:
+ *
+ * - Armarios 
+ * - Baldas 
+ * - Cajones
+ *
+ * en función de la ubicación del material.
+ *
+ * @author Hugo Fernández
  */
 public class GestorLocalizaciones {
 
@@ -49,14 +62,17 @@ public class GestorLocalizaciones {
     }
 
     /**
-     * Método estático que al ser llamado llamará a las funciones del archivo
-     * JavaScript para acceder a la web la ubicación del material
+     * Muestra en la página web la ubicación correspondiente a un material.
      *
-     * @param idUbicacion id de la ubicación del material
-     * @throws ArgumentoNoEncontradoException si la id de la ubicación no se
-     * encuentra
-     * @throws DriverConexionException si la conexión del atributo js es nula o
-     * la id de la ubicación también
+     * Dependiente del identificador recibido, se abrirá automáticamente:
+     *
+     * - Un armario. 
+     * - Una balda. 
+     * - Un cajón.
+     *
+     * utilizando funciones JavaScript ejecutadas desde Selenium.
+     *
+     * @author Hugo Fernández
      */
     public static void mostrarUbicacionWeb(String idUbicacion) throws ArgumentoNoEncontradoException, DriverConexionException {
 
@@ -451,6 +467,13 @@ public class GestorLocalizaciones {
         }
     }
 
+    /**
+     * Cierra el navegador controlado por Selenium.
+     *
+     * @return
+     *
+     * @author Hugo Fernández
+     */
     public static boolean cerrarWebDriver() {
         boolean cerrado = false;
         if (driver != null) {
