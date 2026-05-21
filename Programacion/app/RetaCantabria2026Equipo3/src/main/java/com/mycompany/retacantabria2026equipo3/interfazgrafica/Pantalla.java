@@ -844,6 +844,11 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         exportarCSV.setText("Exportar CSV");
+        exportarCSV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportarCSVMouseClicked(evt);
+            }
+        });
         jMenu3.add(exportarCSV);
 
         importarCSV.setText("Importar CSV");
@@ -1265,6 +1270,10 @@ public class Pantalla extends javax.swing.JFrame {
         rellenarTablaMateriales();
         jPanel2.repaint();
     }//GEN-LAST:event_importarCSVMouseClicked
+
+    private void exportarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarCSVMouseClicked
+        GestorTrafico.exportarInventario(materiales);
+    }//GEN-LAST:event_exportarCSVMouseClicked
 
     private void rellenarTablaMateriales() {
         // Columnas
