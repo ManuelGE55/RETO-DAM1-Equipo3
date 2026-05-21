@@ -1082,6 +1082,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
     private void botonCancelarInsertarMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarInsertarMaterial1ActionPerformed
+        
+        this.setSize(1560, 600);
         panelInsertarComponente.setVisible(false);
         jPanel2.setVisible(true);
     }//GEN-LAST:event_botonCancelarInsertarMaterial1ActionPerformed
@@ -1090,7 +1092,9 @@ public class Pantalla extends javax.swing.JFrame {
         rellenarComboBoxCambiarCategoria(comboBoxCategoriaInsertarMaterial);
         rellenarComboBoxCambiarEstado(comboBoxEstadoInsertarMaterial);
         rellenarComboBoxCambiarLocalizacion(comboBoxLocalizacionInsertarMaterial);
+        this.setSize(560, 600);
         panelInsertarComponente.setVisible(true);
+        jPanel2.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_añadirMaterialActionPerformed
