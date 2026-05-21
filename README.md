@@ -2,7 +2,7 @@
 [![MySQL](https://img.shields.io/badge/MySQL-Script%20SQL-blue)](Base%20de%20Datos/BaseDeDatos.sql)
 [![AWS](https://img.shields.io/badge/AWS-Guía%20de%20Despliegue-yellow)](Guia_despliegue_Equipo3.pdf)
 [![Lenguaje de Marcas](https://img.shields.io/badge/Web-Documentación%20Técnica-blue)](Documentación_Técnica_Web.pdf)
-[![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)](https://github.com/SaulValdunciel/RETO-DAM1-Equipo3)
+[![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-green)]([https://github.com/SaulValdunciel/RETO-DAM1-Equipo3](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/tree/main))
 
 # RETO-DAM1-Equipo3
 
