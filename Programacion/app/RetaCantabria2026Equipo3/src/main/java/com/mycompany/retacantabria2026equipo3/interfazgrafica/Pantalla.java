@@ -41,7 +41,6 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author DAM212
  */
-
 public class Pantalla extends javax.swing.JFrame {
 
     private static ArrayList<Material> materiales = new ArrayList<>();
@@ -119,6 +118,7 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        BotonEntrarABorrarUsuario = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nombreMaterial = new javax.swing.JLabel();
@@ -309,6 +309,13 @@ public class Pantalla extends javax.swing.JFrame {
 
         jLabel20.setText("Rol:");
 
+        BotonEntrarABorrarUsuario.setText("Borrar usuario");
+        BotonEntrarABorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEntrarABorrarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRegistrarUsuarioLayout = new javax.swing.GroupLayout(panelRegistrarUsuario);
         panelRegistrarUsuario.setLayout(panelRegistrarUsuarioLayout);
         panelRegistrarUsuarioLayout.setHorizontalGroup(
@@ -335,6 +342,10 @@ public class Pantalla extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
+            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(BotonEntrarABorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRegistrarUsuarioLayout.setVerticalGroup(
             panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +374,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(BotonEntrarABorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -732,9 +745,14 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
-        jLabel21.setText("ID:");
+        jLabel21.setText("Email:");
 
         BotonSalirBorrarUsuario.setText("Salir");
+        BotonSalirBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirBorrarUsuarioActionPerformed(evt);
+            }
+        });
 
         BotonBorrarUsuario.setText("Borrar");
         BotonBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -750,7 +768,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addComponent(CampoTextoBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorrarUsuarioLayout.createSequentialGroup()
@@ -962,8 +980,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonOkActionPerformed
 
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {
-    // TODO add your handling code here:
-}
+        // TODO add your handling code here:
+    }
 
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
@@ -1088,13 +1106,18 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void BotonBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarUsuarioActionPerformed
         String email;
+
         try {
             if (!CampoTextoBorrarUsuario.getText().equals("")) {
                 email = CampoTextoBorrarUsuario.getText();
                 boolean existeUsuario = UsuarioDAO.existeUsuario(email);
                 if (existeUsuario) {
-                    UsuarioDAO.borrarUsuario(AccesoBaseDatos.getInstance().getConn(), email);
-                    JOptionPane.showMessageDialog(null, "El usuario se eliminó correctamente.", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    if (!usuario.getEmail().equals(email)) {
+                        UsuarioDAO.borrarUsuario(AccesoBaseDatos.getInstance().getConn(), email);
+                        JOptionPane.showMessageDialog(null, "El usuario se eliminó correctamente.", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No puedes borrar tu mismo usuario.", "Eliminación usuario remoto", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Error: Usuario no encontrado, prueba con otro email.", "Usuario no encontrado", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -1139,318 +1162,328 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel2.setVisible(true);
     }//GEN-LAST:event_botonSalirInsertarTipoMaterialActionPerformed
 
+    private void BotonEntrarABorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarABorrarUsuarioActionPerformed
+        panelRegistrarUsuario.setVisible(false);
+        panelBorrarUsuario.setVisible(true);
+    }//GEN-LAST:event_BotonEntrarABorrarUsuarioActionPerformed
+
+    private void BotonSalirBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuarioActionPerformed
+        panelBorrarUsuario.setVisible(false);
+        panelRegistrarUsuario.setVisible(true);
+    }//GEN-LAST:event_BotonSalirBorrarUsuarioActionPerformed
+
     private void rellenarTablaMateriales() {
-    // Columnas
-    materiales.clear();
-    boolean filtrado;
+        // Columnas
+        materiales.clear();
+        boolean filtrado;
 
-    String[] columnas = {
-        "nombre",
-        "descripcion",
-        "categoria",
-        "estado",
-        "id_ubicacion"
-    };
+        String[] columnas = {
+            "nombre",
+            "descripcion",
+            "categoria",
+            "estado",
+            "id_ubicacion"
+        };
 
-    // Modelo
-    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+        // Modelo
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-    // Tabla
-    jTable1.setModel(modelo);
+        // Tabla
+        jTable1.setModel(modelo);
 
-    // Rellenar tabla
-    if (!inventario.getMateriales().isEmpty()) {
-        for (Material m : inventario.getMateriales()) {
-            filtrado = true;
-            Object[] fila = {
-                m.getNombre(),
-                m.getDescripcion(),
-                m.getCategoria(),
-                m.getEstado(),
-                m.getIdUbicacion()
-            };
-            if (!comboEstado.getSelectedItem().equals("---")) {
-                filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
+        // Rellenar tabla
+        if (!inventario.getMateriales().isEmpty()) {
+            for (Material m : inventario.getMateriales()) {
+                filtrado = true;
+                Object[] fila = {
+                    m.getNombre(),
+                    m.getDescripcion(),
+                    m.getCategoria(),
+                    m.getEstado(),
+                    m.getIdUbicacion()
+                };
+                if (!comboEstado.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
+                }
+
+                if (!comboCategoria.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
+                }
+
+                if (filtrado) {
+                    modelo.addRow(fila);
+                    materiales.add(m);
+                }
+
             }
-
-            if (!comboCategoria.getSelectedItem().equals("---")) {
-                filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
-            }
-
-            if (filtrado) {
-                modelo.addRow(fila);
-                materiales.add(m);
-            }
-
         }
-    }
 
-}
+    }
 
     private void rellenarComboBoxEstado() {
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-    modelo.addElement("---");
-    modelo.addElement("DISPONIBLE");
-    modelo.addElement("PRESTADO");
-    modelo.addElement("EN_REPARACION");
-    modelo.addElement("RETIRADO");
+        modelo.addElement("---");
+        modelo.addElement("DISPONIBLE");
+        modelo.addElement("PRESTADO");
+        modelo.addElement("EN_REPARACION");
+        modelo.addElement("RETIRADO");
 
-    comboEstado.setModel(modelo);
-}
+        comboEstado.setModel(modelo);
+    }
 
     private void rellenarComboBoxCambiarEstado(JComboBox<String> box) {
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-    modelo.addElement("DISPONIBLE");
-    modelo.addElement("PRESTADO");
-    modelo.addElement("EN_REPARACION");
-    modelo.addElement("RETIRADO");
+        modelo.addElement("DISPONIBLE");
+        modelo.addElement("PRESTADO");
+        modelo.addElement("EN_REPARACION");
+        modelo.addElement("RETIRADO");
 
-    box.setModel(modelo);
-}
+        box.setModel(modelo);
+    }
 
     private void rellenarComboBoxCategoria(JComboBox<String> box) {
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-    modelo.addElement("HARDWARE");
-    modelo.addElement("CUADERNO");
-    modelo.addElement("HERRAMIENTA");
-    modelo.addElement("FUNGIBLE");
+        modelo.addElement("HARDWARE");
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
 
-    box.setModel(modelo);
-}
+        box.setModel(modelo);
+    }
 
     private void rellenarComboBoxCambiarRol(JComboBox<String> box) {
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-    modelo.addElement("ADMINISTRADOR");
-    modelo.addElement("PROFESOR");
+        modelo.addElement("ADMINISTRADOR");
+        modelo.addElement("PROFESOR");
 
-    box.setModel(modelo);
-}
+        box.setModel(modelo);
+    }
 
     private void rellenarComboBoxCambiarCategoria(JComboBox<String> box) {
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-    modelo.addElement("CUADERNO");
-    modelo.addElement("HARDWARE");
-    modelo.addElement("HERRAMIENTA");
-    modelo.addElement("FUNGIBLE");
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HARDWARE");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
 
-    box.setModel(modelo);
-}
+        box.setModel(modelo);
+    }
 
     private void rellenarComboBoxCambiarLocalizacion(JComboBox<String> box) {
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-    modelo.addElement("11");
-    modelo.addElement("12");
-    modelo.addElement("13");
-    modelo.addElement("14");
-    modelo.addElement("15");
-    modelo.addElement("2001");
-    modelo.addElement("2002");
-    modelo.addElement("2003");
-    modelo.addElement("2004");
-    modelo.addElement("2005");
-    modelo.addElement("2006");
-    modelo.addElement("2007");
-    modelo.addElement("2008");
-    modelo.addElement("2009");
-    modelo.addElement("2010");
-    modelo.addElement("2011");
-    modelo.addElement("2012");
-    modelo.addElement("2013");
-    modelo.addElement("2014");
-    modelo.addElement("2015");
-    modelo.addElement("2016");
-    modelo.addElement("2017");
-    modelo.addElement("2018");
-    modelo.addElement("2101");
-    modelo.addElement("2102");
-    modelo.addElement("2103");
-    modelo.addElement("2104");
-    modelo.addElement("2105");
-    modelo.addElement("2106");
-    modelo.addElement("2107");
-    modelo.addElement("2108");
-    modelo.addElement("2109");
-    modelo.addElement("2110");
-    modelo.addElement("2111");
-    modelo.addElement("2112");
-    modelo.addElement("2201");
-    modelo.addElement("2202");
-    modelo.addElement("2301");
-    modelo.addElement("2302");
-    modelo.addElement("2401");
-    modelo.addElement("2402");
-    modelo.addElement("2501");
-    modelo.addElement("2502");
-    modelo.addElement("2503");
-    modelo.addElement("2504");
-    modelo.addElement("2505");
-    modelo.addElement("2506");
-    modelo.addElement("2507");
-    modelo.addElement("2508");
-    modelo.addElement("2509");
-    modelo.addElement("2510");
-    modelo.addElement("2511");
-    modelo.addElement("2512");
-    modelo.addElement("300201");
-    modelo.addElement("300202");
-    modelo.addElement("300203");
-    modelo.addElement("300204");
-    modelo.addElement("300205");
-    modelo.addElement("300206");
-    modelo.addElement("300301");
-    modelo.addElement("300601");
-    modelo.addElement("300602");
-    modelo.addElement("300603");
-    modelo.addElement("300604");
-    modelo.addElement("300605");
-    modelo.addElement("300606");
-    modelo.addElement("300701");
-    modelo.addElement("300801");
-    modelo.addElement("300802");
-    modelo.addElement("300803");
-    modelo.addElement("300804");
-    modelo.addElement("300805");
-    modelo.addElement("300901");
-    modelo.addElement("300902");
-    modelo.addElement("301001");
-    modelo.addElement("301002");
-    modelo.addElement("301003");
-    modelo.addElement("301004");
-    modelo.addElement("301301");
-    modelo.addElement("301302");
-    modelo.addElement("301401");
-    modelo.addElement("301402");
-    modelo.addElement("301601");
-    modelo.addElement("301602");
-    modelo.addElement("301603");
-    modelo.addElement("301604");
-    modelo.addElement("301605");
-    modelo.addElement("301701");
-    modelo.addElement("301801");
-    modelo.addElement("301802");
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        modelo.addElement("11");
+        modelo.addElement("12");
+        modelo.addElement("13");
+        modelo.addElement("14");
+        modelo.addElement("15");
+        modelo.addElement("2001");
+        modelo.addElement("2002");
+        modelo.addElement("2003");
+        modelo.addElement("2004");
+        modelo.addElement("2005");
+        modelo.addElement("2006");
+        modelo.addElement("2007");
+        modelo.addElement("2008");
+        modelo.addElement("2009");
+        modelo.addElement("2010");
+        modelo.addElement("2011");
+        modelo.addElement("2012");
+        modelo.addElement("2013");
+        modelo.addElement("2014");
+        modelo.addElement("2015");
+        modelo.addElement("2016");
+        modelo.addElement("2017");
+        modelo.addElement("2018");
+        modelo.addElement("2101");
+        modelo.addElement("2102");
+        modelo.addElement("2103");
+        modelo.addElement("2104");
+        modelo.addElement("2105");
+        modelo.addElement("2106");
+        modelo.addElement("2107");
+        modelo.addElement("2108");
+        modelo.addElement("2109");
+        modelo.addElement("2110");
+        modelo.addElement("2111");
+        modelo.addElement("2112");
+        modelo.addElement("2201");
+        modelo.addElement("2202");
+        modelo.addElement("2301");
+        modelo.addElement("2302");
+        modelo.addElement("2401");
+        modelo.addElement("2402");
+        modelo.addElement("2501");
+        modelo.addElement("2502");
+        modelo.addElement("2503");
+        modelo.addElement("2504");
+        modelo.addElement("2505");
+        modelo.addElement("2506");
+        modelo.addElement("2507");
+        modelo.addElement("2508");
+        modelo.addElement("2509");
+        modelo.addElement("2510");
+        modelo.addElement("2511");
+        modelo.addElement("2512");
+        modelo.addElement("300201");
+        modelo.addElement("300202");
+        modelo.addElement("300203");
+        modelo.addElement("300204");
+        modelo.addElement("300205");
+        modelo.addElement("300206");
+        modelo.addElement("300301");
+        modelo.addElement("300601");
+        modelo.addElement("300602");
+        modelo.addElement("300603");
+        modelo.addElement("300604");
+        modelo.addElement("300605");
+        modelo.addElement("300606");
+        modelo.addElement("300701");
+        modelo.addElement("300801");
+        modelo.addElement("300802");
+        modelo.addElement("300803");
+        modelo.addElement("300804");
+        modelo.addElement("300805");
+        modelo.addElement("300901");
+        modelo.addElement("300902");
+        modelo.addElement("301001");
+        modelo.addElement("301002");
+        modelo.addElement("301003");
+        modelo.addElement("301004");
+        modelo.addElement("301301");
+        modelo.addElement("301302");
+        modelo.addElement("301401");
+        modelo.addElement("301402");
+        modelo.addElement("301601");
+        modelo.addElement("301602");
+        modelo.addElement("301603");
+        modelo.addElement("301604");
+        modelo.addElement("301605");
+        modelo.addElement("301701");
+        modelo.addElement("301801");
+        modelo.addElement("301802");
 
-    box.setModel(modelo);
-}
+        box.setModel(modelo);
+    }
 
     private void rellenarComboBoxLocalizacion() {
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-    modelo.addElement("---");
-    modelo.addElement("11");
-    modelo.addElement("12");
-    modelo.addElement("13");
-    modelo.addElement("14");
-    modelo.addElement("15");
-    modelo.addElement("2001");
-    modelo.addElement("2002");
-    modelo.addElement("2003");
-    modelo.addElement("2004");
-    modelo.addElement("2005");
-    modelo.addElement("2006");
-    modelo.addElement("2007");
-    modelo.addElement("2008");
-    modelo.addElement("2009");
-    modelo.addElement("2010");
-    modelo.addElement("2011");
-    modelo.addElement("2012");
-    modelo.addElement("2013");
-    modelo.addElement("2014");
-    modelo.addElement("2015");
-    modelo.addElement("2016");
-    modelo.addElement("2017");
-    modelo.addElement("2018");
-    modelo.addElement("2101");
-    modelo.addElement("2102");
-    modelo.addElement("2103");
-    modelo.addElement("2104");
-    modelo.addElement("2105");
-    modelo.addElement("2106");
-    modelo.addElement("2107");
-    modelo.addElement("2108");
-    modelo.addElement("2109");
-    modelo.addElement("2110");
-    modelo.addElement("2111");
-    modelo.addElement("2112");
-    modelo.addElement("2201");
-    modelo.addElement("2202");
-    modelo.addElement("2301");
-    modelo.addElement("2302");
-    modelo.addElement("2401");
-    modelo.addElement("2402");
-    modelo.addElement("2501");
-    modelo.addElement("2502");
-    modelo.addElement("2503");
-    modelo.addElement("2504");
-    modelo.addElement("2505");
-    modelo.addElement("2506");
-    modelo.addElement("2507");
-    modelo.addElement("2508");
-    modelo.addElement("2509");
-    modelo.addElement("2510");
-    modelo.addElement("2511");
-    modelo.addElement("2512");
-    modelo.addElement("300201");
-    modelo.addElement("300202");
-    modelo.addElement("300203");
-    modelo.addElement("300204");
-    modelo.addElement("300205");
-    modelo.addElement("300206");
-    modelo.addElement("300301");
-    modelo.addElement("300601");
-    modelo.addElement("300602");
-    modelo.addElement("300603");
-    modelo.addElement("300604");
-    modelo.addElement("300605");
-    modelo.addElement("300606");
-    modelo.addElement("300701");
-    modelo.addElement("300801");
-    modelo.addElement("300802");
-    modelo.addElement("300803");
-    modelo.addElement("300804");
-    modelo.addElement("300805");
-    modelo.addElement("300901");
-    modelo.addElement("300902");
-    modelo.addElement("301001");
-    modelo.addElement("301002");
-    modelo.addElement("301003");
-    modelo.addElement("301004");
-    modelo.addElement("301301");
-    modelo.addElement("301302");
-    modelo.addElement("301401");
-    modelo.addElement("301402");
-    modelo.addElement("301601");
-    modelo.addElement("301602");
-    modelo.addElement("301603");
-    modelo.addElement("301604");
-    modelo.addElement("301605");
-    modelo.addElement("301701");
-    modelo.addElement("301801");
-    modelo.addElement("301802");
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        modelo.addElement("---");
+        modelo.addElement("11");
+        modelo.addElement("12");
+        modelo.addElement("13");
+        modelo.addElement("14");
+        modelo.addElement("15");
+        modelo.addElement("2001");
+        modelo.addElement("2002");
+        modelo.addElement("2003");
+        modelo.addElement("2004");
+        modelo.addElement("2005");
+        modelo.addElement("2006");
+        modelo.addElement("2007");
+        modelo.addElement("2008");
+        modelo.addElement("2009");
+        modelo.addElement("2010");
+        modelo.addElement("2011");
+        modelo.addElement("2012");
+        modelo.addElement("2013");
+        modelo.addElement("2014");
+        modelo.addElement("2015");
+        modelo.addElement("2016");
+        modelo.addElement("2017");
+        modelo.addElement("2018");
+        modelo.addElement("2101");
+        modelo.addElement("2102");
+        modelo.addElement("2103");
+        modelo.addElement("2104");
+        modelo.addElement("2105");
+        modelo.addElement("2106");
+        modelo.addElement("2107");
+        modelo.addElement("2108");
+        modelo.addElement("2109");
+        modelo.addElement("2110");
+        modelo.addElement("2111");
+        modelo.addElement("2112");
+        modelo.addElement("2201");
+        modelo.addElement("2202");
+        modelo.addElement("2301");
+        modelo.addElement("2302");
+        modelo.addElement("2401");
+        modelo.addElement("2402");
+        modelo.addElement("2501");
+        modelo.addElement("2502");
+        modelo.addElement("2503");
+        modelo.addElement("2504");
+        modelo.addElement("2505");
+        modelo.addElement("2506");
+        modelo.addElement("2507");
+        modelo.addElement("2508");
+        modelo.addElement("2509");
+        modelo.addElement("2510");
+        modelo.addElement("2511");
+        modelo.addElement("2512");
+        modelo.addElement("300201");
+        modelo.addElement("300202");
+        modelo.addElement("300203");
+        modelo.addElement("300204");
+        modelo.addElement("300205");
+        modelo.addElement("300206");
+        modelo.addElement("300301");
+        modelo.addElement("300601");
+        modelo.addElement("300602");
+        modelo.addElement("300603");
+        modelo.addElement("300604");
+        modelo.addElement("300605");
+        modelo.addElement("300606");
+        modelo.addElement("300701");
+        modelo.addElement("300801");
+        modelo.addElement("300802");
+        modelo.addElement("300803");
+        modelo.addElement("300804");
+        modelo.addElement("300805");
+        modelo.addElement("300901");
+        modelo.addElement("300902");
+        modelo.addElement("301001");
+        modelo.addElement("301002");
+        modelo.addElement("301003");
+        modelo.addElement("301004");
+        modelo.addElement("301301");
+        modelo.addElement("301302");
+        modelo.addElement("301401");
+        modelo.addElement("301402");
+        modelo.addElement("301601");
+        modelo.addElement("301602");
+        modelo.addElement("301603");
+        modelo.addElement("301604");
+        modelo.addElement("301605");
+        modelo.addElement("301701");
+        modelo.addElement("301801");
+        modelo.addElement("301802");
 
-    comboLocalizacion.setModel(modelo);
-}
+        comboLocalizacion.setModel(modelo);
+    }
 
     private void rellenarComboBoxCategoria() {
 
-    DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
 
-    modelo.addElement("---");
-    modelo.addElement("CUADERNO");
-    modelo.addElement("HARDWARE");
-    modelo.addElement("HERRAMIENTA");
-    modelo.addElement("FUNGIBLE");
+        modelo.addElement("---");
+        modelo.addElement("CUADERNO");
+        modelo.addElement("HARDWARE");
+        modelo.addElement("HERRAMIENTA");
+        modelo.addElement("FUNGIBLE");
 
-    comboCategoria.setModel(modelo);
-}
+        comboCategoria.setModel(modelo);
+    }
 
     /**
      * @param args the command line arguments
@@ -1459,6 +1492,7 @@ public class Pantalla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBorrarUsuario;
     private javax.swing.JButton BotonEntrar;
+    private javax.swing.JButton BotonEntrarABorrarUsuario;
     private javax.swing.JButton BotonModificarMaterial;
     private javax.swing.JButton BotonRegistrarUsuario;
     private javax.swing.JButton BotonSalir;

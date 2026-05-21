@@ -390,6 +390,11 @@
                       <Component id="BotonSalirRegistrarUsuario" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                      <Component id="BotonEntrarABorrarUsuario" min="-2" pref="111" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -425,7 +430,9 @@
                           <Component id="BotonRegistrarUsuario" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="BotonSalirRegistrarUsuario" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="93" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <Component id="BotonEntrarABorrarUsuario" min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -494,6 +501,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rol:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="BotonEntrarABorrarUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar usuario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonEntrarABorrarUsuarioActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1055,7 +1070,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="163" max="32767" attributes="0"/>
+                  <EmptySpace pref="145" max="32767" attributes="0"/>
                   <Component id="CampoTextoBorrarUsuario" min="-2" pref="101" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
@@ -1100,13 +1115,16 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID:"/>
+            <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BotonSalirBorrarUsuario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonSalirBorrarUsuarioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BotonBorrarUsuario">
           <Properties>
