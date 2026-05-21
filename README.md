@@ -253,7 +253,7 @@ Control centralizado de conexiones y recursos.
 
 [📄 Manual de usuario](Programacion/Manual%20de%20usuario/Manual%20de%20usuario.pdf)
 
-[📄 JavaDoc](./docs/index.html)
+[📄 JavaDoc](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/tree/main/Programacion/app/RetaCantabria2026Equipo3/docs)
 
 ---
 
@@ -468,7 +468,7 @@ Durante el desarrollo del reto se consiguió:
 
 [📄 Documentación técnica web](Documentación_Técnica_Web.pdf)
 
-[📄 JavaDoc](./docs/index.html)
+[📄 JavaDoc](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/tree/main/Programacion/app/RetaCantabria2026Equipo3/docs)
 
 ---
 
