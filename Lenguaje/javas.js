@@ -332,7 +332,7 @@ function buscarMaterial(nombre) {
 
         }, 50);
 
-    // Tiene balda pero no cajón
+        // Tiene balda pero no cajón
     } else if (material.balda !== "") {
 
         if (material.armario === "GENERAL") {
@@ -347,7 +347,7 @@ function buscarMaterial(nombre) {
 
         }, 50);
 
-    // Solo tiene armario
+        // Solo tiene armario
     } else {
 
         verMapaGeneral();
@@ -427,6 +427,13 @@ function crearTextoMateriales(lista) {
     });
 
     return texto;
+}
+
+function cerrarSesion() {
+
+    sessionStorage.removeItem("usuarioLogeado");
+
+    window.location.href = "LogIn.html";
 }
 
 cargarMaterialesJSON();

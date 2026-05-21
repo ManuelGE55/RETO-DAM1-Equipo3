@@ -42,6 +42,15 @@ formulario.addEventListener("submit", function (e) {
     if (encontrado) {
         avisos.textContent =
             "Inicio de sesión exitoso";
+
+        // GUARDAR SESIÓN
+        sessionStorage.setItem("usuarioLogeado", usuario);
+
+        setTimeout(() => {
+
+            window.location.href = "Mapa.html";
+
+        }, 1000);
     }
     else {
         avisos.textContent =
