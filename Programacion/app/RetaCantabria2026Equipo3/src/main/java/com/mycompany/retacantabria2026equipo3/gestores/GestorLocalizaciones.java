@@ -75,7 +75,7 @@ public class GestorLocalizaciones {
 
             ChromeOptions options = new ChromeOptions();
             
-            if (estado == true){
+            if (estado == false){
             // IMPORTANTE
             options.addArguments("--headless=new");
             }
