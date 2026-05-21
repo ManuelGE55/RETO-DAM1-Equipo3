@@ -20,16 +20,35 @@ import javax.swing.JOptionPane;
  * Clase DAO encargada de gestionar las operaciones relacionadas con los
  * materiales en la base de datos.
  *
- * Permite actulizar materiales, comprobar si existen y obtener los datos
- * necesarios para generar el JSON del inventario.
+ * Permite:
+ *
+ * - Insertar materiales. 
+ * - Eliminar materiales. 
+ * - Insertar tipos de materiales.
+ * - Actualizar materiales existentes. 
+ * - Comprobar si un material existe. 
+ * - Obtener materiales para generar el JSON. 
+ * - Consultar alertas de stock.
+ *
+ * Esta clase actúa como intermediaria entre la aplicación y las tablas
+ * relacionadas con los materiales del inventario.
  *
  * @author Naya Ruiz
  */
 public class MaterialDAO {
 
-    //==========================================================================
-    //ESTE DAO ESTA ASIGNADO A : NAYA
-    //==========================================================================
+    /**
+     * Inserta un nuevo material en la base de datos.
+     *
+     * Guarda el nombre, descripción, estado y ubicación del material.
+     *
+     * @param nombre
+     * @param descripcion
+     * @param estado
+     * @param IdUbicacion
+     *
+     * @author Naya Ruiz
+     */
     public static void InsertarMaterial(String nombre, String descripcion, String estado, String IdUbicacion) {
         String sql = "INSERT INTO material(nombre, descripcion, estado,id_ubicacion) VALUES(?,?,?,?)";
         try (Connection conn = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -53,6 +72,14 @@ public class MaterialDAO {
         }
 
     }
+
+    /**
+     * Elimina un material de la base de datos utilizando su identificador.
+     *
+     * @param id
+     *
+     * @author Naya Ruiz
+     */
     public static void borrarMaterial(int id) {
         String sql = "DELETE FROM material WHERE id_material = ?";
         try (Connection conn = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -61,7 +88,7 @@ public class MaterialDAO {
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
                 JOptionPane.showMessageDialog(null, "Borrado material", "No se pudo eliminar el material seleccionado", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Borrado material", "Material eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
@@ -69,6 +96,21 @@ public class MaterialDAO {
         }
     }
 
+    /**
+     * Inserta un nuevo tipo de material en la tabla datos_material.
+     *
+     * Si la inserción se realiza correctamente, también se crea automáticamente
+     * el material asociado.
+     *
+     * @param nombre
+     * @param descripcion
+     * @param estado
+     * @param IdUbicacion
+     * @param categoria
+     * @param stock
+     *
+     * @author Naya Ruiz
+     */
     public static void InsertarTipoMaterial(String nombre, String descripcion, String estado, String IdUbicacion, Categoria categoria, int stock) {
         String sql = "INSERT INTO datos_material (nombre, cantidad, stock_minimo, categoria) VALUES(?,?,?,?)";
         try (Connection conn = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -94,8 +136,19 @@ public class MaterialDAO {
         }
     }
 
-    //ActucalizarEstado
-    //Permite actualizar el estado de un material
+    /**
+     * Comprueba si existe una alerta de stock activa para un material.
+     *
+     * Consulta la tabla alerta_stock para verificar si el material tiene
+     * incidencias pendientes relacionadas con el stock mínimo.
+     *
+     * @param nombre
+     * @return
+     *
+     * @throws SQLException
+     *
+     * @author Naya Ruiz
+     */
     public static boolean trigger(String nombre) throws SQLException {
         boolean resultado = false;
         PreparedStatement ps = null;
@@ -115,6 +168,29 @@ public class MaterialDAO {
 
     }
 
+    /**
+     * Actualiza la información principal de un material existente.
+     *
+     * Permite modificar:
+     *
+     * - Descripción. 
+     * - Estado. 
+     * - Ubicación.
+     *
+     * Además registra el usuario responsable de la modificación.
+     *
+     * @param descr
+     * @param est
+     * @param ubi
+     * @param id
+     * @param id_usu
+     *
+     * @return
+     *
+     * @throws SQLException
+     *
+     * @author Naya Ruiz
+     */
     public static int ActualizarEstado(String descr, String est, int ubi, int id, int id_usu) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
@@ -156,6 +232,7 @@ public class MaterialDAO {
      *
      * @param id
      * @return
+     *
      * @throws SQLException
      *
      * @author Naya Ruiz
@@ -183,6 +260,17 @@ public class MaterialDAO {
         return resultado;
     }
 
+    /**
+     * Comprueba si existe un tipo de material registrado con el nombre
+     * indicado.
+     *
+     * @param nombre
+     * @return
+     *
+     * @throws SQLException
+     *
+     * @author Naya Ruiz
+     */
     public static boolean existeMaterial(String nombre) throws SQLException {
         // Variables
         boolean resultado = false;
@@ -216,14 +304,20 @@ public class MaterialDAO {
      * Obtiene los materiales necesarios para generar el archivo JSON del
      * inventario.
      *
-     * La consulta obtiene información del material, datos asociados y ubicación
-     * física.
+     * La consulta obtiene información relacionada con:
+     *
+     * - Materiales. 
+     * - Cantidades. 
+     * - Armarios. 
+     * - Baldas. 
+     * - Cajones.
      *
      * @param con
      * @return
+     *
      * @throws SQLException
      *
-     * @author Naya Ruiz
+     * @author Saúl Valdunciel
      */
     public static ResultSet obtenerMaterialesParaJSON(Connection con) throws SQLException {
 

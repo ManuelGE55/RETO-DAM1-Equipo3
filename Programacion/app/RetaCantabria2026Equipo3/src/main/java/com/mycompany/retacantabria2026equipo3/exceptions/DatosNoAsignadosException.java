@@ -5,18 +5,19 @@
 package com.mycompany.retacantabria2026equipo3.exceptions;
 
 /**
- *Excepción personalizada lanzada cuando existen
- * datos obligatorios sin asignar dentro del sistema.
- * 
- * Se utiliza para controlar errores relacionados con
- * información incompleta o no definida.
- * 
+ * Excepción personalizada lanzada cuando existen datos obligatorios sin asignar
+ * dentro del sistema.
+ *
+ * Se utiliza para controlar errores relacionados con información incompleta o
+ * no definida.
+ *
  * @author Hugo Fernández Calzado
  */
 public class DatosNoAsignadosException extends Exception {
+
     /**
      * Constructor de la excepción.
-     * 
+     *
      * @author Hugo Fernández Calzado
      */
     public DatosNoAsignadosException(String message) {

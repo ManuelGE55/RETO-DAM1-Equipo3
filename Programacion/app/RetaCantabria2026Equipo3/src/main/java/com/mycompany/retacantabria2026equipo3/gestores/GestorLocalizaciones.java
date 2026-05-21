@@ -104,14 +104,18 @@ public class GestorLocalizaciones {
      * material.Dependiente del identificador recibido, se abrirá
      * automáticamente:
      *
-     * - Un armario.- Una balda.- Un cajón.
+     * - Un armario.
+     * - Una balda.
+     * - Un cajón.
      *
      * utilizando funciones JavaScript ejecutadas desde Selenium.
      *
+     * @param idUbicacion
+     * 
+     * @throws ArgumentoNoEncontradoException
+     * @throws DriverConexionException
+     * 
      * @author Hugo Fernández
-     * @param idUbicacion la ID de la ubicación dada
-     * @throws ArgumentoNoEncontradoException si la ID no se encuentra
-     * @throws DriverConexionException si el JavascripctExecutor falla
      */
     public static void mostrarUbicacionWeb(String idUbicacion) throws ArgumentoNoEncontradoException, DriverConexionException {
         try {
@@ -140,8 +144,8 @@ public class GestorLocalizaciones {
      * Método privado estático que ejecutará el script desde el método de
      * mostrarUbicación
      *
-     * @param idUbicacion la ID de la ubicación dada
-     * @throws ArgumentoNoEncontradoException si la ID no se encuentra
+     * @param idUbicacion
+     * @throws ArgumentoNoEncontradoException
      */
     private static void ejecutarScript(String idUbicacion) throws ArgumentoNoEncontradoException {
         switch (idUbicacion) {

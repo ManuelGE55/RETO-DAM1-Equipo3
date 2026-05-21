@@ -11,8 +11,7 @@ package com.mycompany.retacantabria2026equipo3.gestores;
  *
  * - Materiales prestados. 
  * - Usuarios responsables. 
- * - Fechas de préstamo y
- * devolución.
+ * - Fechas de préstamo y devolución.
  *
  * @author Hugo Fernández
  */
