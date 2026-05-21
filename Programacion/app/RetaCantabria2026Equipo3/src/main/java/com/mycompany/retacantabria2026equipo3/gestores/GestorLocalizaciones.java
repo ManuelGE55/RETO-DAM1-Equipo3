@@ -126,7 +126,7 @@ public class GestorLocalizaciones {
         } catch (WebDriverException e) {
             System.out.println("Navegador cerrado. Creando nueva instancia...");
 
-            inicializarNavegador(false);
+            inicializarNavegador(true);
 
             if (js == null) {
                 throw new DriverConexionException("Error: JavaScriptExecutor es nulo.");
