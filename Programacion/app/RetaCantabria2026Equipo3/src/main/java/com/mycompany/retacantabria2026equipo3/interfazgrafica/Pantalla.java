@@ -51,8 +51,9 @@ public class Pantalla extends javax.swing.JFrame {
      * Creates new form Pantalla
      */
     public Pantalla() {
+        setUndecorated(true);
         initComponents();
-        //this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.jPanel2.setVisible(false);
@@ -66,7 +67,7 @@ public class Pantalla extends javax.swing.JFrame {
         panelRegistrarUsuario.setVisible(false);
         ImagenIntro.setVisible(true);
         panelInsertarComponente.setVisible(false);
-        this.setSize(790, 520);
+        this.setSize(790, 500);
         ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
         Image imgImagenIntro = imagenIntro.getImage();
         // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
@@ -402,13 +403,14 @@ public class Pantalla extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -910,7 +912,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        this.setSize(790, 520);
+        this.setSize(790, 500);
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
@@ -969,7 +971,7 @@ public class Pantalla extends javax.swing.JFrame {
                 modificarMaterial.setVisible(true);
                 añadirMaterial.setVisible(true);
             }
-            this.setSize(1500, 550);
+            this.setSize(1500, 520);
             jPanel2.setVisible(true);
             jMenuBar2.setVisible(true);
             rellenarComboBoxEstado();
@@ -994,7 +996,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
-        this.setSize(1500, 550);
+        this.setSize(1500, 520);
         jPanel2.setVisible(true);
         jPanel3.setVisible(false);
         jMenuBar2.setVisible(true);
@@ -1012,7 +1014,7 @@ public class Pantalla extends javax.swing.JFrame {
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
-                this.setSize(1500, 550);
+                this.setSize(1500, 500);
                 jPanel2.setVisible(true);
                 jPanel3.setVisible(false);
                 inventario.setMateriales(InventarioDAO.cargarInventario());
