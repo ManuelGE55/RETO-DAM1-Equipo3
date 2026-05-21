@@ -259,5 +259,41 @@
     "balda": "B001",
     "cajon": "",
     "descripcion": "aaaaaaa"
+  },
+  {
+    "idMaterial": 30,
+    "nombre": "jota",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B005",
+    "cajon": "",
+    "descripcion": "patata"
+  },
+  {
+    "idMaterial": 31,
+    "nombre": "jotaa",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": "patataa"
+  },
+  {
+    "idMaterial": 32,
+    "nombre": "jotaa",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": ""
+  },
+  {
+    "idMaterial": 33,
+    "nombre": "",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": ""
   }
 ]

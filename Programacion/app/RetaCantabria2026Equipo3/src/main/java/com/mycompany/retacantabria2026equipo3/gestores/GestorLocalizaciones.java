@@ -520,6 +520,7 @@ public class GestorLocalizaciones {
     public static boolean cerrarWebDriver() {
         boolean cerrado = false;
         if (driver != null) {
+            inicializarNavegador(false);
             driver.quit();
             cerrado = true;
         }
