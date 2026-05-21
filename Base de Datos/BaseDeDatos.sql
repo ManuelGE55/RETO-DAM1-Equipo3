@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 	nombre VARCHAR(20),
 	apellidos VARCHAR(30),
 	email VARCHAR(30) UNIQUE,
-	contraseña VARCHAR(20),
+	contraseña VARCHAR(255),
 	rol ENUM ("profesor", "administrador"),
 	activo BOOLEAN,
 	fecha_creacion DATE
@@ -88,13 +88,6 @@ INSERTAR DATOS
 
 INSERT INTO ubicacion VALUES
 
-	-- Armarios
-    (11,11,NULL,NULL,"Armario A1"),
-    (12,12,NULL,NULL,"Armario A2"),
-    (13,13,NULL,NULL,"Armario A3"),
-	(14,14,NULL,NULL,"Armario A4"),
-    (15,15,NULL,NULL,"Armario A5"),
-    
     -- Baldas independientes
     (2001,NULL,2001,NULL,"Balda B001"),
     (2002,NULL,2002,NULL,"Balda B002"),
@@ -346,7 +339,7 @@ BEGIN
     DECLARE cantidadActual INT;
     DECLARE stockMin INT;
     SET nombreMaterial = OLD.nombre;
-    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado=DISPONIBLE;
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado="DISPONIBLE";
     SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
     UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
 	IF(cantidadActual<stockMin) THEN
@@ -372,7 +365,7 @@ BEGIN
     DECLARE cantidadActual INT;
     DECLARE stockMin INT;
     SET nombreMaterial = OLD.nombre;
-    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado=DISPONIBLE;
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado= "DISPONIBLE";
     SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
     UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
 	IF(cantidadActual<stockMin) THEN
@@ -386,6 +379,25 @@ BEGIN
             FALSE
         );
     END IF;
+END//
+    
+    CREATE TRIGGER trg_comprobar_alerta_stock_up
+AFTER UPDATE ON material
+FOR EACH ROW
+BEGIN
+	DECLARE mensajes VARCHAR(60);
+    DECLARE diferencia INT;
+    DECLARE nombreMaterial VARCHAR(30);
+    DECLARE cantidadActual INT;
+    DECLARE stockMin INT;
+    SET nombreMaterial = OLD.nombre;
+    SELECT count(*) INTO cantidadActual FROM material WHERE nombre=nombreMaterial AND estado= "DISPONIBLE";
+    SELECT stock_minimo INTO stockMin FROM datos_material WHERE nombre=nombreMaterial;
+    UPDATE datos_material SET cantidad=cantidadActual WHERE nombre=nombreMaterial;
+	IF(cantidadActual>=stockMin) THEN
+		UPDATE alerta_stock SET resuelta=TRUE WHERE nombre_material=nombreMaterial;
+    END IF;
+    
 END //
 
 DELIMITER ;
@@ -403,3 +415,7 @@ BEGIN
 	-- Actualizar campo "cantidad" de esos materiales con el resultado obtenido
 	UPDATE datos_material SET cantidad=newCantidad WHERE nombre=new.nombre;
 END //
+
+DELIMITER ;
+
+UPDATE usuario SET contraseña = MD5(contraseña) WHERE id_usuario >0;

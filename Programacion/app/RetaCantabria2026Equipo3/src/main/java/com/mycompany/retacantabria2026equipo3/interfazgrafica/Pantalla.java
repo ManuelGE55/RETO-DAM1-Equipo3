@@ -1281,11 +1281,6 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void rellenarComboBoxCambiarLocalizacion(JComboBox<String> box) {
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        modelo.addElement("11");
-        modelo.addElement("12");
-        modelo.addElement("13");
-        modelo.addElement("14");
-        modelo.addElement("15");
         modelo.addElement("2001");
         modelo.addElement("2002");
         modelo.addElement("2003");
@@ -1378,11 +1373,6 @@ public class Pantalla extends javax.swing.JFrame {
     private void rellenarComboBoxLocalizacion() {
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         modelo.addElement("---");
-        modelo.addElement("11");
-        modelo.addElement("12");
-        modelo.addElement("13");
-        modelo.addElement("14");
-        modelo.addElement("15");
         modelo.addElement("2001");
         modelo.addElement("2002");
         modelo.addElement("2003");
