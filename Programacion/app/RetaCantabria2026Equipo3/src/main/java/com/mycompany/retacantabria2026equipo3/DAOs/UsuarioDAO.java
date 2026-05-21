@@ -52,7 +52,7 @@ public class UsuarioDAO {
     public static int insertarUsuario(Usuario usuario) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
-        String s = "INSERT INTO usuario (nombre, apellidos, email, contraseña, rol, activo, fecha_creacion) VALUES (?,?,?,?,?,?,?)";
+        String s = "INSERT INTO usuario (nombre, apellidos, email, contraseña, rol, activo, fecha_creacion) VALUES (?,?,?,MD5(?),?,?,?)";
 
         if (usuario != null && !existeUsuario(usuario.getEmail())) {
             try (Connection con = AccesoBaseDatos.getInstance().getConn()) {
