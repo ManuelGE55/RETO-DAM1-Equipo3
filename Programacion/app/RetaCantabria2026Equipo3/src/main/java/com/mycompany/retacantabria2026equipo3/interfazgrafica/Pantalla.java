@@ -158,6 +158,7 @@ public class Pantalla extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         CampoTextoDescripcion = new javax.swing.JTextArea();
         comboBoxCambiarUbicacion = new javax.swing.JComboBox<>();
+        botonBorrar = new javax.swing.JButton();
         panelInsertarComponente = new javax.swing.JPanel();
         textoNombreInsertarMaterial = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -693,6 +694,13 @@ public class Pantalla extends javax.swing.JFrame {
 
         comboBoxCambiarUbicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        botonBorrar.setText("Borrar");
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -702,13 +710,16 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(BotonSalirModificarMaterial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
-                        .addComponent(BotonModificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(BotonModificarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonBorrar)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,7 +751,8 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonSalirModificarMaterial)
-                    .addComponent(BotonModificarMaterial))
+                    .addComponent(BotonModificarMaterial)
+                    .addComponent(botonBorrar))
                 .addGap(84, 84, 84))
         );
 
@@ -844,6 +856,11 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         exportarCSV.setText("Exportar CSV");
+        exportarCSV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportarCSVMouseClicked(evt);
+            }
+        });
         jMenu3.add(exportarCSV);
 
         importarCSV.setText("Importar CSV");
@@ -1006,7 +1023,7 @@ public class Pantalla extends javax.swing.JFrame {
                 añadirMaterial.setVisible(false);
                 botonAñadirUsuario.setVisible(false);
                 BorrarUsuario.setVisible(false);
-                
+
             } else {
                 modificarMaterial.setVisible(true);
                 añadirMaterial.setVisible(true);
@@ -1056,7 +1073,8 @@ public class Pantalla extends javax.swing.JFrame {
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
-                this.setSize(1500, 500);
+                this.setSize(1560, 550);
+                this.repaint();
                 jPanel2.setVisible(true);
                 jPanel3.setVisible(false);
                 inventario.setMateriales(InventarioDAO.cargarInventario());
@@ -1102,7 +1120,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
     private void botonCancelarInsertarMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarInsertarMaterial1ActionPerformed
-        
+
         this.setSize(1560, 600);
         panelInsertarComponente.setVisible(false);
         jPanel2.setVisible(true);
@@ -1122,9 +1140,9 @@ public class Pantalla extends javax.swing.JFrame {
     private void botonAñadirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirUsuarioActionPerformed
         rellenarComboBoxCambiarRol(ComboBoxUsuarioRol);
         panelRegistrarUsuario.setVisible(true);
-        panelRegistrarUsuario.setSize(400,600);
+        panelRegistrarUsuario.setSize(400, 600);
         panelRegistrarUsuario.setLocationRelativeTo(null);
-        
+
     }//GEN-LAST:event_botonAñadirUsuarioActionPerformed
 
     private void botonMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMapaActionPerformed
@@ -1143,6 +1161,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMapaActionPerformed
 
     private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
+        this.setSize(1560, 500);
         MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()), Integer.parseInt(textoStockMinimo.getText()));
         inventario.setMateriales(InventarioDAO.cargarInventario());
         rellenarTablaMateriales();
@@ -1161,12 +1180,12 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_comboLocalizacionActionPerformed
 
     private void BotonSalirRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirRegistrarUsuarioActionPerformed
-       panelRegistrarUsuario.setVisible(false);
+        panelRegistrarUsuario.setVisible(false);
         jPanel2.setVisible(true);
     }//GEN-LAST:event_BotonSalirRegistrarUsuarioActionPerformed
 
     private void BotonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarUsuarioActionPerformed
-       Usuario usuarioRegistrar = null;
+        Usuario usuarioRegistrar = null;
         char[] contrasenaChars = CampoUsuarioContrasena.getPassword();
         String contrasena = new String(contrasenaChars);
         try {
@@ -1206,16 +1225,16 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoUsuarioNombreActionPerformed
 
     private void BorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarUsuarioActionPerformed
-        
-        panelBorrarUsuario.setSize(400,200); 
-        panelBorrarUsuario.setLocationRelativeTo(null); 
+
+        panelBorrarUsuario.setSize(400, 200);
+        panelBorrarUsuario.setLocationRelativeTo(null);
         panelBorrarUsuario.setVisible(true);
-        
-       
+
+
     }//GEN-LAST:event_BorrarUsuarioActionPerformed
 
     private void BotonBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarUsuario1ActionPerformed
-       String email;
+        String email;
 
         try {
             if (!CampoTextoBorrarUsuario.getText().equals("")) {
@@ -1251,8 +1270,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoTextoBorrarUsuarioActionPerformed
 
     private void importarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarCSVActionPerformed
-    
-        
+
+
     }//GEN-LAST:event_importarCSVActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
@@ -1265,6 +1284,27 @@ public class Pantalla extends javax.swing.JFrame {
         rellenarTablaMateriales();
         jPanel2.repaint();
     }//GEN-LAST:event_importarCSVMouseClicked
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+        int fila = jTable1.getSelectedRow();
+        int id = 0;
+        if (fila != -1) {
+            Material obj = inventario.getMateriales().get(fila);
+            id = obj.getId();
+        }
+        MaterialDAO.borrarMaterial(id);
+        this.setSize(1560, 550);
+        this.repaint();
+        jPanel2.setVisible(true);
+        jPanel3.setVisible(false);
+        inventario.setMateriales(InventarioDAO.cargarInventario());
+        rellenarTablaMateriales();
+        jMenuBar2.setVisible(true);
+    }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void exportarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarCSVMouseClicked
+        GestorTrafico.exportarInventario(materiales);
+    }//GEN-LAST:event_exportarCSVMouseClicked
 
     private void rellenarTablaMateriales() {
         // Columnas
@@ -1376,7 +1416,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         box.setModel(modelo);
     }
-    
+
     private static void validaEmail(String email) throws Exception {
         String emailUsuarioInvertido = "";
         String emailUsuario = "";
@@ -1624,6 +1664,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JButton añadirMaterial;
     private javax.swing.JButton botonAñadirInsertarTipoMaterial;
     private javax.swing.JButton botonAñadirUsuario;
+    private javax.swing.JButton botonBorrar;
     private javax.swing.JButton botonCancelarInsertarMaterial1;
     private javax.swing.JButton botonInsertar1;
     private javax.swing.JButton botonMapa;
