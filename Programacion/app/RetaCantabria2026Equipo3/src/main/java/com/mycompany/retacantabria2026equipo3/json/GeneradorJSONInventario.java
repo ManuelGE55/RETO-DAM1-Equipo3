@@ -14,11 +14,11 @@ import java.sql.SQLException;
  *
  * Además de generar el JSON, también se encarga de:
  *
- * - Obtener los materiales desde la base de datos. - Convertir los
- * identificadores internos de armarios, baldas y cajones a un formato legible.
- * - Escapar caracteres especiales para evitar errores JSON. - Subir
- * automáticamente el archivo al servidor mediante SCP. - Copiar el JSON al
- * directorio de Apache del servidor web.
+ * - Obtener los materiales desde la base de datos. 
+ * - Convertir los identificadores internos de armarios, baldas y cajones a un formato legible.
+ * - Escapar caracteres especiales para evitar errores JSON. 
+ * - Subir automáticamente el archivo al servidor mediante SCP. 
+ * - Copiar el JSON al directorio de Apache del servidor web.
  *
  * El archivo generado es utilizado posteriormente por la página web del
  * inventario.
@@ -36,8 +36,8 @@ public class GeneradorJSONInventario {
      *
      * Una vez generado el archivo:
      *
-     * - Se sube automáticamente al servidor EC2. - Se copia al directorio de
-     * Apache para su publicación.
+     * - Se sube automáticamente al servidor EC2. 
+     * - Se copia al directorio de Apache para su publicación.
      *
      * @author Saúl Valdunciel
      */

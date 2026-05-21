@@ -69,6 +69,7 @@ public class UsuarioDAO {
      *
      * @param usuario
      * @return
+     * 
      * @throws SQLException
      *
      * @author Saúl Valdunciel
@@ -111,6 +112,7 @@ public class UsuarioDAO {
      * @param email
      * @param contraseña
      * @return
+     * 
      * @throws SQLException
      *
      * @author Saúl Valdunciel

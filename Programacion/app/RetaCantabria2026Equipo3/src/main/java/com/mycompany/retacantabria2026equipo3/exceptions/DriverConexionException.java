@@ -12,10 +12,17 @@ package com.mycompany.retacantabria2026equipo3.exceptions;
  * sido encontrada.
  *
  *
- * @author Hugo Fernández Calzado
+ * @author Hugo Fernández
  */
 public class DriverConexionException extends Exception {
 
+    /**
+     * Constructor de la excepción.
+     *
+     * @param message
+     *
+     * @author Hugo Fernández
+     */
     public DriverConexionException(String message) {
         super(message);
     }

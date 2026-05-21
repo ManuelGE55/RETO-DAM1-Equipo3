@@ -27,9 +27,9 @@ import java.util.logging.Logger;
  *
  * Permite:
  *
- * - Exportar materiales del inventario. - Importar materiales desde archivos
- * CSV. - Generar automáticamente nuevos archivos numerados para evitar
- * sobrescrituras.
+ * - Exportar materiales del inventario. 
+ * - Importar materiales desde archivos CSV. 
+ * - Generar automáticamente nuevos archivos numerados para evitar sobrescrituras.
  *
  * @author Hugo Fernández
  */
