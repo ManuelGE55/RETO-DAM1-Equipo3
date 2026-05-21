@@ -468,12 +468,13 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         jLabel2.setText("Estado:");
@@ -1119,6 +1120,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
         MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()), Integer.parseInt(textoStockMinimo.getText()));
+        inventario.setMateriales(InventarioDAO.cargarInventario());
         rellenarTablaMateriales();
         jDialog2.setVisible(false);
         panelInsertarComponente.setVisible(false);
