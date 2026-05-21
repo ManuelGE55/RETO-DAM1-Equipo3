@@ -51,8 +51,9 @@ public class Pantalla extends javax.swing.JFrame {
      * Creates new form Pantalla
      */
     public Pantalla() {
+        setUndecorated(true);
         initComponents();
-        //this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.jPanel2.setVisible(false);
@@ -66,7 +67,7 @@ public class Pantalla extends javax.swing.JFrame {
         panelRegistrarUsuario.setVisible(false);
         ImagenIntro.setVisible(true);
         panelInsertarComponente.setVisible(false);
-        this.setSize(790, 520);
+        this.setSize(790, 500);
         ImageIcon imagenIntro = new ImageIcon(getClass().getResource("/imagenes/imagenIntro.png"));
         Image imgImagenIntro = imagenIntro.getImage();
         // Ajusta estos números (ancho, alto) según cómo quieras que se vea en el panel
@@ -926,10 +927,12 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        this.setSize(790, 520);
+        this.setSize(790, 500);
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
+        Contraseña.setText("");
+        Usuario.setText("");
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
@@ -1032,7 +1035,7 @@ public class Pantalla extends javax.swing.JFrame {
             if (resultado == -1) {
                 JOptionPane.showMessageDialog(this, "No se pudo modificar el material");
             } else {
-                this.setSize(1500, 550);
+                this.setSize(1500, 500);
                 jPanel2.setVisible(true);
                 jPanel3.setVisible(false);
                 inventario.setMateriales(InventarioDAO.cargarInventario());

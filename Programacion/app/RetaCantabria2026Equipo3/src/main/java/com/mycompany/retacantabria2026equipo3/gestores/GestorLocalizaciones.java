@@ -46,7 +46,7 @@ public class GestorLocalizaciones {
     private static final String URL_WEB = "http://52.44.197.21/Mapa.html";
 
     static {
-        inicializarNavegador();
+        inicializarNavegador(false);
     }
 
     /**
@@ -54,8 +54,10 @@ public class GestorLocalizaciones {
      * navegador, reabre el navegador para no cerrar el driver y crear varios si
      * este se cierra
      */
-    private static void inicializarNavegador() {
+    private static void inicializarNavegador(boolean estado) {
+
         try {
+
             if (driver != null) {
                 try {
                     driver.quit();
@@ -63,24 +65,46 @@ public class GestorLocalizaciones {
                     System.out.println(e.getMessage());
                 }
             }
+
             String rutaProyecto = System.getProperty("user.dir");
-            System.setProperty("webdriver.chrome.driver", rutaProyecto + "\\src\\main\\resources\\dependencias\\chromedriver.exe");
+
+            System.setProperty(
+                    "webdriver.chrome.driver",
+                    rutaProyecto + "\\src\\main\\resources\\dependencias\\chromedriver.exe"
+            );
+
             ChromeOptions options = new ChromeOptions();
+            
+            if (estado == false){
+            // IMPORTANTE
+            options.addArguments("--headless=new");
+            }
+            // Opcionales recomendados
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--log-level=3");
+
             driver = new ChromeDriver(options);
+
             js = (JavascriptExecutor) driver;
 
             driver.get(URL_WEB);
+
         } catch (Exception e) {
+
             driver = null;
             js = null;
+
             System.out.println(e.getMessage());
         }
     }
 
     /**
-     * Muestra en la página web la ubicación correspondiente a un material.Dependiente del identificador recibido, se abrirá automáticamente:
-
- - Un armario.- Una balda.- Un cajón.
+     * Muestra en la página web la ubicación correspondiente a un
+     * material.Dependiente del identificador recibido, se abrirá
+     * automáticamente:
+     *
+     * - Un armario.- Una balda.- Un cajón.
      *
      * utilizando funciones JavaScript ejecutadas desde Selenium.
      *
@@ -92,7 +116,7 @@ public class GestorLocalizaciones {
     public static void mostrarUbicacionWeb(String idUbicacion) throws ArgumentoNoEncontradoException, DriverConexionException {
         try {
             if (js == null) {
-                inicializarNavegador();
+                inicializarNavegador(true);
             }
             if (js == null) {
                 throw new DriverConexionException("Error: JavaScriptExecutor es nulo.");
@@ -102,17 +126,20 @@ public class GestorLocalizaciones {
         } catch (WebDriverException e) {
             System.out.println("Navegador cerrado. Creando nueva instancia...");
 
-            inicializarNavegador();
+            inicializarNavegador(false);
 
             if (js == null) {
                 throw new DriverConexionException("Error: JavaScriptExecutor es nulo.");
             }
-            
+
             ejecutarScript(idUbicacion);
         }
     }
+
     /**
-     * Método privado estático que ejecutará el script desde el método de mostrarUbicación
+     * Método privado estático que ejecutará el script desde el método de
+     * mostrarUbicación
+     *
      * @param idUbicacion la ID de la ubicación dada
      * @throws ArgumentoNoEncontradoException si la ID no se encuentra
      */
@@ -482,6 +509,7 @@ public class GestorLocalizaciones {
             }
         }
     }
+
     /**
      * Cierra el navegador controlado por Selenium.
      *
