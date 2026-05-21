@@ -916,6 +916,8 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
+        Contraseña.setText("");
+        Usuario.setText("");
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
