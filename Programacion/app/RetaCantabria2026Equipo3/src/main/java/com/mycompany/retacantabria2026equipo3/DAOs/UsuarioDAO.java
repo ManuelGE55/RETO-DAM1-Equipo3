@@ -18,26 +18,34 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase DAO encargada de gestionar las operaciones relacionadas con los
+ * usuarios en la base de datos.
  *
- * @author DAM121
+ * Permite:
+ *
+ * - Insertar usuarios. - Comprobar credenciales de acceso. - Verificar si un
+ * usuario existe. - Eliminar usuarios. - Asociar usuarios a operaciones
+ * realizadas.
+ *
+ * Esta clase actúa como intermediaria entre la aplicación y la tabla usuario de
+ * MySQL.
+ *
+ * @author Saúl Valdunciel
  */
 public class UsuarioDAO {
 
-    //==========================================================================
-    //ESTE DAO ESTA ASIGNADO A : SAUL
-    //==========================================================================
-    //
     /**
-     * Insertar Usuario Permite insertar un usuario en la base de datos
+     * Ejecuta el procedimiento almacenado encargado de definir el identificador
+     * del usuario activo dentro de la sesión de base de datos.
      *
+     * Este procedimiento se utiliza para relacionar operaciones realizadas con
+     * el usuario correspondiente.
+     *
+     * @param id
      * @param con
-     * @param usuario
-     * @return
-     * @throws SQLException
+     *
+     * @author Saúl Valdunciel
      */
-    
-    
-    
     public static void pasarUsuario(int id, Connection con) {
         String s = "{CALL definirIdUsuario(?)}";
         try {
@@ -49,6 +57,20 @@ public class UsuarioDAO {
         }
     }
 
+    /**
+     * Inserta un nuevo usuario en la base de datos.
+     *
+     * Antes de realizar la inserción, se comprueba que el usuario no exista
+     * previamente mediante su email.
+     *
+     * La contraseña se almacena utilizando MD5.
+     *
+     * @param usuario
+     * @return
+     * @throws SQLException
+     *
+     * @author Saúl Valdunciel
+     */
     public static int insertarUsuario(Usuario usuario) throws SQLException {
         int resultado = -1;
         PreparedStatement ps = null;
@@ -78,6 +100,19 @@ public class UsuarioDAO {
         return resultado;
     }
 
+    /**
+     * Comprueba las credenciales de un usuario dentro de la base de datos.
+     *
+     * Si las credenciales son correctas y el usuario está activo, se crea
+     * automáticamente un objeto Profesor o Administrador dependiendo del rol.
+     *
+     * @param email
+     * @param contraseña
+     * @return
+     * @throws SQLException
+     *
+     * @author Saúl Valdunciel
+     */
     public static Usuario comprobarUsuario(String email, String contraseña) throws SQLException {
         Usuario usuario = null;
         String s = "SELECT nombre,apellidos,contraseña,email,activo,rol,id_usuario FROM usuario WHERE email = ? AND contraseña = MD5(?)";
@@ -85,7 +120,7 @@ public class UsuarioDAO {
         try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
 
             ps.setString(1, email);
-            ps.setString(2,contraseña);
+            ps.setString(2, contraseña);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -111,11 +146,12 @@ public class UsuarioDAO {
     }
 
     /**
-     * Existe Usuario Comprueba si un usuario ya existe
+     * Comprueba si existe un usuario registrado con el email indicado.
      *
-     * @param con
      * @param email
      * @return
+     *
+     * @author Saúl Valdunciel
      */
     public static boolean existeUsuario(String email) {
         // Variables
@@ -137,11 +173,13 @@ public class UsuarioDAO {
     }
 
     /**
-     * Borrar Usuario Permite borrar un usuario en la base de datos
+     * Elimina un usuario de la base de datos utilizando su email.
      *
      * @param con
-     * @param idUsuario
+     * @param email
      * @return
+     *
+     * @author Saúl Valdunciel
      */
     public static int borrarUsuario(Connection con, String email) {
         int resultado = -1;
