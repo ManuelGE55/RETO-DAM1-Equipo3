@@ -1,248 +1,5 @@
 [
   {
-    "idMaterial": 33,
-    "nombre": "",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "rthhdfhd"
-  },
-  {
-    "idMaterial": 28,
-    "nombre": "aaaa",
-    "cantidad": 0,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "aaaaa"
-  },
-  {
-    "idMaterial": 29,
-    "nombre": "aaaaa",
-    "cantidad": 0,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "aaaaaaa"
-  },
-  {
-    "idMaterial": 21,
-    "nombre": "Cable ethernet",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B016",
-    "cajon": "C01603",
-    "descripcion": "Cable ethernet de 1 metro"
-  },
-  {
-    "idMaterial": 23,
-    "nombre": "fernando",
-    "cantidad": 2,
-    "armario": "A1",
-    "balda": "B110",
-    "cajon": "",
-    "descripcion": "el mejor piloto de la historia de la f1"
-  },
-  {
-    "idMaterial": 24,
-    "nombre": "fernando",
-    "cantidad": 2,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "el mejor piloto de la historia de la f1"
-  },
-  {
-    "idMaterial": 22,
-    "nombre": "fornite",
-    "cantidad": 0,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "da"
-  },
-  {
-    "idMaterial": 26,
-    "nombre": "fr",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "w"
-  },
-  {
-    "idMaterial": 37,
-    "nombre": "GUANTES",
-    "cantidad": 7,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Sucios"
-  },
-  {
-    "idMaterial": 39,
-    "nombre": "GUANTES",
-    "cantidad": 7,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Sucios"
-  },
-  {
-    "idMaterial": 40,
-    "nombre": "GUANTES",
-    "cantidad": 7,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Sucios"
-  },
-  {
-    "idMaterial": 41,
-    "nombre": "GUANTES",
-    "cantidad": 7,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Sucios"
-  },
-  {
-    "idMaterial": 42,
-    "nombre": "GUANTES",
-    "cantidad": 7,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Sucios"
-  },
-  {
-    "idMaterial": 43,
-    "nombre": "GUANTES",
-    "cantidad": 7,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Sucios"
-  },
-  {
-    "idMaterial": 44,
-    "nombre": "GUANTES",
-    "cantidad": 7,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Sucios"
-  },
-  {
-    "idMaterial": 30,
-    "nombre": "jota",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B005",
-    "cajon": "",
-    "descripcion": "patata"
-  },
-  {
-    "idMaterial": 31,
-    "nombre": "jotaa",
-    "cantidad": 2,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "patataa"
-  },
-  {
-    "idMaterial": 32,
-    "nombre": "jotaa",
-    "cantidad": 2,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": ""
-  },
-  {
-    "idMaterial": 34,
-    "nombre": "jotassss",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": ""
-  },
-  {
-    "idMaterial": 4,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 5,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 6,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 7,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 8,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 9,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 10,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 11,
-    "nombre": "Libro DAM",
-    "cantidad": 6,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
     "idMaterial": 1,
     "nombre": "Manual",
     "cantidad": 3,
@@ -270,13 +27,94 @@
     "descripcion": "Manual de Word 2007"
   },
   {
-    "idMaterial": 15,
-    "nombre": "Mascara",
-    "cantidad": 1,
+    "idMaterial": 4,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
     "armario": "GENERAL",
-    "balda": "B016",
-    "cajon": "C01601",
-    "descripcion": "Proteccion para los ojos"
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 5,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 6,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 7,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 8,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 9,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 10,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 11,
+    "nombre": "Libro DAM",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 12,
+    "nombre": "Teclado USB",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B009",
+    "cajon": "C00901",
+    "descripcion": "Teclado con conexión USB"
+  },
+  {
+    "idMaterial": 13,
+    "nombre": "Teclado USB",
+    "cantidad": 2,
+    "armario": "GENERAL",
+    "balda": "B009",
+    "cajon": "C00901",
+    "descripcion": "Teclado con conexión USB"
   },
   {
     "idMaterial": 14,
@@ -288,6 +126,15 @@
     "descripcion": "Pistola de silicona"
   },
   {
+    "idMaterial": 15,
+    "nombre": "Mascara",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B016",
+    "cajon": "C01601",
+    "descripcion": "Proteccion para los ojos"
+  },
+  {
     "idMaterial": 16,
     "nombre": "Portatil",
     "cantidad": 1,
@@ -297,38 +144,11 @@
     "descripcion": "Portatil"
   },
   {
-    "idMaterial": 25,
-    "nombre": "sainz",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B005",
-    "cajon": "",
-    "descripcion": "el 2 mejor piloto de la historia de la f1"
-  },
-  {
-    "idMaterial": 12,
-    "nombre": "Teclado USB",
-    "cantidad": 0,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Teclado con conexión USB"
-  },
-  {
-    "idMaterial": 13,
-    "nombre": "Teclado USB",
-    "cantidad": 0,
-    "armario": "GENERAL",
-    "balda": "B001",
-    "cajon": "",
-    "descripcion": "Teclado con conexión USB"
-  },
-  {
     "idMaterial": 17,
     "nombre": "Tinta",
-    "cantidad": 0,
-    "armario": "GENERAL",
-    "balda": "B001",
+    "cantidad": 1,
+    "armario": "A2",
+    "balda": "B202",
     "cajon": "",
     "descripcion": "Tinta para la impresora"
   },

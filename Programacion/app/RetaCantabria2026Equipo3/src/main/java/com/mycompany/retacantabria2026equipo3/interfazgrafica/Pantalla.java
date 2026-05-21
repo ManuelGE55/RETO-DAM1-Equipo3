@@ -1099,7 +1099,10 @@ public class Pantalla extends javax.swing.JFrame {
         if (textoNombreInsertarMaterial.getText() != null || textoDescripcionInsertarMaterial.getText() != null) {
             try {
                 if (MaterialDAO.existeMaterial(textoNombreInsertarMaterial.getText())) {
-
+                    jMenuBar2.setVisible(true);
+                    this.setSize(1560, 600);
+                    panelInsertarComponente.setVisible(false);
+                    jPanel2.setVisible(true);
                     MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
                 } else {
                     jDialog2.setSize(400, 300);
