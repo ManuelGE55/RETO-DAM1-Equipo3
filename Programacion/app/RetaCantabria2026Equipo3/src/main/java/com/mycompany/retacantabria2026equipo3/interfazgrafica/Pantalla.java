@@ -1104,6 +1104,9 @@ public class Pantalla extends javax.swing.JFrame {
                     panelInsertarComponente.setVisible(false);
                     jPanel2.setVisible(true);
                     MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
+                    inventario.setMateriales(InventarioDAO.cargarInventario());
+                    rellenarTablaMateriales();
+                    jPanel2.repaint();
                 } else {
                     jDialog2.setSize(400, 300);
                     jDialog2.setVisible(true);
@@ -1118,7 +1121,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         } else {
             //NOMBRE O DESCRIPCION NULA
-            JOptionPane.showMessageDialog(null, "Insertar material", "Nombre y/o descripcion es nula", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,  "Nombre y/o descripcion es nula","Insertar material", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
@@ -1265,7 +1268,6 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void BotonSalirBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuario1ActionPerformed
         panelBorrarUsuario.setVisible(false);
-        panelRegistrarUsuario.setVisible(true);
     }//GEN-LAST:event_BotonSalirBorrarUsuario1ActionPerformed
 
     private void CampoTextoBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoBorrarUsuarioActionPerformed

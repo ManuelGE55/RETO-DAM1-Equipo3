@@ -1,5 +1,122 @@
 [
   {
+    "idMaterial": 21,
+    "nombre": "Cable ethernet",
+    "cantidad": 6,
+    "armario": "GENERAL",
+    "balda": "B002",
+    "cajon": "",
+    "descripcion": "Cable ethernet de 1 metro"
+  },
+  {
+    "idMaterial": 23,
+    "nombre": "Cable ethernet",
+    "cantidad": 6,
+    "armario": "GENERAL",
+    "balda": "B010",
+    "cajon": "C01001",
+    "descripcion": "Cable nuevo encintado"
+  },
+  {
+    "idMaterial": 24,
+    "nombre": "Cable ethernet",
+    "cantidad": 6,
+    "armario": "GENERAL",
+    "balda": "B006",
+    "cajon": "C00601",
+    "descripcion": "Color: amarillo"
+  },
+  {
+    "idMaterial": 25,
+    "nombre": "Cable ethernet",
+    "cantidad": 6,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": "a"
+  },
+  {
+    "idMaterial": 26,
+    "nombre": "Cable ethernet",
+    "cantidad": 6,
+    "armario": "GENERAL",
+    "balda": "B006",
+    "cajon": "",
+    "descripcion": "aa"
+  },
+  {
+    "idMaterial": 27,
+    "nombre": "Cable ethernet",
+    "cantidad": 6,
+    "armario": "A1",
+    "balda": "B101",
+    "cajon": "",
+    "descripcion": "prueba"
+  },
+  {
+    "idMaterial": 22,
+    "nombre": "GUANTES",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": "Sucios"
+  },
+  {
+    "idMaterial": 6,
+    "nombre": "Libro DAM",
+    "cantidad": 5,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 7,
+    "nombre": "Libro DAM",
+    "cantidad": 5,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 8,
+    "nombre": "Libro DAM",
+    "cantidad": 5,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 9,
+    "nombre": "Libro DAM",
+    "cantidad": 5,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 10,
+    "nombre": "Libro DAM",
+    "cantidad": 5,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
+    "idMaterial": 11,
+    "nombre": "Libro DAM",
+    "cantidad": 5,
+    "armario": "GENERAL",
+    "balda": "B003",
+    "cajon": "",
+    "descripcion": "Libro de texto 1ºDAM 2015"
+  },
+  {
     "idMaterial": 1,
     "nombre": "Manual",
     "cantidad": 3,
@@ -27,76 +144,31 @@
     "descripcion": "Manual de Word 2007"
   },
   {
-    "idMaterial": 4,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
+    "idMaterial": 15,
+    "nombre": "Mascara",
+    "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
+    "balda": "B016",
+    "cajon": "C01601",
+    "descripcion": "Proteccion para los ojos"
   },
   {
-    "idMaterial": 5,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
+    "idMaterial": 14,
+    "nombre": "Pistola de silicona",
+    "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
+    "balda": "B016",
+    "cajon": "C01604",
+    "descripcion": "Pistola de silicona"
   },
   {
-    "idMaterial": 6,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
+    "idMaterial": 16,
+    "nombre": "Portatil",
+    "cantidad": 1,
     "armario": "GENERAL",
-    "balda": "B003",
+    "balda": "B012",
     "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 7,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 8,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 9,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 10,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
-  },
-  {
-    "idMaterial": 11,
-    "nombre": "Libro DAM",
-    "cantidad": 8,
-    "armario": "GENERAL",
-    "balda": "B003",
-    "cajon": "",
-    "descripcion": "Libro de texto 1ºDAM 2015"
+    "descripcion": "Portatil"
   },
   {
     "idMaterial": 12,
@@ -115,33 +187,6 @@
     "balda": "B009",
     "cajon": "C00901",
     "descripcion": "Teclado con conexión USB"
-  },
-  {
-    "idMaterial": 14,
-    "nombre": "Pistola de silicona",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B016",
-    "cajon": "C01604",
-    "descripcion": "Pistola de silicona"
-  },
-  {
-    "idMaterial": 15,
-    "nombre": "Mascara",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B016",
-    "cajon": "C01601",
-    "descripcion": "Proteccion para los ojos"
-  },
-  {
-    "idMaterial": 16,
-    "nombre": "Portatil",
-    "cantidad": 1,
-    "armario": "GENERAL",
-    "balda": "B012",
-    "cajon": "",
-    "descripcion": "Portatil"
   },
   {
     "idMaterial": 17,

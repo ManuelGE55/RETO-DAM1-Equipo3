@@ -137,7 +137,7 @@ public class UsuarioDAO {
                         usuario.setId(rs.getInt(7));
                     } else {
                         //USUARIO INACTIVO
-                        JOptionPane.showMessageDialog(null, "Comprobar usuario", "El usuario está inactivo", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null,  "El usuario está inactivo","Comprobar usuario", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                 }

@@ -60,11 +60,11 @@ public class MaterialDAO {
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
                 System.out.println("no se pudo añadir el material");
-                JOptionPane.showMessageDialog(null, "Insertar material", "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,  "Argumento no encontrado","Insertar material", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 //SE AÑADIO CORRECTAMENTE
                 System.out.println("Se añadio correctamente");
-                JOptionPane.showMessageDialog(null, "Insertar material", "Material añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,  "Material añadido correctamente","Insertar material", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
@@ -87,9 +87,9 @@ public class MaterialDAO {
             int resultado = ps.executeUpdate();
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
-                JOptionPane.showMessageDialog(null, "Borrado material", "No se pudo eliminar el material seleccionado", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,  "No se pudo eliminar el material seleccionado","Borrado material", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Borrado material", "Material eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,  "Material eliminado correctamente","Borrado material", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(MaterialDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,13 +122,13 @@ public class MaterialDAO {
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
                 System.out.println("no se pudo añadir el tipo material");
-                JOptionPane.showMessageDialog(null, "Insertar tipo de material", "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,  "Argumento no encontrado","Insertar tipo de material", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 //SE AÑADIO CORRECTAMENTE
                 InsertarMaterial(nombre, descripcion, estado, IdUbicacion);
                 System.out.println("Se añadio el tipo material correctamente");
-                JOptionPane.showMessageDialog(null, "Insertar tipo de material", "Tipo añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Tipo añadido correctamente", "Insertar tipo de material", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
