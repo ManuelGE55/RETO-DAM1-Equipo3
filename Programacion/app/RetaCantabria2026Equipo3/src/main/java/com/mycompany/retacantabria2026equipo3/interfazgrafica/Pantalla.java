@@ -16,6 +16,7 @@ import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.exceptions.ArgumentoNoEncontradoException;
 import com.mycompany.retacantabria2026equipo3.exceptions.DriverConexionException;
 import com.mycompany.retacantabria2026equipo3.gestores.GestorLocalizaciones;
+import com.mycompany.retacantabria2026equipo3.gestores.GestorTrafico;
 import com.mycompany.retacantabria2026equipo3.json.GeneradorJSONInventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Inventario;
 import com.mycompany.retacantabria2026equipo3.modelos.administracionmateriales.Material;
@@ -24,6 +25,7 @@ import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Profesor;
 import com.mycompany.retacantabria2026equipo3.modelos.usuarioroles.Usuario;
 import com.mycompany.retacantabria2026equipo3.seguriddmd5.SeguridadMD5;
 import java.awt.Image;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -837,6 +839,11 @@ public class Pantalla extends javax.swing.JFrame {
         jMenu3.add(exportarCSV);
 
         importarCSV.setText("Importar CSV");
+        importarCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importarCSVActionPerformed(evt);
+            }
+        });
         jMenu3.add(importarCSV);
 
         jMenuBar2.add(jMenu3);
@@ -1226,6 +1233,10 @@ public class Pantalla extends javax.swing.JFrame {
     private void CampoTextoBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoBorrarUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoTextoBorrarUsuarioActionPerformed
+
+    private void importarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarCSVActionPerformed
+        GestorTrafico.cargarInventario(new File("src/main/CSVs/PruebaCSV.xslx"));
+    }//GEN-LAST:event_importarCSVActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas
