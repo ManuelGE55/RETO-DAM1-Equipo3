@@ -9,6 +9,15 @@
     "descripcion": "Cable ethernet de 1 metro"
   },
   {
+    "idMaterial": 22,
+    "nombre": "fornite",
+    "cantidad": 1,
+    "armario": "GENERAL",
+    "balda": "B001",
+    "cajon": "",
+    "descripcion": "da"
+  },
+  {
     "idMaterial": 4,
     "nombre": "Libro DAM",
     "cantidad": 8,
