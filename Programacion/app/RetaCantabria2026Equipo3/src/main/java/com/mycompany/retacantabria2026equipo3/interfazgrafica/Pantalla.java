@@ -1211,6 +1211,46 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BotonBorrarUsuario1ActionPerformed
 
+    private void botonMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMapaActionPerformed
+        try {
+            if (jTable1.getSelectedRow() != -1) {
+                String idUbicacion = (String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getColumnCount() - 1);
+                GestorLocalizaciones.mostrarUbicacionWeb(idUbicacion);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: Se debe de seleccionar un material para acceder a su mapa.", "Material no seleccionado", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (ArgumentoNoEncontradoException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
+        } catch (DriverConexionException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error de DriverConexion", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_botonMapaActionPerformed
+
+    private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
+        MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()), Integer.parseInt(textoStockMinimo.getText()));
+        jDialog2.setVisible(false);
+        panelInsertarComponente.setVisible(false);
+        this.setSize(1560, 500);
+        jPanel2.setVisible(true);
+        jPanel3.setVisible(false);
+        inventario.setMateriales(InventarioDAO.cargarInventario());
+        rellenarTablaMateriales();
+        jMenuBar2.setVisible(true);
+
+    }//GEN-LAST:event_botonAñadirInsertarTipoMaterialActionPerformed
+
+    private void botonSalirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirInsertarTipoMaterialActionPerformed
+        jDialog2.setVisible(false);
+        panelInsertarComponente.setVisible(false);
+        jPanel2.setVisible(true);
+    }//GEN-LAST:event_botonSalirInsertarTipoMaterialActionPerformed
+
+    private void BotonEntrarABorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarABorrarUsuarioActionPerformed
+        panelRegistrarUsuario.setVisible(false);
+        panelBorrarUsuario.setVisible(true);
+    }//GEN-LAST:event_BotonEntrarABorrarUsuarioActionPerformed
+
+    private void BotonSalirBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuarioActionPerformed
     private void BotonSalirBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuario1ActionPerformed
         panelBorrarUsuario.setVisible(false);
         panelRegistrarUsuario.setVisible(true);
