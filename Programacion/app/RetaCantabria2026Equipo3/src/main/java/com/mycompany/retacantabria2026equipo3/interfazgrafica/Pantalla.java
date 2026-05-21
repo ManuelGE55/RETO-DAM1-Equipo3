@@ -42,17 +42,51 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Ventana principal de la aplicación de gestión de inventario del proyecto RETA
+ * Cantabria 2026.
  *
- * @author DAM212
+ * Esta interfaz gráfica permite:
+ *
+ * - Iniciar sesión de usuarios. - Consultar materiales del inventario. -
+ * Filtrar materiales por estado, categoría y localización. - Modificar
+ * materiales existentes. - Añadir nuevos materiales. - Registrar y eliminar
+ * usuarios. - Exportar e importar inventarios CSV. - Generar informes TXT. -
+ * Visualizar ubicaciones mediante mapa web. - Generar automáticamente el
+ * archivo JSON del inventario.
+ *
+ * La interfaz está desarrollada utilizando Java Swing.
+ *
+ * @author Ciro Galán, Hugo Fernández, Naya Ruiz, Saúl Valdunciel
  */
 public class Pantalla extends javax.swing.JFrame {
 
+    /**
+     * Lista auxiliar de materiales mostrados actualmente en la tabla.
+     */
     private static ArrayList<Material> materiales = new ArrayList<>();
+
+    /**
+     * Inventario principal cargado en memoria.
+     */
     public static Inventario inventario = new Inventario(new ArrayList<>());
+
+    /**
+     * Usuario actualmente autenticado en la aplicación.
+     */
     public static Usuario usuario;
 
     /**
-     * Creates new form Pantalla
+     * Constructor principal de la ventana.
+     *
+     * Inicializa todos los componentes gráficos, configura el estado inicial de
+     * los paneles y carga la imagen de introducción.
+     *
+     * Además:
+     *
+     * - Configura los ComboBox. - Oculta paneles secundarios. - Deshabilita el
+     * cierre manual de la ventana. - Ajusta el tamaño inicial de la interfaz.
+     *
+     * @author Ciro Galán, Naya Ruiz, Saúl Valdunciel
      */
     public Pantalla() {
         setUndecorated(true);
@@ -946,13 +980,30 @@ public class Pantalla extends javax.swing.JFrame {
     private void comboEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEstadoMouseClicked
 
     }//GEN-LAST:event_comboEstadoMouseClicked
-
+    /**
+     * Muestra el panel de inicio de sesión y oculta la pantalla principal.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void BotonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarActionPerformed
         Loggin.setVisible(true);
         jPanel1.setVisible(false);
 
     }//GEN-LAST:event_BotonEntrarActionPerformed
-
+    /**
+     * Cierra la aplicación de forma segura.
+     *
+     * Antes del cierre:
+     *
+     * - Genera el archivo JSON del inventario. - Cierra el WebDriver de
+     * Selenium.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz, Hugo Fernández, Saúl Valdunciel
+     */
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         GeneradorJSONInventario generador = new GeneradorJSONInventario();
         generador.generarJSONInventario();
@@ -988,7 +1039,20 @@ public class Pantalla extends javax.swing.JFrame {
     private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
         rellenarTablaMateriales();// TODO add your handling code here:
     }//GEN-LAST:event_comboCategoriaActionPerformed
-
+    /**
+     * Abre el panel de modificación del material seleccionado.
+     *
+     * Carga en el formulario los datos actuales del material, como la
+     * descripción, el estado y la ubicación, para que puedan ser modificados
+     * por el usuario.
+     *
+     * Además, comprueba si el material tiene una alerta de stock activa y
+     * muestra un aviso si la cantidad es inferior al stock mínimo.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void modificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarMaterialActionPerformed
         this.jPanel2.setVisible(false);
         this.jPanel3.setVisible(true);
@@ -1009,7 +1073,23 @@ public class Pantalla extends javax.swing.JFrame {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_modificarMaterialActionPerformed
-
+    /**
+     * Comprueba las credenciales introducidas por el usuario e inicia sesión en
+     * el sistema.
+     *
+     * Dependiendo del rol:
+     *
+     * - Profesor: acceso limitado. - Administrador: acceso completo.
+     *
+     * Además:
+     *
+     * - Carga el inventario. - Inicializa filtros. - Rellena la tabla
+     * principal.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkActionPerformed
         try {
             usuario = UsuarioDAO.comprobarUsuario(Usuario.getText().toLowerCase(), String.copyValueOf(Contraseña.getPassword()));
@@ -1060,7 +1140,24 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel3.setVisible(false);
         jMenuBar2.setVisible(true);
     }//GEN-LAST:event_BotonSalirModificarMaterialActionPerformed
-
+    /**
+     * Guarda las modificaciones realizadas sobre el material seleccionado.
+     *
+     * Actualiza en la base de datos:
+     *
+     * - La descripción del material. - El estado actual. - La ubicación
+     * asignada.
+     *
+     * Además, recarga automáticamente el inventario y actualiza la tabla
+     * principal con los nuevos datos.
+     *
+     * Si la modificación se realiza correctamente, se muestra un mensaje de
+     * confirmación.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void BotonModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarMaterialActionPerformed
         int fila = jTable1.getSelectedRow();
         int id = 0;
@@ -1094,7 +1191,20 @@ public class Pantalla extends javax.swing.JFrame {
     private void ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraseñaActionPerformed
-
+    /**
+     * Inserta un nuevo material en el inventario.
+     *
+     * Si el tipo de material ya existe, el material se inserta directamente en
+     * la base de datos.
+     *
+     * En caso contrario, se muestra una ventana adicional para registrar el
+     * nuevo tipo de material y definir su stock mínimo.
+     *
+     * Tras la inserción, la tabla principal del inventario se actualiza
+     * automáticamente.
+     *
+     * @param evt
+     */
     private void botonInsertar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertar1ActionPerformed
         if (textoNombreInsertarMaterial.getText() != null || textoDescripcionInsertarMaterial.getText() != null) {
             try {
@@ -1121,14 +1231,35 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Insertar material", "Nombre y/o descripcion es nula", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonInsertar1ActionPerformed
-
+    /**
+     * Cancela la inserción de un nuevo material.
+     *
+     * Cierra el panel de inserción y vuelve a mostrar la pantalla principal del
+     * inventario.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonCancelarInsertarMaterial1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarInsertarMaterial1ActionPerformed
 
         this.setSize(1560, 600);
         panelInsertarComponente.setVisible(false);
         jPanel2.setVisible(true);
     }//GEN-LAST:event_botonCancelarInsertarMaterial1ActionPerformed
-
+    /**
+     * Muestra el panel de inserción de nuevos materiales.
+     *
+     * Inicializa automáticamente los ComboBox de categorías, estados y
+     * localizaciones disponibles en el sistema.
+     *
+     * Además, ajusta el tamaño de la ventana y oculta temporalmente el menú
+     * principal mientras se realiza la inserción.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void añadirMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirMaterialActionPerformed
         rellenarComboBoxCambiarCategoria(comboBoxCategoriaInsertarMaterial);
         rellenarComboBoxCambiarEstado(comboBoxEstadoInsertarMaterial);
@@ -1139,7 +1270,16 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel2.setVisible(false);
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_añadirMaterialActionPerformed
-
+    /**
+     * Muestra el panel de registro de nuevos usuarios.
+     *
+     * Inicializa automáticamente el ComboBox de roles disponibles dentro del
+     * sistema y centra la ventana de registro en la pantalla.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonAñadirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirUsuarioActionPerformed
         rellenarComboBoxCambiarRol(ComboBoxUsuarioRol);
         panelRegistrarUsuario.setVisible(true);
@@ -1147,7 +1287,23 @@ public class Pantalla extends javax.swing.JFrame {
         panelRegistrarUsuario.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_botonAñadirUsuarioActionPerformed
-
+    /**
+     * Abre el mapa web correspondiente a la ubicación del material
+     * seleccionado.
+     *
+     * Utiliza el gestor de localizaciones para mostrar automáticamente:
+     *
+     * - Armarios. - Baldas. - Cajones.
+     *
+     * mediante la página web interactiva del sistema.
+     *
+     * Si no hay ningún material seleccionado o ocurre un error de conexión, se
+     * muestra un mensaje informativo.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMapaActionPerformed
         try {
             if (jTable1.getSelectedRow() != -1) {
@@ -1162,7 +1318,21 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error de DriverConexion", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonMapaActionPerformed
-
+    /**
+     * Inserta un nuevo tipo de material en el sistema junto con su stock
+     * mínimo.
+     *
+     * Una vez registrado el tipo de material:
+     *
+     * - Se actualiza automáticamente el inventario. - Se recarga la tabla
+     * principal. - Se cierran las ventanas de inserción.
+     *
+     * Además, ajusta nuevamente el tamaño principal de la aplicación.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
         this.setSize(1560, 500);
         MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()), Integer.parseInt(textoStockMinimo.getText()));
@@ -1171,22 +1341,62 @@ public class Pantalla extends javax.swing.JFrame {
         jDialog2.setVisible(false);
         panelInsertarComponente.setVisible(false);
     }//GEN-LAST:event_botonAñadirInsertarTipoMaterialActionPerformed
-
+    /**
+     * Cierra la ventana de inserción de tipos de material.
+     *
+     * Oculta el diálogo emergente y vuelve a mostrar el panel principal del
+     * inventario.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonSalirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirInsertarTipoMaterialActionPerformed
         jDialog2.setVisible(false);
         panelInsertarComponente.setVisible(false);
         jPanel2.setVisible(true);
     }//GEN-LAST:event_botonSalirInsertarTipoMaterialActionPerformed
-
+    /**
+     * Actualiza la tabla principal aplicando el filtro de localización
+     * seleccionado por el usuario.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
         rellenarTablaMateriales();
     }//GEN-LAST:event_comboLocalizacionActionPerformed
-
+    /**
+     * Cierra el panel de registro de usuarios.
+     *
+     * Oculta la ventana de registro y vuelve a mostrar el panel principal del
+     * inventario.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void BotonSalirRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirRegistrarUsuarioActionPerformed
         panelRegistrarUsuario.setVisible(false);
         jPanel2.setVisible(true);
     }//GEN-LAST:event_BotonSalirRegistrarUsuarioActionPerformed
-
+    /**
+     * Registra un nuevo usuario en el sistema.
+     *
+     * Comprueba que todos los campos obligatorios estén rellenados, valida el
+     * formato del email y crea el usuario según el rol seleccionado.
+     *
+     * Antes de insertar el usuario en la base de datos, verifica que no exista
+     * previamente otro usuario con el mismo email.
+     *
+     * Si el registro se realiza correctamente, muestra un mensaje de
+     * confirmación. En caso contrario, informa del error correspondiente.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void BotonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarUsuarioActionPerformed
         Usuario usuarioRegistrar = null;
         char[] contrasenaChars = CampoUsuarioContrasena.getPassword();
@@ -1226,7 +1436,15 @@ public class Pantalla extends javax.swing.JFrame {
     private void CampoUsuarioNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoUsuarioNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoUsuarioNombreActionPerformed
-
+    /**
+     * Muestra el panel de eliminación de usuarios.
+     *
+     * Configura el tamaño y la posición de la ventana antes de hacerla visible.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void BorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarUsuarioActionPerformed
 
         panelBorrarUsuario.setSize(400, 200);
@@ -1235,7 +1453,21 @@ public class Pantalla extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_BorrarUsuarioActionPerformed
-
+    /**
+     * Elimina un usuario del sistema utilizando su dirección de email.
+     *
+     * Antes de realizar la eliminación:
+     *
+     * - Comprueba que el campo no esté vacío. - Verifica que el usuario exista.
+     * - Impide que el usuario actual elimine su propia cuenta.
+     *
+     * Si la eliminación se realiza correctamente, muestra un mensaje de
+     * confirmación. En caso contrario, informa del error correspondiente.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void BotonBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarUsuario1ActionPerformed
         String email;
 
@@ -1262,7 +1494,16 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error en base de datos", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_BotonBorrarUsuario1ActionPerformed
-
+    /**
+     * Cierra el panel de eliminación de usuarios.
+     *
+     * Oculta la ventana de borrado y vuelve a mostrar el panel de registro de
+     * usuarios.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya
+     */
     private void BotonSalirBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuario1ActionPerformed
         panelBorrarUsuario.setVisible(false);
         panelRegistrarUsuario.setVisible(true);
@@ -1280,7 +1521,19 @@ public class Pantalla extends javax.swing.JFrame {
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3MouseClicked
-
+    /**
+     * Importa materiales desde un archivo CSV y actualiza automáticamente el
+     * inventario mostrado en la aplicación.
+     *
+     * Tras la importación:
+     *
+     * - Se recarga el inventario desde la base de datos. - Se actualiza la
+     * tabla principal. - Se repinta el panel del inventario.
+     *
+     * @param evt
+     * 
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void importarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importarCSVMouseClicked
         GestorTrafico.cargarInventario(new File("src/main/CSVs/PruebaCSV.xlsx"));
         inventario.setMateriales(InventarioDAO.cargarInventario());
