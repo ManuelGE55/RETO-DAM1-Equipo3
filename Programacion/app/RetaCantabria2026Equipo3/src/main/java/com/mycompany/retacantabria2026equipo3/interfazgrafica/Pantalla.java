@@ -901,6 +901,11 @@ public class Pantalla extends javax.swing.JFrame {
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         GeneradorJSONInventario generador = new GeneradorJSONInventario();
         generador.generarJSONInventario();
+        if (GestorLocalizaciones.cerrarWebDriver()) {
+            System.out.println("Driver de la web cerrado.");
+        } else {
+            System.out.println("Error: El Driver de la web no se cerró correctamente.");
+        }
         System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
