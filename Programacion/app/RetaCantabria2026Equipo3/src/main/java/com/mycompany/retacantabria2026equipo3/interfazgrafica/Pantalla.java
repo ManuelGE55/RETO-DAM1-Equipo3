@@ -1215,7 +1215,7 @@ public class Pantalla extends javax.swing.JFrame {
                 if (!comboEstado.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
                 }
-                
+
                 if (!comboLocalizacion.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem());
                 }
@@ -1228,7 +1228,7 @@ public class Pantalla extends javax.swing.JFrame {
                     modelo.addRow(fila);
                     materiales.add(m);
                 }
-                
+
             }
         }
 

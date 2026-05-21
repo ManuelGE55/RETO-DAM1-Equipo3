@@ -119,27 +119,6 @@ public class GestorLocalizaciones {
     private static void ejecutarScript(String idUbicacion) throws ArgumentoNoEncontradoException {
         switch (idUbicacion) {
 
-            // ARMARIOS
-            case "11" -> {
-                js.executeScript("verArmario('A1');");
-            }
-
-            case "12" -> {
-                js.executeScript("verArmario('A2');");
-            }
-
-            case "13" -> {
-                js.executeScript("verArmario('A3');");
-            }
-
-            case "14" -> {
-                js.executeScript("verArmario('A4');");
-            }
-
-            case "15" -> {
-                js.executeScript("verArmario('A5');");
-            }
-
             // BALDAS DEL GENERAL
             case "2001" -> {
                 js.executeScript("verBalda('GENERAL', 'B001');");
@@ -503,7 +482,6 @@ public class GestorLocalizaciones {
             }
         }
     }
-
     /**
      * Cierra el navegador controlado por Selenium.
      *
