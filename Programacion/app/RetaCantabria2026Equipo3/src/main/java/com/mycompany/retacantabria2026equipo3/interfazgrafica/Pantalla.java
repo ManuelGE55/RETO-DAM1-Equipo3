@@ -47,12 +47,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * Esta interfaz gráfica permite:
  *
- * - Iniciar sesión de usuarios. - Consultar materiales del inventario. -
- * Filtrar materiales por estado, categoría y localización. - Modificar
- * materiales existentes. - Añadir nuevos materiales. - Registrar y eliminar
- * usuarios. - Exportar e importar inventarios CSV. - Generar informes TXT. -
- * Visualizar ubicaciones mediante mapa web. - Generar automáticamente el
- * archivo JSON del inventario.
+ * - Iniciar sesión de usuarios. 
+ * - Consultar materiales del inventario. 
+ * - Filtrar materiales por estado, categoría y localización. 
+ * - Modificar materiales existentes. 
+ * - Añadir nuevos materiales. - Registrar y eliminar usuarios. 
+ * - Exportar e importar inventarios CSV. 
+ * - Generar informes TXT. 
+ * - Visualizar ubicaciones mediante mapa web. 
+ * - Generar automáticamente el archivo JSON del inventario.
  *
  * La interfaz está desarrollada utilizando Java Swing.
  *
@@ -83,8 +86,10 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Además:
      *
-     * - Configura los ComboBox. - Oculta paneles secundarios. - Deshabilita el
-     * cierre manual de la ventana. - Ajusta el tamaño inicial de la interfaz.
+     * - Configura los ComboBox. 
+     * - Oculta paneles secundarios. 
+     * - Deshabilita el cierre manual de la ventana. 
+     * - Ajusta el tamaño inicial de la interfaz.
      *
      * @author Ciro Galán, Naya Ruiz, Saúl Valdunciel
      */
@@ -997,8 +1002,8 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Antes del cierre:
      *
-     * - Genera el archivo JSON del inventario. - Cierra el WebDriver de
-     * Selenium.
+     * - Genera el archivo JSON del inventario. 
+     * - Cierra el WebDriver de Selenium.
      *
      * @param evt
      *
@@ -1014,7 +1019,19 @@ public class Pantalla extends javax.swing.JFrame {
         }
         System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
-
+    /**
+     * Cierra la sesión actual del usuario.
+     * 
+     * Restaura la pantall de inicio de sesión, oculta el panel
+     * principal del inventario y limpia los campos de usuario y contraseña.
+     * 
+     * Además, ajusta nuevamente el tamaño inicial de la ventana y oculta
+     * el menú principal.
+     * 
+     * @param evt 
+     * 
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.setSize(790, 500);
         jPanel1.setVisible(true);
@@ -1079,12 +1096,14 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Dependiendo del rol:
      *
-     * - Profesor: acceso limitado. - Administrador: acceso completo.
+     * - Profesor: acceso limitado. 
+     * - Administrador: acceso completo.
      *
      * Además:
      *
-     * - Carga el inventario. - Inicializa filtros. - Rellena la tabla
-     * principal.
+     * - Carga el inventario. 
+     * - Inicializa filtros. 
+     * - Rellena la tabla principal.
      *
      * @param evt
      *
@@ -1130,10 +1149,30 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    /**
+     * Genera un informe TXT con los materiales actualmente cargados en la tabla
+     * del inventario.
+     *
+     * Utiliza el gestor de informes para exportar automáticamente la
+     * información visible.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void imprimirInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirInformeActionPerformed
         GestorInformes.exportarInforme(materiales);
     }//GEN-LAST:event_imprimirInformeActionPerformed
-
+    /**
+     * Cancela la modificación de un material.
+     *
+     * Restaura la interfaz principal del inventario ocultando el panel de
+     * modificación y mostrando nuevamente el menú principal.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
         this.setSize(1560, 550);
         jPanel2.setVisible(true);
@@ -1145,8 +1184,9 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Actualiza en la base de datos:
      *
-     * - La descripción del material. - El estado actual. - La ubicación
-     * asignada.
+     * - La descripción del material. 
+     * - El estado actual. 
+     * - La ubicación asignada.
      *
      * Además, recarga automáticamente el inventario y actualiza la tabla
      * principal con los nuevos datos.
@@ -1293,7 +1333,9 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Utiliza el gestor de localizaciones para mostrar automáticamente:
      *
-     * - Armarios. - Baldas. - Cajones.
+     * - Armarios. 
+     * - Baldas. 
+     * - Cajones.
      *
      * mediante la página web interactiva del sistema.
      *
@@ -1324,8 +1366,9 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Una vez registrado el tipo de material:
      *
-     * - Se actualiza automáticamente el inventario. - Se recarga la tabla
-     * principal. - Se cierran las ventanas de inserción.
+     * - Se actualiza automáticamente el inventario. 
+     * - Se recarga la tabla principal. 
+     * - Se cierran las ventanas de inserción.
      *
      * Además, ajusta nuevamente el tamaño principal de la aplicación.
      *
@@ -1458,7 +1501,8 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Antes de realizar la eliminación:
      *
-     * - Comprueba que el campo no esté vacío. - Verifica que el usuario exista.
+     * - Comprueba que el campo no esté vacío. 
+     * - Verifica que el usuario exista.
      * - Impide que el usuario actual elimine su propia cuenta.
      *
      * Si la eliminación se realiza correctamente, muestra un mensaje de
@@ -1527,11 +1571,12 @@ public class Pantalla extends javax.swing.JFrame {
      *
      * Tras la importación:
      *
-     * - Se recarga el inventario desde la base de datos. - Se actualiza la
-     * tabla principal. - Se repinta el panel del inventario.
+     * - Se recarga el inventario desde la base de datos. 
+     * - Se actualiza la tabla principal. 
+     * - Se repinta el panel del inventario.
      *
      * @param evt
-     * 
+     *
      * @author Ciro Galán, Naya Ruiz
      */
     private void importarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importarCSVMouseClicked
@@ -1540,7 +1585,20 @@ public class Pantalla extends javax.swing.JFrame {
         rellenarTablaMateriales();
         jPanel2.repaint();
     }//GEN-LAST:event_importarCSVMouseClicked
-
+    /**
+     * Elimina el material seleccionado del inventario.
+     *
+     * Tras la eliminación:
+     *
+     * - Se actualiza la base de datos. 
+     * - Se recarga el inventario. 
+     * - Se actualiza la tabla principal. 
+     * - Se restaura la interfaz principal.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
         int fila = jTable1.getSelectedRow();
         int id = 0;
@@ -1557,11 +1615,40 @@ public class Pantalla extends javax.swing.JFrame {
         rellenarTablaMateriales();
         jMenuBar2.setVisible(true);
     }//GEN-LAST:event_botonBorrarActionPerformed
-
+    /**
+     * Exporta los materiales actualmente cargados a un archivo CSV.
+     *
+     * Utiliza el gestor de tráfico para generar automáticamente el archivo de
+     * exportación con la información del inventario.
+     *
+     * @param evt
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void exportarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarCSVMouseClicked
         GestorTrafico.exportarInventario(materiales);
     }//GEN-LAST:event_exportarCSVMouseClicked
-
+    /**
+     * Rellena la tabla principal del inventario aplicando los filtros
+     * seleccionados por el usuario.
+     *
+     * Los materiales pueden filtrarse por:
+     *
+     * - Estado. 
+     * - Categoría. 
+     * - Localización.
+     *
+     * Además:
+     *
+     * - Limpia la lista auxiliar de materiales. 
+     * - Genera un nuevo modelo de tabla. 
+     * - Actualiza automáticamente los datos mostrados en pantalla.
+     *
+     * Solo se añaden a la tabla aquellos materiales que cumplen todos los
+     * filtros seleccionados.
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
@@ -1614,6 +1701,21 @@ public class Pantalla extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Inicializa el ComboBox principal de estados utilizado para filtrar
+     * materiales en la tabla.
+     *
+     * Incluye una opción neutra ("---") para mostrar todos los estados.
+     *
+     * Los estados disponibles son:
+     *
+     * - DISPONIBLE 
+     * - PRESTADO 
+     * - EN_REPARACION 
+     * - RETIRADO
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxEstado() {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1627,6 +1729,16 @@ public class Pantalla extends javax.swing.JFrame {
         comboEstado.setModel(modelo);
     }
 
+    /**
+     * Inicializa un ComboBox con los estados disponibles para un material.
+     *
+     * Se utiliza principalmente en formularios de modificación e inserción de
+     * materiales.
+     *
+     * @param box
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxCambiarEstado(JComboBox<String> box) {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1639,6 +1751,21 @@ public class Pantalla extends javax.swing.JFrame {
         box.setModel(modelo);
     }
 
+    /**
+     * Inicializa un ComboBox con las categorías de materiales disponibles en el
+     * sistema.
+     *
+     * Categorías disponibles:
+     *
+     * - HARDWARE 
+     * - CUADERNO 
+     * - HERRAMIENTA 
+     * - FUNGIBLE
+     *
+     * @param box
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxCategoria(JComboBox<String> box) {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1651,6 +1778,19 @@ public class Pantalla extends javax.swing.JFrame {
         box.setModel(modelo);
     }
 
+    /**
+     * Inicializa un ComboBox con los roles de usuario disponibles en el
+     * sistema.
+     *
+     * Roles disponibles:
+     *
+     * - ADMINISTRADOR 
+     * - PROFESOR
+     *
+     * @param box
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxCambiarRol(JComboBox<String> box) {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1661,6 +1801,14 @@ public class Pantalla extends javax.swing.JFrame {
         box.setModel(modelo);
     }
 
+    /**
+     * Inicializa un ComboBox con las categorías disponibles para registrar
+     * nuevos materiales.
+     *
+     * @param box
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxCambiarCategoria(JComboBox<String> box) {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -1673,6 +1821,25 @@ public class Pantalla extends javax.swing.JFrame {
         box.setModel(modelo);
     }
 
+    /**
+     * Valida que un email pertenezca al dominio permitido por el sistema.
+     *
+     * El método comprueba que la dirección de correo finalice con "@gmail.com".
+     *
+     * Para ello:
+     *
+     * - Extrae manualmente el dominio del email. 
+     * - Reconstruye la parte final del correo. 
+     * - Comprueba si coincide con el dominio permitido.
+     *
+     * Si el email no es válido, se lanza una excepción informativa.
+     *
+     * @param email
+     *
+     * @throws Exception
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private static void validaEmail(String email) throws Exception {
         String emailUsuarioInvertido = "";
         String emailUsuario = "";
@@ -1695,6 +1862,26 @@ public class Pantalla extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Inicializa un ComboBox con todas las localizaciones disponibles dentro
+     * del sistema de inventario.
+     *
+     * Las localizaciones representan:
+     *
+     * - Armarios. 
+     * - Baldas. 
+     * - Cajones.
+     *
+     * identificados mediante códigos numéricos únicos utilizados en la base de
+     * datos.
+     *
+     * Este método se utiliza principalmente en formularios de inserción y
+     * modificación de materiales.
+     *
+     * @param box
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxCambiarLocalizacion(JComboBox<String> box) {
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         modelo.addElement("2001");
@@ -1786,6 +1973,23 @@ public class Pantalla extends javax.swing.JFrame {
         box.setModel(modelo);
     }
 
+    /**
+     * Inicializa el ComboBox principal de localizaciones utilizado para filtrar
+     * materiales en la tabla.
+     *
+     * Incluye una opción neutra ("---") que permite mostrar materiales de
+     * cualquier localización.
+     *
+     * Las localizaciones disponibles representan:
+     *
+     * - Armarios. 
+     * - Baldas. 
+     * - Cajones.
+     *
+     * identificados mediante códigos numéricos únicos del sistema.
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxLocalizacion() {
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         modelo.addElement("---");
@@ -1878,6 +2082,22 @@ public class Pantalla extends javax.swing.JFrame {
         comboLocalizacion.setModel(modelo);
     }
 
+    /**
+     * Inicializa el ComboBox principal de categorías utilizado para filtrar
+     * materiales en la tabla.
+     *
+     * Incluye una opción neutra ("---") para mostrar materiales de cualquier
+     * categoría.
+     *
+     * Categorías disponibles:
+     *
+     * - CUADERNO 
+     * - HARDWARE 
+     * - HERRAMIENTA 
+     * - FUNGIBLE
+     *
+     * @author Ciro Galán, Naya Ruiz
+     */
     private void rellenarComboBoxCategoria() {
 
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
