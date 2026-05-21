@@ -1151,6 +1151,7 @@ public class Pantalla extends javax.swing.JFrame {
         String contrasena = new String(contrasenaChars);
         try {
             if (!CampoUsuarioNombre.getText().equals("") && !CampoUsuarioApellidos.getText().equals("") && !contrasena.equals("") && ComboBoxUsuarioRol.getSelectedIndex() != -1 && !CampoUsuarioEmail.getText().equals("")) {
+                validaEmail(CampoUsuarioEmail.getText());
                 if (ComboBoxUsuarioRol.getSelectedItem().equals("PROFESOR")) {
                     usuarioRegistrar = new Profesor(CampoUsuarioEmail.getText(), true, CampoUsuarioNombre.getText(), CampoUsuarioApellidos.getText(), contrasena, Rol.PROFESOR);
                 } else if (ComboBoxUsuarioRol.getSelectedItem().equals("ADMINISTRADOR")) {
@@ -1175,6 +1176,8 @@ public class Pantalla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Datos no asignados", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error en base de datos", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Email inválido", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_BotonRegistrarUsuarioActionPerformed
 
@@ -1336,6 +1339,28 @@ public class Pantalla extends javax.swing.JFrame {
         modelo.addElement("FUNGIBLE");
 
         box.setModel(modelo);
+    }
+    
+    private static void validaEmail(String email) throws Exception {
+        String emailUsuarioInvertido = "";
+        String emailUsuario = "";
+        boolean salir = false;
+        for (int i = email.length() - 1; i >= 0 && !salir; i--) {
+            char caracter = email.charAt(i);
+            if (caracter != '@') {
+                emailUsuarioInvertido += caracter;
+            } else {
+                salir = true;
+            }
+        }
+        emailUsuarioInvertido += '@';
+        for (int i = emailUsuarioInvertido.length() - 1; i >= 0; i--) {
+            char caracter = emailUsuarioInvertido.charAt(i);
+            emailUsuario += caracter;
+        }
+        if (!emailUsuario.equals("@gmail.com")) {
+            throw new Exception("Error: El email debe tener @gmail.com.");
+        }
     }
 
     private void rellenarComboBoxCambiarLocalizacion(JComboBox<String> box) {
