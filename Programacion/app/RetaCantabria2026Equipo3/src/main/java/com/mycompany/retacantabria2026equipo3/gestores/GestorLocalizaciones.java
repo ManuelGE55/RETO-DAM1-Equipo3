@@ -46,7 +46,7 @@ public class GestorLocalizaciones {
     private static final String URL_WEB = "http://52.44.197.21/Mapa.html";
 
     static {
-        inicializarNavegador(false);
+        inicializarNavegador(true);
     }
 
     /**
@@ -520,6 +520,7 @@ public class GestorLocalizaciones {
     public static boolean cerrarWebDriver() {
         boolean cerrado = false;
         if (driver != null) {
+            inicializarNavegador(false);
             driver.quit();
             cerrado = true;
         }

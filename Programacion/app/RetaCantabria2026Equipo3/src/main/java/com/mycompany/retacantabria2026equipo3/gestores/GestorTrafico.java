@@ -4,6 +4,7 @@
  */
 package com.mycompany.retacantabria2026equipo3.gestores;
 
+import com.mycompany.retacantabria2026equipo3.DAOs.MaterialDAO;
 import com.mycompany.retacantabria2026equipo3.enums.Categoria;
 import com.mycompany.retacantabria2026equipo3.enums.Estado;
 import static com.mycompany.retacantabria2026equipo3.interfazgrafica.Pantalla.inventario;
@@ -14,8 +15,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase encargada de gestionar la importación y exportación de inventarios en
@@ -53,9 +57,17 @@ public class GestorTrafico {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
                 inventario.anadirMaterial(new Material(datos[0], datos[1], Categoria.valueOf(datos[2]), Estado.valueOf(datos[3]), datos[4]));
+                if (MaterialDAO.existeMaterial(datos[0])) {
+
+                    MaterialDAO.InsertarMaterial(datos[0], datos[1],datos[2], datos[3]);
+                } else {
+                    MaterialDAO.InsertarTipoMaterial(datos[0], datos[1],datos[2], datos[3],Categoria.valueOf(datos[4]),Integer.parseInt(datos[6]));
+                }
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorTrafico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -85,9 +97,7 @@ public class GestorTrafico {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(inventarioCSV, true))) {
             bw.write("Id,Nombre,Descripción,Cantidad,StockMinimo,Categoría,Estado,IdUbicacion\n");
             for (Material material : materiales) {
-                bw.write(material.getId() + "," + material.getNombre() + "," + material.getDescripcion() + ","
-                        + "" + material.getCantidad() + "," + material.getStockMinimo() + "," + material.getCategoria() + "," + material.getEstado() + ","
-                        + material.getIdUbicacion() + "\n");
+                bw.write(material.getNombre() + "," + material.getDescripcion() + ","+ material.getEstado().name() + "," + material.getCategoria().name() + "," + material.getIdUbicacion() + "\n");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
