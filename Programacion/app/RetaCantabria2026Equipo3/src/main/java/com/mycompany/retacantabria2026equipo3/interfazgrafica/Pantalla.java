@@ -55,6 +55,7 @@ public class Pantalla extends javax.swing.JFrame {
     public Pantalla() {
         setUndecorated(true);
         initComponents();
+        jDialog2.setUndecorated(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
