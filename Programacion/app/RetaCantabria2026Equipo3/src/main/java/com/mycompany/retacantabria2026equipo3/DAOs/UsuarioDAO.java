@@ -23,9 +23,11 @@ import javax.swing.JOptionPane;
  *
  * Permite:
  *
- * - Insertar usuarios. - Comprobar credenciales de acceso. - Verificar si un
- * usuario existe. - Eliminar usuarios. - Asociar usuarios a operaciones
- * realizadas.
+ * - Insertar usuarios. 
+ * - Comprobar credenciales de acceso. 
+ * - Verificar si un usuario existe. 
+ * - Eliminar usuarios. 
+ * - Asociar usuarios a operaciones realizadas.
  *
  * Esta clase actúa como intermediaria entre la aplicación y la tabla usuario de
  * MySQL.
