@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,7 +80,7 @@ public class UsuarioDAO {
 
     public static Usuario comprobarUsuario(String email, String contraseña) throws SQLException {
         Usuario usuario = null;
-        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol,id_usuario FROM usuario WHERE email = ? AND contraseña = ?";
+        String s = "SELECT nombre,apellidos,contraseña,email,activo,rol,id_usuario FROM usuario WHERE email = ? AND contraseña = MD5(?)";
 
         try (Connection con = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = con.prepareStatement(s)) {
 
@@ -97,6 +98,7 @@ public class UsuarioDAO {
                         usuario.setId(rs.getInt(7));
                     } else {
                         //USUARIO INACTIVO
+                        JOptionPane.showMessageDialog(null, "Comprobar usuario", "El usuario está inactivo", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                 }

@@ -8,6 +8,7 @@ import com.mycompany.retacantabria2026equipo3.exceptions.ArgumentoNoEncontradoEx
 import com.mycompany.retacantabria2026equipo3.exceptions.DriverConexionException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -20,9 +21,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
  *
  * Permite mostrar:
  *
- * - Armarios 
- * - Baldas 
- * - Cajones
+ * - Armarios - Baldas - Cajones
  *
  * en función de la ubicación del material.
  *
@@ -47,7 +46,23 @@ public class GestorLocalizaciones {
     private static final String URL_WEB = "http://52.44.197.21/Mapa.html";
 
     static {
+        inicializarNavegador();
+    }
+
+    /**
+     * Método privado estático auxiliar que hará que cuando el usuario cierre el
+     * navegador, reabre el navegador para no cerrar el driver y crear varios si
+     * este se cierra
+     */
+    private static void inicializarNavegador() {
         try {
+            if (driver != null) {
+                try {
+                    driver.quit();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
             String rutaProyecto = System.getProperty("user.dir");
             System.setProperty("webdriver.chrome.driver", rutaProyecto + "\\src\\main\\resources\\dependencias\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
@@ -56,52 +71,53 @@ public class GestorLocalizaciones {
 
             driver.get(URL_WEB);
         } catch (Exception e) {
+            driver = null;
             js = null;
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
     /**
-     * Muestra en la página web la ubicación correspondiente a un material.
-     *
-     * Dependiente del identificador recibido, se abrirá automáticamente:
-     *
-     * - Un armario. 
-     * - Una balda. 
-     * - Un cajón.
+     * Muestra en la página web la ubicación correspondiente a un material.Dependiente del identificador recibido, se abrirá automáticamente:
+
+ - Un armario.- Una balda.- Un cajón.
      *
      * utilizando funciones JavaScript ejecutadas desde Selenium.
      *
      * @author Hugo Fernández
+     * @param idUbicacion la ID de la ubicación dada
+     * @throws ArgumentoNoEncontradoException si la ID no se encuentra
+     * @throws DriverConexionException si el JavascripctExecutor falla
      */
     public static void mostrarUbicacionWeb(String idUbicacion) throws ArgumentoNoEncontradoException, DriverConexionException {
+        try {
+            if (js == null) {
+                inicializarNavegador();
+            }
+            if (js == null) {
+                throw new DriverConexionException("Error: JavaScriptExecutor es nulo.");
+            }
 
-        if (js == null) {
-            throw new DriverConexionException("Error: JavaScriptExecutor es nulo.");
+            ejecutarScript(idUbicacion);
+        } catch (WebDriverException e) {
+            System.out.println("Navegador cerrado. Creando nueva instancia...");
+
+            inicializarNavegador();
+
+            if (js == null) {
+                throw new DriverConexionException("Error: JavaScriptExecutor es nulo.");
+            }
+            
+            ejecutarScript(idUbicacion);
         }
-
+    }
+    /**
+     * Método privado estático que ejecutará el script desde el método de mostrarUbicación
+     * @param idUbicacion la ID de la ubicación dada
+     * @throws ArgumentoNoEncontradoException si la ID no se encuentra
+     */
+    private static void ejecutarScript(String idUbicacion) throws ArgumentoNoEncontradoException {
         switch (idUbicacion) {
-
-            // ARMARIOS
-            case "11" -> {
-                js.executeScript("verArmario('A1');");
-            }
-
-            case "12" -> {
-                js.executeScript("verArmario('A2');");
-            }
-
-            case "13" -> {
-                js.executeScript("verArmario('A3');");
-            }
-
-            case "14" -> {
-                js.executeScript("verArmario('A4');");
-            }
-
-            case "15" -> {
-                js.executeScript("verArmario('A5');");
-            }
 
             // BALDAS DEL GENERAL
             case "2001" -> {
@@ -466,7 +482,6 @@ public class GestorLocalizaciones {
             }
         }
     }
-
     /**
      * Cierra el navegador controlado por Selenium.
      *
