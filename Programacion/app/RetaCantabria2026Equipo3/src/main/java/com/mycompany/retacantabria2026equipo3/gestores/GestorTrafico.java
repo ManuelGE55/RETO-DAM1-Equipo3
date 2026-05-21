@@ -56,12 +56,10 @@ public class GestorTrafico {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                inventario.anadirMaterial(new Material(datos[0], datos[1], Categoria.valueOf(datos[2]), Estado.valueOf(datos[3]), datos[4]));
                 if (MaterialDAO.existeMaterial(datos[0])) {
-
-                    MaterialDAO.InsertarMaterial(datos[0], datos[1],datos[2], datos[3]);
+                    MaterialDAO.InsertarMaterial(datos[0], datos[1],datos[3], datos[4]);
                 } else {
-                    MaterialDAO.InsertarTipoMaterial(datos[0], datos[1],datos[2], datos[3],Categoria.valueOf(datos[4]),Integer.parseInt(datos[6]));
+                    MaterialDAO.InsertarTipoMaterial(datos[0], datos[1],datos[3], datos[4],Categoria.valueOf(datos[2]),1);
                 }
             }
         } catch (IOException e) {

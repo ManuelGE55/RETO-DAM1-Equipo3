@@ -29,7 +29,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -834,11 +836,21 @@ public class Pantalla extends javax.swing.JFrame {
         );
 
         jMenu3.setText("File");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
 
         exportarCSV.setText("Exportar CSV");
         jMenu3.add(exportarCSV);
 
         importarCSV.setText("Importar CSV");
+        importarCSV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                importarCSVMouseClicked(evt);
+            }
+        });
         importarCSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importarCSVActionPerformed(evt);
@@ -1238,8 +1250,20 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoTextoBorrarUsuarioActionPerformed
 
     private void importarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarCSVActionPerformed
-        GestorTrafico.cargarInventario(new File("src/main/CSVs/PruebaCSV.xslx"));
+    
+        
     }//GEN-LAST:event_importarCSVActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void importarCSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importarCSVMouseClicked
+        GestorTrafico.cargarInventario(new File("src/main/CSVs/PruebaCSV.xlsx"));
+        inventario.setMateriales(InventarioDAO.cargarInventario());
+        rellenarTablaMateriales();
+        jPanel2.repaint();
+    }//GEN-LAST:event_importarCSVMouseClicked
 
     private void rellenarTablaMateriales() {
         // Columnas
