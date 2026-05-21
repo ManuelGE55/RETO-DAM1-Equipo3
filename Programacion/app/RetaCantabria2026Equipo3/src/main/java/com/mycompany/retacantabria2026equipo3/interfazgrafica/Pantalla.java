@@ -53,6 +53,7 @@ public class Pantalla extends javax.swing.JFrame {
     public Pantalla() {
         setUndecorated(true);
         initComponents();
+        jDialog2.setUndecorated(true);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -665,6 +666,11 @@ public class Pantalla extends javax.swing.JFrame {
         jScrollPane2.setViewportView(textoDescripcionInsertarMaterial);
 
         comboBoxEstadoInsertarMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxEstadoInsertarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxEstadoInsertarMaterialActionPerformed(evt);
+            }
+        });
 
         comboBoxCategoriaInsertarMaterial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1183,6 +1189,10 @@ public class Pantalla extends javax.swing.JFrame {
     private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
         rellenarTablaMateriales();
     }//GEN-LAST:event_comboLocalizacionActionPerformed
+
+    private void comboBoxEstadoInsertarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEstadoInsertarMaterialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxEstadoInsertarMaterialActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas
