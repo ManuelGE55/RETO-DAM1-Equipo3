@@ -90,11 +90,11 @@ public class Pantalla extends javax.swing.JFrame {
         jOptionPane1 = new javax.swing.JOptionPane();
         jDialog1 = new javax.swing.JDialog();
         jDialog2 = new javax.swing.JDialog();
-        jLabel10 = new javax.swing.JLabel();
         botonAñadirInsertarTipoMaterial = new javax.swing.JButton();
         botonSalirInsertarTipoMaterial = new javax.swing.JButton();
         textoStockMinimo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JPasswordField();
@@ -118,6 +118,7 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        BotonEntrarABorrarUsuario = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nombreMaterial = new javax.swing.JLabel();
@@ -179,10 +180,6 @@ public class Pantalla extends javax.swing.JFrame {
             .addGap(0, 165, Short.MAX_VALUE)
         );
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel10.setText("NUEVO MATERIAL:");
-
         botonAñadirInsertarTipoMaterial.setText("Añadir");
         botonAñadirInsertarTipoMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +195,10 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         jLabel6.setText("Stock minimo:");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel10.setText("NUEVO MATERIAL:");
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
@@ -216,16 +217,16 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(textoStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47))
             .addGroup(jDialog2Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addGap(98, 98, 98)
                 .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel10)
+                .addGap(47, 47, 47)
                 .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(textoStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -308,6 +309,13 @@ public class Pantalla extends javax.swing.JFrame {
 
         jLabel20.setText("Rol:");
 
+        BotonEntrarABorrarUsuario.setText("Borrar usuario");
+        BotonEntrarABorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEntrarABorrarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRegistrarUsuarioLayout = new javax.swing.GroupLayout(panelRegistrarUsuario);
         panelRegistrarUsuario.setLayout(panelRegistrarUsuarioLayout);
         panelRegistrarUsuarioLayout.setHorizontalGroup(
@@ -334,6 +342,10 @@ public class Pantalla extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
+            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(BotonEntrarABorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRegistrarUsuarioLayout.setVerticalGroup(
             panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,7 +374,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(BotonEntrarABorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -459,6 +473,11 @@ public class Pantalla extends javax.swing.JFrame {
                 comboLocalizacionMouseClicked(evt);
             }
         });
+        comboLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLocalizacionActionPerformed(evt);
+            }
+        });
 
         modificarMaterial.setText("Modificar Material");
         modificarMaterial.addActionListener(new java.awt.event.ActionListener() {
@@ -551,7 +570,8 @@ public class Pantalla extends javax.swing.JFrame {
                             .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonGestionUsuarios)
-                            .addComponent(botonMapa)))))
+                            .addComponent(botonMapa))))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         BotonSalirModificarMaterial.setText("Salir");
@@ -730,9 +750,14 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
-        jLabel21.setText("ID:");
+        jLabel21.setText("Email:");
 
         BotonSalirBorrarUsuario.setText("Salir");
+        BotonSalirBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirBorrarUsuarioActionPerformed(evt);
+            }
+        });
 
         BotonBorrarUsuario.setText("Borrar");
         BotonBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -748,7 +773,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addComponent(CampoTextoBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorrarUsuarioLayout.createSequentialGroup()
@@ -876,11 +901,6 @@ public class Pantalla extends javax.swing.JFrame {
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         GeneradorJSONInventario generador = new GeneradorJSONInventario();
         generador.generarJSONInventario();
-        if (GestorLocalizaciones.cerrarWebDriver()) {
-            System.out.println("Driver de la web cerrado.");
-        } else {
-            System.out.println("Error: El Driver de la web no se cerró correctamente.");
-        }
         System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
@@ -935,29 +955,16 @@ public class Pantalla extends javax.swing.JFrame {
             Logger.getLogger(Pantalla.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-            if (usuario != null) {
-                if (usuario instanceof Profesor) {
-                    modificarMaterial.setVisible(false);
-                    añadirMaterial.setVisible(false);
-                } else {
-                    modificarMaterial.setVisible(true);
-                    añadirMaterial.setVisible(true);
-                }
-                this.setSize(1500, 550);
-                jPanel2.setVisible(true);
-                jMenuBar2.setVisible(true);
-                rellenarComboBoxEstado();
-                rellenarComboBoxCategoria();
-                rellenarComboBoxLocalizacion();
-                inventario.setMateriales(InventarioDAO.cargarInventario());
-                rellenarTablaMateriales();
-                Loggin.setVisible(false);
-
+        if (usuario != null) {
+            if (usuario instanceof Profesor) {
+                modificarMaterial.setVisible(false);
+                añadirMaterial.setVisible(false);
+                botonGestionUsuarios.setVisible(false);
             } else {
                 modificarMaterial.setVisible(true);
                 añadirMaterial.setVisible(true);
             }
-            this.setSize(1390, 550);
+            this.setSize(1500, 550);
             jPanel2.setVisible(true);
             jMenuBar2.setVisible(true);
             rellenarComboBoxEstado();
@@ -968,11 +975,9 @@ public class Pantalla extends javax.swing.JFrame {
             Loggin.setVisible(false);
 
         } else {
-            JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos");
+            JOptionPane.showMessageDialog(this, "Contraseña o email incorrecto");
             Contraseña.setText("");
-            Contraseña.requestFocus();
         }
-
     }//GEN-LAST:event_botonOkActionPerformed
 
     private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1030,8 +1035,8 @@ public class Pantalla extends javax.swing.JFrame {
 
                     MaterialDAO.InsertarMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString());
                 } else {
-                    jDialog2.setSize(400,300);
-                   jDialog2.setVisible(true);
+                    jDialog2.setSize(400, 300);
+                    jDialog2.setVisible(true);
                 }
                 jPanel2.setVisible(true);
                 rellenarTablaMateriales();
@@ -1043,6 +1048,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         } else {
             //NOMBRE O DESCRIPCION NULA
+            JOptionPane.showMessageDialog(null, "Insertar material", "Nombre y/o descripcion es nula", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botonInsertar1ActionPerformed
 
@@ -1101,13 +1107,18 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void BotonBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarUsuarioActionPerformed
         String email;
+
         try {
             if (!CampoTextoBorrarUsuario.getText().equals("")) {
                 email = CampoTextoBorrarUsuario.getText();
                 boolean existeUsuario = UsuarioDAO.existeUsuario(email);
                 if (existeUsuario) {
-                    UsuarioDAO.borrarUsuario(AccesoBaseDatos.getInstance().getConn(), email);
-                    JOptionPane.showMessageDialog(null, "El usuario se eliminó correctamente.", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    if (!usuario.getEmail().equals(email)) {
+                        UsuarioDAO.borrarUsuario(AccesoBaseDatos.getInstance().getConn(), email);
+                        JOptionPane.showMessageDialog(null, "El usuario se eliminó correctamente.", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No puedes borrar tu mismo usuario.", "Eliminación usuario remoto", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Error: Usuario no encontrado, prueba con otro email.", "Usuario no encontrado", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -1129,7 +1140,7 @@ public class Pantalla extends javax.swing.JFrame {
         try {
             if (jTable1.getSelectedRow() != -1) {
                 String idUbicacion = (String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getColumnCount() - 1);
-                GestorLocalizaciones.mostrarUbicacionWeb(idUbicacion);                
+                GestorLocalizaciones.mostrarUbicacionWeb(idUbicacion);
             } else {
                 JOptionPane.showMessageDialog(null, "Error: Se debe de seleccionar un material para acceder a su mapa.", "Material no seleccionado", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -1141,16 +1152,30 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMapaActionPerformed
 
     private void botonAñadirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirInsertarTipoMaterialActionPerformed
-       MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(),Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()),Integer.parseInt(textoStockMinimo.getText()));
-       jDialog2.setVisible(false);
-       panelInsertarComponente.setVisible(false);
+        MaterialDAO.InsertarTipoMaterial(textoNombreInsertarMaterial.getText(), textoDescripcionInsertarMaterial.getText(), comboBoxEstadoInsertarMaterial.getSelectedItem().toString(), comboBoxLocalizacionInsertarMaterial.getSelectedItem().toString(), Categoria.valueOf(comboBoxCategoriaInsertarMaterial.getSelectedItem().toString()), Integer.parseInt(textoStockMinimo.getText()));
+        jDialog2.setVisible(false);
+        panelInsertarComponente.setVisible(false);
     }//GEN-LAST:event_botonAñadirInsertarTipoMaterialActionPerformed
 
     private void botonSalirInsertarTipoMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirInsertarTipoMaterialActionPerformed
-       jDialog2.setVisible(false);
-       panelInsertarComponente.setVisible(false);
-       jPanel2.setVisible(true);
+        jDialog2.setVisible(false);
+        panelInsertarComponente.setVisible(false);
+        jPanel2.setVisible(true);
     }//GEN-LAST:event_botonSalirInsertarTipoMaterialActionPerformed
+
+    private void BotonEntrarABorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarABorrarUsuarioActionPerformed
+        panelRegistrarUsuario.setVisible(false);
+        panelBorrarUsuario.setVisible(true);
+    }//GEN-LAST:event_BotonEntrarABorrarUsuarioActionPerformed
+
+    private void BotonSalirBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuarioActionPerformed
+        panelBorrarUsuario.setVisible(false);
+        panelRegistrarUsuario.setVisible(true);
+    }//GEN-LAST:event_BotonSalirBorrarUsuarioActionPerformed
+
+    private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
+        rellenarTablaMateriales();
+    }//GEN-LAST:event_comboLocalizacionActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas
@@ -1185,6 +1210,10 @@ public class Pantalla extends javax.swing.JFrame {
                 if (!comboEstado.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
                 }
+                
+                if (!comboLocalizacion.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem());
+                }
 
                 if (!comboCategoria.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
@@ -1194,7 +1223,7 @@ public class Pantalla extends javax.swing.JFrame {
                     modelo.addRow(fila);
                     materiales.add(m);
                 }
-
+                
             }
         }
 
@@ -1261,11 +1290,6 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void rellenarComboBoxCambiarLocalizacion(JComboBox<String> box) {
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
-        modelo.addElement("11");
-        modelo.addElement("12");
-        modelo.addElement("13");
-        modelo.addElement("14");
-        modelo.addElement("15");
         modelo.addElement("2001");
         modelo.addElement("2002");
         modelo.addElement("2003");
@@ -1358,11 +1382,6 @@ public class Pantalla extends javax.swing.JFrame {
     private void rellenarComboBoxLocalizacion() {
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
         modelo.addElement("---");
-        modelo.addElement("11");
-        modelo.addElement("12");
-        modelo.addElement("13");
-        modelo.addElement("14");
-        modelo.addElement("15");
         modelo.addElement("2001");
         modelo.addElement("2002");
         modelo.addElement("2003");
@@ -1472,6 +1491,7 @@ public class Pantalla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBorrarUsuario;
     private javax.swing.JButton BotonEntrar;
+    private javax.swing.JButton BotonEntrarABorrarUsuario;
     private javax.swing.JButton BotonModificarMaterial;
     private javax.swing.JButton BotonRegistrarUsuario;
     private javax.swing.JButton BotonSalir;
@@ -1512,6 +1532,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1527,6 +1548,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

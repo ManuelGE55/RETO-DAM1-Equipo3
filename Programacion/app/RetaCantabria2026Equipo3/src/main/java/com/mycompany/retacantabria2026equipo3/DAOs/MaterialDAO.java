@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  * Clase DAO encargada de gestionar las operaciones relacionadas con los
@@ -40,9 +41,11 @@ public class MaterialDAO {
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
                 System.out.println("no se pudo añadir el material");
+                JOptionPane.showMessageDialog(null, "Insertar material", "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 //SE AÑADIO CORRECTAMENTE
                 System.out.println("Se añadio correctamente");
+                JOptionPane.showMessageDialog(null, "Insertar material", "Material añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
@@ -51,22 +54,24 @@ public class MaterialDAO {
 
     }
 
-    public static void InsertarTipoMaterial(String nombre, String descripcion, String estado, String IdUbicacion, Categoria categoria) {
+    public static void InsertarTipoMaterial(String nombre, String descripcion, String estado, String IdUbicacion, Categoria categoria, int stock) {
         String sql = "INSERT INTO datos_material (nombre, cantidad, stock_minimo, categoria) VALUES(?,?,?,?)";
         try (Connection conn = AccesoBaseDatos.getInstance().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, nombre);
             ps.setInt(2, 1);
-            ps.setInt(3, 1);
+            ps.setInt(3, stock);
             ps.setString(4, categoria.name());
             int resultado = ps.executeUpdate();
             if (resultado != 1) {
                 //NO SE PUDO AÑADIR EL MATERIAL
                 System.out.println("no se pudo añadir el tipo material");
+                JOptionPane.showMessageDialog(null, "Insertar tipo de material", "Argumento no encontrado", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 //SE AÑADIO CORRECTAMENTE
                 InsertarMaterial(nombre, descripcion, estado, IdUbicacion);
                 System.out.println("Se añadio el tipo material correctamente");
+                JOptionPane.showMessageDialog(null, "Insertar tipo de material", "Tipo añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (SQLException ex) {
