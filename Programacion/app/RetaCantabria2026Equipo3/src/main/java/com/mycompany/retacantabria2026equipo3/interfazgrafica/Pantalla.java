@@ -95,6 +95,26 @@ public class Pantalla extends javax.swing.JFrame {
         textoStockMinimo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        panelRegistrarUsuario = new javax.swing.JDialog();
+        CampoUsuarioEmail = new javax.swing.JTextField();
+        CampoUsuarioContrasena = new javax.swing.JPasswordField();
+        ComboBoxUsuarioRol = new javax.swing.JComboBox<>();
+        BotonSalirRegistrarUsuario = new javax.swing.JButton();
+        BotonRegistrarUsuario = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        CampoUsuarioNombre = new javax.swing.JTextField();
+        CampoUsuarioApellidos = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        panelBorrarUsuario = new javax.swing.JDialog();
+        BotonBorrarUsuario1 = new javax.swing.JButton();
+        CampoTextoBorrarUsuario = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        BotonSalirBorrarUsuario1 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         Loggin = new javax.swing.JLayeredPane();
         Usuario = new javax.swing.JTextField();
         Contraseña = new javax.swing.JPasswordField();
@@ -105,20 +125,6 @@ public class Pantalla extends javax.swing.JFrame {
         BotonSalir = new javax.swing.JButton();
         BotonEntrar = new javax.swing.JButton();
         ImagenIntro = new javax.swing.JLabel();
-        panelRegistrarUsuario = new javax.swing.JPanel();
-        CampoUsuarioNombre = new javax.swing.JTextField();
-        CampoUsuarioApellidos = new javax.swing.JTextField();
-        CampoUsuarioEmail = new javax.swing.JTextField();
-        CampoUsuarioContrasena = new javax.swing.JPasswordField();
-        ComboBoxUsuarioRol = new javax.swing.JComboBox<>();
-        BotonSalirRegistrarUsuario = new javax.swing.JButton();
-        BotonRegistrarUsuario = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        BotonEntrarABorrarUsuario = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         nombreMaterial = new javax.swing.JLabel();
@@ -133,8 +139,9 @@ public class Pantalla extends javax.swing.JFrame {
         modificarMaterial = new javax.swing.JButton();
         imprimirInforme = new javax.swing.JButton();
         añadirMaterial = new javax.swing.JButton();
-        botonGestionUsuarios = new javax.swing.JButton();
+        botonAñadirUsuario = new javax.swing.JButton();
         botonMapa = new javax.swing.JButton();
+        BorrarUsuario = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         BotonSalirModificarMaterial = new javax.swing.JButton();
         BotonModificarMaterial = new javax.swing.JButton();
@@ -159,11 +166,6 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         botonInsertar1 = new javax.swing.JButton();
         botonCancelarInsertarMaterial1 = new javax.swing.JButton();
-        panelBorrarUsuario = new javax.swing.JPanel();
-        CampoTextoBorrarUsuario = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        BotonSalirBorrarUsuario = new javax.swing.JButton();
-        BotonBorrarUsuario = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         exportarCSV = new javax.swing.JMenu();
@@ -237,6 +239,170 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        ComboBoxUsuarioRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        BotonSalirRegistrarUsuario.setText("Salir");
+        BotonSalirRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirRegistrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        BotonRegistrarUsuario.setText("Registrar");
+        BotonRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonRegistrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Nombre:");
+
+        jLabel23.setText("Apellidos:");
+
+        jLabel24.setText("Email:");
+
+        jLabel25.setText("Contraseña:");
+
+        jLabel26.setText("Rol:");
+
+        CampoUsuarioNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoUsuarioNombreActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel16.setText("REGISTRAR USUARIO:");
+
+        javax.swing.GroupLayout panelRegistrarUsuarioLayout = new javax.swing.GroupLayout(panelRegistrarUsuario.getContentPane());
+        panelRegistrarUsuario.getContentPane().setLayout(panelRegistrarUsuarioLayout);
+        panelRegistrarUsuarioLayout.setHorizontalGroup(
+            panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CampoUsuarioNombre)
+                    .addComponent(CampoUsuarioApellidos)
+                    .addComponent(CampoUsuarioEmail)
+                    .addComponent(CampoUsuarioContrasena)
+                    .addComponent(ComboBoxUsuarioRol, 0, 116, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
+            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addContainerGap(108, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addGap(106, 106, 106))
+        );
+        panelRegistrarUsuarioLayout.setVerticalGroup(
+            panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoUsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addGap(55, 55, 55)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoUsuarioApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
+                .addGap(58, 58, 58)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoUsuarioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(48, 48, 48)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoUsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addGap(51, 51, 51)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ComboBoxUsuarioRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26))
+                .addGap(56, 56, 56)
+                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+
+        BotonBorrarUsuario1.setText("Borrar");
+        BotonBorrarUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBorrarUsuario1ActionPerformed(evt);
+            }
+        });
+
+        CampoTextoBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoTextoBorrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setText("Email:");
+
+        BotonSalirBorrarUsuario1.setText("Salir");
+        BotonSalirBorrarUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalirBorrarUsuario1ActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel17.setText("BORRAR USUARIO:");
+
+        javax.swing.GroupLayout panelBorrarUsuarioLayout = new javax.swing.GroupLayout(panelBorrarUsuario.getContentPane());
+        panelBorrarUsuario.getContentPane().setLayout(panelBorrarUsuarioLayout);
+        panelBorrarUsuarioLayout.setHorizontalGroup(
+            panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
+                .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
+                        .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(BotonSalirBorrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel27)))
+                        .addGap(77, 77, 77)
+                        .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CampoTextoBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonBorrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        panelBorrarUsuarioLayout.setVerticalGroup(
+            panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(CampoTextoBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotonSalirBorrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonBorrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Loggin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -283,133 +449,30 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        ComboBoxUsuarioRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        BotonSalirRegistrarUsuario.setText("Salir");
-        BotonSalirRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalirRegistrarUsuarioActionPerformed(evt);
-            }
-        });
-
-        BotonRegistrarUsuario.setText("Registrar");
-        BotonRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonRegistrarUsuarioActionPerformed(evt);
-            }
-        });
-
-        jLabel16.setText("Nombre:");
-
-        jLabel17.setText("Apellidos:");
-
-        jLabel18.setText("Email:");
-
-        jLabel19.setText("Contraseña:");
-
-        jLabel20.setText("Rol:");
-
-        BotonEntrarABorrarUsuario.setText("Borrar usuario");
-        BotonEntrarABorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonEntrarABorrarUsuarioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelRegistrarUsuarioLayout = new javax.swing.GroupLayout(panelRegistrarUsuario);
-        panelRegistrarUsuario.setLayout(panelRegistrarUsuarioLayout);
-        panelRegistrarUsuarioLayout.setHorizontalGroup(
-            panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CampoUsuarioNombre)
-                    .addComponent(CampoUsuarioApellidos)
-                    .addComponent(CampoUsuarioEmail)
-                    .addComponent(CampoUsuarioContrasena)
-                    .addComponent(ComboBoxUsuarioRol, 0, 116, Short.MAX_VALUE))
-                .addGap(73, 73, 73))
-            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
-            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(BotonEntrarABorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelRegistrarUsuarioLayout.setVerticalGroup(
-            panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistrarUsuarioLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoUsuarioNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addGap(55, 55, 55)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoUsuarioApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addGap(58, 58, 58)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoUsuarioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
-                .addGap(48, 48, 48)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoUsuarioContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19))
-                .addGap(51, 51, 51)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComboBoxUsuarioRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20))
-                .addGap(56, 56, 56)
-                .addGroup(panelRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonSalirRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(BotonEntrarABorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(302, 302, 302))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(302, 302, 302))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ImagenIntro, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         jLabel2.setText("Estado:");
@@ -500,10 +563,10 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        botonGestionUsuarios.setText("Gestionar Usuario");
-        botonGestionUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        botonAñadirUsuario.setText("Añadir Usuario");
+        botonAñadirUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGestionUsuariosActionPerformed(evt);
+                botonAñadirUsuarioActionPerformed(evt);
             }
         });
 
@@ -514,39 +577,52 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        BorrarUsuario.setText("Borrar Usuario");
+        BorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1417, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(328, 328, 328)
                 .addComponent(jLabel2)
                 .addGap(120, 120, 120)
                 .addComponent(jLabel3)
                 .addGap(78, 78, 78)
-                .addComponent(jLabel4))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(botonSalir)
-                .addGap(27, 27, 27)
-                .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonGestionUsuarios)
-                .addGap(26, 26, 26)
-                .addComponent(botonMapa)
-                .addGap(38, 38, 38)
-                .addComponent(añadirMaterial)
-                .addGap(37, 37, 37)
-                .addComponent(modificarMaterial)
-                .addGap(31, 31, 31)
-                .addComponent(imprimirInforme))
+                .addComponent(jLabel4)
+                .addContainerGap(849, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(botonSalir)
+                        .addGap(27, 27, 27)
+                        .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonAñadirUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(BorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonMapa)
+                        .addGap(18, 18, 18)
+                        .addComponent(añadirMaterial)
+                        .addGap(18, 18, 18)
+                        .addComponent(modificarMaterial)
+                        .addGap(18, 18, 18)
+                        .addComponent(imprimirInforme)))
+                .addGap(26, 26, 26))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,18 +635,21 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(añadirMaterial)
-                    .addComponent(modificarMaterial)
-                    .addComponent(imprimirInforme)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(imprimirInforme)
+                        .addComponent(modificarMaterial)
+                        .addComponent(añadirMaterial)
+                        .addComponent(botonMapa))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonSalir)
                             .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonGestionUsuarios)
-                            .addComponent(botonMapa))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(comboLocalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(botonAñadirUsuario)
+                                .addComponent(BorrarUsuario)))))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -750,59 +829,6 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
-        jLabel21.setText("Email:");
-
-        BotonSalirBorrarUsuario.setText("Salir");
-        BotonSalirBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalirBorrarUsuarioActionPerformed(evt);
-            }
-        });
-
-        BotonBorrarUsuario.setText("Borrar");
-        BotonBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBorrarUsuarioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelBorrarUsuarioLayout = new javax.swing.GroupLayout(panelBorrarUsuario);
-        panelBorrarUsuario.setLayout(panelBorrarUsuarioLayout);
-        panelBorrarUsuarioLayout.setHorizontalGroup(
-            panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(CampoTextoBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorrarUsuarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonSalirBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
-            .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
-                    .addGap(27, 27, 27)
-                    .addComponent(BotonBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(228, Short.MAX_VALUE)))
-        );
-        panelBorrarUsuarioLayout.setVerticalGroup(
-            panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorrarUsuarioLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoTextoBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addComponent(BotonSalirBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-            .addGroup(panelBorrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorrarUsuarioLayout.createSequentialGroup()
-                    .addContainerGap(238, Short.MAX_VALUE)
-                    .addComponent(BotonBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(14, 14, 14)))
-        );
-
         jMenu3.setText("File");
 
         exportarCSV.setText("Exportar CSV");
@@ -822,7 +848,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(658, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -832,21 +858,16 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(952, Short.MAX_VALUE)))
+                    .addContainerGap(1011, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(189, 189, 189)
                     .addComponent(Loggin, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(775, Short.MAX_VALUE)))
+                    .addContainerGap(834, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(panelInsertarComponente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 934, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 993, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -873,11 +894,6 @@ public class Pantalla extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(panelInsertarComponente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -964,12 +980,16 @@ public class Pantalla extends javax.swing.JFrame {
             if (usuario instanceof Profesor) {
                 modificarMaterial.setVisible(false);
                 añadirMaterial.setVisible(false);
-                botonGestionUsuarios.setVisible(false);
+                botonAñadirUsuario.setVisible(false);
+                BorrarUsuario.setVisible(false);
+                
             } else {
                 modificarMaterial.setVisible(true);
                 añadirMaterial.setVisible(true);
+                botonAñadirUsuario.setVisible(true);
+                BorrarUsuario.setVisible(true);
             }
-            this.setSize(1500, 550);
+            this.setSize(1560, 550);
             jPanel2.setVisible(true);
             jMenuBar2.setVisible(true);
             rellenarComboBoxEstado();
@@ -994,7 +1014,7 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirInformeActionPerformed
 
     private void BotonSalirModificarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirModificarMaterialActionPerformed
-        this.setSize(1500, 550);
+        this.setSize(1560, 550);
         jPanel2.setVisible(true);
         jPanel3.setVisible(false);
         jMenuBar2.setVisible(true);
@@ -1071,75 +1091,13 @@ public class Pantalla extends javax.swing.JFrame {
         jMenuBar2.setVisible(false);
     }//GEN-LAST:event_añadirMaterialActionPerformed
 
-    private void BotonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarUsuarioActionPerformed
-        Usuario usuarioRegistrar = null;
-        char[] contrasenaChars = CampoUsuarioContrasena.getPassword();
-        String contrasena = new String(contrasenaChars);
-        try {
-            if (!CampoUsuarioNombre.getText().equals("") && !CampoUsuarioApellidos.getText().equals("") && !contrasena.equals("")
-                    && ComboBoxUsuarioRol.getSelectedIndex() != -1) {
-                if (ComboBoxUsuarioRol.getSelectedItem().equals("PROFESOR")) {
-                    usuarioRegistrar = new Profesor(CampoUsuarioEmail.getText(), true, CampoUsuarioNombre.getText(), CampoUsuarioApellidos.getText(), contrasena, Rol.PROFESOR);
-                } else if (ComboBoxUsuarioRol.getSelectedItem().equals("ADMINISTRADOR")) {
-                    usuarioRegistrar = new Profesor(CampoUsuarioEmail.getText(), true, CampoUsuarioNombre.getText(), CampoUsuarioApellidos.getText(), contrasena, Rol.ADMINISTRADOR);
-                }
-
-                if (usuarioRegistrar != null) {
-                    Usuario comprobarUsuario = UsuarioDAO.comprobarUsuario(usuarioRegistrar.getEmail(), usuarioRegistrar.getContraseña());
-                    if (comprobarUsuario == null) {
-                        UsuarioDAO.insertarUsuario(usuarioRegistrar);
-                        JOptionPane.showMessageDialog(null, "El usuario se registró correctamente", "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: Ya hay un usuario con ese email.", "Email duplicado", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: Usuario que se iba a registrar nulo.", "Usuario nulo", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } else {
-                throw new DatosNoAsignadosException("Error: Algunos de los campos están sin asignar.");
-            }
-        } catch (DatosNoAsignadosException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Datos no asignados", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error en base de datos", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_BotonRegistrarUsuarioActionPerformed
-
-    private void BotonSalirRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirRegistrarUsuarioActionPerformed
-        panelRegistrarUsuario.setVisible(false);
-        jPanel2.setVisible(true);
-    }//GEN-LAST:event_BotonSalirRegistrarUsuarioActionPerformed
-
-    private void BotonBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarUsuarioActionPerformed
-        String email;
-
-        try {
-            if (!CampoTextoBorrarUsuario.getText().equals("")) {
-                email = CampoTextoBorrarUsuario.getText();
-                boolean existeUsuario = UsuarioDAO.existeUsuario(email);
-                if (existeUsuario) {
-                    if (!usuario.getEmail().equals(email)) {
-                        UsuarioDAO.borrarUsuario(AccesoBaseDatos.getInstance().getConn(), email);
-                        JOptionPane.showMessageDialog(null, "El usuario se eliminó correctamente.", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error: No puedes borrar tu mismo usuario.", "Eliminación usuario remoto", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: Usuario no encontrado, prueba con otro email.", "Usuario no encontrado", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } else {
-                throw new DatosNoAsignadosException("Error: Algunos de los campos están sin asignar.");
-            }
-        } catch (DatosNoAsignadosException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Datos no asignados", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error en base de datos", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_BotonBorrarUsuarioActionPerformed
-
-    private void botonGestionUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGestionUsuariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonGestionUsuariosActionPerformed
+    private void botonAñadirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirUsuarioActionPerformed
+        rellenarComboBoxCambiarRol(ComboBoxUsuarioRol);
+        panelRegistrarUsuario.setVisible(true);
+        panelRegistrarUsuario.setSize(400,600);
+        panelRegistrarUsuario.setLocationRelativeTo(null);
+        
+    }//GEN-LAST:event_botonAñadirUsuarioActionPerformed
 
     private void botonMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMapaActionPerformed
         try {
@@ -1168,19 +1126,96 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel2.setVisible(true);
     }//GEN-LAST:event_botonSalirInsertarTipoMaterialActionPerformed
 
-    private void BotonEntrarABorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEntrarABorrarUsuarioActionPerformed
-        panelRegistrarUsuario.setVisible(false);
-        panelBorrarUsuario.setVisible(true);
-    }//GEN-LAST:event_BotonEntrarABorrarUsuarioActionPerformed
-
-    private void BotonSalirBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuarioActionPerformed
-        panelBorrarUsuario.setVisible(false);
-        panelRegistrarUsuario.setVisible(true);
-    }//GEN-LAST:event_BotonSalirBorrarUsuarioActionPerformed
-
     private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
         rellenarTablaMateriales();
     }//GEN-LAST:event_comboLocalizacionActionPerformed
+
+    private void BotonSalirRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirRegistrarUsuarioActionPerformed
+       panelRegistrarUsuario.setVisible(false);
+        jPanel2.setVisible(true);
+    }//GEN-LAST:event_BotonSalirRegistrarUsuarioActionPerformed
+
+    private void BotonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarUsuarioActionPerformed
+       Usuario usuarioRegistrar = null;
+        char[] contrasenaChars = CampoUsuarioContrasena.getPassword();
+        String contrasena = new String(contrasenaChars);
+        try {
+            if (!CampoUsuarioNombre.getText().equals("") && !CampoUsuarioApellidos.getText().equals("") && !contrasena.equals("") && ComboBoxUsuarioRol.getSelectedIndex() != -1 && !CampoUsuarioEmail.getText().equals("")) {
+                if (ComboBoxUsuarioRol.getSelectedItem().equals("PROFESOR")) {
+                    usuarioRegistrar = new Profesor(CampoUsuarioEmail.getText(), true, CampoUsuarioNombre.getText(), CampoUsuarioApellidos.getText(), contrasena, Rol.PROFESOR);
+                } else if (ComboBoxUsuarioRol.getSelectedItem().equals("ADMINISTRADOR")) {
+                    usuarioRegistrar = new Profesor(CampoUsuarioEmail.getText(), true, CampoUsuarioNombre.getText(), CampoUsuarioApellidos.getText(), contrasena, Rol.ADMINISTRADOR);
+                }
+
+                if (usuarioRegistrar != null) {
+                    Usuario comprobarUsuario = UsuarioDAO.comprobarUsuario(usuarioRegistrar.getEmail(), usuarioRegistrar.getContraseña());
+                    if (comprobarUsuario == null) {
+                        UsuarioDAO.insertarUsuario(usuarioRegistrar);
+                        JOptionPane.showMessageDialog(null, "El usuario se registró correctamente", "Usuario registrado", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: Ya hay un usuario con ese email.", "Email duplicado", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: Usuario que se iba a registrar nulo.", "Usuario nulo", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                throw new DatosNoAsignadosException("Error: Algunos de los campos están sin asignar.");
+            }
+        } catch (DatosNoAsignadosException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Datos no asignados", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error en base de datos", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_BotonRegistrarUsuarioActionPerformed
+
+    private void CampoUsuarioNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoUsuarioNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoUsuarioNombreActionPerformed
+
+    private void BorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarUsuarioActionPerformed
+        
+        panelBorrarUsuario.setSize(400,200); 
+        panelBorrarUsuario.setLocationRelativeTo(null); 
+        panelBorrarUsuario.setVisible(true);
+        
+       
+    }//GEN-LAST:event_BorrarUsuarioActionPerformed
+
+    private void BotonBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBorrarUsuario1ActionPerformed
+       String email;
+
+        try {
+            if (!CampoTextoBorrarUsuario.getText().equals("")) {
+                email = CampoTextoBorrarUsuario.getText();
+                boolean existeUsuario = UsuarioDAO.existeUsuario(email);
+                if (existeUsuario) {
+                    if (!usuario.getEmail().equals(email)) {
+                        UsuarioDAO.borrarUsuario(AccesoBaseDatos.getInstance().getConn(), email);
+                        JOptionPane.showMessageDialog(null, "El usuario se eliminó correctamente.", "Usuario eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: No puedes borrar tu mismo usuario.", "Eliminación usuario remoto", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: Usuario no encontrado, prueba con otro email.", "Usuario no encontrado", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                throw new DatosNoAsignadosException("Error: Algunos de los campos están sin asignar.");
+            }
+        } catch (DatosNoAsignadosException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Datos no asignados", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error en base de datos", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_BotonBorrarUsuario1ActionPerformed
+
+    private void BotonSalirBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuario1ActionPerformed
+        panelBorrarUsuario.setVisible(false);
+        panelRegistrarUsuario.setVisible(true);
+    }//GEN-LAST:event_BotonSalirBorrarUsuario1ActionPerformed
+
+    private void CampoTextoBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoBorrarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoTextoBorrarUsuarioActionPerformed
 
     private void rellenarTablaMateriales() {
         // Columnas
@@ -1494,13 +1529,13 @@ public class Pantalla extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonBorrarUsuario;
+    private javax.swing.JButton BorrarUsuario;
+    private javax.swing.JButton BotonBorrarUsuario1;
     private javax.swing.JButton BotonEntrar;
-    private javax.swing.JButton BotonEntrarABorrarUsuario;
     private javax.swing.JButton BotonModificarMaterial;
     private javax.swing.JButton BotonRegistrarUsuario;
     private javax.swing.JButton BotonSalir;
-    private javax.swing.JButton BotonSalirBorrarUsuario;
+    private javax.swing.JButton BotonSalirBorrarUsuario1;
     private javax.swing.JButton BotonSalirModificarMaterial;
     private javax.swing.JButton BotonSalirRegistrarUsuario;
     private javax.swing.JTextField CampoTextoBorrarUsuario;
@@ -1517,8 +1552,8 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JTextField Usuario;
     private javax.swing.JButton añadirMaterial;
     private javax.swing.JButton botonAñadirInsertarTipoMaterial;
+    private javax.swing.JButton botonAñadirUsuario;
     private javax.swing.JButton botonCancelarInsertarMaterial1;
-    private javax.swing.JButton botonGestionUsuarios;
     private javax.swing.JButton botonInsertar1;
     private javax.swing.JButton botonMapa;
     private javax.swing.JButton botonOk;
@@ -1545,11 +1580,13 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1569,9 +1606,9 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton modificarMaterial;
     private javax.swing.JLabel nombreMaterial;
-    private javax.swing.JPanel panelBorrarUsuario;
+    private javax.swing.JDialog panelBorrarUsuario;
     private javax.swing.JPanel panelInsertarComponente;
-    private javax.swing.JPanel panelRegistrarUsuario;
+    private javax.swing.JDialog panelRegistrarUsuario;
     private javax.swing.JTextArea textoDescripcionInsertarMaterial;
     private javax.swing.JTextField textoNombreInsertarMaterial;
     private javax.swing.JTextField textoStockMinimo;
