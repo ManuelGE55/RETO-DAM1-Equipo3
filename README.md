@@ -240,7 +240,7 @@ La guía de despliegue documenta la configuración de la infraestructura en AWS,
 
 El manual de usuario explica el funcionamiento de la aplicación de escritorio, sus requisitos, perfiles de usuario, opciones disponibles y generación de informes.
 
-[📄 Ver Manual de usuario](docs/Manual_usuario_Equipo3.pdf)
+[📄 Ver Manual de usuario]([docs/Manual_usuario_Equipo3.pdf](https://github.com/ManuelGE55/RETO-DAM1-Equipo3/blob/main/Programacion/Manual%20de%20usuario/Manual%20de%20usuario.pdf))
 
 ---
 
