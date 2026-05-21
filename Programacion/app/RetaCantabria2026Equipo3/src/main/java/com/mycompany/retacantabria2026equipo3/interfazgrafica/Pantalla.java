@@ -2113,9 +2113,7 @@ public class Pantalla extends javax.swing.JFrame {
         comboCategoria.setModel(modelo);
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BorrarUsuario;
