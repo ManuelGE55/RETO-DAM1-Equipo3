@@ -1553,7 +1553,6 @@ public class Pantalla extends javax.swing.JFrame {
      */
     private void BotonSalirBorrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirBorrarUsuario1ActionPerformed
         panelBorrarUsuario.setVisible(false);
-        panelRegistrarUsuario.setVisible(true);
     }//GEN-LAST:event_BotonSalirBorrarUsuario1ActionPerformed
 
     private void CampoTextoBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoTextoBorrarUsuarioActionPerformed
