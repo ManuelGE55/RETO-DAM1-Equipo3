@@ -1,14 +1,5 @@
 [
   {
-    "idMaterial": 25,
-    "nombre": "ADIOS",
-    "cantidad": 1,
-    "armario": "A1",
-    "balda": "B000",
-    "cajon": "",
-    "descripcion": "descripcion"
-  },
-  {
     "idMaterial": 21,
     "nombre": "Cable ethernet",
     "cantidad": 1,
@@ -18,27 +9,9 @@
     "descripcion": "Cable ethernet de 1 metro"
   },
   {
-    "idMaterial": 24,
-    "nombre": "Hola",
-    "cantidad": 2,
-    "armario": "A1",
-    "balda": "B000",
-    "cajon": "",
-    "descripcion": "adios"
-  },
-  {
-    "idMaterial": 27,
-    "nombre": "hola",
-    "cantidad": 2,
-    "armario": "A1",
-    "balda": "B000",
-    "cajon": "",
-    "descripcion": "g"
-  },
-  {
     "idMaterial": 4,
     "nombre": "Libro DAM",
-    "cantidad": 2,
+    "cantidad": 8,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -47,7 +20,7 @@
   {
     "idMaterial": 5,
     "nombre": "Libro DAM",
-    "cantidad": 2,
+    "cantidad": 8,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -56,7 +29,7 @@
   {
     "idMaterial": 6,
     "nombre": "Libro DAM",
-    "cantidad": 2,
+    "cantidad": 8,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -65,7 +38,7 @@
   {
     "idMaterial": 7,
     "nombre": "Libro DAM",
-    "cantidad": 2,
+    "cantidad": 8,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -74,7 +47,7 @@
   {
     "idMaterial": 8,
     "nombre": "Libro DAM",
-    "cantidad": 2,
+    "cantidad": 8,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -83,16 +56,16 @@
   {
     "idMaterial": 9,
     "nombre": "Libro DAM",
-    "cantidad": 2,
-    "armario": "A1",
-    "balda": "B000",
+    "cantidad": 8,
+    "armario": "GENERAL",
+    "balda": "B003",
     "cajon": "",
     "descripcion": "Libro de texto 1ºDAM 2015"
   },
   {
     "idMaterial": 10,
     "nombre": "Libro DAM",
-    "cantidad": 2,
+    "cantidad": 8,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -101,7 +74,7 @@
   {
     "idMaterial": 11,
     "nombre": "Libro DAM",
-    "cantidad": 2,
+    "cantidad": 8,
     "armario": "GENERAL",
     "balda": "B003",
     "cajon": "",
@@ -110,7 +83,7 @@
   {
     "idMaterial": 1,
     "nombre": "Manual",
-    "cantidad": 6,
+    "cantidad": 3,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
@@ -119,7 +92,7 @@
   {
     "idMaterial": 2,
     "nombre": "Manual",
-    "cantidad": 6,
+    "cantidad": 3,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
@@ -128,38 +101,11 @@
   {
     "idMaterial": 3,
     "nombre": "Manual",
-    "cantidad": 6,
+    "cantidad": 3,
     "armario": "GENERAL",
     "balda": "B001",
     "cajon": "",
     "descripcion": "Manual de Word 2007"
-  },
-  {
-    "idMaterial": 22,
-    "nombre": "Manual",
-    "cantidad": 6,
-    "armario": "A1",
-    "balda": "B000",
-    "cajon": "",
-    "descripcion": "hola"
-  },
-  {
-    "idMaterial": 23,
-    "nombre": "manual",
-    "cantidad": 6,
-    "armario": "A1",
-    "balda": "B000",
-    "cajon": "",
-    "descripcion": "hola"
-  },
-  {
-    "idMaterial": 26,
-    "nombre": "manual",
-    "cantidad": 6,
-    "armario": "A1",
-    "balda": "B000",
-    "cajon": "",
-    "descripcion": "hi"
   },
   {
     "idMaterial": 15,
@@ -241,14 +187,5 @@
     "balda": "B201",
     "cajon": "",
     "descripcion": "Caja de tornillos pequeños"
-  },
-  {
-    "idMaterial": 28,
-    "nombre": "za",
-    "cantidad": 1,
-    "armario": "A1",
-    "balda": "B000",
-    "cajon": "",
-    "descripcion": "z"
   }
 ]

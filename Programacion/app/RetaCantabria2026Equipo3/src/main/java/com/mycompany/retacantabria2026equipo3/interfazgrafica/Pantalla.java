@@ -473,6 +473,11 @@ public class Pantalla extends javax.swing.JFrame {
                 comboLocalizacionMouseClicked(evt);
             }
         });
+        comboLocalizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLocalizacionActionPerformed(evt);
+            }
+        });
 
         modificarMaterial.setText("Modificar Material");
         modificarMaterial.addActionListener(new java.awt.event.ActionListener() {
@@ -896,11 +901,6 @@ public class Pantalla extends javax.swing.JFrame {
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
         GeneradorJSONInventario generador = new GeneradorJSONInventario();
         generador.generarJSONInventario();
-        if (GestorLocalizaciones.cerrarWebDriver()) {
-            System.out.println("Driver de la web cerrado.");
-        } else {
-            System.out.println("Error: El Driver de la web no se cerró correctamente.");
-        }
         System.exit(0);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
@@ -959,6 +959,7 @@ public class Pantalla extends javax.swing.JFrame {
             if (usuario instanceof Profesor) {
                 modificarMaterial.setVisible(false);
                 añadirMaterial.setVisible(false);
+                botonGestionUsuarios.setVisible(false);
             } else {
                 modificarMaterial.setVisible(true);
                 añadirMaterial.setVisible(true);
@@ -1172,6 +1173,10 @@ public class Pantalla extends javax.swing.JFrame {
         panelRegistrarUsuario.setVisible(true);
     }//GEN-LAST:event_BotonSalirBorrarUsuarioActionPerformed
 
+    private void comboLocalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalizacionActionPerformed
+        rellenarTablaMateriales();
+    }//GEN-LAST:event_comboLocalizacionActionPerformed
+
     private void rellenarTablaMateriales() {
         // Columnas
         materiales.clear();
@@ -1205,6 +1210,10 @@ public class Pantalla extends javax.swing.JFrame {
                 if (!comboEstado.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getEstado().name().equals(comboEstado.getSelectedItem());
                 }
+                
+                if (!comboLocalizacion.getSelectedItem().equals("---")) {
+                    filtrado = filtrado && m.getIdUbicacion().equals(comboLocalizacion.getSelectedItem());
+                }
 
                 if (!comboCategoria.getSelectedItem().equals("---")) {
                     filtrado = filtrado && m.getCategoria().name().equals(comboCategoria.getSelectedItem());
@@ -1214,7 +1223,7 @@ public class Pantalla extends javax.swing.JFrame {
                     modelo.addRow(fila);
                     materiales.add(m);
                 }
-
+                
             }
         }
 
