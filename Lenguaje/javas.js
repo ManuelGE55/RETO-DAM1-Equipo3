@@ -87,7 +87,7 @@ const estructura = {
 let materiales = [];
 
 function cargarMaterialesJSON() {
-    fetch("inventario.json")
+    fetch("inventario.json?v=" + new Date().getTime())
         .then(respuesta => respuesta.json())
         .then(datos => {
             materiales = datos;
