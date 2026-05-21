@@ -49,7 +49,6 @@ El sistema combina varias tecnologías y áreas de conocimiento trabajadas duran
 17. [Dificultades encontradas](#dificultades-encontradas)
 18. [Mejoras futuras](#mejoras-futuras)
 19. [Webgrafía](#webgrafía)
-20. [Licencia](#licencia)
 
 ---
 
@@ -543,11 +542,3 @@ Algunas posibles mejoras futuras del sistema serían:
 - https://www.w3schools.com/sql/
 - https://netbeans.apache.org/
 - https://code.visualstudio.com/docs
-
----
-
-# Licencia
-
-Proyecto desarrollado con fines educativos para el IES Miguel Herrero Pereda.
-
-Uso exclusivamente académico.
